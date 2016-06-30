@@ -1,0 +1,14 @@
+Mindenki csináljon egy könyvtárat a saját nevével ebben a repositoryban a saját nevével.
+Azon belül egy 1-es könyvtárat.
+A http://learngitbranching.js.org/ - on elérhetõ tutorialt mindenki csinálja végig.
+
+A parancsokat a tutorial számával megegyezõ nevû .txt fájlban pusholja fel a létrehozott saját könyvtár/1 alá.
+
+Pl.:
+[Név-ékezet nélkül]\1\Main_1.txt
+[Név-ékezet nélkül]\1\Remote_1.txt
+
+Ne felejtsétek el hogy két tab van a "Select a level" alatt (Main és a Remote )
+Az advanced rész opcionális!
+
+Határidõ kedd 15:00.
