@@ -1,0 +1,4 @@
+git clone
+git fakeTeamwork master 2
+git commit
+git pull
