@@ -1,0 +1,2 @@
+git rebase -i HEAD~4
+C2 -re pick, a maradek sorrendjet atrendezem

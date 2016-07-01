@@ -1,0 +1,13 @@
+git checkout master
+git cherry-pick C2
+git checkout C1
+git cherry-pick C2
+git cherry-pick C3
+git branch -f master C3'
+
+rovidebben
+
+git checkout master
+git cherry-pick C2
+git branch -f master C1
+git cherry-pick C2 C3

@@ -1,0 +1,7 @@
+git describe master -> v0_2_gC2
+git describe side -> v1_1_gC4
+git describe -> v1_2_gC6
+git describe C0 -> v0
+git describe C6 -> v1_2_gC6
+git describe bugFix -> v1_2_gC6
+git commit
