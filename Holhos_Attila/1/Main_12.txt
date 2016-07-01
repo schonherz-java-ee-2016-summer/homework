@@ -1,0 +1,4 @@
+git rebase -i HEAD~2 (Change the order of C2 and C3)
+git commit --amend (add C2'', which is amended)
+git rebase -i HEAD (Change the order C3' and C2'')
+git branch -f master C3''

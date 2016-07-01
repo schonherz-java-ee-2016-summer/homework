@@ -1,0 +1,1 @@
+git rebase -i HEAD~4 (C2 pick + C5 move up to the position of C4)
