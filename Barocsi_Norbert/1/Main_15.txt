@@ -10,5 +10,5 @@ git describe C5
 v1_1_gC5
 git describe C6
 v1_2_gC6
-git describe bugfix
+git describe bugFix
 git commit
