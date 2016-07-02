@@ -1,0 +1,5 @@
+git rebase -i HEAD~4
+*Pick C2*
+C3
+C5
+C4

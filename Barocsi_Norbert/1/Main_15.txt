@@ -1,0 +1,14 @@
+git describe master
+v0_2_gC2
+git describe C0
+v0
+git describe C3
+v1
+git describe C4
+v1_1_gC4
+git describe C5
+v1_1_gC5
+git describe C6
+v1_2_gC6
+git describe bugfix
+git commit

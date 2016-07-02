@@ -1,0 +1,4 @@
+git pull
+
+git fetch
+git merge o/master
