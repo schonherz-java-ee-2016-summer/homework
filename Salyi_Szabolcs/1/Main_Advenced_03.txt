@@ -1,0 +1,7 @@
+git rebase -i HEAD~4 - Pick C5 majd a sorrend kiválasztása
+git branch -f master C5
+git rebase -i HEAD~4 - Sorrend kiválasztása
+git branch -f master C5
+git branch -f one C2'
+git branch -f two C2''
+git branch -f three C2

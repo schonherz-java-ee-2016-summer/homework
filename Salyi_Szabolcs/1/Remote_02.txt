@@ -1,0 +1,5 @@
+git checkout o/master
+git commit
+git checkout o/master
+git commit
+git branch -f master C3

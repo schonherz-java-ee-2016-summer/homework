@@ -1,0 +1,12 @@
+git branch bugFix
+git checkout bugFix
+git commit
+git checkout master
+git merge bugFix
+
+vagy 
+
+git checkout -b bugFix
+git commit
+git checkout master
+git merge bugFix
