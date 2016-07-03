@@ -1,0 +1,3 @@
+git commit
+git checkout o/master
+git commit

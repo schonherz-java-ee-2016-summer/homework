@@ -1,0 +1,5 @@
+git branch -f bugFix HEAD~2
+git checkout master
+git checkout C6
+git branch -f master
+git checkout C1

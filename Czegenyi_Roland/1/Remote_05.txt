@@ -1,0 +1,6 @@
+git clone
+git fakeTeamwork 2
+git pull
+git branch -f master C1
+git commit
+git pull

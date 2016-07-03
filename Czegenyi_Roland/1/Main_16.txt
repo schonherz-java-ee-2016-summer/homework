@@ -1,0 +1,11 @@
+git checkout C3
+git rebase -i C2
+git branch -f bugFix HEAD
+git checkout side
+git rebase C3'
+git checkout C7
+git rebase C6'
+git branch -f another HEAD
+git checkout master
+git branch -f master HEAD
+git branch -f master C7'

@@ -1,0 +1,6 @@
+git branch bugFix
+git checkout bugFix
+
+or
+
+git checkout -b bugFix

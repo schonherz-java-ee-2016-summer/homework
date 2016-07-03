@@ -1,0 +1,2 @@
+git rebase -i HEAD~4
+C2 pick and C4 move down
