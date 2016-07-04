@@ -1,0 +1,7 @@
+git checkout bugFix
+git rebase master
+git checkout side
+git rebase master
+git checkout another
+git rebase -i side (pick C4 and C5)
+git branch -f master another

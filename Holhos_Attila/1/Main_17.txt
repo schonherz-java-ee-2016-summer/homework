@@ -1,0 +1,6 @@
+git branch bugWork
+git checkout bugWork
+git branch -f bugWork HEAD~1
+git branch -f bugWork HEAD^2
+git branch -f bugWork HEAD~1
+git checkout master
