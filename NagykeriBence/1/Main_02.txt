@@ -1,0 +1,4 @@
+2: Branching in Git
+$ git branch bugFix
+
+$ git checkout bugFix

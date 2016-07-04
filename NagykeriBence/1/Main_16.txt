@@ -1,0 +1,14 @@
+1: Rebasing over 9000 times
+$ git checkout bugFix
+
+$ git rebase master
+
+$ git checkout side
+
+$ git rebase -i bugFix
+
+$ git checkout another
+
+$ git rebase side
+
+$ git branch -f master
