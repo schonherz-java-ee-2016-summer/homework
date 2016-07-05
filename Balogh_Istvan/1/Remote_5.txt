@@ -1,0 +1,8 @@
+$ git clone
+
+local branch "master" set to track remote branch "o/master"
+
+$ git fakeTeamwork
+$ git fakeTeamwork
+$ git commit
+$ git pull
