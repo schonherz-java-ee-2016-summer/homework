@@ -14,6 +14,10 @@ public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, 
         this.status = status;
     }
 
+    public LinuxDatabaseAndWebServer() {
+        super();
+    }
+
     @Override
     public void startWebContainer() {
         System.out.println("Web container is starting");
@@ -31,6 +35,10 @@ public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, 
         }
 
         startWebContainer();
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override

@@ -7,10 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import hu.schonherz.java.training.ServerService.Database.Status;
+import hu.schonherz.java.training.firereader.AdminReader;
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
+import hu.schonherz.java.training.firereader.ServerReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
+import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.server.WindowsServer;
 import hu.schonherz.java.training.thread.ReaderThread;
@@ -21,7 +24,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Reading developers from file, printing their state to console
+
+        ServerReader.readFromTextFile();
+
+        List<SystemAdministrator> asd = AdminReader.read();
+        for(SystemAdministrator sysadmin : asd){
+            System.out.println(sysadmin.getServers().size());
+        }
+
+        /*// Reading developers from file, printing their state to console
         List<Developer> dev = DeveloperReader.readFromBinaryFile();
         for (Developer developer : dev) {
             System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
@@ -92,14 +103,14 @@ public class Main {
             e.printStackTrace();
         }*/
 
-        System.out.println(readerThread.getState());
+        /*System.out.println(readerThread.getState());
         try {
             readerThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        test();
+        test();*/
     }
 
     // Synchronized threading example

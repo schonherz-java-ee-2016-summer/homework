@@ -5,7 +5,7 @@ package hu.schonherz.java.training.firereader;
  */
 
 import hu.schonherz.java.training.pojo.SystemAdministrator;
-import hu.schonherz.java.training.server.Server2;
+import hu.schonherz.java.training.server.Server;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class AdminReader {
     private static final String SUBDIRECTORY = "files";
@@ -21,35 +22,38 @@ public class AdminReader {
 
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-    /**
-     * @return List of employees which has been found in sysadmins.txt file
-     */
     public static List<SystemAdministrator> read() {
         List<SystemAdministrator> result = new LinkedList<SystemAdministrator>();
-
-        /* Alternative solution
-        Scanner sc = new Scanner(file);
-        while(sc.hasNext()) {
-            // do stuff
-        }*/
 
         BufferedReader bufferedReader = null;
 
         try {
             bufferedReader = new BufferedReader(new FileReader(file));
             String line;
+            List<SystemAdministrator> admins = new ArrayList<>();
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] attributes = line.split(",");
-                List<Server2> serverek = new ArrayList<Server2>();
+                List<Server> serverList = new ArrayList<>();
+                List<String> serverID = new ArrayList<>();
                 if (attributes.length < 2) {
                     throw new MyException();
                 }
                 for(int i = 2; i<attributes.length; i++) {
-                    //serverek.add(attributes[i]);
+                        serverID.add(attributes[i]);
                 }
-                SystemAdministrator admin = new SystemAdministrator(attributes[0], Integer.parseInt(attributes[1]), serverek);
-                result.add(admin);
+
+                Map<Integer, Server> serverMap = ServerReader.readFromTextFile();
+
+                SystemAdministrator sysadmin = new SystemAdministrator();
+                for(Map.Entry<Integer, Server> map : serverMap.entrySet()){
+                    for(String string : serverID){
+                        if(Integer.parseInt(string)==map.getKey()){
+                            serverList.add(map.getValue());
+                        }
+                    }
+                }
+                result.add(new SystemAdministrator(attributes[0], Integer.parseInt(attributes[1]), serverList));
             }
         } catch (IOException e) {
             System.out.println("File is not found");
@@ -64,7 +68,6 @@ public class AdminReader {
                 }
             }
         }
-
         return result;
     }
 }

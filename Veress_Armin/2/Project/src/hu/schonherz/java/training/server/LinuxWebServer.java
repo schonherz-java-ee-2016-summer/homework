@@ -16,6 +16,10 @@ public class LinuxWebServer extends LinuxServer implements WebContainer {
         return status.name();
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public void startWebContainer() {
         System.out.println("Web container is starting...");

@@ -11,6 +11,10 @@ public class WindowsDatabaseServer extends WindowsServer implements Database {
         this.status = status;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public String getStatus() {
         return status.toString();
