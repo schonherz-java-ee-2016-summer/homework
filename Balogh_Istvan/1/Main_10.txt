@@ -1,0 +1,5 @@
+$ git rebase -i HEAD~4
+
+Interactive rebase:
+pick C2
+move up C5
