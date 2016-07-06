@@ -6,6 +6,7 @@ public abstract class Server {
 
     private int cpuUsage;
     private int memoryUsage;
+    private Database.Status status;
 
     public int getCpuUsage() {
         return cpuUsage;
@@ -26,6 +27,14 @@ public abstract class Server {
     abstract public String getType();
 
     abstract public void setType(String type);
+
+    public String getStatus() {
+        return status.name();
+    }
+
+    public void setStatus(Database.Status status) {
+        this.status = status;
+    }
 
     public abstract void restart();
 }

@@ -1,9 +1,12 @@
 package hu.schonherz.java.training.main;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.RunnableFuture;
 
 import hu.schonherz.java.training.ServerService.Database;
 import hu.schonherz.java.training.ServerService.Database.Status;
@@ -14,8 +17,7 @@ import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
-import hu.schonherz.java.training.server.LinuxWebServer;
-import hu.schonherz.java.training.server.Server;
+import hu.schonherz.java.training.server.*;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
@@ -25,7 +27,7 @@ public class Main implements Runnable{
     public static void main(String[] args) {
 
         // Reading developers from file, printing their state to console
-        /*List<Developer> dev = DeveloperReader.readFromBinaryFile();
+        List<Developer> dev = DeveloperReader.readFromBinaryFile();
         for (Developer developer : dev) {
             System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
 
@@ -38,19 +40,16 @@ public class Main implements Runnable{
 
         // The same as above, using Java 8's lambda expressions
         List<Developer> devs = DeveloperReader.readFromTextFile();
-
+/*
         devs.forEach(d -> { 
             System.out.println(d.getName() + "(" + d.getEmployeeID() + ")");
             d.getTasks().forEach(t -> {
                 System.out.println(t);
             });
-        });*/
-
+        });
+*/
         // Alternative, using Java 8's method reference feature
         //devs.forEach(System.out::println);
-
-        Main ReportWriter = new Main();
-        ReportWriter.run();
     }
 
     // Reading from and writing to file example.
@@ -89,19 +88,18 @@ public class Main implements Runnable{
     private static void threading() {
         ReaderThread readerThread = new ReaderThread();
         
-        System.out.println(readerThread.getState());
+        //System.out.println(readerThread.getState());
         readerThread.start();
         
-        try {
+        /*try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
         System.out.println(readerThread.getState());
         try {
             readerThread.join();
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -148,36 +146,58 @@ public class Main implements Runnable{
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
     private static void homework() {
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile();
+
         List<Server> servers = ServerReader.readFromTextFile();
-        System.out.println(sdf.format(cal.getTime()));
+        List<SystemAdministrator> sysadmins = SystemAdministratorReader.readFromTextFile();
+
         for(Server s: servers){
-            if(s.getStatus()=="STOPPED"){
-                System.out.println("Servername: "+ s.getName());
-                for(SystemAdministrator sA: systemAdmins) {
-                    for(Server server: sA.getServers()) {
-                        if (server.getID() == s.getID()) {
-                            System.out.println("\t" + sA.getName());
+
+            if(s instanceof WindowsDatabaseServer){
+                if((((WindowsDatabaseServer) s).getStatus()).equals(Status.STOPPED)){
+
+                    for(SystemAdministrator sysadmin : sysadmins){
+                        if(sysadmin.getServers().contains(s)){
+                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
                         }
                     }
+
+                }
+            }else if(s instanceof LinuxWebServer){
+                if((((LinuxWebServer) s).getStatus()).equals(Status.STOPPED)){
+
+                    for(SystemAdministrator sysadmin : sysadmins){
+                        if(sysadmin.getServers().contains(s)){
+                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+                        }
+                    }
+
+                }
+            } else if((((LinuxDatabaseAndWebServer) s).getStatus()).equals(Status.STOPPED)){
+
+                    for(SystemAdministrator sysadmin : sysadmins){
+                        if(sysadmin.getServers().contains(s)){
+                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+                        }
+                    }
+
                 }
             }
+
         }
-    }
+
 
     @Override
     public void run() {
-        int i = 0;
-        while (i < 3) {
-            i++;
+
+        while(true){
             homework();
             try {
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Thread interrupted");
             }
         }
+
     }
 }
+
