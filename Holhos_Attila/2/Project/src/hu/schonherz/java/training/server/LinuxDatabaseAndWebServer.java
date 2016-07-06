@@ -5,7 +5,7 @@ import hu.schonherz.java.training.ServerService.WebContainer;
 
 public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, WebContainer {
 
-    public enum Status {RUNNING, DATABASESTOPPED, WEBCONTAINERSTOPPER}
+    public enum Status {RUNNING, STOPPED}
 
     private Status status;
 

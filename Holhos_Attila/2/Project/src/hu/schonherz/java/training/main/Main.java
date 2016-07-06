@@ -1,10 +1,7 @@
 package hu.schonherz.java.training.main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -151,10 +148,13 @@ public class Main implements Runnable{
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
     private static void homework() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile();
         List<Server> servers = ServerReader.readFromTextFile();
+        System.out.println(sdf.format(cal.getTime()));
         for(Server s: servers){
-            //if(s.getStatus()!="RUNNING"){
+            if(s.getStatus()=="STOPPED"){
                 System.out.println("Servername: "+ s.getName());
                 for(SystemAdministrator sA: systemAdmins) {
                     for(Server server: sA.getServers()) {
@@ -163,7 +163,7 @@ public class Main implements Runnable{
                         }
                     }
                 }
-            //}
+            }
         }
     }
 
