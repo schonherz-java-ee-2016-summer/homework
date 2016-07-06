@@ -17,6 +17,7 @@ import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.server.WindowsServer;
 import hu.schonherz.java.training.thread.ReaderThread;
+import hu.schonherz.java.training.thread.ServerReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
 @SuppressWarnings("unused")
@@ -34,18 +35,7 @@ public class Main {
 //            }
 //        }
 
-//        List<SystemAdministrator> dev = SystemAdministratorReader.readFromTextFile();
-//        for (SystemAdministrator developer : dev) {
-//            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-//
-//            for (Server s : developer.getServers()) {
-//                System.out.println(s);
-//            }
-//        }
-
-        for (Server s: ServerReader.readFromTextFile()) {
-            System.out.println(s.getName());
-        }
+        homework();
         //threading();
 
         System.out.println();
@@ -159,8 +149,21 @@ public class Main {
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
     private static void homework() {
+
+        ServerReaderThread serverReaderThread = new ServerReaderThread();
+
+        serverReaderThread.start();
+
+        System.out.println(serverReaderThread.getState());
+
+        try{
+            serverReaderThread.join();
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
         // TODO unimplemented method
-        throw new UnsupportedOperationException("Not implemented yet.");
+        //throw new UnsupportedOperationException("Not implemented yet.");
     }
 
 }

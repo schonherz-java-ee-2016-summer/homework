@@ -33,11 +33,11 @@ public class ServerReader {
             while((line = bufferedreader.readLine()) != null){
                 String[] attributes = line.split(",");
 
-                if("Win".equals(attributes[2])){
+                if("Win".equals(attributes[2]) && "STOPPED".equals(attributes[3])){
                     result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], Database.Status.valueOf(attributes[3])));
-                } else if("LinuxWeb".equals(attributes[2])){
+                } else if("LinuxWeb".equals(attributes[2]) && "STOPPED".equals(attributes[3])){
                     result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WebContainer.Status.valueOf(attributes[3])));
-                } else if ("LinuxDBandWEB".equals(attributes[2])){
+                } else if ("LinuxDBandWEB".equals(attributes[2]) && "DATABASESTOPPED".equals(attributes[3])){
                     result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.valueOf(attributes[3])));
                 }
 

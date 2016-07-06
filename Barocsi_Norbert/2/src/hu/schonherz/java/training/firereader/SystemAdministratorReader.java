@@ -31,11 +31,18 @@ public class SystemAdministratorReader {
 
             while((line = bufferedreader.readLine()) != null){
                 String [] attributes = line.split(",");
-                List<Server> servers = ServerReader.readFromTextFile();
-//
-//                for (int i = 2; i < attributes.length; i++){
-//                    servers.add(Integer.parseInt(attributes[i]));
-//                }
+                List<Server> servers = new ArrayList<>();
+                List<Server> serversreader = ServerReader.readFromTextFile();
+
+                for(int i = 2; i < attributes.length; i++){
+                    for(Server s: serversreader){
+                        if(Integer.parseInt(attributes[i]) == s.getID()){
+                            servers.add(s);
+                        }
+                    }
+                }
+
+
                 result.add(new SystemAdministrator(attributes[0], Integer.parseInt(attributes[1]), servers));
             }
 
