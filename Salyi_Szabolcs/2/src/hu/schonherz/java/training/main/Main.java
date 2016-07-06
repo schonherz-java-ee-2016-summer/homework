@@ -21,11 +21,11 @@ import hu.schonherz.java.training.server.*;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
-@SuppressWarnings("unused")
+
 public class Main implements Runnable{
 
     public static void main(String[] args) {
-
+        /*
         // Reading developers from file, printing their state to console
         List<Developer> dev = DeveloperReader.readFromBinaryFile();
         for (Developer developer : dev) {
@@ -40,18 +40,21 @@ public class Main implements Runnable{
 
         // The same as above, using Java 8's lambda expressions
         List<Developer> devs = DeveloperReader.readFromTextFile();
-/*
+
         devs.forEach(d -> { 
             System.out.println(d.getName() + "(" + d.getEmployeeID() + ")");
             d.getTasks().forEach(t -> {
                 System.out.println(t);
             });
-        });
-*/
+        });*/
         // Alternative, using Java 8's method reference feature
         //devs.forEach(System.out::println);
-    }
 
+        Main thread = new Main();
+        thread.run();
+
+    }
+/*
     // Reading from and writing to file example.
     private static void ioHandling() {
         List<Employee> employees = EmployeeReader.read();
@@ -79,7 +82,7 @@ public class Main implements Runnable{
             }
         }
     }
-
+*/
     public static void test() {
         System.out.println("Teszt szöveg");
     }
@@ -153,37 +156,46 @@ public class Main implements Runnable{
         for(Server s: servers){
 
             if(s instanceof WindowsDatabaseServer){
-                if((((WindowsDatabaseServer) s).getStatus()).equals(Status.STOPPED)){
+                //System.out.println(((WindowsDatabaseServer) s).getStatus());
+                if(((WindowsDatabaseServer) s).getStatus().equals("STOPPED")){
 
                     for(SystemAdministrator sysadmin : sysadmins){
-                        if(sysadmin.getServers().contains(s)){
-                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+
+                        for(Server aservers : sysadmin.getServers()){
+                            if(aservers.getID()==s.getID())
+                                System.out.println(sysadmin.getName() + " have permission to " + s.getName() + " which isn't running!");
                         }
                     }
 
                 }
             }else if(s instanceof LinuxWebServer){
-                if((((LinuxWebServer) s).getStatus()).equals(Status.STOPPED)){
+                if((((LinuxWebServer) s).getStatus()).equals("STOPPED")){
 
                     for(SystemAdministrator sysadmin : sysadmins){
-                        if(sysadmin.getServers().contains(s)){
-                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+
+                        for(Server aservers : sysadmin.getServers()){
+                            if(aservers.getID()==s.getID())
+                                System.out.println(sysadmin.getName() + " have permission to " + s.getName() + " which isn't running!");
                         }
                     }
 
                 }
-            } else if((((LinuxDatabaseAndWebServer) s).getStatus()).equals(Status.STOPPED)){
+            } else if((((LinuxDatabaseAndWebServer) s).getStatus()).equals("DATABASESTOPPED")){
 
-                    for(SystemAdministrator sysadmin : sysadmins){
-                        if(sysadmin.getServers().contains(s)){
-                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
-                        }
+                for(SystemAdministrator sysadmin : sysadmins){
+
+                    for(Server aservers : sysadmin.getServers()){
+                        if(aservers.getID()==s.getID())
+                            System.out.println(sysadmin.getName() + " have permission to " + s.getName() + " which isn't running!");
                     }
+                }
 
                 }
             }
 
         }
+
+    public class
 
 
     @Override

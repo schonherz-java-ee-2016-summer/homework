@@ -15,7 +15,7 @@ import java.util.List;
 public class ServerReader {
 
     private static final String SUBDIRECTORY = "files";
-    private static final String FILENAME = "servers";
+    private static final String FILENAME = "servers.txt";
 
     private static final File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
@@ -38,11 +38,11 @@ public class ServerReader {
                     throw new MyException();
                 }
 
-                if("L".equals(attributes[2].indexOf(0)) && "S".equals(attributes[1].indexOf(0))){
-                    boolean add = result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.valueOf(attributes[3])));
-                }else if("L".equals(attributes[2].indexOf(0))){
+                if("LinuxDBandWEB".equals(attributes[2])){
+                    result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.valueOf(attributes[3])));
+                }else if("LinuxWeb".equals(attributes[2])){
                     result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WebContainer.Status.valueOf(attributes[3])));
-                }else if("W".equals(attributes[2].indexOf(0))){
+                }else if("Win".equals(attributes[2])){
                     result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]),attributes[1],attributes[2], Database.Status.valueOf(attributes[3])));
                 }
 

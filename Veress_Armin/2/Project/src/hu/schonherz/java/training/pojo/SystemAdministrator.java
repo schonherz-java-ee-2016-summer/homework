@@ -1,8 +1,8 @@
 package hu.schonherz.java.training.pojo;
 
+import hu.schonherz.java.training.server.Server;
 import java.util.List;
 
-import hu.schonherz.java.training.server.Server;
 
 public class SystemAdministrator extends Employee {
 
@@ -12,7 +12,7 @@ public class SystemAdministrator extends Employee {
     public SystemAdministrator() {
         super();
     }
-
+    
     public SystemAdministrator(String name, int employeeID, List<Server> servers) {
         super(name, employeeID);
         this.servers = servers;

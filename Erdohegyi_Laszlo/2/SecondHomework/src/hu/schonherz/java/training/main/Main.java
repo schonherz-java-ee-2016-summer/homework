@@ -1,19 +1,13 @@
 package hu.schonherz.java.training.main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import hu.schonherz.java.training.ServerService.Database.Status;
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
-import hu.schonherz.java.training.server.Server;
-import hu.schonherz.java.training.server.WindowsServer;
 import hu.schonherz.java.training.thread.ReaderThread;
+import hu.schonherz.java.training.thread.ServerReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
 @SuppressWarnings("unused")
@@ -21,8 +15,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+        homework();
+
         // Reading developers from file, printing their state to console
-        List<Developer> dev = DeveloperReader.readFromBinaryFile();
+/*        List<Developer> dev = DeveloperReader.readFromBinaryFile();
         for (Developer developer : dev) {
             System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
 
@@ -36,12 +32,13 @@ public class Main {
         // The same as above, using Java 8's lambda expressions
         List<Developer> devs = DeveloperReader.readFromTextFile();
 
-        devs.forEach(d -> { 
+        devs.forEach(d -> {
             System.out.println(d.getName() + "(" + d.getEmployeeID() + ")");
             d.getTasks().forEach(t -> {
                 System.out.println(t);
             });
         });
+*/
         
         // Alternative, using Java 8's method reference feature
         //devs.forEach(System.out::println);
@@ -142,10 +139,18 @@ public class Main {
      */
     private static void homework() {
 
+        ServerReaderThread serverReaderThread = new ServerReaderThread();
 
+        serverReaderThread.start();
+
+        try{
+            serverReaderThread.join();
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
 
         // TODO unimplemented method
-        throw new UnsupportedOperationException("Not implemented yet.");
+        //throw new UnsupportedOperationException("Not implemented yet.");
     }
 
 }
