@@ -189,6 +189,15 @@ public class Main implements Runnable{
     @Override
     public void run() {
 
+        while(true){
+            homework();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted");
+            }
+        }
+
     }
 }
 
