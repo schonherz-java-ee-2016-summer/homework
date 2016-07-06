@@ -43,6 +43,8 @@ public class Main {
             });
         });
 
+        System.out.println("---------------------------------------------");
+
         while (true) {
             homework();
             try {
@@ -163,6 +165,8 @@ public class Main {
                     .collect(Collectors.toList());
             serversWithAdmins.put(server.getName(), adminNames);
         }
+
+        System.out.println(serversWithAdmins);
 
     }
 
