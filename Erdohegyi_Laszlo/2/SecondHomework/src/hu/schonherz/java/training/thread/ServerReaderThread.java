@@ -11,16 +11,12 @@ public class ServerReaderThread extends Thread{
 
     @Override
     public void run(){
-        int i = 0;
-
-        while(i < 3){
-            i++;
-
+        while(true){
             List<Server> servers = ServerReader.readFromTextFile();
             List<SystemAdministrator> sysAdmins = SystemAdministratorReader.readFromTextFile();
 
             for(Server server : servers){
-                System.out.print(server.getName() + " - " );
+                System.out.println(server.getName());
                 for(SystemAdministrator sysAdmin : sysAdmins){
                     for(Server s : sysAdmin.getServers()){
                         if(server.getID() == s.getID()){
@@ -28,7 +24,11 @@ public class ServerReaderThread extends Thread{
                         }
                     }
                 }
+                System.out.println();
             }
+
+            System.out.println("------------------------------");
+
             try{
                 Thread.sleep(10000);
             }catch(InterruptedException e){
