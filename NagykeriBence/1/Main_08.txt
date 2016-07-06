@@ -1,0 +1,6 @@
+4: Reversing Changes in Git
+$ git reset HEAD^
+
+$ git checkout pushed
+
+$ git revert HEAD

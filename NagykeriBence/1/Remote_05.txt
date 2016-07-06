@@ -1,0 +1,10 @@
+5: Faking Teamwork
+$ git clone
+
+local branch "master" set to track remote branch "o/master"
+
+$ git fakeTeamwork 2
+
+$ git commit
+
+$ git pull

@@ -1,0 +1,14 @@
+3: Branch Spaghetti
+$ git branch -f three C2
+
+$ git checkout C4
+
+$ git rebase -i one
+
+$ git checkout two
+
+$ git cherry-pick C5
+
+$ git branch -f one C2'
+
+$ git cherry-pick one^^ one^ one

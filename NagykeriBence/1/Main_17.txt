@@ -1,0 +1,2 @@
+Specifying Parents
+$ git branch bugWork HEAD~^2~

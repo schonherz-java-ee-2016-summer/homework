@@ -1,0 +1,18 @@
+5: Git Describe
+$ git describe bugFix
+
+v1_2_gC6
+
+$ git describe side
+
+v1_1_gC4
+
+$ git describe master
+
+v0_2_gC2
+
+$ git describe C6
+
+v1_2_gC6
+
+$ git commit

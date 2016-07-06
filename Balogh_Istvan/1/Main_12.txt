@@ -1,0 +1,4 @@
+$ git rebase -i master
+$ git commit --amend
+$ git rebase -i master
+$ git branch -f master caption

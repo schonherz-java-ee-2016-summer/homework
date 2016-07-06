@@ -1,0 +1,6 @@
+2: Remote Branches
+$ git commit
+
+$ git checkout HEAD~
+
+$ git commit
