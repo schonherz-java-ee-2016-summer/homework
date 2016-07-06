@@ -13,6 +13,11 @@ public class SystemAdministrator extends Employee {
         super();
     }
 
+    public SystemAdministrator(String name, int employeeID, List<Server> servers){
+        super(name, employeeID);
+        this.servers = servers;
+    }
+
     public List<Server> getServers() {
         return servers;
     }
