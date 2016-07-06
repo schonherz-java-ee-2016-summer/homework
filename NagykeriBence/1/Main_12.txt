@@ -1,0 +1,14 @@
+2: Juggling Commits
+$ git rebase -i C1
+
+$ git checkout C2'
+
+$ git commit --amend
+
+Warning!! Detached HEAD state
+
+$ git rebase -i C1
+
+$ git branch -f caption
+
+$ git branch -f master

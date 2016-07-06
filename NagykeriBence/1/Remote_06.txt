@@ -1,0 +1,10 @@
+6: Git Pushin'
+$ git clone
+
+local branch "master" set to track remote branch "o/master"
+
+$ git commit
+
+$ git commit
+
+$ git push

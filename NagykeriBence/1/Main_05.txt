@@ -1,0 +1,2 @@
+1: Detach yo' HEAD
+$ git checkout C4

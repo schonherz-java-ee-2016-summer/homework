@@ -1,0 +1,4 @@
+$ git rebase master bugFix
+$ git rebase bugFix side
+$ git rebase side another
+$ git rebase another master

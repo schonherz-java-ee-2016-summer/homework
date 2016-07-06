@@ -1,0 +1,3 @@
+git checkout pushed
+git revert pushed
+git branch -f local C1

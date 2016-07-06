@@ -1,0 +1,8 @@
+git checkout bugFix
+git rebase master
+git checkout side
+git rebase bugFix
+git checkout another
+git rebase side
+git checkout master
+git branch -f master another

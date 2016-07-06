@@ -1,0 +1,12 @@
+7: Diverged History
+$ git clone
+
+local branch "master" set to track remote branch "o/master"
+
+$ git fakeTeamwork
+
+$ git commit
+
+$ git pull --rebase
+
+$ git push

@@ -1,0 +1,4 @@
+1: Grabbing Just 1 Commit
+$ git checkout master
+
+$ git cherry-pick C4

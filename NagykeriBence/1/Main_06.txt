@@ -1,0 +1,2 @@
+2: Relative Refs (^)
+$ git checkout bugFix^
