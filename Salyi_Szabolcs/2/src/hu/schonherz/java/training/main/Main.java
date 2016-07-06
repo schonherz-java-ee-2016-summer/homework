@@ -6,20 +6,23 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.RunnableFuture;
 
+import hu.schonherz.java.training.ServerService.Database;
 import hu.schonherz.java.training.ServerService.Database.Status;
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
 import hu.schonherz.java.training.firereader.ServerReader;
+import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
-import hu.schonherz.java.training.server.Server;
-import hu.schonherz.java.training.server.WindowsServer;
+import hu.schonherz.java.training.pojo.SystemAdministrator;
+import hu.schonherz.java.training.server.*;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
 @SuppressWarnings("unused")
-public class Main {
+public class Main implements Runnable{
 
     public static void main(String[] args) {
 
@@ -144,9 +147,48 @@ public class Main {
      */
     private static void homework() {
 
+        List<Server> servers = ServerReader.readFromTextFile();
+        List<SystemAdministrator> sysadmins = SystemAdministratorReader.readFromTextFile();
+
+        for(Server s: servers){
+
+            if(s instanceof WindowsDatabaseServer){
+                if((((WindowsDatabaseServer) s).getStatus()).equals(Status.STOPPED)){
+
+                    for(SystemAdministrator sysadmin : sysadmins){
+                        if(sysadmin.getServers().contains(s)){
+                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+                        }
+                    }
+
+                }
+            }else if(s instanceof LinuxWebServer){
+                if((((LinuxWebServer) s).getStatus()).equals(Status.STOPPED)){
+
+                    for(SystemAdministrator sysadmin : sysadmins){
+                        if(sysadmin.getServers().contains(s)){
+                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+                        }
+                    }
+
+                }
+            } else if((((LinuxDatabaseAndWebServer) s).getStatus()).equals(Status.STOPPED)){
+
+                    for(SystemAdministrator sysadmin : sysadmins){
+                        if(sysadmin.getServers().contains(s)){
+                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+                        }
+                    }
+
+                }
+            }
+
+        }
 
 
-        throw new UnsupportedOperationException("Not implemented yet.");
+    @Override
+    public void run() {
+
     }
-
 }
+

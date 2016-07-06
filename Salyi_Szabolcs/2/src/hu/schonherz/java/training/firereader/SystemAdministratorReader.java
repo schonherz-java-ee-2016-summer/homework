@@ -20,6 +20,7 @@ public class SystemAdministratorReader {
     public static List<SystemAdministrator> readFromTextFile() {
 
         List<SystemAdministrator> result = new LinkedList<>();
+
         BufferedReader bufferedReader = null;
 
         try {
