@@ -14,4 +14,13 @@ public abstract class Server {
     }
   
     public abstract void restart();
+
+    public abstract int getID();
+
+    public abstract String getName();
+
+    public abstract String getType();
+
+
+
 }
