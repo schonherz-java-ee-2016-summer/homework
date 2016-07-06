@@ -33,5 +33,12 @@ public class Employee implements Serializable {
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
-  
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", employeeID=" + employeeID +
+                '}';
+    }
 }

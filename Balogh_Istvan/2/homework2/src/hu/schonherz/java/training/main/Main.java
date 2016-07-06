@@ -1,18 +1,18 @@
 package hu.schonherz.java.training.main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import hu.schonherz.java.training.ServerService.Database.Status;
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
+import hu.schonherz.java.training.firereader.RunningServerReader;
+import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
+import hu.schonherz.java.training.pojo.SystemAdministrator;
+import hu.schonherz.java.training.server.RunningServer;
 import hu.schonherz.java.training.server.Server;
-import hu.schonherz.java.training.server.WindowsServer;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
@@ -42,6 +42,15 @@ public class Main {
                 System.out.println(t);
             });
         });
+
+        while (true) {
+            homework();
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         
         // Alternative, using Java 8's method reference feature
         //devs.forEach(System.out::println);
@@ -140,9 +149,21 @@ public class Main {
      *
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private static void homework() {
-        // TODO unimplemented method
-        throw new UnsupportedOperationException("Not implemented yet.");
+        List<RunningServer> servers = RunningServerReader.read();
+        List<SystemAdministrator> administrators = SystemAdministratorReader.read();
+
+        Map<String, List<String>> serversWithAdmins = new HashMap<>();
+
+        for (RunningServer server : servers) {
+            List<String> adminNames = administrators.stream()
+                    .filter(administrator -> administrator.getServerIDs().contains(server.getId()))
+                    .map(SystemAdministrator::getName)
+                    .collect(Collectors.toList());
+            serversWithAdmins.put(server.getName(), adminNames);
+        }
+
     }
 
 }
