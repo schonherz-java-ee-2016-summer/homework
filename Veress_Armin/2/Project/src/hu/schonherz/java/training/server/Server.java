@@ -1,45 +1,86 @@
 package hu.schonherz.java.training.server;
 
-import java.util.List;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Server {
 
+    private String id;
+    private String name;
+    private String operatingSstatus;
+    private List<SystemAdministrator> admins;        
     private int cpuUsage;
     private int memoryUsage;
-    private String serverName;
-    private List<SystemAdministrator> sysAdmins;
 
-    public String getServerName() {
-        return serverName;
+    public Server(String id, String name, String status) {
+        this.id = id;
+        this.name = name;
+        this.operatingSstatus = status;
+        this.admins = new ArrayList<>();
     }
 
-    public List<SystemAdministrator> getSysAdmins() {
-        return sysAdmins;
+    public Server(String id, String name) {
+        this.id = id;
+        this.name = name;
+        this.operatingSstatus = "UNKNOWN";
+        this.admins = new ArrayList<>();
     }
 
-    public void setCpuUsage(int cpuUsage) {
-        this.cpuUsage = cpuUsage;
+    public String getId() {
+        return id;
     }
 
-    public void setMemoryUsage(int memoryUsage) {
-        this.memoryUsage = memoryUsage;
+    public String getName() {
+        return name;
     }
 
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setSysAdmins(List<SystemAdministrator> sysAdmins) {
-        this.sysAdmins = sysAdmins;
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setOperatingStatus(String status) {
+        this.operatingSstatus = status;
     }
 
+    public String getOperatingStatus() {
+        return operatingSstatus;
+    }
+    
+    public boolean isRunning() {
+        return (boolean)("RUNNING".equals(operatingSstatus));
+    }
+    
+    public void setAdmins(List<SystemAdministrator> admins) {
+        this.admins = admins;
+    }
+    
+    public void addAdmin(SystemAdministrator admin) {
+        boolean exist = false;
+        for (SystemAdministrator ad : admins)
+        {
+            if(ad.equals(admin))
+            {
+                exist = true;
+            }
+        }
+        if (!exist)
+            this.admins.add(admin);
+    }
+    
+  
     public int getCpuUsage() {
         return cpuUsage;
     }
   
     public int getMemoryUsage() {
         return memoryUsage;
+    }
+    public List<SystemAdministrator> getAdmins() {
+        return admins;
     }
   
     public abstract void restart();
