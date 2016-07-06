@@ -156,32 +156,39 @@ public class Main implements Runnable{
         for(Server s: servers){
 
             if(s instanceof WindowsDatabaseServer){
-                if((((WindowsDatabaseServer) s).getStatus()).equals(Status.STOPPED)){
+                //System.out.println(((WindowsDatabaseServer) s).getStatus());
+                if(((WindowsDatabaseServer) s).getStatus().equals("STOPPED")){
 
                     for(SystemAdministrator sysadmin : sysadmins){
-                        if(sysadmin.getServers().contains(s)){
-                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+
+                        for(Server aservers : sysadmin.getServers()){
+                            if(aservers.getID()==s.getID())
+                                System.out.println(sysadmin.getName() + " have permission to " + s.getName() + " which isn't running!");
                         }
                     }
 
                 }
             }else if(s instanceof LinuxWebServer){
-                if((((LinuxWebServer) s).getStatus()).equals(Status.STOPPED)){
+                if((((LinuxWebServer) s).getStatus()).equals("STOPPED")){
 
                     for(SystemAdministrator sysadmin : sysadmins){
-                        if(sysadmin.getServers().contains(s)){
-                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
+
+                        for(Server aservers : sysadmin.getServers()){
+                            if(aservers.getID()==s.getID())
+                                System.out.println(sysadmin.getName() + " have permission to " + s.getName() + " which isn't running!");
                         }
                     }
 
                 }
-            } else if((((LinuxDatabaseAndWebServer) s).getStatus()).equals(Status.STOPPED)){
+            } else if((((LinuxDatabaseAndWebServer) s).getStatus()).equals("DATABASESTOPPED")){
 
-                    for(SystemAdministrator sysadmin : sysadmins){
-                        if(sysadmin.getServers().contains(s)){
-                            System.out.println(sysadmin.getName() + "have permission to " + s.getName() + "which isn't running!");
-                        }
+                for(SystemAdministrator sysadmin : sysadmins){
+
+                    for(Server aservers : sysadmin.getServers()){
+                        if(aservers.getID()==s.getID())
+                            System.out.println(sysadmin.getName() + " have permission to " + s.getName() + " which isn't running!");
                     }
+                }
 
                 }
             }
