@@ -21,11 +21,11 @@ import hu.schonherz.java.training.server.*;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
-@SuppressWarnings("unused")
+
 public class Main implements Runnable{
 
     public static void main(String[] args) {
-
+        /*
         // Reading developers from file, printing their state to console
         List<Developer> dev = DeveloperReader.readFromBinaryFile();
         for (Developer developer : dev) {
@@ -40,18 +40,21 @@ public class Main implements Runnable{
 
         // The same as above, using Java 8's lambda expressions
         List<Developer> devs = DeveloperReader.readFromTextFile();
-/*
+
         devs.forEach(d -> { 
             System.out.println(d.getName() + "(" + d.getEmployeeID() + ")");
             d.getTasks().forEach(t -> {
                 System.out.println(t);
             });
-        });
-*/
+        });*/
         // Alternative, using Java 8's method reference feature
         //devs.forEach(System.out::println);
-    }
 
+        Main thread = new Main();
+        thread.run();
+
+    }
+/*
     // Reading from and writing to file example.
     private static void ioHandling() {
         List<Employee> employees = EmployeeReader.read();
@@ -79,7 +82,7 @@ public class Main implements Runnable{
             }
         }
     }
-
+*/
     public static void test() {
         System.out.println("Teszt szöveg");
     }
@@ -184,6 +187,8 @@ public class Main implements Runnable{
             }
 
         }
+
+    public class
 
 
     @Override
