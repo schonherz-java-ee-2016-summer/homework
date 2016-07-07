@@ -15,6 +15,7 @@ import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.LinuxWebServer;
+import hu.schonherz.java.training.server.RunningServer;
 import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
@@ -24,98 +25,8 @@ public class Main implements Runnable{
 
     public static void main(String[] args) {
 
-        // Reading developers from file, printing their state to console
-        /*List<Developer> dev = DeveloperReader.readFromBinaryFile();
-        for (Developer developer : dev) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-
-        System.out.println("------------------------------");
-
-        // The same as above, using Java 8's lambda expressions
-        List<Developer> devs = DeveloperReader.readFromTextFile();
-
-        devs.forEach(d -> { 
-            System.out.println(d.getName() + "(" + d.getEmployeeID() + ")");
-            d.getTasks().forEach(t -> {
-                System.out.println(t);
-            });
-        });*/
-
-        // Alternative, using Java 8's method reference feature
-        //devs.forEach(System.out::println);
-
         Main ReportWriter = new Main();
         ReportWriter.run();
-    }
-
-    // Reading from and writing to file example.
-    private static void ioHandling() {
-        List<Employee> employees = EmployeeReader.read();
-        for (Employee employee : employees) {
-            System.out.println(employee.getName() + " - " + employee.getEmployeeID());
-        }
-
-        List<Developer> developers = DeveloperReader.readFromTextFile();
-        for (Developer developer : developers) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-
-        DeveloperReader.writeToBinaryFile(developers);
-
-        System.out.println("---------------------------------------------");
-
-        List<Developer> dev = DeveloperReader.readFromBinaryFile();
-        for (Developer developer : dev) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-    }
-
-    public static void test() {
-        System.out.println("Teszt szöveg");
-    }
-
-    // Threading example
-    private static void threading() {
-        ReaderThread readerThread = new ReaderThread();
-        
-        System.out.println(readerThread.getState());
-        readerThread.start();
-        
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(readerThread.getState());
-        try {
-            readerThread.join();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        test();
-    }
-
-    // Synchronized threading example
-    public static void synchroniedTest() {
-        SynchronizationTest st1 = new SynchronizationTest(1);
-        SynchronizationTest st2 = new SynchronizationTest(2);
-
-        st1.start();
-        st2.start();
     }
 
     /*
@@ -147,17 +58,20 @@ public class Main implements Runnable{
      *
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
+
     private static void homework() {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile();
-        List<Server> servers = ServerReader.readFromTextFile();
         System.out.println(sdf.format(cal.getTime()));
-        for(Server s: servers){
-            if(s.getStatus()=="STOPPED"){
+
+        List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile();
+        List<RunningServer> servers = ServerReader.readFromTextFile();
+
+        for(RunningServer s: servers){
+            if(s.getRunningStatus()==false){
                 System.out.println("Servername: "+ s.getName());
                 for(SystemAdministrator sA: systemAdmins) {
-                    for(Server server: sA.getServers()) {
+                    for(RunningServer server: sA.getServers()) {
                         if (server.getID() == s.getID()) {
                             System.out.println("\t" + sA.getName());
                         }

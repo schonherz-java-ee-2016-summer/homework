@@ -16,25 +16,5 @@ public abstract class Server {
         return memoryUsage;
     }
 
-    abstract public int getID();
-
-    abstract public void setID(int ID);
-
-    abstract public String getName();
-
-    abstract public void setName(String name);
-
-    abstract public String getType();
-
-    abstract public void setType(String type);
-
-    public String getStatus() {
-        return status.name();
-    }
-
-    public void setStatus(Database.Status status) {
-        this.status = status;
-    }
-
     public abstract void restart();
 }
