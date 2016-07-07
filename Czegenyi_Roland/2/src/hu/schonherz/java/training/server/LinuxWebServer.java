@@ -6,10 +6,11 @@ public class LinuxWebServer extends LinuxServer implements WebContainer {
 
     private Status status;
 
-    public LinuxWebServer(Status status) {
-        super();
+    public LinuxWebServer(int id, String name, String type, Status status) {
+        super(id, name, type);
         this.status = status;
     }
+
 
     @Override
     public String getStatus() {

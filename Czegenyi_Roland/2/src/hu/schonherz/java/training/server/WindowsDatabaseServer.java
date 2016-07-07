@@ -6,8 +6,8 @@ public class WindowsDatabaseServer extends WindowsServer implements Database {
 
     private Status status;
 
-    public WindowsDatabaseServer(Status status) {
-        super();
+    public WindowsDatabaseServer(int id, String name, String type,Status status) {
+        super(id,name,type);
         this.status = status;
     }
 

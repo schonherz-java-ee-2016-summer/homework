@@ -9,8 +9,8 @@ public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, 
 
     private Status status;
 
-    public LinuxDatabaseAndWebServer(Status status) {
-        super();
+    public LinuxDatabaseAndWebServer(int id, String name, String type, Status status) {
+        super(id, name, type);
         this.status = status;
     }
 

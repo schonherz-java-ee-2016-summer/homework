@@ -5,22 +5,30 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import hu.schonherz.java.training.ServerService.Database.Status;
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
+import hu.schonherz.java.training.firereader.ServerReader;
+import hu.schonherz.java.training.firereader.SysAdminReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
+import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.server.WindowsServer;
 import hu.schonherz.java.training.thread.ReaderThread;
+import hu.schonherz.java.training.thread.ServerAdminsReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
-@SuppressWarnings("unused")
 public class Main {
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        homework();
+
+
+/*
         // Reading developers from file, printing their state to console
         List<Developer> dev = DeveloperReader.readFromBinaryFile();
         for (Developer developer : dev) {
@@ -45,6 +53,8 @@ public class Main {
         
         // Alternative, using Java 8's method reference feature
         //devs.forEach(System.out::println);
+
+        */
     }
 
     // Reading from and writing to file example.
@@ -82,7 +92,7 @@ public class Main {
     // Threading example
     private static void threading() {
         ReaderThread readerThread = new ReaderThread();
-        
+
         //System.out.println(readerThread.getState());
         readerThread.start();
         
@@ -140,9 +150,19 @@ public class Main {
      *
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
+
+    /**
+     * Create a new ServerAdminsReaderThread, and run the thread.
+     **/
     private static void homework() {
-        // TODO unimplemented method
-        throw new UnsupportedOperationException("Not implemented yet.");
+        ServerAdminsReaderThread reader = new ServerAdminsReaderThread();
+        reader.run();
+
+
+       /* for (SystemAdministrator sysAdmin : systemAdministrator)
+            System.out.println(sysAdmin.getName());*/
+
+        //throw new UnsupportedOperationException("Not implemented yet.");
     }
 
 }
