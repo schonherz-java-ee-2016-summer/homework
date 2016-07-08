@@ -19,13 +19,11 @@ public class SystemAdministratorReader {
     public static List<SystemAdministrator> read() {
         List<SystemAdministrator> result = new LinkedList<SystemAdministrator>();
 
-        BufferedReader bufferedReader = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 
-        try {
-            bufferedReader = new BufferedReader(new FileReader(file));
             String line;
 
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] attributes = line.split(",");
                 if (attributes.length < 2) {
                     throw new MyException();
@@ -44,14 +42,6 @@ public class SystemAdministratorReader {
             System.out.println("File is not found");
         } catch (MyException e) {
             System.out.println("File is corrupted");
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    System.out.println("BufferedReader was not closed");
-                }
-            }
         }
 
         return result;

@@ -1,6 +1,6 @@
 package hu.schonherz.java.training.pojo;
 
-import hu.schonherz.java.training.server.RunningServer;
+import hu.schonherz.java.training.server.Server;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class SystemAdministrator extends Employee {
 
     private static final long serialVersionUID = 2244059719140625986L;
-    private List<RunningServer> servers;
+    private List<Server> servers;
     private List<Integer> serverIDs;
 
     public SystemAdministrator() {
@@ -17,24 +17,16 @@ public class SystemAdministrator extends Employee {
 
     public SystemAdministrator(String name, int employeeID) {
         super(name, employeeID);
-        servers = new ArrayList<RunningServer>();
+        servers = new ArrayList<Server>();
         serverIDs = new ArrayList<Integer>();
     }
 
-    public List<RunningServer> getServers() {
+    public List<Server> getServers() {
         return servers;
     }
 
-    public void setServers(List<RunningServer> servers) {
+    public void setServers(List<Server> servers) {
         this.servers = servers;
-    }
-
-    public RunningServer getServerById(Integer id, List<RunningServer> serverList) {
-        for (RunningServer server : serverList) {
-            if (server.getId() == id)
-                return server;
-        }
-        return null;
     }
 
     @Override

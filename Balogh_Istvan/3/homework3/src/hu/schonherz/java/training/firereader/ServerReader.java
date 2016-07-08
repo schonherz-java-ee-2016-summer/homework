@@ -1,6 +1,7 @@
 package hu.schonherz.java.training.firereader;
 
-import hu.schonherz.java.training.server.RunningServer;
+import hu.schonherz.java.training.server.Server;
+import hu.schonherz.java.training.server.ServerFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RunningServerReader {
+public class ServerReader {
 
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "servers.txt";
@@ -20,37 +21,28 @@ public class RunningServerReader {
         return "RUNNING".equals(s);
     }
 
-    public static List<RunningServer> read() {
-        List<RunningServer> result = new LinkedList<RunningServer>();
+    public static List<Server> read() {
+        List<Server> result = new LinkedList<Server>();
 
-        BufferedReader bufferedReader = null;
-
-        try {
-            bufferedReader = new BufferedReader(new FileReader(file));
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
 
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] attributes = line.split(",");
                 if (attributes.length < 2) {
                     throw new MyException();
                 }
 
-                RunningServer server = new RunningServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], parseRunning(attributes[3]));
+                Server server = ServerFactory.getServer(attributes[2]);
+                server.setId(Integer.parseInt(attributes[0]));
+                server.setName(attributes[1]);
                 result.add(server);
             }
 
         } catch (IOException e) {
             System.out.println("File is not found");
         } catch (MyException e) {
-            System.out.println("File is corruptd");
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    System.out.println("BufferedReader was not closed");
-                }
-            }
+            System.out.println("File is corrupted");
         }
 
         return result;

@@ -2,15 +2,16 @@ package hu.schonherz.java.training.main;
 
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
-import hu.schonherz.java.training.firereader.RunningServerReader;
+import hu.schonherz.java.training.firereader.ServerReader;
 import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
-import hu.schonherz.java.training.server.RunningServer;
+import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,7 +115,7 @@ public class Main {
     }
 
     // Synchronized threading example
-    public static void synchroniedTest() {
+    public static void synchronizedTest() {
         SynchronizationTest st1 = new SynchronizationTest(1);
         SynchronizationTest st2 = new SynchronizationTest(2);
 
@@ -153,21 +154,49 @@ public class Main {
      */
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private static void homework() {
-        List<RunningServer> servers = RunningServerReader.read();
-        List<SystemAdministrator> administrators = SystemAdministratorReader.read();
+        List<Server> servers = getServers();
+        List<SystemAdministrator> administrators = getSystemAdministrators();
 
-        Map<String, List<String>> serversWithAdmins = new HashMap<>();
-
-        for (RunningServer server : servers) {
-            List<String> adminNames = administrators.stream()
-                    .filter(administrator -> administrator.getServerIDs().contains(server.getId()))
-                    .map(SystemAdministrator::getName)
-                    .collect(Collectors.toList());
-            serversWithAdmins.put(server.getName(), adminNames);
-        }
+        Map<String, List<String>> serversWithAdmins = createReport(servers, administrators);
 
         System.out.println(serversWithAdmins);
 
+    }
+
+    private static Map<String, List<String>> createReport(List<Server> servers, List<SystemAdministrator> administrators) {
+        Map<String, List<String>> serversWithAdmins = new HashMap<>();
+
+        for (Server server : servers) {
+            List<String> adminNames = new ArrayList<>();
+            administrators.stream()
+                    .filter(administrator -> administrator.getServerIDs().contains(server.getId()))
+                    .forEach(administrator -> {
+                        assignServerToSysAdmin(server, administrator);
+                        addAdminNameToList(adminNames, administrator);
+                    });
+            assignServerWithAdmins(serversWithAdmins, server, adminNames);
+        }
+        return serversWithAdmins;
+    }
+
+    private static void assignServerWithAdmins(Map<String, List<String>> serversWithAdmins, Server server, List<String> adminNames) {
+        serversWithAdmins.put(server.getName(), adminNames);
+    }
+
+    private static void addAdminNameToList(List<String> adminNames, SystemAdministrator administrator) {
+        adminNames.add(administrator.getName());
+    }
+
+    private static void assignServerToSysAdmin(Server server, SystemAdministrator administrator) {
+        administrator.getServers().add(server);
+    }
+
+    private static List<SystemAdministrator> getSystemAdministrators() {
+        return SystemAdministratorReader.read();
+    }
+
+    private static List<Server> getServers() {
+        return ServerReader.read();
     }
 
 }
