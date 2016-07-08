@@ -1,7 +1,5 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.WebContainer;
-
 public abstract class Server {
 
     private int id;

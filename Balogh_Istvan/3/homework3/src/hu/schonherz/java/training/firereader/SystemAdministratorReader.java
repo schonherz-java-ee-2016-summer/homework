@@ -21,22 +21,7 @@ public class SystemAdministratorReader {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                String[] attributes = line.split(",");
-                if (attributes.length < 2) {
-                    throw new MyException();
-                }
-
-                SystemAdministrator administrator = new SystemAdministrator(attributes[0], Integer.parseInt(attributes[1]));
-
-                for (int i = 2; i < attributes.length; i++) {
-                    administrator.getServerIDs().add(Integer.parseInt(attributes[i]));
-                }
-
-                result.add(administrator);
-            }
+            getSystemAdministrators(result, reader);
 
         } catch (IOException e) {
             System.out.println("File is not found");
@@ -45,6 +30,31 @@ public class SystemAdministratorReader {
         }
 
         return result;
+    }
+
+    private static void getSystemAdministrators(List<SystemAdministrator> result, BufferedReader reader) throws IOException, MyException {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] attributes = line.split(",");
+            if (attributes.length < 2) {
+                throw new MyException();
+            }
+
+            SystemAdministrator administrator = createSysAdminFromAttributes(attributes);
+            result.add(administrator);
+        }
+    }
+
+    private static SystemAdministrator createSysAdminFromAttributes(String[] attributes) {
+        SystemAdministrator administrator = new SystemAdministrator(attributes[0], Integer.parseInt(attributes[1]));
+        setServerIDs(attributes, administrator);
+        return administrator;
+    }
+
+    private static void setServerIDs(String[] attributes, SystemAdministrator administrator) {
+        for (int i = 2; i < attributes.length; i++) {
+            administrator.getServerIDs().add(Integer.parseInt(attributes[i]));
+        }
     }
 
 }

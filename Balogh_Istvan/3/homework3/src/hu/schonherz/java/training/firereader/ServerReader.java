@@ -17,27 +17,12 @@ public class ServerReader {
 
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-    public static boolean parseRunning(String s) {
-        return "RUNNING".equals(s);
-    }
-
     public static List<Server> read() {
         List<Server> result = new LinkedList<Server>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
 
-            while ((line = reader.readLine()) != null) {
-                String[] attributes = line.split(",");
-                if (attributes.length < 2) {
-                    throw new MyException();
-                }
-
-                Server server = ServerFactory.getServer(attributes[2]);
-                server.setId(Integer.parseInt(attributes[0]));
-                server.setName(attributes[1]);
-                result.add(server);
-            }
+            getServers(result, reader);
 
         } catch (IOException e) {
             System.out.println("File is not found");
@@ -46,6 +31,26 @@ public class ServerReader {
         }
 
         return result;
+    }
+
+    private static void getServers(List<Server> result, BufferedReader reader) throws IOException, MyException {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] attributes = line.split(",");
+            if (attributes.length < 2) {
+                throw new MyException();
+            }
+
+            Server server = createServerFromAttributes(attributes);
+            result.add(server);
+        }
+    }
+
+    private static Server createServerFromAttributes(String[] attributes) {
+        Server server = ServerFactory.getServer(attributes[2]);
+        server.setId(Integer.parseInt(attributes[0]));
+        server.setName(attributes[1]);
+        return server;
     }
 
 }
