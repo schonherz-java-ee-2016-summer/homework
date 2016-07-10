@@ -28,13 +28,9 @@ public class DeveloperReader {
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
     private static File binaryFile = new File(SUBDIRECTORY + File.separator + BINARYFILE);
 
-    //public static List<Developer> readFromTextFile() throws FileNotFoundException, IOException {
-    //public static List<Developer> readFromTextFile() throws NumberFormatException {
     public static List<Developer> readFromTextFile() {
         List<Developer> result = new ArrayList<Developer>();
-        
-        // Automatic resource management
-        // https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
+
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
 
@@ -47,11 +43,7 @@ public class DeveloperReader {
                 }
                 result.add(new Developer(attributes[0], Integer.parseInt(attributes[1]), tasks));
             }
-        /* pokemon exception handling
-        } catch (Exception e) {
-            System.out.println("Exception!!!");
-        } catch (NumberFormatException e) {
-            System.out.println("There is no int in 2nd parameter");*/
+
         } catch (IOException e) {
             System.out.println("io error");
         }
@@ -68,14 +60,9 @@ public class DeveloperReader {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public static List<Developer> readFromBinaryFile() {
         List<Developer> result = new ArrayList<Developer>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(binaryFile))) {
-        /*Object o = ois.readObject();
-        if (o instanceof ArrayList<?>) {
-            result = (List<Developer>) o;
-        }*/
         result = (List<Developer>) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();

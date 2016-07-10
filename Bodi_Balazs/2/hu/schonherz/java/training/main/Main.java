@@ -23,32 +23,16 @@ import jdk.nashorn.internal.objects.NativeArray;
 
 @SuppressWarnings("unused")
 public class Main {
+    
+    
 
     public static void main(String[] args) {
 
-        // Reading developers from file, printing their state to console
-       /* List<Developer> dev = DeveloperReader.readFromBinaryFile();
-        for (Developer developer : dev) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
+        mainThreadStart();
 
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
+    }
 
-        System.out.println("------------------------------");
-
-        // The same as above, using Java 8's lambda expressions
-        List<Developer> devs = DeveloperReader.readFromTextFile();
-
-        devs.forEach(d -> { 
-            System.out.println(d.getName() + "(" + d.getEmployeeID() + ")");
-            d.getTasks().forEach(t -> {
-                System.out.println(t);
-            });
-        });*/
-
-
+    public static void mainThreadStart(){
         while (true) {
             homework();
             try {
@@ -57,74 +41,6 @@ public class Main {
                 e.printStackTrace();
             }
         }
-
-
-        // Alternative, using Java 8's method reference feature
-        //devs.forEach(System.out::println);
-    }
-
-    // Reading from and writing to file example.
-    private static void ioHandling() {
-        List<Employee> employees = EmployeeReader.read();
-        for (Employee employee : employees) {
-            System.out.println(employee.getName() + " - " + employee.getEmployeeID());
-        }
-
-        List<Developer> developers = DeveloperReader.readFromTextFile();
-        for (Developer developer : developers) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-
-        DeveloperReader.writeToBinaryFile(developers);
-
-        System.out.println("---------------------------------------------");
-
-        List<Developer> dev = DeveloperReader.readFromBinaryFile();
-        for (Developer developer : dev) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-    }
-
-    public static void test() {
-        System.out.println("Teszt szöveg");
-    }
-
-    // Threading example
-    private static void threading() {
-        ReaderThread readerThread = new ReaderThread();
-        
-        //System.out.println(readerThread.getState());
-        readerThread.start();
-        
-        /*try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
-        System.out.println(readerThread.getState());
-        try {
-            readerThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        test();
-    }
-
-    // Synchronized threading example
-    public static void synchroniedTest() {
-        SynchronizationTest st1 = new SynchronizationTest(1);
-        SynchronizationTest st2 = new SynchronizationTest(2);
-
-        st1.start();
-        st2.start();
     }
 
     /*
@@ -158,16 +74,20 @@ public class Main {
      */
     private static void homework() {
 
-        // TODO unimplemented method
+        List<Server> stoppedServers = ServerReader.readStoppedServers();
+        List<SystemAdministrator> administrators = SystemAdministratorReader.read();
 
-        List<Server> servers = ServerReader.read();
-        List<SystemAdministrator> admins = SystemAdministratorReader.read();
-
-        for (Server actaul : servers) {
-            System.out.println(actaul.toString());
-        }
-        for (SystemAdministrator actual: admins) {
-            System.out.println(actual.toString());
+        for (Server actualServer : stoppedServers
+             ) {
+            System.out.println("\n" + actualServer.getName() + " " + actualServer.getType() + " is not RUNNING!");
+            System.out.println("Administrator(s) who have permission for it:");
+            for (SystemAdministrator actualAdministrator : administrators
+                 ) {
+                if(actualAdministrator.getServers().contains(actualServer.getID())){
+                    System.out.println("-" + actualAdministrator);
+                }
+            }
+            System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
         }
 
     }
