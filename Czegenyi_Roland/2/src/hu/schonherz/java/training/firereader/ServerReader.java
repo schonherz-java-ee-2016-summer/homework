@@ -40,13 +40,29 @@ public class ServerReader {
                     throw new MyException();
 
 
-                if ("Win".equals(attributes[2]))
+                /*if ("Win".equals(attributes[2]))
                     result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WindowsDatabaseServer.Status.valueOf(attributes[3])));
                 else if ("LinuxWeb".equals(attributes[2]))
                     result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxWebServer.Status.valueOf(attributes[3])));
                 else if ("LinuxDBandWEB".equals(attributes[2]))
                     result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.valueOf(attributes[3])));
+*/
 
+                switch (attributes[2]) {
+                    case "Win":
+                        result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WindowsDatabaseServer.Status.valueOf(attributes[3])));
+                        break;
+                    case "LinuxWeb":
+                        result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxWebServer.Status.valueOf(attributes[3])));
+                        break;
+                    case "LinuxDBandWEB":
+                        result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.valueOf(attributes[3])));
+                        break;
+                    default:
+                        System.out.println("Server type is not recognized.");
+                        break;
+
+                }
             }
         } catch (IOException e) {
             System.out.println("File is not found");

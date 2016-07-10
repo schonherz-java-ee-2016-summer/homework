@@ -1,29 +1,27 @@
 package hu.schonherz.java.training.main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import hu.schonherz.java.training.ServerService.Database.Status;
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
-import hu.schonherz.java.training.firereader.SysAdmReader;
+import hu.schonherz.java.training.firereader.ServerReader;
+import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.Server;
-import hu.schonherz.java.training.server.WindowsServer;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class Main {
 
     public static void main(String[] args) {
-/*
+
         // Reading developers from file, printing their state to console
         List<Developer> dev = DeveloperReader.readFromBinaryFile();
         for (Developer developer : dev) {
@@ -45,11 +43,20 @@ public class Main {
                 System.out.println(t);
             });
         });
+
+        System.out.println("---------------------------------------------");
+
+        while (true) {
+            homework();
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         
         // Alternative, using Java 8's method reference feature
         //devs.forEach(System.out::println);
-        */
-        homework();
     }
 
     // Reading from and writing to file example.
@@ -108,7 +115,7 @@ public class Main {
     }
 
     // Synchronized threading example
-    public static void synchroniedTest() {
+    public static void synchronizedTest() {
         SynchronizationTest st1 = new SynchronizationTest(1);
         SynchronizationTest st2 = new SynchronizationTest(2);
 
@@ -145,37 +152,51 @@ public class Main {
      *
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private static void homework() {
+        List<Server> servers = getServers();
+        List<SystemAdministrator> administrators = getSystemAdministrators();
 
-        Runnable run = new Runnable() {
-            public void run() {
-                try {
-                    while(true) {
-                        List<SystemAdministrator> sysadmins = SysAdmReader.read();
-                        //System.out.println(sysadmins);
-                        List<String> serverNames = sysadmins.stream().flatMap(sa -> sa.getServers().stream()).map(s -> s.getName()).distinct().collect(Collectors.toList());
-                        for (String srvName: serverNames){
-                            System.out.println(srvName+":");
-                            for (SystemAdministrator sa : sysadmins){
-                                for (Server srv : sa.getServers()){
-                                    if (srv.getName().equals(srvName)){
-                                        System.out.println("       "+sa.getName());
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        System.out.println("-------------------");
-                        Thread.sleep(10000);
-                    }
+        Map<String, List<String>> serversWithAdmins = createReport(servers, administrators);
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
+        System.out.println(serversWithAdmins);
 
-        new Thread(run).start();
+    }
+
+    private static Map<String, List<String>> createReport(List<Server> servers, List<SystemAdministrator> administrators) {
+        Map<String, List<String>> serversWithAdmins = new HashMap<>();
+
+        for (Server server : servers) {
+            List<String> adminNames = new ArrayList<>();
+            administrators.stream()
+                    .filter(administrator -> administrator.getServerIDs().contains(server.getId()))
+                    .forEach(administrator -> {
+                        assignServerToSysAdmin(server, administrator);
+                        addAdminNameToList(adminNames, administrator);
+                    });
+            assignServerWithAdmins(serversWithAdmins, server, adminNames);
+        }
+        return serversWithAdmins;
+    }
+
+    private static void assignServerWithAdmins(Map<String, List<String>> serversWithAdmins, Server server, List<String> adminNames) {
+        serversWithAdmins.put(server.getName(), adminNames);
+    }
+
+    private static void addAdminNameToList(List<String> adminNames, SystemAdministrator administrator) {
+        adminNames.add(administrator.getName());
+    }
+
+    private static void assignServerToSysAdmin(Server server, SystemAdministrator administrator) {
+        administrator.getServers().add(server);
+    }
+
+    private static List<SystemAdministrator> getSystemAdministrators() {
+        return SystemAdministratorReader.read();
+    }
+
+    private static List<Server> getServers() {
+        return ServerReader.read();
     }
 
 }
