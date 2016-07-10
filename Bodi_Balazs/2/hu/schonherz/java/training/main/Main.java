@@ -21,7 +21,7 @@ import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 import jdk.nashorn.internal.objects.NativeArray;
 
-@SuppressWarnings("unused")
+
 public class Main {
     
     
