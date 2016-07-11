@@ -9,33 +9,17 @@ import java.util.List;
 
 import hu.schonherz.java.training.pojo.Employee;
 
-/**
- * Utility class providing static methods
- * to read the employee data from text and binary files
- * under the /files subdirectory.
- */
+
 public class EmployeeReader {
 
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "employees.txt";
 
-    // This won't work under a Linux system, because it uses '/' as a path separator.
-    // private static File file = new File(SUBDIRECTORY + "\" + FILENAME);
-
-    // In Java, use File.separator when dealing with paths to ensure compatibility between operating systems.
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-    /**
-     * @return List of employees which has been found in employees.txt file
-     */
+
     public static List<Employee> read() {
         List<Employee> result = new LinkedList<Employee>();
-
-        /* Alternative solution
-        Scanner sc = new Scanner(file);
-        while(sc.hasNext()) {
-            // do stuff
-        }*/
 
         BufferedReader bufferedReader = null;
 

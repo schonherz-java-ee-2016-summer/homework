@@ -1,5 +1,6 @@
 package hu.schonherz.java.training.firereader;
 
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
 import hu.schonherz.java.training.ServerService.Database;
 import hu.schonherz.java.training.ServerService.WebContainer;
 import hu.schonherz.java.training.pojo.Employee;
@@ -21,22 +22,12 @@ import java.util.List;
 public class ServerReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "servers.txt";
+    private static final String RUNNINGSERVERKEYWORD = "RUNNING";
 
-    // This won't work under a Linux system, because it uses '/' as a path separator.
-    // private static File file = new File(SUBDIRECTORY + "\" + FILENAME);
-
-    // In Java, use File.separator when dealing with paths to ensure compatibility between operating systems.
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-    public static List<Server> read() {
+    public static List<Server> readStoppedServers() {
         List<Server> result = new LinkedList<Server>();
-
-        /* Alternative solution
-        Scanner sc = new Scanner(file);
-        while(sc.hasNext()) {
-            // do stuff
-        }*/
-
         BufferedReader bufferedReader = null;
 
         try {
@@ -49,14 +40,16 @@ public class ServerReader {
                 if(attributes.length != 4){
                     throw new MyException();
                 }
-
-                if("LinuxDBandWEB".equals(attributes[2])){
-                    result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.valueOf(attributes[3])));
-                }else if("LinuxWeb".equals(attributes[2])){
-                    result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WebContainer.Status.valueOf(attributes[3])));
-                }else if("Win".equals(attributes[2])){
-                    result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]),attributes[1],attributes[2], Database.Status.valueOf(attributes[3])));
+                if(!attributes[3].equals(RUNNINGSERVERKEYWORD)) {
+                    if (attributes[2].equals("LinuxDBandWEB")) {
+                        result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.DATABASESTOPPED));
+                    } else if (attributes[2].equals("LinuxWeb")) {
+                        result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WebContainer.Status.STOPPED));
+                    } else if (attributes[2].equals("Win")) {
+                        result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], Database.Status.STOPPED));
+                    }
                 }
+
 
             }
         } catch (IOException e) {
