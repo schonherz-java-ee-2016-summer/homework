@@ -1,5 +1,7 @@
 package hu.schonherz.java.training.main;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import hu.schonherz.java.training.firereader.DeveloperReader;
@@ -9,7 +11,10 @@ import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
+import hu.schonherz.java.training.server.LinuxDatabaseAndWebServer;
+import hu.schonherz.java.training.server.LinuxWebServer;
 import hu.schonherz.java.training.server.Server;
+import hu.schonherz.java.training.server.WindowsDatabaseServer;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
@@ -140,22 +145,12 @@ public class Main {
      *
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
-    private static void homework() {
+    private static void homework(){
         while(true){
             List<Server> servers = ServerReader.readFromTextFile();
-            List<SystemAdministrator> sysAdmins = SystemAdministratorReader.readFromTextFile();
+            List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile();
 
-            for(Server server : servers){
-                System.out.println(server.getName());
-                for(SystemAdministrator sysAdmin : sysAdmins){
-                    for(Server s : sysAdmin.getServers()){
-                        if(server.getID() == s.getID()){
-                            System.out.println(sysAdmin.getName());
-                        }
-                    }
-                }
-                System.out.println();
-            }
+            /*print out the result*/
 
             System.out.println("------------------------------");
 
@@ -165,6 +160,38 @@ public class Main {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static List<String> stoppedServers(List<Server> srvrs, List<SystemAdministrator> sysAs){
+        for(Server server : srvrs){
+            if("Win".equals(server.getType()) && "STOPPED".equals(((WindowsDatabaseServer)server).getStatus())){
+                return stoppedServersWithAdmins(server, sysAs);
+            }
+            else if("LinuxWeb".equals(server.getType()) && "STOPPED".equals(((LinuxWebServer)server).getStatus())){
+                return stoppedServersWithAdmins(server, sysAs);
+            }
+            else if("LinuxDBandWEB".equals(server.getType()) && "DATABASESTOPPED".equals(((LinuxDatabaseAndWebServer)server).getStatus())){
+                return stoppedServersWithAdmins(server, sysAs);
+            }
+        }
+
+        return null;
+    }
+
+    private static List<String> stoppedServersWithAdmins(Server srvr, List<SystemAdministrator> sysAdmins){
+        List<String> stoppedReport = new ArrayList<String>();
+
+        stoppedReport.add(srvr.getName());
+
+        for(SystemAdministrator sysAdmin : sysAdmins){
+            for(Server s : sysAdmin.getServers()){
+                if(srvr.getID() == s.getID()){
+                    stoppedReport.add(sysAdmin.getName());
+                }
+            }
+        }
+
+        return stoppedReport;
     }
 
 }
