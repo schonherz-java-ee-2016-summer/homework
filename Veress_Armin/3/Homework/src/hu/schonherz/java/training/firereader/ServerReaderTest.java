@@ -7,6 +7,7 @@ import hu.schonherz.java.training.server.WindowsServer;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,30 +19,13 @@ import static org.junit.Assert.assertTrue;
 public class ServerReaderTest {
     @Test
     public void readFromTextFileTest(){
-
         System.out.println("readFromTextFile");
-
-        List<Server> expResult = new ArrayList<>();
-        expResult.add(new WindowsServer("1","SQL01","RUNNING"));
-        expResult.add(new LinuxWebServer("2","WEB01","RUNNING"));
-        expResult.add(new LinuxDatabaseAndWebServer("3","SQLNWEB01","RUNNING"));
-        expResult.add(new LinuxWebServer("4","WEB02","RUNNING"));
-
-        List<Server> result = ServerReader.readFromTextFile();
-
-        /*boolean testResult = true;
-
-        for(Server s:expResult){
-            for(Server v:result){
-                if(s.getId().equals(v.getId())) {
-                    if(!(s.equals(v))){
-                        testResult = false;
-                    }
-                }
-            }
-        }
-        assertTrue(testResult);*/
-
+        HashMap expResult = new HashMap();
+        expResult.put("1", new WindowsServer("1","SQL01","RUNNING"));
+        expResult.put("2", new LinuxWebServer("2","WEB01","RUNNING"));
+        expResult.put("3", new LinuxDatabaseAndWebServer("3","SQLNWEB01","RUNNING"));
+        expResult.put("4", new LinuxWebServer("4","WEB02","RUNNING"));
+        HashMap result = ServerReader.readFromTextFile();
         assertEquals(expResult, result);
     }
 }
