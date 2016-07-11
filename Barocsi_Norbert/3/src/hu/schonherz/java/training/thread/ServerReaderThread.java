@@ -13,33 +13,39 @@ import java.util.List;
 /**
  * Created by Mindfield on 2016. 07. 05..
  */
-public class ServerReaderThread extends Thread{
+public class ServerReaderThread extends Thread {
 
     @Override
-    public void run(){
+    public void run() {
         int i = 0;
 
-        while(i < 3){
+        while (i < 3) {
             i++;
 
-            List<Server> servers = ServerReader.readFromTextFile();
-            List<SystemAdministrator> systemadmin = SystemAdministratorReader.readFromTextFile();
+            serversAndSystemAdministratorsListConsoleReport();
 
-            for(Server server : servers){
-                System.out.print(server.getName()+" - " );
-                for(SystemAdministrator sysadmin : systemadmin){
-                    for (Server s : sysadmin.getServers()) {
-                        if(server.getID() == s.getID()){
-                            System.out.println(sysadmin.getName());
-                        }
-                    }
-                }
-            }
-            try{
+            try {
                 Thread.sleep(10000);
-            }catch(InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static void serversAndSystemAdministratorsListConsoleReport() {
+        List<Server> servers = ServerReader.readFromTextFile();
+        List<SystemAdministrator> systemadmin = SystemAdministratorReader.readFromTextFile();
+
+        servers.stream().forEach(server -> {
+            System.out.print(server.getName() + " - ");
+            systemadmin.stream().forEach(sysadmin -> {
+                sysadmin.getServers().stream().forEach(s -> {
+                    if (server.getID() == s.getID()) {
+                        System.out.println(sysadmin.getName());
+                    }
+                });
+            });
+        });
+
     }
 }

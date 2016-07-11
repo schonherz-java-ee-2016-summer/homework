@@ -24,24 +24,9 @@ public class ServerReader {
     public static List<Server> readFromTextFile(){
         List<Server> result = new ArrayList<>();
 
-        BufferedReader bufferedreader = null;
+        try(BufferedReader bufferedreader = new BufferedReader(new FileReader(file))){
 
-        try {
-            bufferedreader = new BufferedReader(new FileReader(file));
-            String line;
-
-            while((line = bufferedreader.readLine()) != null){
-                String[] attributes = line.split(",");
-
-                if("Win".equals(attributes[2]) && "STOPPED".equals(attributes[3])){
-                    result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], Database.Status.valueOf(attributes[3])));
-                } else if("LinuxWeb".equals(attributes[2]) && "STOPPED".equals(attributes[3])){
-                    result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WebContainer.Status.valueOf(attributes[3])));
-                } else if ("LinuxDBandWEB".equals(attributes[2]) && "DATABASESTOPPED".equals(attributes[3])){
-                    result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.valueOf(attributes[3])));
-                }
-
-            }
+            serversAddList(result, bufferedreader);
 
         }catch (IOException e){
             System.out.println("io error");
@@ -49,4 +34,17 @@ public class ServerReader {
 
         return result;
     }
+
+    private static void serversAddList(List<Server> result, BufferedReader bufferedreader) throws IOException{
+        String line;
+
+        while((line = bufferedreader.readLine()) != null){
+            String[] attributes = line.split(",");
+
+            if("STOPPED".equals(attributes[3]) || "DATABASESTOPPED".equals(attributes[3]))
+                result.add(ServerFactory.getServer(attributes));
+        }
+
+    }
+
 }
