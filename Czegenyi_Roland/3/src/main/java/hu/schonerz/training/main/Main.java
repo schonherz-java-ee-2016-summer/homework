@@ -9,6 +9,7 @@ import hu.schonerz.training.filereader.ServerReader;
 import hu.schonerz.training.filereader.SysAdminReader;
 import hu.schonerz.training.pojo.SystemAdministrator;
 import hu.schonerz.training.server.Server;
+import hu.schonerz.training.thread.Report;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,16 +25,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Server> server = ServerReader.read();
-        List<SystemAdministrator> admin = SysAdminReader.read();
-//proba
-        for (Server s : server) {
-            System.out.println(s.getName());
-        }
-        for (SystemAdministrator a : admin) {
-            System.out.println(a.getServers());
-        }
+            homework();
+    }
 
+    public static void homework() {
+        Report r = new Report();
+        r.run();
     }
 
 }

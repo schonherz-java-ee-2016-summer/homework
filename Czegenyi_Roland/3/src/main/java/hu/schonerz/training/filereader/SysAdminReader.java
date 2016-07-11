@@ -5,7 +5,6 @@
  */
 package hu.schonerz.training.filereader;
 
-import hu.schonerz.training.server.Server;
 import hu.schonerz.training.pojo.SystemAdministrator;
 
 import java.io.File;
