@@ -19,15 +19,7 @@ public class SysAdmReader {
 
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "sysadmins.txt";
-    private static File file;
-
-    static {
-        try {
-            file = new File(SysAdmReader.class.getClassLoader().getResource(SUBDIRECTORY + /*File.separator*/ "/" + FILENAME).getFile());
-        } catch (NullPointerException npe) {
-            System.out.println(FILENAME + " is not found.");
-        }
-    }
+    private static File file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
 
     /**
      * @return List of system administrators which has been found in sysadmins.txt file
@@ -35,11 +27,7 @@ public class SysAdmReader {
     public static List<SystemAdministrator> read() {
         List<SystemAdministrator> result = new ArrayList<>();
         if (file == null) {
-            try {
-                file = new File(SysAdmReader.class.getClassLoader().getResource(SUBDIRECTORY + /*File.separator*/ "/" + FILENAME).getFile());
-            } catch (NullPointerException npe) {
-                System.out.println(FILENAME + " is not found.");
-            }
+            file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
         } else {
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
                 String line;

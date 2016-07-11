@@ -140,26 +140,13 @@ public class Main {
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
     private static void homework() {
-
         Runnable run = new Runnable() {
             public void run() {
                 try {
                     while (true) {
-                        List<SystemAdministrator> sysadmins = SysAdmReader.read();
-                        //System.out.println(sysadmins);
-                        List<String> serverNames = sysadmins.stream().flatMap(sa -> sa.getServers().stream()).map(s -> s.getName()).distinct().collect(Collectors.toList());
-                        for (String srvName : serverNames) {
-                            System.out.println(srvName + ":");
-                            for (SystemAdministrator sa : sysadmins) {
-                                for (Server srv : sa.getServers()) {
-                                    if (srv.getName().equals(srvName)) {
-                                        System.out.println("       " + sa.getName());
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        System.out.println("-------------------");
+                        List<SystemAdministrator> sysAdmins = SysAdmReader.read();
+                        List<String> serverNames = sysAdmins.stream().flatMap(sa -> sa.getServers().stream()).map(s -> s.getName()).distinct().collect(Collectors.toList());
+                        displayServersWithAdmins(sysAdmins, serverNames);
                         Thread.sleep(10000);
                     }
 
@@ -168,8 +155,21 @@ public class Main {
                 }
             }
         };
-
         new Thread(run).start();
     }
 
+    private static void displayServersWithAdmins(List<SystemAdministrator> sysAdmins, List<String> serverNames) {
+        for (String srvName : serverNames) {
+            System.out.println(srvName + ":");
+            for (SystemAdministrator sa : sysAdmins) {
+                for (Server srv : sa.getServers()) {
+                    if (srv.getName().equals(srvName)) {
+                        System.out.println("       " + sa.getName());
+                        break;
+                    }
+                }
+            }
+        }
+        System.out.println("-------------------");
+    }
 }

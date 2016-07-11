@@ -14,40 +14,20 @@ public class ServerReader {
 
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "servers.txt";
-    private static File file;
-
-    static {
-        try {
-            file = new File(ServerReader.class.getClassLoader().getResource(SUBDIRECTORY + /*File.separator*/ "/" + FILENAME).getFile());
-        } catch (NullPointerException npe) {
-            System.out.println(FILENAME + " is not found.");
-        }
-    }
+    private static File file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
 
     public static Server read(int id) {
         Server result = null;
         if (file == null) {
-            try {
-                file = new File(ServerReader.class.getClassLoader().getResource(SUBDIRECTORY + /*File.separator*/ "/" + FILENAME).getFile());
-            } catch (NullPointerException npe) {
-                System.out.println(FILENAME + " is not found.");
-            }
+            file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
         } else {
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     String[] attributes = line.split(",");
                     if (Integer.parseInt(attributes[0]) == id) {
-                        if ("Win".equals(attributes[2])) {
-                            result = new WindowsDatabaseServer(Database.Status.RUNNING);
-                        } else if ("LinuxWeb".equals(attributes[2])) {
-                            result = new LinuxWebServer(WebContainer.Status.RUNNING);
-                        } else if ("LinuxDBandWEB".equals(attributes[2])) {
-                            result = new LinuxDatabaseAndWebServer(LinuxDatabaseAndWebServer.Status.RUNNING);
-                        }
-                        result.setName(attributes[1]);
+                        result = ServerFactory.getInstance(Integer.parseInt(attributes[0]), attributes[1], attributes[2], attributes[3]);
                     }
-
                 }
             } catch (IOException e) {
                 System.out.println(FILENAME + " is not found.");
