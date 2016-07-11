@@ -22,21 +22,14 @@ public class AdminReaderTest {
 
         System.out.println("readFromTextFile");
 
-        HashMap map = new HashMap();
-
         List<Server> servers = new ArrayList<>();
         servers.add(new WindowsServer("1","SQL01","RUNNING"));
         servers.add(new LinuxWebServer("2","WEB01","RUNNING"));
         servers.add(new LinuxDatabaseAndWebServer("3","SQLNWEB01","RUNNING"));
         servers.add(new LinuxWebServer("4","WEB02","RUNNING"));
 
-        servers.stream().forEach((srv) -> {
-                    Server ser = (Server) map.get(srv.getId());
-                    if (ser == null) {
-                        map.put(srv.getId(), srv);
-                    }
-                }
-        );
+        HashMap map = ReadServers.createMap(servers);
+        ReadServers.setMap(map);
 
         List<SystemAdministrator> expResult = new ArrayList<>();
 
@@ -57,7 +50,7 @@ public class AdminReaderTest {
         srv2.add((Server) map.get("4"));
         expResult.add(new SystemAdministrator("Sysadmin Ken", 387, srv2));
 
-        List<SystemAdministrator> result = AdminReader.readFromTextFile(map);
+        List<SystemAdministrator> result = AdminReader.readFromTextFile();
 
         assertEquals(expResult, result);
     }

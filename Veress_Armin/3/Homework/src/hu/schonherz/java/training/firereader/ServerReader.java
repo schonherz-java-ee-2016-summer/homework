@@ -28,7 +28,45 @@ public class ServerReader {
 
     public static List<Server> readFromTextFile() {
         List<Server> result = new ArrayList<>();
-        
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            createList(result, bufferedReader);
+        } catch (IOException e) {
+            System.out.println("io error");
+        }
+
+        return result;
+    }
+
+    private static void createList(List<Server> result, BufferedReader reader)
+    {
+        String line;
+
+        try {
+            while ((line = reader.readLine()) != null) {
+                String[] attributes = line.split(",");
+                if (attributes[2].equals("Win"))
+                    result.add(new WindowsServer(attributes[0], attributes[1], attributes[3]));
+                else if (attributes[2].equals("LinuxWeb"))
+                    result.add(new LinuxWebServer(attributes[0], attributes[1], attributes[3]));
+                else if (attributes[2].equals("LinuxDBandWEB"))
+                    result.add(new LinuxDatabaseAndWebServer(attributes[0], attributes[1], attributes[3]));
+            }
+        } catch (IOException e)
+        {
+            System.out.println("io error");
+        }
+    }
+
+/*
+    private static final String SUBDIRECTORY = "files";
+    private static final String FILENAME = "servers.txt";
+
+    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+
+    public static List<Server> readFromTextFile() {
+        List<Server> result = new ArrayList<>();
+
          try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
 
@@ -47,4 +85,5 @@ public class ServerReader {
 
         return result;
     }
+*/
 }
