@@ -1,0 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package hu.schonerz.training.pojo;
+
+/**
+ *
+ * @author Roli
+ */
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+
+    private static final long serialVersionUID = 7950521176579703924L;
+    protected String name;
+    protected int employeeID;
+  
+    public Employee() {
+        super();
+    }
+
+    public Employee(String name, int employeeID) {
+        super();
+        this.setName(name);
+        this.setEmployeeID(employeeID);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+  
+}
