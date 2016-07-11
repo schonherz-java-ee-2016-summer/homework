@@ -33,5 +33,12 @@ public class Employee implements Serializable {
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
-  
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null || !(obj instanceof Employee))
+            return false;
+        else
+            return this.getName().equals(((Employee) obj).getName()) && this.getEmployeeID()==((Employee) obj).getEmployeeID();
+    }
 }

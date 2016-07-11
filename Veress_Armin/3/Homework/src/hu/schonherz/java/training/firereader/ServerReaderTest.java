@@ -29,7 +29,7 @@ public class ServerReaderTest {
 
         List<Server> result = ServerReader.readFromTextFile();
 
-        boolean testResult = true;
+        /*boolean testResult = true;
 
         for(Server s:expResult){
             for(Server v:result){
@@ -40,6 +40,8 @@ public class ServerReaderTest {
                 }
             }
         }
-        assertTrue(testResult);
+        assertTrue(testResult);*/
+
+        assertEquals(expResult, result);
     }
 }

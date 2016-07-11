@@ -26,4 +26,12 @@ public class SystemAdministrator extends Employee {
         this.servers = servers;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        boolean b1 = super.equals(obj);
+        boolean b2 = this.getServers().equals(((SystemAdministrator) obj).getServers());
+        List<Server> srv1 = this.getServers();
+        List<Server> srv2 = ((SystemAdministrator) obj).getServers();
+        return super.equals(obj) && this.getServers().equals(((SystemAdministrator) obj).getServers());
+    }
 }
