@@ -4,10 +4,13 @@ import java.util.List;
 
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
+import hu.schonherz.java.training.firereader.ServerReader;
+import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.Developer;
 import hu.schonherz.java.training.pojo.Employee;
+import hu.schonherz.java.training.pojo.SystemAdministrator;
+import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.thread.ReaderThread;
-import hu.schonherz.java.training.thread.ServerReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
 @SuppressWarnings("unused")
@@ -138,19 +141,30 @@ public class Main {
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
     private static void homework() {
+        while(true){
+            List<Server> servers = ServerReader.readFromTextFile();
+            List<SystemAdministrator> sysAdmins = SystemAdministratorReader.readFromTextFile();
 
-        ServerReaderThread serverReaderThread = new ServerReaderThread();
+            for(Server server : servers){
+                System.out.println(server.getName());
+                for(SystemAdministrator sysAdmin : sysAdmins){
+                    for(Server s : sysAdmin.getServers()){
+                        if(server.getID() == s.getID()){
+                            System.out.println(sysAdmin.getName());
+                        }
+                    }
+                }
+                System.out.println();
+            }
 
-        serverReaderThread.start();
+            System.out.println("------------------------------");
 
-        try{
-            serverReaderThread.join();
-        }catch (InterruptedException e){
-            e.printStackTrace();
+            try{
+                Thread.sleep(10000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
         }
-
-        // TODO unimplemented method
-        //throw new UnsupportedOperationException("Not implemented yet.");
     }
 
 }
