@@ -8,14 +8,14 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by bmbal on 2016. 07. 12..
  */
 public class ServerReaderTest {
     private List<Server> resultOfCallingSuperMethod = ServerReader.readStoppedServers();
     private LinuxDatabaseAndWebServer actual = (LinuxDatabaseAndWebServer) resultOfCallingSuperMethod.get(0);
+
+
 
     @Test(timeout = 10)
     public void testTheNumberOfTheStoppedServers() throws Exception {
