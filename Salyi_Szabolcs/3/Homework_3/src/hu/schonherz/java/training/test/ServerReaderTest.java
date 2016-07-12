@@ -14,7 +14,7 @@ public class ServerReaderTest {
 
     @Test
     public void shouldReturnRightLenght(){
-        Assert.assertEquals(ServerReader.readServers().size(),4);
+        Assert.assertEquals(4,ServerReader.readServers().size());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ServerReaderTest {
                 count++;
             }
         }
-        Assert.assertEquals(count,2);
+        Assert.assertEquals(2,count);
     }
 
 }
