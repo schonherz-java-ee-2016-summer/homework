@@ -15,7 +15,16 @@ public class WindowsDatabaseServer extends WindowsServer implements Database {
     public String getStatus() {
         return status.toString();
     }
-  
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof WindowsDatabaseServer))
+            return false;
+
+        WindowsDatabaseServer windowsDS = (WindowsDatabaseServer) obj;
+
+        return this.getID() == windowsDS.getID() && this.getName().equals(windowsDS.getName());
+    }
     /*
     // default method has been implemented
     @Override
