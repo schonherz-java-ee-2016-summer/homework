@@ -25,6 +25,7 @@ public class ServerReaderTest {
     @Test
     public void testServerReader() {
         ServerReader r = new ServerReader();
+        assertNotNull(r);
     }
 
     @Test(expected = NullPointerException.class)
@@ -35,6 +36,7 @@ public class ServerReaderTest {
     @Test
     public void testReadFile() {
         List<Server> s = ServerReader.readFile();
+        assertNotNull(s);
     }
 
     @Test(expected = MyException.class)

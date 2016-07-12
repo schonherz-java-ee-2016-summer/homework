@@ -17,9 +17,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ServerReader {
-//kozos beolvasot/feldolgozot csinalni !!!!!!!!!!!!!!!!!
-//------------------------------------------
-//------------------------------------------
+// TODO: Create FileFactory for reading from files
+
     public static List<Server> readFile() {
         String FILENAME = "servers.txt";
 
