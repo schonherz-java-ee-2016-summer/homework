@@ -21,7 +21,7 @@ public class StoppedServersThread {
             }
         }
     }
-    public static void StoppedServersAndPermittedAdministrators() {
+     private static void StoppedServersAndPermittedAdministrators() {
 
         List<Server> stoppedServers = ServerReader.readStoppedServers();
         List<SystemAdministrator> administrators = SystemAdministratorReader.read();
