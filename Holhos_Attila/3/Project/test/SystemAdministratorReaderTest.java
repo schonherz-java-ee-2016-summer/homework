@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public class SystemAdministratorReaderTest {
-    private String filepath = "files"+File.separator+"anAdmins.txt";
+    private String filepath = "files"+File.separator+"anAdmin.txt";
     private File file = new File(filepath);
 
     @Test(expected = NullPointerException.class)
@@ -26,6 +26,7 @@ public class SystemAdministratorReaderTest {
     public void shouldSizeTheSameAfterReadingSystemAdmin(){
         String anAdmin = "Holhós Attila,1,1,3,4";
         List<SystemAdministrator> adminList = null;
+
         try {
             file.createNewFile();
             FileWriter fileWriter = new FileWriter(file);
@@ -37,6 +38,7 @@ public class SystemAdministratorReaderTest {
         } catch (IOException e){
             System.out.println("IOException.");
         }
+
         assertTrue(adminList.size()==1);
     }
 

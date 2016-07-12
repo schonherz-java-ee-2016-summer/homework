@@ -14,18 +14,15 @@ public class ServerReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "servers.txt";
 
-    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
-
-    public static List<Server> readServersFromText(){
+    public static List<Server> readServersFromText(String filePath){
         List<Server> servers = new ArrayList<Server>();
         BufferedReader bufferedReader = null;
+        File file = new File(filePath);
         try{
             bufferedReader = new BufferedReader(new FileReader(file));
             String line;
             while((line=bufferedReader.readLine())!= null){
-                String[] seged = line.split(",");
-                Server server = new Server(Integer.parseInt(seged[0]),seged[1],seged[2],seged[3]);
-                servers.add(server);
+                servers.add(createServer(line));
             }
         } catch (FileNotFoundException e){
             System.out.println("The file is not found!");
@@ -39,5 +36,10 @@ public class ServerReader {
             }
         }
         return servers;
+    }
+
+    public static Server createServer(String line){
+        String[] parts = line.split(",");
+        return new Server(Integer.parseInt(parts[0]),parts[1],parts[2],parts[3]);
     }
 }
