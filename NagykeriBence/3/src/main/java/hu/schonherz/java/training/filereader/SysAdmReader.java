@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class SysAdmReader {
 
-    private static final String SUBDIRECTORY = "files";
-    private static final String FILENAME = "sysadmins.txt";
+    private static String SUBDIRECTORY = "files";
+    private static String FILENAME = "sysadmins.txt";
     private static File file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
 
     /**
@@ -53,4 +53,9 @@ public class SysAdmReader {
         return result;
     }
 
+    public static void setPath(String _SUBDIRECTORY, String _FILENAME) {
+        SUBDIRECTORY = _SUBDIRECTORY;
+        FILENAME = _FILENAME;
+        file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
+    }
 }

@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public class ServerReader {
 
-    private static final String SUBDIRECTORY = "files";
-    private static final String FILENAME = "servers.txt";
+    private static String SUBDIRECTORY = "files";
+    private static String FILENAME = "servers.txt";
     private static File file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
 
     public static Server read(int id) {
@@ -36,4 +36,9 @@ public class ServerReader {
         return result;
     }
 
+    public static void setPath(String _SUBDIRECTORY, String _FILENAME) {
+        SUBDIRECTORY = _SUBDIRECTORY;
+        FILENAME = _FILENAME;
+        file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
+    }
 }
