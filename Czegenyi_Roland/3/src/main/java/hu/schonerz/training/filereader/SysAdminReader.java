@@ -5,9 +5,9 @@
  */
 package hu.schonerz.training.filereader;
 
+import static hu.schonerz.training.filereader.ServerReader.createFile;
 import hu.schonerz.training.pojo.SystemAdministrator;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,21 +19,20 @@ import java.util.Scanner;
  * @author Roli
  */
 public class SysAdminReader {
+//kozos beolvasot/feldolgozot csinalni !!!!!!!!!!!!!!!!!
+//------------------------------------------
+//------------------------------------------
 
-    private static final String FILENAME = "sysadmins.txt";
-    private static final ClassLoader CLASSLOADER = SysAdminReader.class.getClassLoader();
-    private static final File FILE = new File(CLASSLOADER.getResource(FILENAME).getFile());
+    public static List<SystemAdministrator> readFile() {
+        String FILENAME = "sysadmins.txt";
 
-    public static List<SystemAdministrator> read() {
         List<SystemAdministrator> result = new LinkedList<>();
-        try (Scanner sc = new Scanner(FILE)) {
+        try (Scanner sc = new Scanner(createFile(FILENAME))) {
 
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 result.add(lineProcessing(line));
-
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("File is not found");
         } catch (MyException e) {
@@ -57,7 +56,6 @@ public class SysAdminReader {
         for (int i = 2; i < attributes.length; i++) {
             serverIds.add(Integer.parseInt(attributes[i]));
         }
-
         return (adminCreator(name, id, serverIds));
 
     }

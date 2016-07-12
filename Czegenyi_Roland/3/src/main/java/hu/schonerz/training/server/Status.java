@@ -5,10 +5,13 @@
  */
 package hu.schonerz.training.server;
 
+import net.sourceforge.cobertura.CoverageIgnore;
+
 /**
  *
  * @author Roli
  */
+@CoverageIgnore
 public enum Status {
     RUNNING,
     STOPPED

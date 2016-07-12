@@ -5,27 +5,18 @@
  */
 package hu.schonerz.training.main;
 
-import hu.schonerz.training.filereader.ServerReader;
-import hu.schonerz.training.filereader.SysAdminReader;
-import hu.schonerz.training.pojo.SystemAdministrator;
-import hu.schonerz.training.server.Server;
 import hu.schonerz.training.thread.Report;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import net.sourceforge.cobertura.CoverageIgnore;
 
 /**
  *
  * @author Roli
  */
+@CoverageIgnore
 public class Main {
 
     public static void main(String[] args) {
-            homework();
+        homework();
     }
 
     public static void homework() {

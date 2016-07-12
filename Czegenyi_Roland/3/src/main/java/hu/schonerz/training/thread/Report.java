@@ -20,8 +20,8 @@ public class Report {
 
     public void run() {
         while (true) {
-            List<Server> servers = ServerReader.read();
-            List<SystemAdministrator> admins = SysAdminReader.read();
+            List<Server> servers = ServerReader.readFile();
+            List<SystemAdministrator> admins = SysAdminReader.readFile();
             print(servers, admins);
             try {
                 Thread.sleep(10000);
