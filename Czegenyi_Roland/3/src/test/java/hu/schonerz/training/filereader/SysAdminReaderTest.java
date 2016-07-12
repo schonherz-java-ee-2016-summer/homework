@@ -22,12 +22,6 @@ public class SysAdminReaderTest {
     public SysAdminReaderTest() {
     }
 
-    @Test
-    public void testSysAdminReader() {
-        SysAdminReader r = new SysAdminReader();
-        assertNotNull(r);
-    }
-
     @Test(expected = NullPointerException.class)
     public void testIfFileIsExist() throws FileNotFoundException {
         File server = ServerReader.createFile("asd");
