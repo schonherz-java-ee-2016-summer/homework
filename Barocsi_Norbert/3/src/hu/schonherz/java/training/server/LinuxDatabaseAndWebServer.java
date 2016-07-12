@@ -34,6 +34,16 @@ public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, 
     }
 
     @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof LinuxDatabaseAndWebServer))
+            return false;
+
+        LinuxDatabaseAndWebServer linuxDAW = (LinuxDatabaseAndWebServer) obj;
+
+        return this.getID() == linuxDAW.getID() && this.getName().equals(linuxDAW.getName());
+    }
+
+    @Override
     public String getStatus() {
         return status.name();
     }

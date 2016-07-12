@@ -67,13 +67,13 @@ public class Main implements Runnable{
         List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile();
         List<RunningServer> servers = ServerReader.readFromTextFile();
 
-        for(RunningServer s: servers){
-            if(s.getRunningStatus()==false){
-                System.out.println("Servername: "+ s.getName());
-                for(SystemAdministrator sA: systemAdmins) {
-                    for(RunningServer server: sA.getServers()) {
-                        if (server.getID() == s.getID()) {
-                            System.out.println("\t" + sA.getName());
+        for(RunningServer server: servers){
+            if(server.getRunningStatus()==false){
+                System.out.println("Servername: "+ server.getName());
+                for(SystemAdministrator systemAdmin: systemAdmins) {
+                    for(RunningServer adminServer: systemAdmin.getServers()) {
+                        if (server.getID() == adminServer.getID()) {
+                            System.out.println("\t" + systemAdmin.getName());
                         }
                     }
                 }

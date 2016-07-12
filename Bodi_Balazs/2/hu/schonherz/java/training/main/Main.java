@@ -1,25 +1,7 @@
 package hu.schonherz.java.training.main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import hu.schonherz.java.training.thread.StoppedServersThread;
 
-
-import hu.schonherz.java.training.ServerService.Database;
-import hu.schonherz.java.training.ServerService.Database.Status;
-import hu.schonherz.java.training.firereader.DeveloperReader;
-import hu.schonherz.java.training.firereader.EmployeeReader;
-import hu.schonherz.java.training.firereader.ServerReader;
-import hu.schonherz.java.training.firereader.SystemAdministratorReader;
-import hu.schonherz.java.training.pojo.Developer;
-import hu.schonherz.java.training.pojo.Employee;
-import hu.schonherz.java.training.pojo.SystemAdministrator;
-import hu.schonherz.java.training.server.*;
-import hu.schonherz.java.training.thread.ReaderThread;
-import hu.schonherz.java.training.thread.SynchronizationTest;
-import jdk.nashorn.internal.objects.NativeArray;
 
 
 public class Main {
@@ -28,20 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        mainThreadStart();
+        StoppedServersThread.Report();
 
     }
 
-    public static void mainThreadStart(){
-        while (true) {
-            homework();
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
 
     /*
      * As a manager of the organization, I want a real-time report for servers which are not running.
@@ -72,24 +45,6 @@ public class Main {
      *
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
-    private static void homework() {
 
-        List<Server> stoppedServers = ServerReader.readStoppedServers();
-        List<SystemAdministrator> administrators = SystemAdministratorReader.read();
-
-        for (Server actualServer : stoppedServers
-             ) {
-            System.out.println("\n" + actualServer.getName() + " " + actualServer.getType() + " is not RUNNING!");
-            System.out.println("Administrator(s) who have permission for it:");
-            for (SystemAdministrator actualAdministrator : administrators
-                 ) {
-                if(actualAdministrator.getServers().contains(actualServer.getID())){
-                    System.out.println("-" + actualAdministrator);
-                }
-            }
-            System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
-        }
-
-    }
 
 }
