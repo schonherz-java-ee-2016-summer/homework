@@ -22,12 +22,6 @@ public class ServerReaderTest {
     public ServerReaderTest() {
     }
 
-    @Test
-    public void testServerReader() {
-        ServerReader r = new ServerReader();
-        assertNotNull(r);
-    }
-
     @Test(expected = NullPointerException.class)
     public void testIfFileIsExist() throws FileNotFoundException {
         File server = ServerReader.createFile("asd");
