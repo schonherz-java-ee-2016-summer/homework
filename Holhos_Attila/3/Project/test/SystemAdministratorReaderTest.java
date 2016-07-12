@@ -17,6 +17,11 @@ public class SystemAdministratorReaderTest {
     String filepath = "files"+File.separator+"anAdmins.txt";
     File file = new File(filepath);
 
+    @Test(expected = NullPointerException.class)
+    public void FileNotFoundExceptionTest(){
+        List<SystemAdministrator> adminList = readSystemAdminFromText("a.txt");
+    }
+
     @Test
     public void shouldSizeTheSameAfterReadingSystemAdmin(){
         String anAdmin = "Holhós Attila,1,1,3,4";
