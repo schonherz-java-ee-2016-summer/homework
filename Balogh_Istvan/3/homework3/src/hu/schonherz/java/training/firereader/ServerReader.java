@@ -13,6 +13,7 @@ import java.util.List;
 public class ServerReader {
 
     private static final String SUBDIRECTORY = "files";
+
     private static final String FILENAME = "servers.txt";
 
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
@@ -51,6 +52,10 @@ public class ServerReader {
         server.setId(Integer.parseInt(attributes[0]));
         server.setName(attributes[1]);
         return server;
+    }
+
+    public static void setFile(File file) {
+        ServerReader.file = file;
     }
 
 }
