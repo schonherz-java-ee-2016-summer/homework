@@ -17,14 +17,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ServerReader {
+//kozos beolvasot/feldolgozot csinalni !!!!!!!!!!!!!!!!!
+//------------------------------------------
+//------------------------------------------
+    public static List<Server> readFile() {
+        String FILENAME = "servers.txt";
 
-    private static final String FILENAME = "servers.txt";
-    private static final ClassLoader CLASSLOADER = ServerReader.class.getClassLoader();
-    private static final File FILE = new File(CLASSLOADER.getResource(FILENAME).getFile());
-
-    public static List<Server> read() {
         List<Server> result = new LinkedList<>();
-        try (Scanner sc = new Scanner(FILE)) {
+        try (Scanner sc = new Scanner(createFile(FILENAME))) {
 
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
@@ -38,6 +38,12 @@ public class ServerReader {
             System.out.println("File is corrupted");
         }
         return result;
+    }
+
+    public static File createFile(String FILENAME) {
+        ClassLoader CLASSLOADER = ServerReader.class.getClassLoader();
+        File FILE = new File(CLASSLOADER.getResource(FILENAME).getFile());
+        return FILE;
     }
 
     public static Server lineProcessing(String line) throws MyException {

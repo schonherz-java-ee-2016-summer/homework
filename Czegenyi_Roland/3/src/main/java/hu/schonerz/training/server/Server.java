@@ -5,11 +5,15 @@
  */
 package hu.schonerz.training.server;
 
+import net.sourceforge.cobertura.CoverageIgnore;
+
 /**
  *
  * @author Roli
  */
+@CoverageIgnore
 public class Server {
+
     private int id;
     private String name;
     private String type;

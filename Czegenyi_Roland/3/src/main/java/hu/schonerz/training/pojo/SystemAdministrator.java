@@ -10,7 +10,9 @@ package hu.schonerz.training.pojo;
  * @author Roli
  */
 import java.util.List;
+import net.sourceforge.cobertura.CoverageIgnore;
 
+@CoverageIgnore
 public class SystemAdministrator extends Employee {
 
     private static final long serialVersionUID = 2244059719140625986L;

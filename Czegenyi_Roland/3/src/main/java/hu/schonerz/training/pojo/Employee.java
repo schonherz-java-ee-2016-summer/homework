@@ -10,13 +10,15 @@ package hu.schonerz.training.pojo;
  * @author Roli
  */
 import java.io.Serializable;
+import net.sourceforge.cobertura.CoverageIgnore;
 
+@CoverageIgnore
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 7950521176579703924L;
     protected String name;
     protected int employeeID;
-  
+
     public Employee() {
         super();
     }
@@ -42,5 +44,5 @@ public class Employee implements Serializable {
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
-  
+
 }
