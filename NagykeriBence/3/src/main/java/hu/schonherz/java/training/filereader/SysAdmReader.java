@@ -58,4 +58,5 @@ public class SysAdmReader {
         FILENAME = _FILENAME;
         file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
     }
+
 }

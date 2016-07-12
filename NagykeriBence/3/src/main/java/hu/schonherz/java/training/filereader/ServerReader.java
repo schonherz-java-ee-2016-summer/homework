@@ -9,13 +9,22 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Utility class providing static methods
+ * to read the servers from text
+ * under the /files subdirectory.
+ */
 public class ServerReader {
 
     private static String SUBDIRECTORY = "files";
     private static String FILENAME = "servers.txt";
     private static File file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
 
+    /**
+     *  A method for filling the System Administrator servers list.
+     * @param id The server id.
+     * @return A proper type Server.
+     */
     public static Server read(int id) {
         Server result = null;
         if (file == null) {
