@@ -2,19 +2,61 @@ package hu.schonherz.java.training.server;
 
 import hu.schonherz.java.training.ServerService.Database;
 
-public abstract class Server {
+public class Server {
 
-    private int cpuUsage;
-    private int memoryUsage;
-    private Database.Status status;
+    private int ID;
+    private String name;
+    private String type;
+    private String status;
 
-    public int getCpuUsage() {
-        return cpuUsage;
+    public Server(int ID, String name, String type, String status) {
+        this.ID = ID;
+        this.name = name;
+        this.type = type;
+        this.status = status;
     }
-  
-    public int getMemoryUsage() {
-        return memoryUsage;
+
+    public int getID() {
+        return ID;
     }
 
-    public abstract void restart();
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Server{" +
+                "ID= " + ID +
+                ", name= '" + name + '\'' +
+                ", type= '" + type + '\'' +
+                ", status= " + status +
+                '}';
+    }
+
 }

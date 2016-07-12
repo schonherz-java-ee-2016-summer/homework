@@ -1,19 +1,17 @@
 package hu.schonherz.java.training.main;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import hu.schonherz.java.training.firereader.ServerReader;
-import hu.schonherz.java.training.firereader.SystemAdministratorReader;
-import hu.schonherz.java.training.pojo.SystemAdministrator;
-import hu.schonherz.java.training.server.RunningServer;
+import hu.schonherz.java.training.thread.ReportCreator;
 
 @SuppressWarnings("unused")
-public class Main{
+public class Main {
 
     public static void main(String[] args) {
-
         homework();
+    }
+
+    private static void homework() {
+        ReportCreator report = new ReportCreator();
+        report.run();
     }
 
     /*
@@ -45,39 +43,4 @@ public class Main{
      *
      * TEST: The realtime report should reflect the changes in servers.txt while your code is running.
      */
-
-    private static void homework() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                while(true) {
-                    Calendar cal = Calendar.getInstance();
-                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                    System.out.println(sdf.format(cal.getTime()));
-
-                    List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile("files" + File.separator + "sysadmins.txt");
-                    List<RunningServer> servers = ServerReader.readFromTextFile();
-                    for(RunningServer server: servers){
-                        if(server.getRunningStatus()==false){
-                            System.out.println("Servername: "+ server.getName());
-                            for(SystemAdministrator systemAdmin: systemAdmins) {
-                                for(RunningServer adminServer: systemAdmin.getServers()) {
-                                    if (server.getID() == adminServer.getID()) {
-                                        System.out.println("\t" + systemAdmin.getName());
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        new Thread(runnable).run();
-    }
-
 }

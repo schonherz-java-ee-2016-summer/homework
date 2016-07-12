@@ -1,7 +1,5 @@
 package hu.schonherz.java.training.firereader;
 
-import hu.schonherz.java.training.ServerService.Database;
-import hu.schonherz.java.training.ServerService.WebContainer;
 import hu.schonherz.java.training.server.*;
 
 import java.io.*;
@@ -18,16 +16,16 @@ public class ServerReader {
 
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-    public static List<RunningServer> readFromTextFile(){
-        List<RunningServer> servers = new ArrayList<RunningServer>();
-        BufferedReader br = null;
+    public static List<Server> readServersFromText(){
+        List<Server> servers = new ArrayList<Server>();
+        BufferedReader bufferedReader = null;
         try{
-            br = new BufferedReader(new FileReader(file));
+            bufferedReader = new BufferedReader(new FileReader(file));
             String line;
-            while((line=br.readLine())!= null){
+            while((line=bufferedReader.readLine())!= null){
                 String[] seged = line.split(",");
-                RunningServer rs = new RunningServer(Integer.parseInt(seged[0]),seged[1],seged[2],toBoolean(seged[3]));
-                servers.add(rs);
+                Server server = new Server(Integer.parseInt(seged[0]),seged[1],seged[2],seged[3]);
+                servers.add(server);
             }
         } catch (FileNotFoundException e){
             System.out.println("The file is not found!");
@@ -35,17 +33,11 @@ public class ServerReader {
             System.out.println("We got an IO Exception!");
         } finally{
             try {
-                br.close();
+                bufferedReader.close();
             } catch (IOException e){
                 System.out.println("We got an IO Exception to BufferReader, when I want to close!");
             }
         }
         return servers;
     }
-
-    public static boolean toBoolean (String s){
-        return "RUNNING".equals(s);
-    }
-
-
 }
