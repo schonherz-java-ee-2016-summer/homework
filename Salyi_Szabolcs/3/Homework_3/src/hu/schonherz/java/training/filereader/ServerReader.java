@@ -50,7 +50,7 @@ public class ServerReader {
         }
     }
 
-    private static Server createServerFromAttributes(String[] attributes) throws NullPointerException{
+    private static Server createServerFromAttributes(String[] attributes){
 
         if(attributes[3].equals("STOPPED") || attributes[3].equals("DATASTOPPED")) {
             Server server = ServerFactory.getServer(attributes[2]);

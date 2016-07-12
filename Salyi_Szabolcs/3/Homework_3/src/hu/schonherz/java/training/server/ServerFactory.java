@@ -9,6 +9,10 @@ public class ServerFactory {
 
     public static Server getServer(String type) {
 
+        if(type==null){
+            return null;
+        }
+
         switch (type) {
             case "Win":  {
                 return new WindowsServer();
