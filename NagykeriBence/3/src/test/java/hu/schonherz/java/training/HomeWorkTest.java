@@ -28,6 +28,21 @@ public class HomeWorkTest {
         //Then
         Assert.assertEquals(expected, actual.size());
     }
+
+    @Test
+    public void shouldHaveAnEmptyServersList() {
+        //Given
+        String SERVERFILENAME = "emptyserver.txt";
+        String SYSADMINFILENAME = "onesysadmin.txt";
+        ServerReader.setPath(SUBDIRECTORY, SERVERFILENAME);
+        SysAdmReader.setPath(SUBDIRECTORY, SYSADMINFILENAME);
+        //When
+        int expected = 0;
+        List<SystemAdministrator> actualList = SysAdmReader.read();
+        int actual = actualList.get(0).getServers().size();
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
     /*
     @Test(expected = NullPointerException.class)
     public void shouldThrowExceptionWithInvalidFileNames() {

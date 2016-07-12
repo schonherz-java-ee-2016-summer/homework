@@ -16,7 +16,7 @@ public class ServerReader {
 
     private static final String FILENAME = "servers.txt";
 
-    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+    private static final File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
     public static List<Server> read() {
         List<Server> result = new LinkedList<Server>();
@@ -52,10 +52,6 @@ public class ServerReader {
         server.setId(Integer.parseInt(attributes[0]));
         server.setName(attributes[1]);
         return server;
-    }
-
-    public static void setFile(File file) {
-        ServerReader.file = file;
     }
 
 }

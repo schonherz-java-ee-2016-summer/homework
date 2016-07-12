@@ -17,20 +17,24 @@ public class ServerReaderTest {
 
 
 
-    @Test(timeout = 10)
+    @Test
     public void testTheNumberOfTheStoppedServers() throws Exception {
+        Assert.assertNotNull(resultOfCallingSuperMethod);
         Assert.assertEquals(resultOfCallingSuperMethod.size(),1);
     }
-    @Test(timeout = 10)
+    @Test
     public void testTheClassOfTheStoppedServers() throws Exception{
+        Assert.assertNotNull(resultOfCallingSuperMethod);
         Assert.assertEquals(resultOfCallingSuperMethod.get(0).getClass(), LinuxDatabaseAndWebServer.class);
     }
-    @Test(timeout = 10)
+    @Test
     public void testThatTheServersAreReallyStopped() throws Exception{
+        Assert.assertNotNull(resultOfCallingSuperMethod);
         Assert.assertEquals(actual.getStatus() , "DATABASESTOPPED" );
     }
-    @Test(timeout = 10)
+    @Test
     public void testTheIDOfTheServers() throws Exception{
+        Assert.assertNotNull(resultOfCallingSuperMethod);
         Assert.assertEquals(actual.getID(), 3);
     }
 

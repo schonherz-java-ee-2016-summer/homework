@@ -31,7 +31,7 @@ public class ReportCreator implements Runnable{
 
     private static void createReport() {
         List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readSystemAdminFromText("files" + File.separator + "sysadmins.txt");
-        List<Server> servers = ServerReader.readServersFromText();
+        List<Server> servers = ServerReader.readServersFromText("files"+File.separator+"servers.txt");
         for(Server server :servers){
             if ("STOPPED".equals(server.getStatus())) {
                 System.out.println("Servername: " + server.getName());

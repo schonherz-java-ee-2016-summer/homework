@@ -38,6 +38,8 @@ public class Main {
         homework();
         //threading();
 
+        //ServerReaderThread.serversAndSystemAdministratorsListConsoleReport();
+
         System.out.println();
         System.out.println("------------------------------");
 

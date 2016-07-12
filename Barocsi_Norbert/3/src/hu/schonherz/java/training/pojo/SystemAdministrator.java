@@ -26,4 +26,13 @@ public class SystemAdministrator extends Employee {
         this.servers = servers;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof SystemAdministrator))
+            return false;
+
+        SystemAdministrator systemadmin = (SystemAdministrator) obj;
+
+        return this.getName().equals(systemadmin.getName()) && this.getEmployeeID() == systemadmin.getEmployeeID();
+    }
 }
