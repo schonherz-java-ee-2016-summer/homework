@@ -34,4 +34,13 @@ public class LinuxWebServer extends LinuxServer implements WebContainer {
 
         startWebContainer();
     }
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof LinuxWebServer))
+            return false;
+
+        LinuxWebServer linuxWS = (LinuxWebServer) obj;
+
+        return this.getID() == linuxWS.getID() && this.getName().equals(linuxWS.getName());
+    }
 }

@@ -3,11 +3,9 @@ package hu.schonherz.java.training.thread;
 import hu.schonherz.java.training.firereader.ServerReader;
 import hu.schonherz.java.training.firereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
-import hu.schonherz.java.training.server.LinuxWebServer;
 import hu.schonherz.java.training.server.Server;
-import hu.schonherz.java.training.server.WindowsDatabaseServer;
-import hu.schonherz.java.training.server.WindowsServer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +20,9 @@ public class ServerReaderThread extends Thread {
         while (i < 3) {
             i++;
 
-            serversAndSystemAdministratorsListConsoleReport();
+            for(String s : serversAndSystemAdministratorsListConsoleReport()){
+                System.out.println(s);
+            }
 
             try {
                 Thread.sleep(10000);
@@ -32,20 +32,23 @@ public class ServerReaderThread extends Thread {
         }
     }
 
-    private static void serversAndSystemAdministratorsListConsoleReport() {
+    public static List<String> serversAndSystemAdministratorsListConsoleReport() {
         List<Server> servers = ServerReader.readFromTextFile();
         List<SystemAdministrator> systemadmin = SystemAdministratorReader.readFromTextFile();
 
+        List<String> result = new ArrayList<>();
+
         servers.stream().forEach(server -> {
-            System.out.print(server.getName() + " - ");
+            result.add(server.getName() + " - ");
             systemadmin.stream().forEach(sysadmin -> {
                 sysadmin.getServers().stream().forEach(s -> {
                     if (server.getID() == s.getID()) {
-                        System.out.println(sysadmin.getName());
+                        result.add(sysadmin.getName());
                     }
                 });
             });
         });
 
+        return result;
     }
 }
