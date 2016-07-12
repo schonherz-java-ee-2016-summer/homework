@@ -16,7 +16,7 @@ public class ServerReader {
 
     private static final String FILENAME = "servers.txt";
 
-    private static final File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
     public static List<Server> read() {
         List<Server> result = new LinkedList<Server>();
