@@ -30,20 +30,13 @@ public class SystemAdministratorReader {
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] attributes = line.split(",");
-                List<Server> tmp = new LinkedList<>();
-                List<Server> servers = ServerReader.read();
+                List<Integer> tmp = new LinkedList<>();
                 ;
 
                 for (int i = 2; i < attributes.length; i++) {
-                    for (Server s : servers) {
-                        if (Integer.parseInt(attributes[i]) == s.getID()) {
-                            tmp.add(s);
-                        }
-                    }
+                            tmp.add(Integer.parseInt(attributes[i]));
                 }
-
                 result.add(new SystemAdministrator(attributes[0], Integer.parseInt(attributes[1]), tmp));
-
             }
 
         } catch (IOException e) {
