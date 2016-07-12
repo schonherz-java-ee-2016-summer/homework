@@ -1,9 +1,6 @@
 package hu.schonherz.java.training.firereader;
 
 import hu.schonherz.java.training.pojo.SystemAdministrator;
-import hu.schonherz.java.training.server.LinuxServer;
-import hu.schonherz.java.training.server.RunningServer;
-import hu.schonherz.java.training.server.Server;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,7 +15,7 @@ public class SystemAdministratorReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "sysadmins.txt";
 
-    public static List<SystemAdministrator> readFromTextFile(String filepath){
+    public static List<SystemAdministrator> readSystemAdminFromText(String filepath){
         List<SystemAdministrator> systemAdmins = new ArrayList<SystemAdministrator>();
 
         BufferedReader bufferedReader = null;
@@ -27,17 +24,7 @@ public class SystemAdministratorReader {
             bufferedReader = new BufferedReader(new FileReader(file));
             String line;
             while((line=bufferedReader.readLine())!=null){
-                String[] seged = line.split(",");
-                List<RunningServer> adminServers = new ArrayList<RunningServer>();
-                List<RunningServer> servers = ServerReader.readFromTextFile();
-                for(int i=2;seged.length>i;i++) {
-                    for(RunningServer s: servers) {
-                        if (Integer.parseInt(seged[i]) == s.getID()){
-                            adminServers.add(s);
-                        }
-                    }
-                }
-                systemAdmins.add(new SystemAdministrator(seged[0],Integer.parseInt(seged[1]),adminServers));
+                systemAdmins.add(createAnAdmin(line));
             }
         } catch(FileNotFoundException e){
             System.out.println("The file is not found!");
@@ -51,5 +38,14 @@ public class SystemAdministratorReader {
         }
     }
         return systemAdmins;
+    }
+
+    public static SystemAdministrator createAnAdmin(String line){
+        String[] seged = line.split(",");
+        List<Integer> adminServers = new ArrayList<Integer>();
+        for(int i=2;seged.length>i;i++) {
+            adminServers.add(Integer.parseInt(seged[i]));
+        }
+        return new SystemAdministrator(seged[0],Integer.parseInt(seged[1]),adminServers);
     }
 }
