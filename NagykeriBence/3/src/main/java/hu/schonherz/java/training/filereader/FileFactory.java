@@ -16,11 +16,11 @@ public class FileFactory {
      * @return The actual File.
      */
     public static File getInstance(String path) {
-        try {
-            instance = new File(FileFactory.class.getClassLoader().getResource(path).getFile());
-        } catch (NullPointerException npe) {
-            System.out.println(path + " is not found.");
-        }
+        // try {
+        instance = new File(FileFactory.class.getClassLoader().getResource(path).getFile());
+        // } catch (NullPointerException npe) {
+        //      System.out.println(path + " is not found.");
+        //  }
         return instance;
     }
 }

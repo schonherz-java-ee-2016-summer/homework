@@ -31,8 +31,9 @@ public class ServerFactory {
         if (distinctServers.contains(instance)) {
             int index = distinctServers.indexOf(instance);
             instance = distinctServers.get(index);
-        } else
+        } else {
             distinctServers.add(instance);
+        }
         return instance;
     }
 
@@ -40,19 +41,25 @@ public class ServerFactory {
         Enum result = null;
         switch (type) {
             case "Win":
-                if (status.equals("RUNNING"))
+                if (status.equals("RUNNING")) {
                     result = Database.Status.RUNNING;
-                else result = Database.Status.STOPPED;
+                } else {
+                    result = Database.Status.STOPPED;
+                }
                 break;
             case "LinuxWeb":
-                if (status.equals("RUNNING"))
+                if (status.equals("RUNNING")) {
                     result = WebContainer.Status.RUNNING;
-                else result = WebContainer.Status.STOPPED;
+                } else {
+                    result = WebContainer.Status.STOPPED;
+                }
                 break;
             case "LinuxDBandWEB":
-                if (status.equals("RUNNING"))
+                if (status.equals("RUNNING")) {
                     result = LinuxDatabaseAndWebServer.Status.RUNNING;
-                else result = LinuxDatabaseAndWebServer.Status.DATABASESTOPPED;
+                } else {
+                    result = LinuxDatabaseAndWebServer.Status.DATABASESTOPPED;
+                }
                 break;
         }
         return result;

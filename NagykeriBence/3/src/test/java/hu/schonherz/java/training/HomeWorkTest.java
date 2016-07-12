@@ -43,7 +43,26 @@ public class HomeWorkTest {
         //Then
         Assert.assertEquals(expected, actual);
     }
-    /*
+
+    @Test
+    public void shouldBeThreeAdministratorsWithServers() {
+        //Given
+        String SERVERFILENAME = "servers.txt";
+        String SYSADMINFILENAME = "sysadmins.txt";
+        ServerReader.setPath(SUBDIRECTORY, SERVERFILENAME);
+        SysAdmReader.setPath(SUBDIRECTORY, SYSADMINFILENAME);
+        //When
+        int expected = 3;
+        List<SystemAdministrator> actualList = SysAdmReader.read();
+        int actual = actualList.size();
+        //Then
+        Assert.assertEquals(expected, actual);
+        //When
+        expected = 4;
+        actual = actualList.get(0).getServers().size();
+        Assert.assertEquals(expected, actual);
+    }
+
     @Test(expected = NullPointerException.class)
     public void shouldThrowExceptionWithInvalidFileNames() {
         //Given
@@ -55,5 +74,4 @@ public class HomeWorkTest {
         List<SystemAdministrator> actual = SysAdmReader.read();
         //Then
     }
-    */
 }
