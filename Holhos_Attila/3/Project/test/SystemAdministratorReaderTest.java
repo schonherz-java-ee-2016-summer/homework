@@ -14,8 +14,8 @@ import java.util.List;
  */
 
 public class SystemAdministratorReaderTest {
-    String filepath = "files"+File.separator+"anAdmins.txt";
-    File file = new File(filepath);
+    private String filepath = "files"+File.separator+"anAdmins.txt";
+    private File file = new File(filepath);
 
     @Test(expected = NullPointerException.class)
     public void FileNotFoundExceptionTest(){
