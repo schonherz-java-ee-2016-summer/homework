@@ -8,7 +8,9 @@ package hu.schonherz.java.training.firereader;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.Server;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -19,11 +21,10 @@ public class ReadServers {
 
     private static HashMap map = null;
     public static void read() {
-        List<Server> servers = ServerReader.readFromTextFile();
-        map = createMap(servers);
+        map = ServerReader.readFromTextFile();
         List<SystemAdministrator> admins = AdminReader.readFromTextFile();
         assignServerAdmin(admins);
-        showStatus(servers);
+        showStatus(map);
     }
 
     public static HashMap getMap()
@@ -45,29 +46,20 @@ public class ReadServers {
         });
     }
 
-    public static HashMap createMap(List<Server> srvs)
+    public static void showStatus(HashMap map)
     {
-        HashMap smap = new HashMap();
-        srvs.stream().forEach((srv) -> {
-            Server ser = (Server) smap.get(srv.getId());
-            if (ser == null) {
-                smap.put(srv.getId(), srv);
-            }
-        });
-        return smap;
-    }
-
-    public static void showStatus(List<Server> srvs)
-    {
-        srvs.forEach((Server s) -> {
-            if(!s.isRunning())
+        Set<String> keySet = map.keySet();
+        Iterator<String> keySetIterator = keySet.iterator();
+        while (keySetIterator.hasNext()) {
+            Server srv = (Server) map.get(keySetIterator.next());
+            if(!srv.isRunning())
             {
-                System.out.println(s.getName() + "(" + s.getId() + ")");
-                s.getAdmins().forEach(a -> {
+                System.out.println(srv.getName() + "(" + srv.getId() + ")");
+                srv.getAdmins().forEach(a -> {
                     System.out.println(a.getName());
                 });
             }
-        });
+        }
     }
 
 

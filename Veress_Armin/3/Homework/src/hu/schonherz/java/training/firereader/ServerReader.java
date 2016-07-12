@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,11 +27,11 @@ public class ServerReader {
 
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
 
-    public static List<Server> readFromTextFile() {
-        List<Server> result = new ArrayList<>();
+    public static HashMap readFromTextFile() {
+        HashMap result = new HashMap();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            createList(result, bufferedReader);
+            createMap(result, bufferedReader);
         } catch (IOException e) {
             System.out.println("io error");
         }
@@ -38,7 +39,7 @@ public class ServerReader {
         return result;
     }
 
-    private static void createList(List<Server> result, BufferedReader reader)
+    private static void createMap(HashMap result, BufferedReader reader)
     {
         String line;
 
@@ -46,11 +47,11 @@ public class ServerReader {
             while ((line = reader.readLine()) != null) {
                 String[] attributes = line.split(",");
                 if (attributes[2].equals("Win"))
-                    result.add(new WindowsServer(attributes[0], attributes[1], attributes[3]));
+                    result.put(attributes[0], new WindowsServer(attributes[0], attributes[1], attributes[3]));
                 else if (attributes[2].equals("LinuxWeb"))
-                    result.add(new LinuxWebServer(attributes[0], attributes[1], attributes[3]));
+                    result.put(attributes[0],new LinuxWebServer(attributes[0], attributes[1], attributes[3]));
                 else if (attributes[2].equals("LinuxDBandWEB"))
-                    result.add(new LinuxDatabaseAndWebServer(attributes[0], attributes[1], attributes[3]));
+                    result.put(attributes[0],new LinuxDatabaseAndWebServer(attributes[0], attributes[1], attributes[3]));
             }
         } catch (IOException e)
         {
