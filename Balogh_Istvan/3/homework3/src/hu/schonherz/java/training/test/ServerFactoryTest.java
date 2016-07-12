@@ -17,7 +17,7 @@ public class ServerFactoryTest {
         Server windowsServer = ServerFactory.getServer("Win");
 
         Assert.assertNotNull(windowsServer);
-        Assert.assertTrue(windowsServer.getClass().equals(WindowsServer.class));
+        Assert.assertEquals(WindowsServer.class, windowsServer.getClass());
     }
 
     @Test
