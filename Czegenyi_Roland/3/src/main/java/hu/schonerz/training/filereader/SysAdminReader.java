@@ -19,10 +19,8 @@ import java.util.Scanner;
  * @author Roli
  */
 public class SysAdminReader {
-//kozos beolvasot/feldolgozot csinalni !!!!!!!!!!!!!!!!!
-//------------------------------------------
-//------------------------------------------
 
+// TODO: Create FileFactory for reading from files
     public static List<SystemAdministrator> readFile() {
         String FILENAME = "sysadmins.txt";
 

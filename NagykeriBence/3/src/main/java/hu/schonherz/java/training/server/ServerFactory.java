@@ -3,11 +3,15 @@ package hu.schonherz.java.training.server;
 import hu.schonherz.java.training.ServerService.Database;
 import hu.schonherz.java.training.ServerService.WebContainer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Nutty on 2016.07.11..
  */
 public class ServerFactory {
     private static Server instance = null;
+    private static List<Server> distinctServers = new ArrayList<>();
 
     public static Server getInstance(int id, String name, String type, String status) {
         Enum statusEnum = getStatus(type, status);
@@ -24,7 +28,11 @@ public class ServerFactory {
         }
         instance.setName(name);
         instance.setId(id);
-
+        if (distinctServers.contains(instance)) {
+            int index = distinctServers.indexOf(instance);
+            instance = distinctServers.get(index);
+        } else
+            distinctServers.add(instance);
         return instance;
     }
 

@@ -2,7 +2,9 @@ package hu.schonherz.java.training.main;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import hu.schonherz.java.training.firereader.DeveloperReader;
 import hu.schonherz.java.training.firereader.EmployeeReader;
@@ -150,8 +152,11 @@ public class Main {
             List<Server> servers = ServerReader.readFromTextFile();
             List<SystemAdministrator> systemAdmins = SystemAdministratorReader.readFromTextFile();
 
-            /*print out the result*/
+            List<Server> stoppedList = stoppedServers(servers, systemAdmins);
 
+            Map<String, List<String>> stoppedServersReport = stoppedServersWithAdmins(stoppedList, systemAdmins);
+
+            System.out.println(stoppedServersReport);
             System.out.println("------------------------------");
 
             try{
@@ -162,33 +167,37 @@ public class Main {
         }
     }
 
-    private static List<String> stoppedServers(List<Server> srvrs, List<SystemAdministrator> sysAs){
+    private static List<Server> stoppedServers(List<Server> srvrs, List<SystemAdministrator> sysAs){
+        List<Server> stoppedServersList = new ArrayList<Server>();
+
         for(Server server : srvrs){
             if("Win".equals(server.getType()) && "STOPPED".equals(((WindowsDatabaseServer)server).getStatus())){
-                return stoppedServersWithAdmins(server, sysAs);
+                stoppedServersList.add(server);
             }
             else if("LinuxWeb".equals(server.getType()) && "STOPPED".equals(((LinuxWebServer)server).getStatus())){
-                return stoppedServersWithAdmins(server, sysAs);
+                stoppedServersList.add(server);
             }
             else if("LinuxDBandWEB".equals(server.getType()) && "DATABASESTOPPED".equals(((LinuxDatabaseAndWebServer)server).getStatus())){
-                return stoppedServersWithAdmins(server, sysAs);
+                stoppedServersList.add(server);
             }
         }
-
-        return null;
+        return stoppedServersList;
     }
 
-    private static List<String> stoppedServersWithAdmins(Server srvr, List<SystemAdministrator> sysAdmins){
-        List<String> stoppedReport = new ArrayList<String>();
+    private static Map<String, List<String>> stoppedServersWithAdmins(List<Server> stoppedSrvrs, List<SystemAdministrator> sysAdmins){
+        Map<String, List<String>> stoppedReport = new HashMap<>();
+        List<String> stoppedServerAdmins = new ArrayList<String>();
 
-        stoppedReport.add(srvr.getName());
-
-        for(SystemAdministrator sysAdmin : sysAdmins){
-            for(Server s : sysAdmin.getServers()){
-                if(srvr.getID() == s.getID()){
-                    stoppedReport.add(sysAdmin.getName());
+        for(Server actStoppedServer : stoppedSrvrs){
+            for(SystemAdministrator actSysAdmin : sysAdmins){
+                for(Server s : actSysAdmin.getServers()){
+                    if(s.getID() == actStoppedServer.getID()){
+                        stoppedServerAdmins.add(actSysAdmin.getName());
+                    }
                 }
             }
+            stoppedReport.put(actStoppedServer.getName(), stoppedServerAdmins);
+            stoppedServerAdmins = new ArrayList<String>();
         }
 
         return stoppedReport;

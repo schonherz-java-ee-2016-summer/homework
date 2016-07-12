@@ -6,8 +6,6 @@
 package hu.schonerz.training.filereader;
 
 import hu.schonerz.training.pojo.SystemAdministrator;
-import hu.schonerz.training.server.Server;
-import hu.schonerz.training.server.Status;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -24,11 +22,6 @@ public class SysAdminReaderTest {
     public SysAdminReaderTest() {
     }
 
-    @Test
-    public void testSysAdminReader() {
-        SysAdminReader r = new SysAdminReader();
-    }
-
     @Test(expected = NullPointerException.class)
     public void testIfFileIsExist() throws FileNotFoundException {
         File server = ServerReader.createFile("asd");
@@ -37,6 +30,7 @@ public class SysAdminReaderTest {
     @Test
     public void testReadFile() {
         List<SystemAdministrator> s = SysAdminReader.readFile();
+        assertNotNull(s);
     }
 
     @Test(expected = MyException.class)
