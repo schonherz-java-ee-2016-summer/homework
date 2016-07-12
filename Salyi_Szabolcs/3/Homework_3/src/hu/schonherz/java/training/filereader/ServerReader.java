@@ -52,7 +52,7 @@ public class ServerReader {
 
     private static Server createServerFromAttributes(String[] attributes){
 
-        if(attributes[3].equals("STOPPED") || attributes[3].equals("DATASTOPPED")) {
+        if(attributes[3].equals("STOPPED") || attributes[3].equals("DATASTOPPED") || attributes[3].equals("WEBCONTAINERSTOPPER")) {
             Server server = ServerFactory.getServer(attributes[2]);
             server.setId(Integer.parseInt(attributes[0]));
             server.setName(attributes[1]);
