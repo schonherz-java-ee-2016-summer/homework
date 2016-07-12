@@ -163,7 +163,7 @@ public class Main {
 
     }
 
-    private static Map<String, List<String>> createReport(List<Server> servers, List<SystemAdministrator> administrators) {
+    public static Map<String, List<String>> createReport(List<Server> servers, List<SystemAdministrator> administrators) {
         Map<String, List<String>> serversWithAdmins = new HashMap<>();
 
         for (Server server : servers) {
@@ -179,15 +179,15 @@ public class Main {
         return serversWithAdmins;
     }
 
-    private static void assignServerWithAdmins(Map<String, List<String>> serversWithAdmins, Server server, List<String> adminNames) {
+    public static void assignServerWithAdmins(Map<String, List<String>> serversWithAdmins, Server server, List<String> adminNames) {
         serversWithAdmins.put(server.getName(), adminNames);
     }
 
-    private static void addAdminNameToList(List<String> adminNames, SystemAdministrator administrator) {
+    public static void addAdminNameToList(List<String> adminNames, SystemAdministrator administrator) {
         adminNames.add(administrator.getName());
     }
 
-    private static void assignServerToSysAdmin(Server server, SystemAdministrator administrator) {
+    public static void assignServerToSysAdmin(Server server, SystemAdministrator administrator) {
         administrator.getServers().add(server);
     }
 
