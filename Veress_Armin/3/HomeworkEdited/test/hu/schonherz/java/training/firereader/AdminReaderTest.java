@@ -5,31 +5,33 @@ import hu.schonherz.java.training.server.LinuxDatabaseAndWebServer;
 import hu.schonherz.java.training.server.LinuxWebServer;
 import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.server.WindowsServer;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import java.util.Map;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * Created by Lenovo on 2016.07.11..
  */
 public class AdminReaderTest {
     @Test
-    public void readFromTextFileTest(){
-
+    public void readFromTextFileTest() {
         System.out.println("readFromTextFile");
 
-        HashMap servers = new HashMap();
+        Map<String, Server> servers = new HashMap();
         servers.put("1", new WindowsServer("1","SQL01","RUNNING"));
         servers.put("2", new LinuxWebServer("2","WEB01","RUNNING"));
         servers.put("3", new LinuxDatabaseAndWebServer("3","SQLNWEB01","RUNNING"));
         servers.put("4", new LinuxWebServer("4","WEB02","RUNNING"));
-
-        ReadServers.setMap(servers);
-
+       
+        Observer.setMap(servers);
+        
         List<SystemAdministrator> expResult = new ArrayList<>();
 
         List<Server> srv = new ArrayList<>();
