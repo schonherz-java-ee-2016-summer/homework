@@ -1,8 +1,4 @@
-function katt1(){document.getElementById("Fourth").style.backgroundColor=getColor('First');}
-
-function katt2(){document.getElementById("Fourth").style.backgroundColor=getColor('Second');}
-
-function katt3(){document.getElementById("Fourth").style.backgroundColor=getColor('Third');}
+function katt(obj){document.getElementById("Fourth").style.backgroundColor=getColor(obj);}
 
 function getColor(id) {
     var elem = document.getElementById(id);
