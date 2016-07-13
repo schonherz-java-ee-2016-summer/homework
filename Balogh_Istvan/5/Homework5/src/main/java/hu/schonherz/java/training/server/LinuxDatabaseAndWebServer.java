@@ -1,7 +1,7 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.Database;
-import hu.schonherz.java.training.ServerService.WebContainer;
+import hu.schonherz.java.training.service.Database;
+import hu.schonherz.java.training.service.WebContainer;
 
 public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, WebContainer {
 

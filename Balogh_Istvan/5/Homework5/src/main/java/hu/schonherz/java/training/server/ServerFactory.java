@@ -1,12 +1,13 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.WebContainer;
+import hu.schonherz.java.training.service.WebContainer;
 
 public class ServerFactory {
 
     public static Server getServer(String type) {
-        if (type == null)
+        if (type == null) {
             return null;
+        }
 
         switch (type) {
             case "Win":  {

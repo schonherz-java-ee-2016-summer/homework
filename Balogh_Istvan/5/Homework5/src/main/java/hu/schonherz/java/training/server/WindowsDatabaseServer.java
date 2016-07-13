@@ -1,6 +1,6 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.Database;
+import hu.schonherz.java.training.service.Database;
 
 public class WindowsDatabaseServer extends WindowsServer implements Database {
 

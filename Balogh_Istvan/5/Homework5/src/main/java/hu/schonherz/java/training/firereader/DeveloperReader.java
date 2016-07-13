@@ -35,7 +35,7 @@ public class DeveloperReader {
                 String[] attributes = line.split(",");
                 List<String> tasks = new ArrayList<String>();
 
-                for(int i = 2; i<attributes.length; i++) {
+                for (int i = 2; i < attributes.length; i++) {
                     tasks.add(attributes[i]);
                 }
                 result.add(new Developer(attributes[0], Integer.parseInt(attributes[1]), tasks));
