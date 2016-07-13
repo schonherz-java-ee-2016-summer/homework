@@ -1,30 +1,12 @@
 package hu.schonherz.java.training.main;
 
-import hu.schonherz.java.training.thread.ServerReaderThread;
+import hu.schonherz.java.training.firereader.Observer;
 
 @SuppressWarnings("unused")
 public class Main {
 
     public static void main(String[] args) {
-        threading();
-    }
-
-    public static void test() {
-        System.out.println("Thread");
-    }
-
-    private static void threading() {
-        ServerReaderThread readerThread = new ServerReaderThread();
-        
-        readerThread.start();
-        
-        System.out.println(readerThread.getState());
-        try {
-            readerThread.join();
-        } catch (InterruptedException e) {
-        }
-
-        test();
+        homework();
     }
 
     /*
@@ -58,7 +40,17 @@ public class Main {
      */
     private static void homework() {
         // TODO unimplemented method
-        throw new UnsupportedOperationException("Not implemented yet.");
+
+        while (true) 
+        {
+            Observer.read();
+            try 
+            {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
