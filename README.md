@@ -5,7 +5,7 @@ This repository contains homework descriptions stated by the trainers and the so
 5th Homework - Maven
 ---
 **[Description](https://github.com/schonherz-java-ee-2016-summer/homework/blob/master/5.HomeWork.md)**  
-**Deadline**: July 16, Saturday, 08:00
+**Deadline**: July 17, Sunday, 18:00
 
 4th Homework - Web Basics
 ---
