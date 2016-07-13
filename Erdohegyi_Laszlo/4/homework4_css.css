@@ -1,0 +1,27 @@
+.Small{
+	width: 100px;
+	height: 100px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+
+#b{
+	background-color: lightblue;
+}
+
+#g{
+	background-color: lightgreen;
+}
+
+#r{
+	background-color: #f00000;
+}
+
+#big{
+	width: 350px;
+	height: 350px;
+	border-style: solid;
+	border-color: black;
+	border-width: 10px;
+}
