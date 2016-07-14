@@ -1,0 +1,28 @@
+.LargeBlock{
+	clear:left;
+	height:300px;
+	width:300px;
+	width:300px;
+	border:10px;
+	border-color:black;
+	border-style:solid; 
+}
+.SmallBlock {
+	float:left;
+	width: 100px;
+	height: 100px;
+	border:3px;
+	border-color:white;
+	border-style:solid;
+}
+#RedBlock {
+     background-color: red; 
+}
+#GreenBlock {
+     background-color: green;
+}
+#BlueBlock {
+     background-color: lightblue;	 
+}
+
+
