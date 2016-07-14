@@ -5,11 +5,11 @@ import hu.schonherz.java.training.ServerService.WebContainer;
 
 public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, WebContainer {
 
-    public enum Status {RUNNING, DATABASESTOPPED, WEBCONTAINERSTOPPER}
+    public enum Status {RUNNING, DATABASESTOPPED, WEBCONTAINERSTOPPED}
 
     private Status status;
 
-    public LinuxDatabaseAndWebServer(int ID, String name, String type,Status status) {
+    public LinuxDatabaseAndWebServer(int ID, String name, String type, Status status) {
         super(ID, name, type);
         this.status = status;
     }
@@ -41,6 +41,18 @@ public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, 
     @Override
     public String getConnectionURL() {
         return "localhost:54321";
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof LinuxDatabaseAndWebServer)) {
+            return false;
+        }
+
+        LinuxDatabaseAndWebServer linuxDaws = (LinuxDatabaseAndWebServer) obj;
+
+        return this.getID() == linuxDaws.getID() && this.getName().equals(linuxDaws.getName())
+                && this.getType().equals(linuxDaws.getType()) && this.getStatus().equals(linuxDaws.getStatus());
     }
 
 }

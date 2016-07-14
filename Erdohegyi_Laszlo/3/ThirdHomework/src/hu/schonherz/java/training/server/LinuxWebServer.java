@@ -6,7 +6,7 @@ public class LinuxWebServer extends LinuxServer implements WebContainer {
 
     private Status status;
 
-    public LinuxWebServer(int ID, String name, String type,Status status) {
+    public LinuxWebServer(int ID, String name, String type, Status status) {
         super(ID, name, type);
         this.status = status;
     }
@@ -34,4 +34,17 @@ public class LinuxWebServer extends LinuxServer implements WebContainer {
 
         startWebContainer();
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof LinuxWebServer)) {
+            return false;
+        }
+
+        LinuxWebServer linuxWs = (LinuxWebServer) obj;
+
+        return this.getID() == linuxWs.getID() && this.getName().equals(linuxWs.getName())
+                && this.getType().equals(linuxWs.getType()) && this.getStatus().equals(linuxWs.getStatus());
+    }
+
 }
