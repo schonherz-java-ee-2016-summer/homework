@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.firereader;
+package hu.schonherz.java.training.test;
 
 import hu.schonherz.java.training.server.LinuxDatabaseAndWebServer;
 import hu.schonherz.java.training.server.LinuxWebServer;
@@ -12,6 +12,7 @@ import java.util.List;
 import static hu.schonherz.java.training.firereader.ServerReader.*;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ServerReaderTest {
 
@@ -25,7 +26,8 @@ public class ServerReaderTest {
         expectedRead.add(new LinuxDatabaseAndWebServer(3, "SQLNWEB01", "LinuxDBandWEB", LinuxDatabaseAndWebServer.Status.valueOf("RUNNING")));
         expectedRead.add(new LinuxWebServer(4, "WEB02", "LinuxWeb", LinuxWebServer.Status.valueOf("STOPPED")));
 
-        assertEquals(read, expectedRead);
+        assertEquals(expectedRead, read);
+        //assertTrue(expectedRead.equals(read));
     }
 
 }
