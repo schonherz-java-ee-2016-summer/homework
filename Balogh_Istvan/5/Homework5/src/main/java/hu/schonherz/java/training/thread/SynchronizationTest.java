@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.thread;
 
+/**
+ * This class if for testing synchronization with {@link Thread} objects.
+ */
 public class SynchronizationTest extends Thread {
 
     private int number;

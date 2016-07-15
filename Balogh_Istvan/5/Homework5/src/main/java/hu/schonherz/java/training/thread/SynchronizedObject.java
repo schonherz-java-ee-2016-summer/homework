@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.thread;
 
+/**
+ * This class respresents a synchronized object.
+ */
 public class SynchronizedObject {
 
     private int num = 0;

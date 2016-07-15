@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class for reading servers with static {@link #read()} method.
+ */
 public class ServerReader {
 
     private static final String SUBDIRECTORY = "files";

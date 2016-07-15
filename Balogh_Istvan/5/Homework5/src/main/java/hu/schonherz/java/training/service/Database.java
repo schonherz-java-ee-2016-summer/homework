@@ -1,6 +1,13 @@
 package hu.schonherz.java.training.service;
 
+/**
+ * This interface represents a database.
+ */
 public interface Database {
+
+    /**
+     * Database status enum types.
+     */
     public enum Status {RUNNING, STOPPED}
 
     /**

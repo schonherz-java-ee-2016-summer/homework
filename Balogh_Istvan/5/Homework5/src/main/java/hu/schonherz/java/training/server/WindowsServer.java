@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * This class represents a Windows Server.
+ */
 public class WindowsServer extends Server {
 
     @Override

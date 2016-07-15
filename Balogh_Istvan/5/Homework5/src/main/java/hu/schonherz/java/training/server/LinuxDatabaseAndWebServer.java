@@ -3,8 +3,14 @@ package hu.schonherz.java.training.server;
 import hu.schonherz.java.training.service.Database;
 import hu.schonherz.java.training.service.WebContainer;
 
+/**
+ * This class represents a Linux Database and Web Server.
+ */
 public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, WebContainer {
 
+    /**
+     * Server status enum types.
+     */
     public enum Status {RUNNING, DATABASESTOPPED, WEBCONTAINERSTOPPER}
 
     private Status status;

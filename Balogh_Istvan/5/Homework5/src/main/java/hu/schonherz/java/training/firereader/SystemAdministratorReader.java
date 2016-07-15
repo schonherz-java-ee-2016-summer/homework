@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class for reading system administrators with static {@link #read()} method.
+ */
 public class SystemAdministratorReader {
 
     private static final String SUBDIRECTORY = "files";

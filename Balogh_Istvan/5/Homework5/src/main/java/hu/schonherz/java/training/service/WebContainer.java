@@ -1,6 +1,13 @@
 package hu.schonherz.java.training.service;
 
+/**
+ * This interface represents a webcontainer.
+ */
 public interface WebContainer {
+
+    /**
+     * Webcontainer status enum type.
+     */
     public enum Status {RUNNING, STOPPED}
 
     /**

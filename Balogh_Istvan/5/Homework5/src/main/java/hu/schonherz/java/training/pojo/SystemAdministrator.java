@@ -5,6 +5,9 @@ import hu.schonherz.java.training.server.Server;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents a system administrator.
+ */
 public class SystemAdministrator extends Employee {
 
     private static final long serialVersionUID = 2244059719140625986L;

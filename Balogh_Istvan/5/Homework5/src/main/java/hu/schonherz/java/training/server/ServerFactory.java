@@ -2,6 +2,9 @@ package hu.schonherz.java.training.server;
 
 import hu.schonherz.java.training.service.WebContainer;
 
+/**
+ * This class is for creating {@link Server} objects with static {@link #getServer(String)} method.
+ */
 public class ServerFactory {
 
     public static Server getServer(String type) {

@@ -2,6 +2,9 @@ package hu.schonherz.java.training.pojo;
 
 import java.io.Serializable;
 
+/**
+ * This class represents an employee.
+ */
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 7950521176579703924L;

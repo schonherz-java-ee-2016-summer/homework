@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * This class represents a Linux Server.
+ */
 public class LinuxServer extends Server {
 
     @Override

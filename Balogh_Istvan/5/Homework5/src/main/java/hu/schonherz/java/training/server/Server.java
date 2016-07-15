@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * This abstract class represents a server.
+ */
 public abstract class Server {
 
     private int id;
