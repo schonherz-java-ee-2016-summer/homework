@@ -1,0 +1,27 @@
+.smallWithMargin, .smallWithoutMargin {
+	display:inline-block;
+	height:100px;
+	width:100px;
+}
+
+.smallWithMargin {
+	margin-right:10px;
+}
+
+#cyanSquare {
+	background-color: cyan;
+}
+
+#greenSquare {
+	background-color: lightgreen;
+}
+
+#orangeSquare {
+	background-color: orange;
+}
+
+#bigSquare {
+	border: 10px solid black;
+	height:350px;
+	width:350px;
+}
