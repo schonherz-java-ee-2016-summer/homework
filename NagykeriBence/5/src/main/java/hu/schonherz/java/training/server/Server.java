@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * Represents a server.
+ */
 public abstract class Server {
     private String name;
     private int id;
@@ -40,12 +43,18 @@ public abstract class Server {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Server server = (Server) o;
 
-        if (id != server.id) return false;
+        if (id != server.id) {
+            return false;
+        }
         return name.equals(server.name);
 
     }

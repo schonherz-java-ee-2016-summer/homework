@@ -2,6 +2,9 @@ package hu.schonherz.java.training.server;
 
 import hu.schonherz.java.training.ServerService.WebContainer;
 
+/**
+ * Represents a specific type of server.
+ */
 public class LinuxWebServer extends LinuxServer implements WebContainer {
 
     private Status status;

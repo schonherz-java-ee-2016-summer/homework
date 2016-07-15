@@ -2,6 +2,9 @@ package hu.schonherz.java.training.server;
 
 import hu.schonherz.java.training.ServerService.Database;
 
+/**
+ * Represents a specific type of server.
+ */
 public class WindowsDatabaseServer extends WindowsServer implements Database {
 
     private Status status;

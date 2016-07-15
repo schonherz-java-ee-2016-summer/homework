@@ -13,7 +13,9 @@ import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.thread.ReaderThread;
 import hu.schonherz.java.training.thread.SynchronizationTest;
 
-@SuppressWarnings("unused")
+/**
+ * Main class.
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -145,7 +147,11 @@ public class Main {
                 try {
                     while (true) {
                         List<SystemAdministrator> sysAdmins = SysAdmReader.read();
-                        List<String> serverNames = sysAdmins.stream().flatMap(sa -> sa.getServers().stream()).map(s -> s.getName()).distinct().collect(Collectors.toList());
+                        List<String> serverNames = sysAdmins.stream()
+                                                            .flatMap(sa -> sa.getServers().stream())
+                                                                                            .map(s -> s.getName())
+                                                            .distinct()
+                                                            .collect(Collectors.toList());
                         displayServersWithAdmins(sysAdmins, serverNames);
                         Thread.sleep(10000);
                     }

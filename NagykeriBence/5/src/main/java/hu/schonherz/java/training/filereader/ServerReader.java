@@ -1,7 +1,5 @@
 package hu.schonherz.java.training.filereader;
 
-import hu.schonherz.java.training.ServerService.Database;
-import hu.schonherz.java.training.ServerService.WebContainer;
 import hu.schonherz.java.training.server.*;
 
 import java.io.BufferedReader;
@@ -16,19 +14,20 @@ import java.io.IOException;
  */
 public class ServerReader {
 
-    private static String SUBDIRECTORY = "files";
-    private static String FILENAME = "servers.txt";
-    private static File file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
+    private static String subdirectory = "files";
+    private static String filename = "servers.txt";
+    private static File file = FileFactory.getInstance(subdirectory + "/" + filename);
 
     /**
-     *  A method for filling the System Administrator servers list.
+     * A method for filling the System Administrator servers list.
+     *
      * @param id The server id.
      * @return A proper type Server.
      */
     public static Server read(int id) {
         Server result = null;
         if (file == null) {
-            file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
+            file = FileFactory.getInstance(subdirectory + "/" + filename);
         } else {
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
                 String line;
@@ -39,15 +38,15 @@ public class ServerReader {
                     }
                 }
             } catch (IOException e) {
-                System.out.println(FILENAME + " is not found.");
+                System.out.println(filename + " is not found.");
             }
         }
         return result;
     }
 
-    public static void setPath(String _SUBDIRECTORY, String _FILENAME) {
-        SUBDIRECTORY = _SUBDIRECTORY;
-        FILENAME = _FILENAME;
-        file = FileFactory.getInstance(SUBDIRECTORY + "/" + FILENAME);
+    public static void setPath(String subdir, String nameOfFile) {
+        subdirectory = subdir;
+        filename = nameOfFile;
+        file = FileFactory.getInstance(subdirectory + "/" + filename);
     }
 }

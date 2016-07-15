@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.thread;
 
+/**
+ * Test class.
+ */
 public class SynchronizationTest extends Thread {
 
     private int number;
@@ -24,10 +27,10 @@ public class SynchronizationTest extends Thread {
         }
     }
 
-        @Override
-        public synchronized void start() {
-            System.out.println(number + ". started");
-            super.start(); 
-        }
+    @Override
+    public synchronized void start() {
+        System.out.println(number + ". started");
+        super.start();
+    }
 
 }

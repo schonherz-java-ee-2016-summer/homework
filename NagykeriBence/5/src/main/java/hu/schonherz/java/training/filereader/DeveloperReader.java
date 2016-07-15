@@ -32,7 +32,7 @@ public class DeveloperReader {
     //public static List<Developer> readFromTextFile() throws NumberFormatException {
     public static List<Developer> readFromTextFile() {
         List<Developer> result = new ArrayList<Developer>();
-        
+
         // Automatic resource management
         // https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
@@ -42,7 +42,7 @@ public class DeveloperReader {
                 String[] attributes = line.split(",");
                 List<String> tasks = new ArrayList<String>();
 
-                for(int i = 2; i<attributes.length; i++) {
+                for (int i = 2; i < attributes.length; i++) {
                     tasks.add(attributes[i]);
                 }
                 result.add(new Developer(attributes[0], Integer.parseInt(attributes[1]), tasks));
@@ -76,7 +76,7 @@ public class DeveloperReader {
         if (o instanceof ArrayList<?>) {
             result = (List<Developer>) o;
         }*/
-        result = (List<Developer>) ois.readObject();
+            result = (List<Developer>) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
