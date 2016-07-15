@@ -1,0 +1,25 @@
+#blue{
+	display: inline-block;
+	background-color: rgba(0,255,255,0.5);
+	height: 200px;
+	width: 200px;
+}
+#green{
+	display: inline-block;
+	background-color: rgba(0,255,0,0.7);;
+	height: 200px;
+	width: 200px;
+}
+#red{
+	display: inline-block;
+	background-color: rgba(255,0,0,0.7);
+	height: 200px;
+	width: 200px;
+}
+div{
+	border-style: solid;
+	border-width: 10px;
+	border-color: black;
+	height: 400px;
+	width: 400px;
+}
