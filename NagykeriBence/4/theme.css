@@ -1,0 +1,25 @@
+.small-square {
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	margin: 5px;
+}
+.big-square {
+	width: 400px;
+	height: 400px;
+	margin: 5px;
+}
+#blue-square {
+	background-color: #87CEFA;
+}
+#green-square {
+	background-color: #32CD32;
+}
+#red-square {
+	background-color: #FF6347;
+}
+#black-square {
+	border-style: solid;
+	border-color: black;
+	border-width: 7px;
+}
