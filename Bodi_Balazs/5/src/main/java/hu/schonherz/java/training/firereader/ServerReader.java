@@ -1,7 +1,7 @@
 package hu.schonherz.java.training.firereader;
 
-import hu.schonherz.java.training.ServerService.Database;
-import hu.schonherz.java.training.ServerService.WebContainer;
+import hu.schonherz.java.training.serverservice.Database;
+import hu.schonherz.java.training.serverservice.WebContainer;
 import hu.schonherz.java.training.server.LinuxDatabaseAndWebServer;
 import hu.schonherz.java.training.server.LinuxWebServer;
 import hu.schonherz.java.training.server.Server;

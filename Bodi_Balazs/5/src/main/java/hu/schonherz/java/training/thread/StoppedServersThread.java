@@ -11,9 +11,9 @@ import java.util.List;
  * Created by bmbal on 2016. 07. 12..
  */
 public class StoppedServersThread {
-    public static void Report(){
+    public static void report(){
         while (true) {
-            StoppedServersAndPermittedAdministrators();
+            stoppedServersAndPermittedAdministrators();
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
@@ -21,7 +21,7 @@ public class StoppedServersThread {
             }
         }
     }
-     private static void StoppedServersAndPermittedAdministrators() {
+     private static void stoppedServersAndPermittedAdministrators() {
 
         List<Server> stoppedServers = ServerReader.readStoppedServers();
         List<SystemAdministrator> administrators = SystemAdministratorReader.read();
@@ -32,7 +32,7 @@ public class StoppedServersThread {
             System.out.println("Administrator(s) who have permission for it:");
             for (SystemAdministrator actualAdministrator : administrators
                     ) {
-                if(actualAdministrator.getServers().contains(actualServer.getID())){
+                if (actualAdministrator.getServers().contains(actualServer.getID())){
                     System.out.println("-" + actualAdministrator);
                 }
             }

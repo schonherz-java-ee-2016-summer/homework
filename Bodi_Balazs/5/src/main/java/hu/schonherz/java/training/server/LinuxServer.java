@@ -1,5 +1,9 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * This class extends the Server class.
+ */
+
 public class LinuxServer extends Server{
     private int id;
     private String name;

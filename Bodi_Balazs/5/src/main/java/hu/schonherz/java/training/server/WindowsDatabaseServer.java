@@ -1,6 +1,12 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.Database;
+import hu.schonherz.java.training.serverservice.Database;
+
+/**
+ * This class extends the WindowsServer class
+ * and implements only the Database
+ * interface.
+ */
 
 public class WindowsDatabaseServer extends WindowsServer implements Database {
 

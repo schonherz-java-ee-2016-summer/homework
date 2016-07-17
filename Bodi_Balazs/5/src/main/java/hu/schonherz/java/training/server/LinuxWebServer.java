@@ -1,11 +1,11 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.WebContainer;
+import hu.schonherz.java.training.serverservice.WebContainer;
 
 /**
  * This class extends the LinuxServer class
  * and implements only the WebContainer
- * methods.
+ * interface.
  */
 
 public class LinuxWebServer extends LinuxServer implements WebContainer {
