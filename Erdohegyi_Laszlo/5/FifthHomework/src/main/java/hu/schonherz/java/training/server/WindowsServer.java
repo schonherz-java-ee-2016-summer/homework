@@ -1,20 +1,23 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * A class for windows servers.
+ */
 public class WindowsServer extends Server {
 
-    private int ID;
+    private int id;
     private String name;
     private String type;
 
-    public WindowsServer(int ID, String name, String type){
-        this.ID = ID;
+    public WindowsServer(int id, String name, String type){
+        this.id = id;
         this.name = name;
         this.type = type;
     }
 
     @Override
     public int getID() {
-        return ID;
+        return id;
     }
 
     @Override

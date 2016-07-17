@@ -4,6 +4,9 @@ import java.util.List;
 
 import hu.schonherz.java.training.server.Server;
 
+/**
+ * Plain Old Java Object for system administrators.
+ */
 public class SystemAdministrator extends Employee {
 
     private static final long serialVersionUID = 2244059719140625986L;
@@ -32,8 +35,9 @@ public class SystemAdministrator extends Employee {
 
     @Override
     public boolean equals(Object obj){
-        if(obj == null || !(obj instanceof SystemAdministrator))
+        if (obj == null || !(obj instanceof SystemAdministrator)) {
             return false;
+        }
 
         SystemAdministrator sysAdmin = (SystemAdministrator) obj;
 

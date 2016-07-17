@@ -1,13 +1,16 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.WebContainer;
+import hu.schonherz.java.training.serverservice.WebContainer;
 
+/**
+ * A class for linux web servers.
+ */
 public class LinuxWebServer extends LinuxServer implements WebContainer {
 
     private Status status;
 
-    public LinuxWebServer(int ID, String name, String type, Status status) {
-        super(ID, name, type);
+    public LinuxWebServer(int id, String name, String type, Status status) {
+        super(id, name, type);
         this.status = status;
     }
 
@@ -37,7 +40,7 @@ public class LinuxWebServer extends LinuxServer implements WebContainer {
 
     @Override
     public boolean equals(Object obj){
-        if(obj == null || !(obj instanceof LinuxWebServer)) {
+        if (obj == null || !(obj instanceof LinuxWebServer)) {
             return false;
         }
 

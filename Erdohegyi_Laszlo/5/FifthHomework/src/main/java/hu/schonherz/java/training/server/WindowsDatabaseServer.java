@@ -1,13 +1,16 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.Database;
+import hu.schonherz.java.training.serverservice.Database;
 
+/**
+ * A class for windows database servers.
+ */
 public class WindowsDatabaseServer extends WindowsServer implements Database {
 
     private Status status;
 
-    public WindowsDatabaseServer(int ID, String name, String type, Status status) {
-        super(ID, name, type);
+    public WindowsDatabaseServer(int id, String name, String type, Status status) {
+        super(id, name, type);
         this.status = status;
     }
 
@@ -17,7 +20,7 @@ public class WindowsDatabaseServer extends WindowsServer implements Database {
     }
 
     public boolean equals(Object obj){
-        if(obj == null || !(obj instanceof WindowsDatabaseServer)) {
+        if (obj == null || !(obj instanceof WindowsDatabaseServer)) {
             return false;
         }
 

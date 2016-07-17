@@ -1,5 +1,8 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * An abstract class for servers.
+ */
 public abstract class Server {
 
     private int cpuUsage;

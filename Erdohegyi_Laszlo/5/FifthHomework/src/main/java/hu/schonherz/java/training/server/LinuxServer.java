@@ -1,20 +1,23 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * A class for linux servers.
+ */
 public class LinuxServer extends Server {
 
-    private int ID;
+    private int id;
     private String name;
     private String type;
 
-    public LinuxServer(int ID, String name, String type){
-        this.ID = ID;
+    public LinuxServer(int id, String name, String type){
+        this.id = id;
         this.name = name;
         this.type = type;
     }
 
     @Override
     public int getID() {
-        return ID;
+        return id;
     }
 
     @Override

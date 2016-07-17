@@ -1,6 +1,8 @@
-package hu.schonherz.java.training.ServerService;
+package hu.schonherz.java.training.serverservice;
 
-// both Database's WebContainer's method present here
+/**
+ * An interface for both Database's and WebContainer's methods.
+ */
 public interface DatabaseAndWeb extends Database, WebContainer {
     public abstract String getLocation();
 }

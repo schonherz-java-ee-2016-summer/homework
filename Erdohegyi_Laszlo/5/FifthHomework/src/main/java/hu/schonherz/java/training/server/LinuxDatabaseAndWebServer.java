@@ -1,16 +1,22 @@
 package hu.schonherz.java.training.server;
 
-import hu.schonherz.java.training.ServerService.Database;
-import hu.schonherz.java.training.ServerService.WebContainer;
+import hu.schonherz.java.training.serverservice.Database;
+import hu.schonherz.java.training.serverservice.WebContainer;
 
+/**
+ * A class for linux database and web servers.
+ */
 public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, WebContainer {
 
+    /**
+     * An enum to specify the status of the LinuxDatabaseAndWebServer.
+     */
     public enum Status {RUNNING, DATABASESTOPPED, WEBCONTAINERSTOPPED}
 
     private Status status;
 
-    public LinuxDatabaseAndWebServer(int ID, String name, String type, Status status) {
-        super(ID, name, type);
+    public LinuxDatabaseAndWebServer(int id, String name, String type, Status status) {
+        super(id, name, type);
         this.status = status;
     }
 
@@ -45,7 +51,7 @@ public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, 
 
     @Override
     public boolean equals(Object obj){
-        if(obj == null || !(obj instanceof LinuxDatabaseAndWebServer)) {
+        if (obj == null || !(obj instanceof LinuxDatabaseAndWebServer)) {
             return false;
         }
 

@@ -1,25 +1,29 @@
 package hu.schonherz.java.training.main;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hu.schonherz.java.training.firereader.DeveloperReader;
-import hu.schonherz.java.training.firereader.EmployeeReader;
-import hu.schonherz.java.training.firereader.ServerReader;
-import hu.schonherz.java.training.firereader.SystemAdministratorReader;
-import hu.schonherz.java.training.pojo.Developer;
-import hu.schonherz.java.training.pojo.Employee;
+import hu.schonherz.java.training.filereader.ServerReader;
+import hu.schonherz.java.training.filereader.SystemAdministratorReader;
 import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.LinuxDatabaseAndWebServer;
 import hu.schonherz.java.training.server.LinuxWebServer;
 import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.server.WindowsDatabaseServer;
-import hu.schonherz.java.training.thread.ReaderThread;
-import hu.schonherz.java.training.thread.SynchronizationTest;
 
+
+/**
+ * <h1>Fifth Homework</h1>
+ * The FifthHomework program implements an application that
+ * outputs the "STOPPED" servers and their administrators
+ * to the console in every 10 seconds.
+ *
+ * @author  László Erdőhegyi
+ * @version 1.0-SNAPSHOT
+ * @since   2016-7-17
+ */
 @SuppressWarnings("unused")
 public class Main {
 
@@ -27,95 +31,6 @@ public class Main {
 
         homework();
 
-        // Reading developers from file, printing their state to console
-/*        List<Developer> dev = DeveloperReader.readFromBinaryFile();
-        for (Developer developer : dev) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-
-        System.out.println("------------------------------");
-
-        // The same as above, using Java 8's lambda expressions
-        List<Developer> devs = DeveloperReader.readFromTextFile();
-
-        devs.forEach(d -> {
-            System.out.println(d.getName() + "(" + d.getEmployeeID() + ")");
-            d.getTasks().forEach(t -> {
-                System.out.println(t);
-            });
-        });
-*/
-        
-        // Alternative, using Java 8's method reference feature
-        //devs.forEach(System.out::println);
-    }
-
-    // Reading from and writing to file example.
-    private static void ioHandling() {
-        List<Employee> employees = EmployeeReader.read();
-        for (Employee employee : employees) {
-            System.out.println(employee.getName() + " - " + employee.getEmployeeID());
-        }
-
-        List<Developer> developers = DeveloperReader.readFromTextFile();
-        for (Developer developer : developers) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-
-        DeveloperReader.writeToBinaryFile(developers);
-
-        System.out.println("---------------------------------------------");
-
-        List<Developer> dev = DeveloperReader.readFromBinaryFile();
-        for (Developer developer : dev) {
-            System.out.println(developer.getName() + " (" + developer.getEmployeeID() + ")");
-            for (String s : developer.getTasks()) {
-                System.out.println(s);
-            }
-        }
-    }
-
-    public static void test() {
-        System.out.println("Teszt szöveg");
-    }
-
-    // Threading example
-    private static void threading() {
-        ReaderThread readerThread = new ReaderThread();
-        
-        //System.out.println(readerThread.getState());
-        readerThread.start();
-        
-        /*try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
-        System.out.println(readerThread.getState());
-        try {
-            readerThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        test();
-    }
-
-    // Synchronized threading example
-    public static void synchroniedTest() {
-        SynchronizationTest st1 = new SynchronizationTest(1);
-        SynchronizationTest st2 = new SynchronizationTest(2);
-
-        st1.start();
-        st2.start();
     }
 
     /*
@@ -161,7 +76,7 @@ public class Main {
 
             try {
                 Thread.sleep(10000);
-            } catch(InterruptedException e){
+            } catch (InterruptedException e){
                 e.printStackTrace();
             }
         }
@@ -171,13 +86,12 @@ public class Main {
         List<Server> stoppedServersList = new ArrayList<Server>();
 
         for (Server server : srvrs){
-            if ("Win".equals(server.getType()) && "STOPPED".equals(((WindowsDatabaseServer)server).getStatus())){
+            if ("Win".equals(server.getType()) && "STOPPED".equals(((WindowsDatabaseServer) server).getStatus())){
                 stoppedServersList.add(server);
-            }
-            else if ("LinuxWeb".equals(server.getType()) && "STOPPED".equals(((LinuxWebServer)server).getStatus())){
+            } else if ("LinuxWeb".equals(server.getType()) && "STOPPED".equals(((LinuxWebServer) server).getStatus())){
                 stoppedServersList.add(server);
-            }
-            else if ("LinuxDBandWEB".equals(server.getType()) && "DATABASESTOPPED".equals(((LinuxDatabaseAndWebServer)server).getStatus())){
+            } else if ("LinuxDBandWEB".equals(server.getType())
+                    && "DATABASESTOPPED".equals(((LinuxDatabaseAndWebServer) server).getStatus())){
                 stoppedServersList.add(server);
             }
         }
