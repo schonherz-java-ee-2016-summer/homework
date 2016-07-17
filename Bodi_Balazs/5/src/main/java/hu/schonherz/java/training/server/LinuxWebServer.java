@@ -8,12 +8,11 @@ import hu.schonherz.java.training.ServerService.WebContainer;
  * methods.
  */
 
-
 public class LinuxWebServer extends LinuxServer implements WebContainer {
 
     private Status status;
 
-    public LinuxWebServer(int id, String name,String type, Status status) {
+    public LinuxWebServer(int id, String name, String type, Status status) {
         super(id, name, type);
         this.status = status;
     }

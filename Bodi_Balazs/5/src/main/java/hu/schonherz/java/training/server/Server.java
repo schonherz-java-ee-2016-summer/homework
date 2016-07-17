@@ -1,5 +1,12 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * This class extends the LinuxServer class
+ * describes abstract methods which
+ * implemented in other classes
+ */
+
+
 public abstract class Server {
 
     private int cpuUsage;

@@ -1,5 +1,10 @@
 package hu.schonherz.java.training.server;
 
+/**
+ * This class extends the Server class.
+ */
+
+
 public class WindowsServer extends Server {
 
     private int id;

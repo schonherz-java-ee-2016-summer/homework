@@ -5,7 +5,7 @@ public class LinuxServer extends Server{
     private String name;
     private String type;
 
-    public LinuxServer(int id, String name, String type ){
+    public LinuxServer(int id, String name, String type){
         type = type;
         name = name;
         this.id = id;
