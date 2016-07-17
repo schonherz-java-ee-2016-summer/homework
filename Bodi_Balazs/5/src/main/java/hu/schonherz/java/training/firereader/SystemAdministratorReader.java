@@ -7,8 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by bmbal on 2016. 07. 07..
+ * Utility class providing static methods
+ * to read the server administrators data from text file
+ * under the /files subdirectory.
  */
+ 
 public class SystemAdministratorReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "sysadmins.txt";

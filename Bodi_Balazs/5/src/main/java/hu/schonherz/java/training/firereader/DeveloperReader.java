@@ -18,6 +18,7 @@ import hu.schonherz.java.training.pojo.Developer;
  * to read the developer data from text and binary files
  * under the /files subdirectory.
  */
+ 
 public class DeveloperReader {
 
     // Constants

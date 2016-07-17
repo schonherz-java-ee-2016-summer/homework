@@ -2,6 +2,10 @@ package hu.schonherz.java.training.pojo;
 
 import java.util.List;
 
+/**
+ * This class describes the data of developers.
+ */
+
 public class Developer extends Employee {
     private static final long serialVersionUID = -3936601396418860868L;
 

@@ -2,6 +2,10 @@ package hu.schonherz.java.training.pojo;
 
 import java.io.Serializable;
 
+/**
+ * This class describes the data of Employees.
+ */
+
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 7950521176579703924L;
