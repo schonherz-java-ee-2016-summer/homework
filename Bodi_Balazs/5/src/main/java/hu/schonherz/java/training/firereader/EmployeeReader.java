@@ -9,7 +9,9 @@ import java.util.List;
 
 import hu.schonherz.java.training.pojo.Employee;
 
-
+/**
+* This class is read the employees.txt.
+*/
 public class EmployeeReader {
 
     private static final String SUBDIRECTORY = "files";

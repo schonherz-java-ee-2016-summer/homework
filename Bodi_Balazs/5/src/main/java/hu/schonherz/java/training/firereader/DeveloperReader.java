@@ -28,7 +28,7 @@ public class DeveloperReader {
     private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
     private static File binaryFile = new File(SUBDIRECTORY + File.separator + BINARYFILE);
 
-    public static List<Developer> readFromTextFile() {
+    public static List < Developer > readFromTextFile() {
         List<Developer> result = new ArrayList<Developer>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
@@ -36,9 +36,9 @@ public class DeveloperReader {
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] attributes = line.split(",");
-                List<String> tasks = new ArrayList<String>();
+                List < String > tasks = new ArrayList<String>();
 
-                for(int i = 2; i<attributes.length; i++) {
+                for (int i = 2; i < attributes.length; i++) {
                     tasks.add(attributes[i]);
                 }
                 result.add(new Developer(attributes[0], Integer.parseInt(attributes[1]), tasks));
@@ -52,7 +52,7 @@ public class DeveloperReader {
     }
 
     @Deprecated
-    public static void writeToBinaryFile(List<Developer> developers) {
+    public static void writeToBinaryFile(List < Developer > developers) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(binaryFile));) {
             oos.writeObject(developers);
         } catch (IOException e) {
@@ -60,10 +60,10 @@ public class DeveloperReader {
         }
     }
 
-    public static List<Developer> readFromBinaryFile() {
-        List<Developer> result = new ArrayList<Developer>();
+    public static List < Developer > readFromBinaryFile() {
+        List < Developer > result = new ArrayList < Developer >();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(binaryFile))) {
-        result = (List<Developer>) ois.readObject();
+        result = (List < Developer >) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

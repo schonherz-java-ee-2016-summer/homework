@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * Created by bmbal on 2016. 07. 07..
  */
+ 
 public class ServerReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "servers.txt";
@@ -35,16 +36,25 @@ public class ServerReader {
             while ((line = bufferedReader.readLine()) != null) {
                 String [] attributes = line.split(",");
 
-                if(attributes.length != 4){
+                if (attributes.length != 4){
                     throw new MyException();
                 }
-                if(!attributes[3].equals(RUNNINGSERVERKEYWORD)) {
+                if (!attributes[3].equals(RUNNINGSERVERKEYWORD)) {
                     if (attributes[2].equals("LinuxDBandWEB")) {
-                        result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], LinuxDatabaseAndWebServer.Status.DATABASESTOPPED));
+                        result.add(new LinuxDatabaseAndWebServer(Integer.parseInt(attributes[0]),
+						attributes[1],
+						attributes[2],
+						LinuxDatabaseAndWebServer.Status.DATABASESTOPPED));
                     } else if (attributes[2].equals("LinuxWeb")) {
-                        result.add(new LinuxWebServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], WebContainer.Status.STOPPED));
+                        result.add(new LinuxWebServer(Integer.parseInt(attributes[0]),
+						attributes[1],
+						attributes[2],
+						WebContainer.Status.STOPPED));
                     } else if (attributes[2].equals("Win")) {
-                        result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]), attributes[1], attributes[2], Database.Status.STOPPED));
+                        result.add(new WindowsDatabaseServer(Integer.parseInt(attributes[0]),
+						attributes[1],
+						attributes[2],
+						Database.Status.STOPPED));
                     }
                 }
             }
