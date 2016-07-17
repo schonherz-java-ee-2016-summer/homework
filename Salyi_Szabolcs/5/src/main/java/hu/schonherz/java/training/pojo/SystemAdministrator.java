@@ -45,7 +45,7 @@ public class SystemAdministrator extends Employee {
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append(this.name).append(this.employeeID).append(" ");
-        for(Integer id : serverIDs){
+        for (Integer id : serverIDs){
             result.append(id).append(" ");
         }
         return result.toString();

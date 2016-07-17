@@ -4,6 +4,10 @@ package hu.schonherz.java.training.ServerService;
  * Created by Home on 2016. 07. 12..
  */
 public interface WebContainer {
+
+    /**
+     * WebContainer status
+     */
     public enum Status {RUNNING, STOPPED}
 
     /**

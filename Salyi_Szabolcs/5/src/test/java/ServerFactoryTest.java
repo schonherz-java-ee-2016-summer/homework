@@ -1,7 +1,6 @@
-import hu.schonherz.java.training.server.LinuxWebServer;
-import hu.schonherz.java.training.server.Server;
-import hu.schonherz.java.training.server.ServerFactory;
-import hu.schonherz.java.training.server.WindowsServer;
+import hu.schonherz.java.training.server.*;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Created by Home on 2016. 07. 15..

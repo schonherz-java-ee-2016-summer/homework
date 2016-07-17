@@ -17,7 +17,8 @@ public class SystemAdministratorReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "sysadmins.txt";
 
-    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+    private static File file = new File(ServerReader.class.getClassLoader().getResource(SUBDIRECTORY + "/" + FILENAME).getFile());
+
 
     public static List<SystemAdministrator> readSystemAdmins() {
         List<SystemAdministrator> result = new LinkedList<SystemAdministrator>();

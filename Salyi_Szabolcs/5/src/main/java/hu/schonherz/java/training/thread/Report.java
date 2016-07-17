@@ -13,7 +13,7 @@ import java.util.List;
 public class Report implements Runnable{
     @Override
     public void run() {
-        while(true){
+        while (true){
             createReport();
             try {
                 Thread.sleep(10000);
@@ -27,11 +27,11 @@ public class Report implements Runnable{
         List<Server> servers = ServerReader.readServers();
         List<SystemAdministrator> admins = SystemAdministratorReader.readSystemAdmins();
 
-        for(Server server : servers){
+        for (Server server : servers){
 
-            if(server!=null) {
-                for(SystemAdministrator admin : admins){
-                    if(admin.getServerIDs().contains(server.getId())){
+            if (server != null) {
+                for (SystemAdministrator admin : admins){
+                    if (admin.getServerIDs().contains(server.getId())){
                         System.out.println(admin.getName() + server.getName());
                     }
                 }

@@ -7,9 +7,12 @@ import hu.schonherz.java.training.ServerService.WebContainer;
  */
 public class ServerFactory {
 
+    /*
+    @return with the right server object.
+     */
     public static Server getServer(String type) {
 
-        if(type==null){
+        if (type == null){
             return null;
         }
 

@@ -19,8 +19,8 @@ public class ServerReaderTest {
     public void shouldCountOnlyStopped(){
         List<Server> servers = ServerReader.readServers();
         int count=0;
-        for(Server server : servers){
-            if(server!=null) {
+        for (Server server : servers){
+            if (server!=null) {
                 count++;
             }
         }

@@ -19,7 +19,7 @@ public class ServerReader {
     private static final String SUBDIRECTORY = "files";
     private static final String FILENAME = "servers.txt";
 
-    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+    private static File file = new File(ServerReader.class.getClassLoader().getResource(SUBDIRECTORY + "/" + FILENAME).getFile());
 
     public static List<Server> readServers(){
         List<Server> result = new LinkedList<Server>();
@@ -52,7 +52,7 @@ public class ServerReader {
 
     private static Server createServerFromAttributes(String[] attributes){
 
-        if(attributes[3].equals("STOPPED") || attributes[3].equals("DATASTOPPED") || attributes[3].equals("WEBCONTAINERSTOPPER")) {
+        if (attributes[3].equals("STOPPED") || attributes[3].equals("DATASTOPPED") || attributes[3].equals("WEBCONTAINERSTOPPER")) {
             Server server = ServerFactory.getServer(attributes[2]);
             server.setId(Integer.parseInt(attributes[0]));
             server.setName(attributes[1]);
