@@ -55,8 +55,7 @@ public class AdminReader {
      * @param result result
      * @param reader reader
      */
-    private static void createList(List < SystemAdministrator > result, BufferedReader reader)
-    {
+    private static void createList(List < SystemAdministrator > result, BufferedReader reader) {
         String line;
 
         try {
@@ -64,15 +63,15 @@ public class AdminReader {
                 String[] attributes = line.split(",");
                 List<Server> servers = new ArrayList<>();
 
-                for(int i = 2; i<attributes.length; i++) {
+                for (int i = 2; i < attributes.length; i++) {
                     Server srv = (Server) Observer.getMap().get(attributes[i]);
-                    if (srv != null)
+                    if (srv != null) {
                       servers.add(srv);
+                    }
                 }
                 result.add(new SystemAdministrator(attributes[0], Integer.parseInt(attributes[1]), servers));
             }
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("io error");
         }
     }

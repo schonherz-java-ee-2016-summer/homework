@@ -54,7 +54,7 @@ public abstract class Server {
     }
     
     public boolean isRunning() {
-        return (boolean)("RUNNING".equals(operatingSstatus));
+        return (boolean) ("RUNNING".equals(operatingSstatus));
     }
     
     public void setAdmins(List < SystemAdministrator > admins) {
@@ -63,15 +63,14 @@ public abstract class Server {
     
     public void addAdmin(SystemAdministrator admin) {
         boolean exist = false;
-        for (SystemAdministrator ad : admins)
-        {
-            if(ad.equals(admin))
-            {
+        for (SystemAdministrator ad : admins) {
+            if (ad.equals(admin)) {
                 exist = true;
             }
         }
-        if (!exist)
+        if (!exist) {
             this.admins.add(admin);
+        }
     }
     
   
@@ -90,13 +89,13 @@ public abstract class Server {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null || !(obj instanceof Server)){
+        if (obj == null || !(obj instanceof Server)){
             return false;
-        }
-        else
+        } else {
             return (this.getId().equals(((Server) obj).getId())
                     && this.getName().equals(((Server) obj).getName())
                     && this.getOperatingStatus().equals(
                     ((Server) obj).getOperatingStatus()));
+        }
     }
 }

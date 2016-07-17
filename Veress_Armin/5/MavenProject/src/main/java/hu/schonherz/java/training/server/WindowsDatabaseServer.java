@@ -16,11 +16,11 @@ public class WindowsDatabaseServer extends WindowsServer implements Database {
      *
      * @param id id
      * @param name name
-     * @param status1 status
+     * @param status status
      */
     public WindowsDatabaseServer(
-            final String id, final String name, final String status1) {
-        super(id, name, status1);
+            final String id, final String name, final String status) {
+        super(id, name, status);
     }
 
     /**

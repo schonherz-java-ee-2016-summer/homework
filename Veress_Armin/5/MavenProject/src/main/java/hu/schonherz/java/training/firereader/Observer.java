@@ -37,8 +37,7 @@ public class Observer {
      *
      * @return lol
      */
-    public static Map < String, Server > getMap()
-    {
+    public static Map < String, Server > getMap() {
         return Observer.map;
     }
 
@@ -46,17 +45,15 @@ public class Observer {
      *
      * @param map map
      */
-    public static void setMap(Map < String, Server > map)
-    {
-        Observer.map=map;
+    public static void setMap(Map < String, Server > map) {
+        Observer.map = map;
     }
 
     /**
      *
      * @param adms adms
      */
-    public static void assignServerAdmin(List < SystemAdministrator > adms)
-    {
+    public static void assignServerAdmin(List < SystemAdministrator > adms) {
         adms.stream().forEach((admin) -> {
             admin.getServers().stream().forEach((serv) -> {
                 serv.addAdmin(admin);
@@ -68,14 +65,12 @@ public class Observer {
      *
      * @param map map
      */
-    public static void showStatus(Map < String, Server > map)
-    {
+    public static void showStatus(Map < String, Server > map) {
         Set < String > keySet = map.keySet();
         Iterator < String > keySetIterator = keySet.iterator();
         while (keySetIterator.hasNext()) {
            Server srv = (Server) map.get(keySetIterator.next());
-            if(!srv.isRunning())
-            {
+            if (!srv.isRunning()) {
                 System.out.println(srv.getName() + "(" + srv.getId() + ")");
                 srv.getAdmins().forEach(a -> {
                      System.out.println(a.getName());
