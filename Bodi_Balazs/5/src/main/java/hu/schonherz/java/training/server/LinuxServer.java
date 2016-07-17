@@ -10,8 +10,8 @@ public class LinuxServer extends Server{
     private String type;
 
     public LinuxServer(int id, String name, String type){
-        type = type;
-        name = name;
+        this.type = type;
+        this.name = name;
         this.id = id;
     }
 

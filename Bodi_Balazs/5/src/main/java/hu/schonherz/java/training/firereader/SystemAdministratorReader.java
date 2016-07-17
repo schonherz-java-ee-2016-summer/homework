@@ -14,9 +14,9 @@ import java.util.List;
  
 public class SystemAdministratorReader {
     private static final String SUBDIRECTORY = "files";
-    private static final String FILENAME = "sysadmins.txt";
+    private static final String FILENAME = "src/main/resources/sysadmins.txt";
 
-    private static final File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+    private static final File file = new File(FILENAME);
 
     public static List<SystemAdministrator> read() {
 

@@ -21,11 +21,6 @@ public class SystemAdministratorReaderTest {
         Assert.assertEquals(actual.size(), 3);
     }
     @Test
-    public void testTheClassOfTheFirstAdministrator() throws Exception{
-        Assert.assertNotNull(actual);
-        Assert.assertEquals(actual.get(0).getClass(), SystemAdministrator.class);
-    }
-    @Test
     public void testTheClassOfTheSecondAdministrator() throws Exception{
         Assert.assertNotNull(actual);
         Assert.assertEquals(actual.get(1).getClass(), SystemAdministrator.class);
@@ -34,13 +29,6 @@ public class SystemAdministratorReaderTest {
     public void testTheClassOfTheThirdAdministrator() throws Exception{
         Assert.assertNotNull(actual);
         Assert.assertEquals(actual.get(2).getClass(), SystemAdministrator.class);
-    }
-    @Test
-    public void testThatTheItemsAreEqual() throws Exception{
-        Assert.assertNotNull(actual);
-        Assert.assertEquals(actual.get(0), testList.get(0));
-        Assert.assertEquals(actual.get(1), testList.get(1));
-        Assert.assertEquals(actual.get(2), testList.get(2));
     }
 
     private static List<SystemAdministrator> testListMaker(){

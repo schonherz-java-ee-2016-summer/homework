@@ -1,11 +1,11 @@
 package hu.schonherz.java.training.firereader;
 
-import hu.schonherz.java.training.serverservice.Database;
-import hu.schonherz.java.training.serverservice.WebContainer;
 import hu.schonherz.java.training.server.LinuxDatabaseAndWebServer;
 import hu.schonherz.java.training.server.LinuxWebServer;
 import hu.schonherz.java.training.server.Server;
 import hu.schonherz.java.training.server.WindowsDatabaseServer;
+import hu.schonherz.java.training.serverservice.Database;
+import hu.schonherz.java.training.serverservice.WebContainer;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,10 +22,10 @@ import java.util.List;
  
 public class ServerReader {
     private static final String SUBDIRECTORY = "files";
-    private static final String FILENAME = "servers.txt";
+    private static final String FILENAME = "src/main/resources/servers.txt";
     private static final String RUNNINGSERVERKEYWORD = "RUNNING";
 
-    private static File file = new File(SUBDIRECTORY + File.separator + FILENAME);
+    private static File file = new File(FILENAME);
 
     public static List<Server> readStoppedServers() {
         List<Server> result = new LinkedList<Server>();
