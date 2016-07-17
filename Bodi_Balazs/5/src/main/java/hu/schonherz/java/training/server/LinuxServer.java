@@ -1,40 +1,43 @@
 package hu.schonherz.java.training.server;
 
-public class LinuxServer extends Server {
-    private int ID;
-    private String Name;
-    private String Type;
+public class LinuxServer extends Server{
+    private int id;
+    private String name;
+    private String type;
 
-    public LinuxServer(int ID, String name,String type ) {
-        Type = type;
-        Name = name;
-        this.ID = ID;
+    public LinuxServer(int id, String name, String type ){
+        type = type;
+        name = name;
+        this.id = id;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int getID(){
+        return id;
     }
 
     @Override
-    public int getID() {
-        return ID;
+    public String getName(){
+        return name;
     }
 
     @Override
-    public String getName() {
-        return Name;
+    public String getType(){
+        return type;
     }
 
     @Override
-    public String getType() {
-        return Type;
-    }
-
-    @Override
-    public void restart() {
+    public void restart(){
         System.out.println("Linux server is restarting...");
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(ID).append(" ").append(Name).append(" ").append(Type);
+        sb.append(id).append(" ").append(name).append(" ").append(type);
         return sb.toString();
     }
 }

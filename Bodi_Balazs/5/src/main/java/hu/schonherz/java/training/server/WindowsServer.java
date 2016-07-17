@@ -2,29 +2,29 @@ package hu.schonherz.java.training.server;
 
 public class WindowsServer extends Server {
 
-    private int ID;
-    private String Name;
-    private String Type;
+    private int id;
+    private String name;
+    private String type;
 
-    public WindowsServer(int ID, String name, String type) {
-        this.ID = ID;
-        Name = name;
-        Type = type;
+    public WindowsServer(int id, String name, String type) {
+        this.id = id;
+        name = name;
+        type = type;
     }
 
     @Override
     public int getID() {
-        return ID;
+        return id;
     }
 
     @Override
     public String getName() {
-        return Name;
+        return name;
     }
 
     @Override
     public String getType() {
-        return Type;
+        return type;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class WindowsServer extends Server {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(ID).append(" ").append(Name).append(" ").append(Type);
+        sb.append(id).append(" ").append(name).append(" ").append(type);
         return sb.toString();
     }
 

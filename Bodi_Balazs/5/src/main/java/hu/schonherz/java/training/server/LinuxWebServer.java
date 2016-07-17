@@ -2,12 +2,19 @@ package hu.schonherz.java.training.server;
 
 import hu.schonherz.java.training.ServerService.WebContainer;
 
+/**
+ * This class extends the LinuxServer class
+ * and implements only the WebContainer
+ * methods.
+ */
+
+
 public class LinuxWebServer extends LinuxServer implements WebContainer {
 
     private Status status;
 
-    public LinuxWebServer(int ID, String name,String type, Status status) {
-        super(ID, name, type);
+    public LinuxWebServer(int id, String name,String type, Status status) {
+        super(id, name, type);
         this.status = status;
     }
 
