@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.firereader;
+package hu.schonherz.java.training.filereader;
 
 import hu.schonherz.java.training.server.*;
 
@@ -6,6 +6,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class providing static methods
+ * to read the server data from text files
+ * under the /src/main/resources subdirectory.
+ */
 public class ServerReader {
 
     private static ClassLoader classLoader = ServerReader.class.getClassLoader();

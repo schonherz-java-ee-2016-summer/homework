@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.firereader;
+package hu.schonherz.java.training.filereader;
 
 import hu.schonherz.java.training.pojo.SystemAdministrator;
 import hu.schonherz.java.training.server.Server;
@@ -7,6 +7,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class providing static methods
+ * to read the system administrator data from text files
+ * under the /src/main/resources subdirectory.
+ */
 public class SystemAdministratorReader {
 
     private static ClassLoader classLoader = SystemAdministratorReader.class.getClassLoader();

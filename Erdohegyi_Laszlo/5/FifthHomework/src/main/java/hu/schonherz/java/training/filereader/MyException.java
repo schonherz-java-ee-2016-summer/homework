@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.firereader;
+package hu.schonherz.java.training.filereader;
 
 /**
  * Custom exception class.
