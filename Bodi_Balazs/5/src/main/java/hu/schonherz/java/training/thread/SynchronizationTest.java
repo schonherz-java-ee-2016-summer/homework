@@ -1,6 +1,14 @@
 package hu.schonherz.java.training.thread;
 
+/**
+ * Describes the SynchronizationTest.
+ */
+
 public class SynchronizationTest extends Thread {
+
+    /**
+     * Describes the SynchronizationTest.
+     */
 
     private int number;
     private static SynchronizedObject synchronizedObject = new SynchronizedObject();

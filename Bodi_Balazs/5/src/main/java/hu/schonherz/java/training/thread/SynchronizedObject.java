@@ -1,6 +1,14 @@
 package hu.schonherz.java.training.thread;
 
+/**
+ * Describes the SynchronizedObject.
+ */
+
 public class SynchronizedObject {
+
+    /**
+     * Describes the SynchronizedObject.
+     */
 
     private int num = 0;
 

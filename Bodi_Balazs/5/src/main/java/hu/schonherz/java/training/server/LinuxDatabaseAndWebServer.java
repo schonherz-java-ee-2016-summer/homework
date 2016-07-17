@@ -11,6 +11,12 @@ import hu.schonherz.java.training.serverservice.WebContainer;
 
 public class LinuxDatabaseAndWebServer extends LinuxServer implements Database, WebContainer {
 
+    /**
+     * This class extends the LinuxServer class
+     * and implements Database and WebContainer
+     * interfaces.
+     */
+
     public enum Status {RUNNING, DATABASESTOPPED, WEBCONTAINERSTOPPER}
 
     private Status status;

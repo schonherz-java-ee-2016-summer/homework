@@ -5,6 +5,10 @@ package hu.schonherz.java.training.serverservice;
  * @return String of status of Web container.
  */
 public interface WebContainer {
+    /**
+     * Tell the status of the Web container
+     * @return String of status of Web container.
+     */
     public enum Status {RUNNING, STOPPED}
 
     /**
