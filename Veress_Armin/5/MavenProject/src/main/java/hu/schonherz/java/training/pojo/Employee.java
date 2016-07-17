@@ -33,13 +33,13 @@ public class Employee implements Serializable {
 
     /**
      *
-     * @param nameE name
-     * @param employeeIDD employeeID
+     * @param name name
+     * @param employeeID employeeID
      */
-    public Employee(final String nameE, final int employeeIDD) {
+    public Employee(final String name, final int employeeID) {
         super();
-        this.setName(nameE);
-        this.setEmployeeID(employeeIDD);
+        this.setName(name);
+        this.setEmployeeID(employeeID);
     }
 
     /**
@@ -52,10 +52,10 @@ public class Employee implements Serializable {
 
     /**
      *
-     * @param nameL name
+     * @param name name
      */
-    public final void setName(final String nameL) {
-        this.name = nameL;
+    public final void setName(final String name) {
+        this.name = name;
     }
 
     /**
@@ -68,9 +68,9 @@ public class Employee implements Serializable {
 
     /**
      *
-     * @param employeeIDT employeeID
+     * @param employeeID employeeID
      */
-    public final void setEmployeeID(final int employeeIDT) {
-        this.employeeID = employeeIDT;
+    public final void setEmployeeID(final int employeeID) {
+        this.employeeID = employeeID;
     }
 }

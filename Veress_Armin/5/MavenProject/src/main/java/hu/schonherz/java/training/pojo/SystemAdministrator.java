@@ -28,13 +28,13 @@ public class SystemAdministrator extends Employee {
      *
      * @param name name
      * @param employeeID employeeID
-     * @param serversS servers
+     * @param servers servers
      */
     public SystemAdministrator(
             final String name, final int employeeID,
-            final List < Server > serversS) {
+            final List < Server > servers) {
         super(name, employeeID);
-        this.servers = serversS;
+        this.servers = servers;
     }
 
     /**
@@ -47,10 +47,10 @@ public class SystemAdministrator extends Employee {
 
     /**
      *
-     * @param serversT servers
+     * @param servers servers
      */
-    public final void setServers(final List < Server > serversT) {
-        this.servers = serversT;
+    public final void setServers(final List < Server > servers) {
+        this.servers = servers;
     }
 
     /**

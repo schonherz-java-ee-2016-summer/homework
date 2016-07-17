@@ -16,11 +16,11 @@ public class LinuxWebServer extends LinuxServer implements WebContainer {
      *
      * @param id id
      * @param name name
-     * @param status2 status
+     * @param status status
      */
     public LinuxWebServer(
-            final String id, final String name, final String status2) {
-        super(id, name, status2);
+            final String id, final String name, final String status) {
+        super(id, name, status);
     }
 
     /**

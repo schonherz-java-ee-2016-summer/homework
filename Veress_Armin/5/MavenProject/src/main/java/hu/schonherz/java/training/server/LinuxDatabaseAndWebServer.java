@@ -23,11 +23,11 @@ public class LinuxDatabaseAndWebServer extends
      *
      * @param id id
      * @param name name
-     * @param status3 status
+     * @param status status
      */
     public LinuxDatabaseAndWebServer(
-            final String id, final String name, final String status3) {
-        super(id, name, status3);
+            final String id, final String name, final String status) {
+        super(id, name, status);
     }
 
     /**

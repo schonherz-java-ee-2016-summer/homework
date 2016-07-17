@@ -4,6 +4,9 @@ package hu.schonherz.java.training.ServerService;
  *
  */
 public interface Database {
+    /**
+     *
+     */
     public enum Status {RUNNING, STOPPED}
 
     /**

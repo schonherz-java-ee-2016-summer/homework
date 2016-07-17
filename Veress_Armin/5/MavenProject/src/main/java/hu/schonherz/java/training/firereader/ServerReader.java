@@ -39,8 +39,7 @@ public class ServerReader {
         return result;
     }
     
-    private static void createMap(Map result, BufferedReader reader)
-    {
+    private static void createMap(Map result, BufferedReader reader) {
         String line;
 
         try {
@@ -51,15 +50,14 @@ public class ServerReader {
                         result.put(attributes[0], new WindowsServer(attributes[0], attributes[1], attributes[3]));
                         break;
                     case "LinuxWeb":
-                        result.put(attributes[0],new LinuxWebServer(attributes[0], attributes[1], attributes[3]));
+                        result.put(attributes[0], new LinuxWebServer(attributes[0], attributes[1], attributes[3]));
                         break;
                     case "LinuxDBandWEB":
-                        result.put(attributes[0],new LinuxDatabaseAndWebServer(attributes[0], attributes[1], attributes[3]));
+                        result.put(attributes[0], new LinuxDatabaseAndWebServer(attributes[0], attributes[1], attributes[3]));
                         break;
                 }
             }
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("io error");
         }
     }
