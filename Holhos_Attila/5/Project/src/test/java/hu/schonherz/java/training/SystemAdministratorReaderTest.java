@@ -1,5 +1,7 @@
 package hu.schonherz.java.training;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static hu.schonherz.java.training.firereader.SystemAdministratorReader.createAnAdmin;
@@ -18,6 +20,21 @@ public class SystemAdministratorReaderTest {
     private String filepath = "anAdmin.txt";
     private File file = new File(filepath);
 
+    @BeforeClass
+    public void fileInitialization(){
+        String anAdmin = "Holhós Attila,1,1,3,4";
+        String anotherAdmin= "Kis Pista,2,1";
+        try {
+            file.createNewFile();
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(anAdmin);
+            fileWriter.write("\n");
+            fileWriter.close();
+        } catch (IOException e){
+            System.out.println("IOException.");
+        }
+    }
+
     @Test(expected = NullPointerException.class)
     public void FileNotFoundExceptionTest(){
         List<SystemAdministrator> adminList = readSystemAdminFromText("a.txt");
@@ -27,18 +44,7 @@ public class SystemAdministratorReaderTest {
     public void shouldSizeTheSameAfterReadingSystemAdmin(){
         String anAdmin = "Holhós Attila,1,1,3,4";
         List<SystemAdministrator> adminList = null;
-
-        try {
-            file.createNewFile();
-            FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write(anAdmin);
-            fileWriter.flush();
-            fileWriter.close();
-            adminList = readSystemAdminFromText(filepath);
-            file.delete();
-        } catch (IOException e){
-            System.out.println("IOException.");
-        }
+        adminList = readSystemAdminFromText(filepath);
 
         assertTrue(adminList.size()==1);
     }
@@ -55,4 +61,8 @@ public class SystemAdministratorReaderTest {
         assertTrue(admin.getServers().contains(2));
     }
 
+    @AfterClass
+    public void deleteFile(){
+        file.delete();
+    }
 }

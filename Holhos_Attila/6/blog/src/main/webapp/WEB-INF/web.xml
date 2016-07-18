@@ -1,0 +1,57 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>aPost</servlet-name>
+        <jsp-file>/aPost.jsp</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>newPost</servlet-name>
+        <jsp-file>/newPost.jsp</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>addPost</servlet-name>
+        <servlet-class>hu.schonherz.training.servlets.newPost</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>indexBlog</servlet-name>
+        <servlet-class>hu.schonherz.training.servlets.indexBlog</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>aPost</servlet-name>
+        <url-pattern>/aPost</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>newPost</servlet-name>
+        <url-pattern>/newPost</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>addPost</servlet-name>
+        <url-pattern>/addPost</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>indexBlog</servlet-name>
+        <url-pattern>/indexBlog</url-pattern>
+    </servlet-mapping>
+</web-app>

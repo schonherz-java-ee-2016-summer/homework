@@ -38,6 +38,7 @@ public class ServerReader {
         return servers;
     }
 
+
     public static Server createServer(String line){
         String[] parts = line.split(",");
         return new Server(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3]);
