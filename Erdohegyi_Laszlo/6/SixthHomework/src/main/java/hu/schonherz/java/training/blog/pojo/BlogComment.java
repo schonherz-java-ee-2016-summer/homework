@@ -1,4 +1,4 @@
-package hu.schonherz.java.training;
+package hu.schonherz.java.training.blog.pojo;
 
 import java.time.LocalDateTime;
 
