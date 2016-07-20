@@ -1,0 +1,29 @@
+body{
+    background-color: #f7f7f7;
+}
+
+#welcome{
+    text-align: center;
+}
+
+#left{
+    float: left;
+    width: 800px;
+}
+
+#right{
+    clear: left;
+    text-align: right;
+}
+
+#content{
+    width: 300px;
+    height: 60px;
+}
+
+.blogposzt{
+    margin: 10px 10px 10px 10px;
+    border: 2px solid #73AD23;
+    padding: 5px;
+    witdh: 80%;
+}

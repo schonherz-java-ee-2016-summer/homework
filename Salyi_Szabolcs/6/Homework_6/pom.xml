@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>hu.schonherz.java.training</groupId>
+    <artifactId>blog</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Simple Blog</name>
+
+    <developers>
+        <developer>
+            <name>szabolcssalyi</name>
+            <email>salyi.szabi@gmail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+            <java.version>1.8</java.version>
+            <version.apache.lang>3.4</version.apache.lang>
+            <servlet.api.version>3.1.0</servlet.api.version>
+            <junit.version>3.8.1</junit.version>
+            <version.jsp.api>2.3.1</version.jsp.api>
+            <version.jstl.api>1.2.1</version.jstl.api>
+            <version.taglibs.impl>1.2.5</version.taglibs.impl>
+            <slf4j.version>1.7.21</slf4j.version>
+            <logback.version>1.1.7</logback.version>
+    </properties>
+
+    <dependencies>
+        <!-- Common -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${version.apache.lang}</version>
+        </dependency>
+        <!-- Common -->
+
+        <!--Java EE dependencies-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${version.jsp.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>${version.jstl.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>${version.taglibs.impl}</version>
+        </dependency>
+        <!--Java EE dependencies-->
+
+        <!--JUnit dependency-->
+        <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>${junit.version}</version>
+          <scope>test</scope>
+        </dependency>
+        <!--JUnit dependency-->
+
+
+        <!-- Logging dependencies -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <!-- Logging dependencies -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
