@@ -79,6 +79,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commonslang.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-jstlel</artifactId>
+            <version>1.2.5</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>blog-app</finalName>

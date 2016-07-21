@@ -2,12 +2,12 @@ package hu.nutty.kepzes.blogapp.servlet;
 
 import hu.nutty.kepzes.blogapp.beans.Comment;
 import hu.nutty.kepzes.blogapp.beans.CommentsBean;
+import hu.nutty.kepzes.blogapp.utils.Constants;
 import hu.nutty.kepzes.blogapp.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,21 +16,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
 
+import static hu.nutty.kepzes.blogapp.utils.Constants.*;
+
+
 /**
  * Custom extension of {@code HttpServlet}.
- *
+ * <p>
  * This servlet implements a little commenting functionality, nothing serious.
  * A user gets a list of comments (strings) if he sends a GET request while
  * using POST, he can submit a new comment.
  */
 public class CommentsServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(CommentsServlet.class);
-
-    // Constants help you to avoid typos, and make refactor easier
-    private static final String NEW_COMMENT_INPUT_NAME = "content";
-    private static final String COMMENTER_INPUT_NAME = "name";
-    private static final String COMMENTS_SESSION_KEY = "comments";
-    private static final String ENCODING = "utf-8";
 
     private CommentsBean comments;
     private String[] contributors = {"Robert Discoteque", "John Cena"};
@@ -44,9 +41,14 @@ public class CommentsServlet extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
         String name = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
-
+        HttpSession session = req.getSession();
+        session.setAttribute(COMMENTER_INPUT_NAME, name);
         comments = getCommentsFromSession(req);
-
+        if (comments.getComments().isEmpty()) {
+            session.setAttribute(COMMENTLIST, null);
+        } else {
+            session.setAttribute(COMMENTLIST, comments.getComments());
+        }
         out.append("<h1>Hello " + name + "!</h1>");
 
         if (!comments.getComments().isEmpty()) {
@@ -78,17 +80,18 @@ public class CommentsServlet extends HttpServlet {
 
         out.append("</ul>");
         out.append("</footer>");
+
+        resp.sendRedirect(req.getContextPath() + "/comments.jsp");
     }
 
     /**
      * Handles POST requests coming to /comments.
      * We expect the request to have a request body of plain text data (a new comment).
-     *
+     * <p>
      * After storing the incoming data on Session scope, we redirect the client.
      *
      * @param req the incoming HTTP request
      * @param res the outgoing HTTP response
-     *
      * @throws ServletException
      * @throws IOException
      */
@@ -103,7 +106,8 @@ public class CommentsServlet extends HttpServlet {
         comments.getComments().add(parseBodyAsComment(req));
 
         req.getSession().setAttribute(COMMENTS_SESSION_KEY, this.comments);
-        res.sendRedirect("/servlet-examples/comments");
+        res.sendRedirect(req.getContextPath() + "/comments");
+
     }
 
     /**
