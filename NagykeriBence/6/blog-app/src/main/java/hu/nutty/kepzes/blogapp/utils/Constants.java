@@ -6,11 +6,16 @@ package hu.nutty.kepzes.blogapp.utils;
 public final class Constants {
     private Constants() {
     }
+    public static final String ENCODING = "utf-8";
 
     public static final String NEW_COMMENT_INPUT_NAME = "content";
     public static final String COMMENTER_INPUT_NAME = "name";
     public static final String COMMENTLIST = "commentlist";
     public static final String COMMENTS_SESSION_KEY = "comments";
+
+    public static final String NEW_POST_INPUT_NAME = "message";
+    public static final String POSTER_INPUT_NAME = "name";
     public static final String POST_SESSION_KEY = "posts";
-    public static final String ENCODING = "utf-8";
+    public static final String POSTLIST = "postlist";
+
 }

@@ -1,21 +1,16 @@
 package hu.nutty.kepzes.blogapp.servlet;
 
-import hu.nutty.kepzes.blogapp.beans.BlogPost;
 import hu.nutty.kepzes.blogapp.beans.BlogPostsBean;
-
 import hu.nutty.kepzes.blogapp.utils.ParserUtils;
-import hu.nutty.kepzes.blogapp.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
-import java.util.Properties;
 
 import static hu.nutty.kepzes.blogapp.utils.Constants.*;
 
@@ -38,10 +33,13 @@ public class BlogPostServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding(ENCODING);
 
-        // String name = (req.getParameter(POST_INPUT_NAME) != null ? req.getParameter(POST_INPUT_NAME) : "Anonymous");
+        String name = (req.getParameter(POSTER_INPUT_NAME) != null ? req.getParameter(POSTER_INPUT_NAME) : "Anonymous");
+        posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, POST_SESSION_KEY);
 
-        //comments = getCommentsFromSession(req);
-
+        ServletContext context = req.getServletContext();
+        context.setAttribute(POSTER_INPUT_NAME, name);
+        context.setAttribute(POSTLIST, posts.getPosts());
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 
     /**

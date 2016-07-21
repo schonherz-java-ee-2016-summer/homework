@@ -15,6 +15,10 @@
         <servlet-name>postsJSP</servlet-name>
         <jsp-file>/jsp/posts.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>indexJSP</servlet-name>
+        <jsp-file>/jsp/index.jsp</jsp-file>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>commentsServlet</servlet-name>
@@ -31,5 +35,9 @@
     <servlet-mapping>
         <servlet-name>postsJSP</servlet-name>
         <url-pattern>/posts/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>indexJSP</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

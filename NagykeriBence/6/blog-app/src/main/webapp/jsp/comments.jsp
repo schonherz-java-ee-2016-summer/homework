@@ -28,9 +28,13 @@
     </div>
 </c:forEach>
 <form action='${Constants.COMMENTS_SESSION_KEY}' method='POST'>
-    <input name='${Constants.COMMENTER_INPUT_NAME}' type='hidden'
-           value='${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}'></input>
-    <textarea name='${Constants.NEW_COMMENT_INPUT_NAME}' placeholder='Enter comment here.'></textarea>
+    <div>
+        <input name='${Constants.COMMENTER_INPUT_NAME}'
+               value='${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}'></input>
+    </div>
+    <div>
+        <textarea name='${Constants.NEW_COMMENT_INPUT_NAME}' placeholder='Enter comment here.'></textarea>
+    </div>
     <div>
         <input type='submit' value='Submit'></input>
     </div>

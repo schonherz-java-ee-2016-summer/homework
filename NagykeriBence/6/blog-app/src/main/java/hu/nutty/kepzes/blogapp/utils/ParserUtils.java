@@ -1,9 +1,6 @@
 package hu.nutty.kepzes.blogapp.utils;
 
-import hu.nutty.kepzes.blogapp.beans.BlogPost;
-import hu.nutty.kepzes.blogapp.beans.BlogPostsBean;
-import hu.nutty.kepzes.blogapp.beans.Comment;
-import hu.nutty.kepzes.blogapp.beans.CommentsBean;
+import hu.nutty.kepzes.blogapp.beans.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,8 +76,15 @@ public class ParserUtils {
     public static BlogPost parseBodyAsPost(final HttpServletRequest req) {
         Properties formProperties = RequestUtils.parseFormBody(req);
         BlogPost postFromBody = new BlogPost();
+        Blogger author = new Blogger();
+        author.setFirstName(formProperties.getProperty(POSTER_INPUT_NAME, "Soma"));
+        author.setLastName("asd");
+        author.setAge(18);
 
-        //set...
+        postFromBody.setAuthor(author);
+        postFromBody.setMessage(formProperties.getProperty(NEW_POST_INPUT_NAME, "Soma"));
+        postFromBody.setTitle("soma");
+
         LOG.debug("Got new post: {}.", postFromBody);
 
         return postFromBody;

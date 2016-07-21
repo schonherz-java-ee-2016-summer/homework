@@ -38,11 +38,7 @@ public class CommentsServlet extends HttpServlet {
         ServletContext context = req.getServletContext();
         context.setAttribute(COMMENTER_INPUT_NAME, name);
         comments = (CommentsBean) ParserUtils.getListFromContextByKey(req, COMMENTS_SESSION_KEY);
-        if (comments.getComments().isEmpty()) {
-            context.setAttribute(COMMENTLIST, null);
-        } else {
-            context.setAttribute(COMMENTLIST, comments.getComments());
-        }
+        context.setAttribute(COMMENTLIST, comments.getComments());
 
         resp.sendRedirect(req.getContextPath() + "/comments.jsp");
     }
