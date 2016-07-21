@@ -7,19 +7,20 @@
     <head>
         <title>Blog</title>
         <link rel="stylesheet" href="style.css">
-
     </head>
     <body>
-        <h2 id="welcome">Welcome in this blog!</h2>
-        <div id="left">You can read a post, if you click on that. Or if you want to add a new post, click on the add button.</div>
-        <div id="right"><a href="newPost.jsp">Add a post</a></div>
-        <c:forEach items="${postsList}" var="item">
-            <div class="blogposzt">
-                <p>${item.author}</p>
-                <p>${item.postDate}</p>
-                <p>${item.title}</p>
-                <p>${item.content}</p>
-            </div>
-        </c:forEach>
+        <%@include file="/html/header.html"%>
+        <h2 id="welcome">Welcome on this blog!</h2>
+        <div id="addPost"><a href="newPost.jsp">Add a post</a></div>
+        <div id="posts">
+            <c:forEach items="${postsList}" var="item">
+                <div id="${item.postID}" class="blogposzt">
+                    <div class="author">Author: ${item.author}</div>
+                    <div class="date">${item.postDate}</div>
+                    <div class="title">${item.title}</div>
+                    <div class="postid"><a href="/blog/aPost/${item.postID}?ID=${item.postID}">#${item.postID}</a></div>
+                </div>
+            </c:forEach>
+        </div>
     </body>
 </html>

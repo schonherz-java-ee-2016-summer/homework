@@ -1,31 +1,32 @@
 package hu.schonherz.training.models;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Created by Attila on 2016.07.18..
  */
-public class Blogpost {
+public class Post implements Serializable{
 
-    private int ID;
+    private int postID;
     private String author;
     private String postDate;
     private String title;
     private String content;
-    private List<Integer> comments = null;
+    private List<Comment> comments = new ArrayList<Comment>();
 
-    public Blogpost(){}
+    public Post(){}
 
-    public Blogpost(int ID, String author, String postDate, String title, String content) {
-        this.ID = ID;
+    public Post(int postID, String author, String postDate, String title, String content) {
+        this.postID = postID;
         this.author = author;
         this.postDate = postDate;
         this.title = title;
         this.content = content;
     }
 
-    public int getID() {
-        return ID;
+    public int getPostID() {
+        return postID;
     }
 
     public String getAuthor() {
@@ -44,16 +45,16 @@ public class Blogpost {
         return content;
     }
 
-    public List<Integer> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Integer> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setPostID(int postID) {
+        this.postID = postID;
     }
 
     public void setAuthor(String author) {

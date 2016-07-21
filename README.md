@@ -5,7 +5,7 @@ This repository contains homework descriptions stated by the trainers and the so
 6th Homework - Servlet API & JSPs
 ---
 **[Description](https://github.com/schonherz-java-ee-2016-summer/homework/blob/master/6.HomeWork.md)**  
-**Deadline**: July 23, Saturday, 23:00
+**Deadline**: July 24, Sunday, 23:00
 
 5th Homework - Maven
 ---
