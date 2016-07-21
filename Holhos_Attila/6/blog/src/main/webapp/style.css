@@ -1,19 +1,59 @@
 body{
-    background-color: #f7f7f7;
+    background-color: #caf2ff;
+}
+
+#header{
+    font-size: 30px;
+    border: solid #0078ff 2px;
+    background-color: #7adeff;
+    color: #002855;
+    text-indent: 80px;
+    margin-bottom: 40px;
 }
 
 #welcome{
     text-align: center;
 }
 
-#left{
-    float: left;
-    width: 800px;
+#addPost{
+    text-align: right;
 }
 
-#right{
+#posts{
+    width: 800px;
+    margin: auto;
+}
+
+
+.blogposzt{
+    margin: 10px 10px 10px 10px;
+    border: 2px solid #73AD23;
+    witdh: 80%;
+    text-align: center;
+}
+
+.author{
+    float: left;
+    width: 50%;
+    background-color: #84beff;
+    height: 150%;
+}
+
+.date{
+    float: left;
+    height: 150%;
+    width: 50%;
+    background-color: #84beff;
+}
+
+.title{
     clear: left;
+    height: 50px;
+}
+
+.postid{
     text-align: right;
+    background-color: #84beff;
 }
 
 #content{
@@ -21,9 +61,9 @@ body{
     height: 60px;
 }
 
-.blogposzt{
-    margin: 10px 10px 10px 10px;
-    border: 2px solid #73AD23;
-    padding: 5px;
-    witdh: 80%;
+#inputTable{
+    text-align: center;
+    margin: auto;
+    border: solid 1px blue;
 }
+

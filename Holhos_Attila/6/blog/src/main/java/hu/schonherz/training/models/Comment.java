@@ -1,27 +1,24 @@
 package hu.schonherz.training.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Attila on 2016.07.18..
  */
-public class Comment {
+public class Comment implements Serializable {
 
-    private int ID;
-    private Date commentDate;
+    private int commentID;
+    private String commentDate;
     private String content;
 
-    public Comment(int ID, Date commentDate, String content) {
-        this.ID = ID;
-        this.commentDate = commentDate;
-        this.content = content;
+    public Comment(){}
+
+    public int getCommentID() {
+        return commentID;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public Date getCommentDate() {
+    public String getCommentDate() {
         return commentDate;
     }
 
@@ -29,4 +26,15 @@ public class Comment {
         return content;
     }
 
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
+    }
+
+    public void setCommentDate(String commentDate) {
+        this.commentDate = commentDate;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

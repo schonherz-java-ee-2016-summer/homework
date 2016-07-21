@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.schonherz.training</groupId>
-    <artifactId>Blog</artifactId>
+    <artifactId>blog</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
     <name>Blog Maven Webapp</name>
@@ -86,9 +86,12 @@
                 <version>2.17</version>
                 <executions>
                     <execution>
+                        <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
                             <configLocation>checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
                         </configuration>
                         <goals>
                             <goal>check</goal>
