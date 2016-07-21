@@ -11,6 +11,6 @@ public final class Constants {
     public static final String COMMENTER_INPUT_NAME = "name";
     public static final String COMMENTLIST = "commentlist";
     public static final String COMMENTS_SESSION_KEY = "comments";
+    public static final String POST_SESSION_KEY = "posts";
     public static final String ENCODING = "utf-8";
-
 }

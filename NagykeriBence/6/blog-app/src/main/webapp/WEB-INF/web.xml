@@ -4,8 +4,16 @@
         <servlet-class>hu.nutty.kepzes.blogapp.servlet.CommentsServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>postsServlet</servlet-name>
+        <servlet-class>hu.nutty.kepzes.blogapp.servlet.BlogPostServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>commentsJSP</servlet-name>
         <jsp-file>/jsp/comments.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>postsJSP</servlet-name>
+        <jsp-file>/jsp/posts.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
@@ -13,7 +21,15 @@
         <url-pattern>/comments</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>postsServlet</servlet-name>
+        <url-pattern>/posts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>commentsJSP</servlet-name>
         <url-pattern>/comments.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>postsJSP</servlet-name>
+        <url-pattern>/posts/*</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -9,6 +9,8 @@ import java.net.URLDecoder;
 import java.util.Properties;
 import java.util.Scanner;
 
+import static hu.nutty.kepzes.blogapp.utils.Constants.*;
+
 /**
  * Utility methods for dealing with HTTP requests.
  */
@@ -21,7 +23,6 @@ public final class RequestUtils {
      * for easier data manipulation.
      *
      * @param req
-     *
      * @return an instance of Java Properties, with entries populated from the request body.
      * If the request's content type is not form data or reading data fails, the returned instance will be empty.
      */
@@ -37,8 +38,11 @@ public final class RequestUtils {
             sc.useDelimiter("=|&");
 
             while (sc.hasNext()) {
-                String key = URLDecoder.decode(sc.next(), "utf-8");
-                String value = URLDecoder.decode(sc.next(), "utf-8");
+                String key = URLDecoder.decode(sc.next(), ENCODING);
+                String value = "";
+                if (sc.hasNext()) {
+                    value = URLDecoder.decode(sc.next(), ENCODING);
+                }
                 properties.put(key, value);
             }
         } catch (final IOException e) {
@@ -48,5 +52,6 @@ public final class RequestUtils {
         return properties;
     }
 
-    private RequestUtils() {}
+    private RequestUtils() {
+    }
 }

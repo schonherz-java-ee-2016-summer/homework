@@ -1,9 +1,7 @@
 package hu.nutty.kepzes.blogapp.servlet;
 
-import hu.nutty.kepzes.blogapp.beans.Comment;
 import hu.nutty.kepzes.blogapp.beans.CommentsBean;
-import hu.nutty.kepzes.blogapp.utils.Constants;
-import hu.nutty.kepzes.blogapp.utils.RequestUtils;
+import hu.nutty.kepzes.blogapp.utils.ParserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Properties;
 
 import static hu.nutty.kepzes.blogapp.utils.Constants.*;
 
@@ -39,47 +35,15 @@ public class CommentsServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding(ENCODING);
 
-        PrintWriter out = resp.getWriter();
         String name = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
         HttpSession session = req.getSession();
         session.setAttribute(COMMENTER_INPUT_NAME, name);
-        comments = getCommentsFromSession(req);
+        comments = (CommentsBean) ParserUtils.getListFromSessionByKey(req, COMMENTS_SESSION_KEY);
         if (comments.getComments().isEmpty()) {
             session.setAttribute(COMMENTLIST, null);
         } else {
             session.setAttribute(COMMENTLIST, comments.getComments());
         }
-        out.append("<h1>Hello " + name + "!</h1>");
-
-        if (!comments.getComments().isEmpty()) {
-            for (Comment comment : comments.getComments()) {
-                out.append("<div style='padding: 10px;margin-bottom: 20px;border: solid 1px;'>");
-                out.append("<strong>").append(comment.getCommenter()).append("</strong>").append("<br>");
-                out.append("<span>").append(comment.getContent()).append("</span>");
-                out.append("</div>");
-            }
-        } else {
-            out.append("<div>There is no comment yet</div>");
-        }
-
-        out.append("<form action='comments' method='POST'>");
-        out.append("<input name='" + COMMENTER_INPUT_NAME + "' type='hidden' value='" + name + "'></input>");
-        out.append("<textarea name='" + NEW_COMMENT_INPUT_NAME + "' placeholder='Enter comment here, " + name + "!'></textarea>");
-        out.append("<div>");
-        out.append("<input type='submit' value='Submit'></input>");
-        out.append("</div>");
-        out.append("</form>");
-
-        out.append("<footer>");
-        out.append("<h2>Contributors:</h2>");
-        out.append("<ul>");
-
-        for (String contributor : contributors) {
-            out.append("<li>" + contributor + "</li>");
-        }
-
-        out.append("</ul>");
-        out.append("</footer>");
 
         resp.sendRedirect(req.getContextPath() + "/comments.jsp");
     }
@@ -102,8 +66,8 @@ public class CommentsServlet extends HttpServlet {
         req.setCharacterEncoding(ENCODING);
         res.setCharacterEncoding(ENCODING);
 
-        comments = getCommentsFromSession(req);
-        comments.getComments().add(parseBodyAsComment(req));
+        comments = (CommentsBean) ParserUtils.getListFromSessionByKey(req, COMMENTS_SESSION_KEY);
+        comments.getComments().add(ParserUtils.parseBodyAsComment(req));
 
         req.getSession().setAttribute(COMMENTS_SESSION_KEY, this.comments);
         res.sendRedirect(req.getContextPath() + "/comments");
@@ -116,6 +80,7 @@ public class CommentsServlet extends HttpServlet {
      * @param req the request which is part of the Session.
      * @return an instance of {@code CommentsBean}.
      */
+    /*
     private CommentsBean getCommentsFromSession(final HttpServletRequest req) {
         HttpSession session = req.getSession(true);
 
@@ -137,5 +102,5 @@ public class CommentsServlet extends HttpServlet {
 
         return commentFromBody;
     }
-
+*/
 }
