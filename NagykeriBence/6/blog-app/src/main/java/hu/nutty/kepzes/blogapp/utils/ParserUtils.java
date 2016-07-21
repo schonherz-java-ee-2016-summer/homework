@@ -7,6 +7,7 @@ import hu.nutty.kepzes.blogapp.beans.CommentsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,7 +31,7 @@ public class ParserUtils {
      * @return an instance of {@code CommentsBean}.
      */
 
-    public static Object getListFromSessionByKey(final HttpServletRequest req, String key) {
+   /* public static Object getListFromSessionByKey(final HttpServletRequest req, String key) {
         HttpSession session = req.getSession(true);
 
         if (session.getAttribute(key) == null) {
@@ -42,6 +43,25 @@ public class ParserUtils {
             }
         }
         return session.getAttribute(key);
+    }*/
+    /**
+     * Returns with an instance of {@code Object}, stored in the ServletContext.
+     *
+     * @param req the request which is part of the Context.
+     * @return an instance of {@code Object}.
+     */
+    public static Object getListFromContextByKey(final HttpServletRequest req, String key) {
+        ServletContext context = req.getServletContext();
+
+        if (context.getAttribute(key) == null) {
+            if (COMMENTS_SESSION_KEY.equals(key)) {
+                context.setAttribute(key, new CommentsBean());
+            }
+            if (POST_SESSION_KEY.equals(key)) {
+                context.setAttribute(key, new BlogPostsBean());
+            }
+        }
+        return context.getAttribute(key);
     }
 
     public static Comment parseBodyAsComment(final HttpServletRequest req) {

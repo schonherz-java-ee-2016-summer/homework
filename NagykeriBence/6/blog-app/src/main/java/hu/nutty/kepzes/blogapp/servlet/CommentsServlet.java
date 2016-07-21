@@ -5,6 +5,7 @@ import hu.nutty.kepzes.blogapp.utils.ParserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +25,7 @@ import static hu.nutty.kepzes.blogapp.utils.Constants.*;
  */
 public class CommentsServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(CommentsServlet.class);
-
     private CommentsBean comments;
-    private String[] contributors = {"Robert Discoteque", "John Cena"};
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
@@ -36,13 +35,13 @@ public class CommentsServlet extends HttpServlet {
         resp.setCharacterEncoding(ENCODING);
 
         String name = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
-        HttpSession session = req.getSession();
-        session.setAttribute(COMMENTER_INPUT_NAME, name);
-        comments = (CommentsBean) ParserUtils.getListFromSessionByKey(req, COMMENTS_SESSION_KEY);
+        ServletContext context = req.getServletContext();
+        context.setAttribute(COMMENTER_INPUT_NAME, name);
+        comments = (CommentsBean) ParserUtils.getListFromContextByKey(req, COMMENTS_SESSION_KEY);
         if (comments.getComments().isEmpty()) {
-            session.setAttribute(COMMENTLIST, null);
+            context.setAttribute(COMMENTLIST, null);
         } else {
-            session.setAttribute(COMMENTLIST, comments.getComments());
+            context.setAttribute(COMMENTLIST, comments.getComments());
         }
 
         resp.sendRedirect(req.getContextPath() + "/comments.jsp");
@@ -66,41 +65,12 @@ public class CommentsServlet extends HttpServlet {
         req.setCharacterEncoding(ENCODING);
         res.setCharacterEncoding(ENCODING);
 
-        comments = (CommentsBean) ParserUtils.getListFromSessionByKey(req, COMMENTS_SESSION_KEY);
+        comments = (CommentsBean) ParserUtils.getListFromContextByKey(req, COMMENTS_SESSION_KEY);
         comments.getComments().add(ParserUtils.parseBodyAsComment(req));
 
-        req.getSession().setAttribute(COMMENTS_SESSION_KEY, this.comments);
+        req.getServletContext().setAttribute(COMMENTS_SESSION_KEY, this.comments);
         res.sendRedirect(req.getContextPath() + "/comments");
 
     }
 
-    /**
-     * Returns with an instance of {@code CommentsBean}, stored in the Session.
-     *
-     * @param req the request which is part of the Session.
-     * @return an instance of {@code CommentsBean}.
-     */
-    /*
-    private CommentsBean getCommentsFromSession(final HttpServletRequest req) {
-        HttpSession session = req.getSession(true);
-
-        if (session.getAttribute(COMMENTS_SESSION_KEY) == null) {
-            session.setAttribute(COMMENTS_SESSION_KEY, new CommentsBean());
-        }
-
-        return (CommentsBean) session.getAttribute(COMMENTS_SESSION_KEY);
-    }
-
-    private Comment parseBodyAsComment(final HttpServletRequest req) {
-        Properties formProperties = RequestUtils.parseFormBody(req);
-        Comment commentFromBody = new Comment();
-
-        commentFromBody.setCommenter(formProperties.getProperty(COMMENTER_INPUT_NAME, "Anonymous"));
-        commentFromBody.setContent(formProperties.getProperty(NEW_COMMENT_INPUT_NAME, ""));
-
-        LOG.debug("Got new comment: {}.", commentFromBody);
-
-        return commentFromBody;
-    }
-*/
 }

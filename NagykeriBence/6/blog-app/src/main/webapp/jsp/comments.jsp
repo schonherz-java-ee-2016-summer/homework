@@ -11,16 +11,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome ${sessionScope.get(Constants.COMMENTER_INPUT_NAME)}</title>
+    <title>Welcome ${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-<h1>Welcome ${sessionScope.get(Constants.COMMENTER_INPUT_NAME)}</h1>
-<c:if test="${empty sessionScope.get(Constants.COMMENTLIST)}">
+<h1>Welcome ${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}</h1>
+<c:if test="${empty applicationScope.get(Constants.COMMENTLIST)}">
     <span>There are no comments yet.</span>
 </c:if>
 
-<c:forEach items="${sessionScope.get(Constants.COMMENTLIST)}" var="item">
+<c:forEach items="${applicationScope.get(Constants.COMMENTLIST)}" var="item">
     <div class="commentBox">
         <span>${item.getCommenter()}</span>
         <br/>
@@ -29,7 +29,7 @@
 </c:forEach>
 <form action='${Constants.COMMENTS_SESSION_KEY}' method='POST'>
     <input name='${Constants.COMMENTER_INPUT_NAME}' type='hidden'
-           value='${sessionScope.get(Constants.COMMENTER_INPUT_NAME)}'></input>
+           value='${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}'></input>
     <textarea name='${Constants.NEW_COMMENT_INPUT_NAME}' placeholder='Enter comment here.'></textarea>
     <div>
         <input type='submit' value='Submit'></input>

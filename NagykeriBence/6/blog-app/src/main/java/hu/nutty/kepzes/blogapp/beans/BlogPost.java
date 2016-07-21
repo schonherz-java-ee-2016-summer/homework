@@ -80,16 +80,25 @@ public class BlogPost implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         BlogPost blogPost = (BlogPost) o;
 
-        if (!author.equals(blogPost.author)) return false;
-        if (!time.equals(blogPost.time)) return false;
-        if (!title.equals(blogPost.title)) return false;
+        if (!author.equals(blogPost.author)) {
+            return false;
+        }
+        if (!time.equals(blogPost.time)) {
+            return false;
+        }
+        if (!title.equals(blogPost.title)) {
+            return false;
+        }
         return message.equals(blogPost.message);
-
     }
 
     @Override
