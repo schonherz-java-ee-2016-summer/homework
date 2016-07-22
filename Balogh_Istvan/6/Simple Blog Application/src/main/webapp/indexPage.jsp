@@ -11,9 +11,11 @@
         </form>
         <c:forEach var="post" items="${posts}">
             <div>
-                <p>${post.title}</p>
+                <hr>
+                <p>${post.dateTime}</p>
                 <p>${post.author}</p>
                 <p>${post.content}</p>
+                <button type="button">Show this post</button>
             </div>
         </c:forEach>
     </body>

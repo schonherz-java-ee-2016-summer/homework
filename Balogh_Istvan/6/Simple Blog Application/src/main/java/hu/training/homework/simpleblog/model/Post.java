@@ -18,7 +18,7 @@ public class Post implements Serializable {
     public Post() {
         this.id = UUID.randomUUID().toString();
         this.author = "";
-        this.dateTime = LocalDateTime.MIN;
+        this.dateTime = LocalDateTime.now();
         this.title = "";
         this.content = "";
         this.comments = new ArrayList<Comment>();
@@ -104,12 +104,9 @@ public class Post implements Serializable {
     @Override
     public String toString() {
         return "Post{" +
-                "id='" + id + '\'' +
-                ", author='" + author + '\'' +
-                ", dateTime=" + dateTime +
+                "author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", comments=" + comments +
                 '}';
     }
 }

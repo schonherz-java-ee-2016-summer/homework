@@ -10,10 +10,9 @@
     <h1 align="center">Simple Blog Webapp</h1>
     <div align="center">
         <form method="post" action="/index-servlet">
-            <label for="name">Your name</label>
-            <input id="name" name="name" type="text"><br>
-            <textarea id="textarea" rows="10" cols="50" placeholder="Enter your blogpost here..."></textarea><br>
-            <button id="submitNewPost" name="submitNewPost" type="submit">Submit post</button><br>
+            <input name="author" type="text"><br>
+            <textarea name="content" rows="10" cols="50" placeholder="Enter your blogpost here..."></textarea><br>
+            <button name="submitNewPost" type="submit">Submit post</button><br>
         </form>
     </div>
 </body>
