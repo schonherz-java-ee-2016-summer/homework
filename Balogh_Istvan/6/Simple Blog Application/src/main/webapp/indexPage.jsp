@@ -15,7 +15,7 @@
                 <p>${post.dateTime}</p>
                 <p>${post.author}</p>
                 <p>${post.content}</p>
-                <button type="button">Show this post</button>
+                <button>Show this post</button>
             </div>
         </c:forEach>
     </body>

@@ -1,7 +1,6 @@
 package hu.training.homework.simpleblog.servlet;
 
 import hu.training.homework.simpleblog.model.Post;
-import hu.training.homework.simpleblog.util.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 @WebServlet(name = "index-servlet", urlPatterns = "/index-servlet")
 public class IndexServlet extends HttpServlet {
@@ -30,23 +28,12 @@ public class IndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //req.setAttribute("posts", posts);
 
-        Post newPost = parseBodyAsPost(req);
+        //Post newPost = parseBodyAsPost(req);
+        Post newPost = new Post(req.getParameter(COMMENTER_INPUT_NAME), "Title of post", req.getParameter(POST_CONTENT_NAME));
         posts.add(newPost);
 
         req.getSession().setAttribute(POSTS_ATTRIBUTE_NAME, posts);
 
         resp.sendRedirect("/index");
-    }
-
-    private Post parseBodyAsPost(final HttpServletRequest req) {
-        Properties properties = RequestUtils.parseFormBody(req);
-        Post postFromBody = new Post();
-
-        postFromBody.setAuthor(properties.getProperty(COMMENTER_INPUT_NAME, "Anonymous"));
-        postFromBody.setContent(properties.getProperty(POST_CONTENT_NAME, ""));
-
-        LOGGER.debug("New post: {}.", postFromBody);
-
-        return postFromBody;
     }
 }
