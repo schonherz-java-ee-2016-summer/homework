@@ -1,0 +1,25 @@
+<web-app>
+
+    <display-name>Simple Blog Webapp</display-name>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/indexPage.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>new</servlet-name>
+        <jsp-file>/newBlogPost.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>new</servlet-name>
+        <url-pattern>/post/new</url-pattern>
+    </servlet-mapping>
+
+</web-app>
