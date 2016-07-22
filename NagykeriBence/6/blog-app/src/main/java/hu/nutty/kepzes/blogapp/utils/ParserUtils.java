@@ -54,7 +54,7 @@ public class ParserUtils {
             if (COMMENTS_SESSION_KEY.equals(key)) {
                 context.setAttribute(key, new CommentsBean());
             }
-            if (POST_SESSION_KEY.equals(key)) {
+            if (INDEX_SESSION_KEY.equals(key)) {
                 context.setAttribute(key, new BlogPostsBean());
             }
         }

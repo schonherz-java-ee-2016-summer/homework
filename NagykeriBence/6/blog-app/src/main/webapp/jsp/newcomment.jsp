@@ -11,26 +11,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome ${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
     <body>
-        <h1>IT WORKS!</h1>
-        <a href="${pageContext.request.contextPath}/newcomment">New comment</a>
-        <!--
         <div class="back">
-            <h1>Welcome ${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}</h1>
-            <c:if test="${empty applicationScope.get(Constants.COMMENTLIST)}">
-                <span>There are no comments yet.</span>
-            </c:if>
-
-            <c:forEach items="${applicationScope.get(Constants.COMMENTLIST)}" var="item">
-                <div class="box">
-                    <span>${item.getCommenter()}</span>
-                    <br/>
-                    <span>${item.getContent()}</span>
-                </div>
-            </c:forEach>
+            <h1>New Comment!</h1>
             <form action='${Constants.COMMENTS_SESSION_KEY}' method='POST'>
                 <div>
                     <input class="inputText" name='${Constants.COMMENTER_INPUT_NAME}'
@@ -45,6 +30,5 @@
                 </div>
             </form>
         </div>
-        -->
     </body>
 </html>

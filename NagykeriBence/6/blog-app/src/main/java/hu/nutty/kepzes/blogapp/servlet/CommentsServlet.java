@@ -1,5 +1,7 @@
 package hu.nutty.kepzes.blogapp.servlet;
 
+import hu.nutty.kepzes.blogapp.beans.BlogPost;
+import hu.nutty.kepzes.blogapp.beans.Comment;
 import hu.nutty.kepzes.blogapp.beans.CommentsBean;
 import hu.nutty.kepzes.blogapp.utils.ParserUtils;
 import org.slf4j.Logger;
@@ -25,23 +27,6 @@ import static hu.nutty.kepzes.blogapp.utils.Constants.*;
  */
 public class CommentsServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(CommentsServlet.class);
-    private CommentsBean comments;
-
-    @Override
-    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("Handling GET request to /comments...");
-
-        resp.setHeader("Content-Type", "text/html; charset=utf-8");
-        resp.setCharacterEncoding(ENCODING);
-
-        String name = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
-        ServletContext context = req.getServletContext();
-        context.setAttribute(COMMENTER_INPUT_NAME, name);
-        comments = (CommentsBean) ParserUtils.getListFromContextByKey(req, COMMENTS_SESSION_KEY);
-        context.setAttribute(COMMENTLIST, comments.getComments());
-
-        resp.sendRedirect(req.getContextPath() + "/comments.jsp");
-    }
 
     /**
      * Handles POST requests coming to /comments.
@@ -61,12 +46,15 @@ public class CommentsServlet extends HttpServlet {
         req.setCharacterEncoding(ENCODING);
         res.setCharacterEncoding(ENCODING);
 
-        comments = (CommentsBean) ParserUtils.getListFromContextByKey(req, COMMENTS_SESSION_KEY);
-        comments.getComments().add(ParserUtils.parseBodyAsComment(req));
-
-        req.getServletContext().setAttribute(COMMENTS_SESSION_KEY, this.comments);
-        res.sendRedirect(req.getContextPath() + "/comments");
-
+        Comment newcomment = ParserUtils.parseBodyAsComment(req);
+        ServletContext context = req.getServletContext();
+        BlogPost post = (BlogPost) context.getAttribute(SELECTED_POST);
+        if (post != null) {
+            post.getComments().getComments().add(newcomment);
+            res.sendRedirect(req.getContextPath() + "/post/" + post.getPostID());
+        } else {
+            res.sendRedirect(req.getContextPath() + "/index");
+        }
     }
 
 }

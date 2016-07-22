@@ -32,39 +32,16 @@ public class BlogPostServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding(ENCODING);
-
-        String name = (req.getParameter(POSTER_INPUT_NAME) != null ? req.getParameter(POSTER_INPUT_NAME) : "Anonymous");
-        posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, POST_SESSION_KEY);
-
         ServletContext context = req.getServletContext();
-        context.setAttribute(POSTER_INPUT_NAME, name);
-        context.setAttribute(POSTLIST, posts.getPosts());
-        resp.sendRedirect(req.getContextPath() + "/");
-    }
+        String[] qs = req.getQueryString().split("=");
+        int id = 0;
+        if ("p".equals(qs[0])) {
+            id = Integer.parseInt(qs[1]);
+        }
+        posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, INDEX_SESSION_KEY);
+        context.setAttribute(SELECTED_POST, posts.getPosts().get(id - 1));
+        resp.sendRedirect(req.getContextPath() + "/post/" + id);
 
-    /**
-     * Handles POST requests coming to /comments.
-     * We expect the request to have a request body of plain text data (a new comment).
-     * <p>
-     * After storing the incoming data on Session scope, we redirect the client.
-     *
-     * @param req the incoming HTTP request
-     * @param res the outgoing HTTP response
-     * @throws ServletException
-     * @throws IOException
-     */
-    @Override
-    protected void doPost(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
-        LOG.debug("Handling POST request to /posts...");
-
-        req.setCharacterEncoding(ENCODING);
-        res.setCharacterEncoding(ENCODING);
-
-        posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, POST_SESSION_KEY);
-        posts.getPosts().add(ParserUtils.parseBodyAsPost(req));
-
-        req.getSession().setAttribute(POST_SESSION_KEY, this.posts);
-        res.sendRedirect(req.getContextPath() + "/posts");
     }
 
 }
