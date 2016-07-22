@@ -6,23 +6,23 @@
          id="WebApp_ID" version="3.0">
 
     <servlet>
-        <servlet-name>indexBlog</servlet-name>
+        <servlet-name>index</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>indexBlog</servlet-name>
-        <url-pattern>/indexBlog</url-pattern>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>aPost</servlet-name>
-        <servlet-class>hu.schonherz.training.servlets.APost</servlet-class>
+        <servlet-name>Post</servlet-name>
+        <servlet-class>hu.schonherz.training.servlets.ViewSinglePost</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>aPost</servlet-name>
-        <url-pattern>/aPost/*</url-pattern>
+        <servlet-name>Post</servlet-name>
+        <url-pattern>/Post/*</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -46,33 +46,23 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>addPost</servlet-name>
-        <servlet-class>hu.schonherz.training.servlets.AddPost</servlet-class>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>hu.schonherz.training.servlets.CommentsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>addPost</servlet-name>
-        <url-pattern>/addPost</url-pattern>
+        <servlet-name>CommentServlet</servlet-name>
+        <url-pattern>/CommentServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>addComment</servlet-name>
-        <servlet-class>hu.schonherz.training.servlets.AddComment</servlet-class>
+        <servlet-name>BlogPostServlet</servlet-name>
+        <servlet-class>hu.schonherz.training.servlets.BlogPostServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>addComment</servlet-name>
-        <url-pattern>/addComment</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>index</servlet-name>
-        <servlet-class>hu.schonherz.training.servlets.Index</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <servlet-name>BlogPostServlet</servlet-name>
+        <url-pattern>/BlogPostServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

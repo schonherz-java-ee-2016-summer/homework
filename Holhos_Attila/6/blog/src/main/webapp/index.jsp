@@ -18,7 +18,7 @@
                     <div class="author">Author: ${item.author}</div>
                     <div class="date">${item.postDate}</div>
                     <div class="title">${item.title}</div>
-                    <div class="postid"><a href="/blog/aPost/${item.postID}?ID=${item.postID}">#${item.postID}</a></div>
+                    <div class="postid"><a href="/blog/Post/${item.postID}?ID=${item.postID}">#${item.postID}</a></div>
                 </div>
             </c:forEach>
         </div>

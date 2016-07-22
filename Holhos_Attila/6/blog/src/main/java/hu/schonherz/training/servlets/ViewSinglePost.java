@@ -2,6 +2,7 @@ package hu.schonherz.training.servlets;
 
 import hu.schonherz.training.models.Comment;
 import hu.schonherz.training.models.Post;
+import hu.schonherz.training.models.PostsList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,27 +14,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static hu.schonherz.training.models.PostsList.getPostsList;
-
 /**
  * Created by Attila on 2016.07.19..
  */
-public class APost extends HttpServlet{
+public class ViewSinglePost extends HttpServlet{
 
-    private static Logger LOGGER = LoggerFactory.getLogger(APost.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ViewSinglePost.class);
+    private PostsList posts;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServletContext context = getServletContext();
+        if (context.getAttribute("posts") == null) {
+            context.setAttribute("posts", new PostsList());
+        }
+        posts = (PostsList) context.getAttribute("posts");
+
         Integer postID = Integer.parseInt(req.getParameter("ID"));
-        List<Post> posts = getPostsList();
-        Post post = posts.get(postID);
+        Post post = posts.getPost(postID);
         List<Comment> commentList = post.getComments();
         LOGGER.info("Somebody view post #" + (postID) + "!");
-        ServletContext context = getServletContext();
-        context.setAttribute("post", post);
-        context.setAttribute("comments", commentList);
-        context.setAttribute("postID", postID);
-        resp.sendRedirect("/blog/viewPost");
-    }
 
+        context.setAttribute("post", post);
+        context.setAttribute("commentsList", commentList);
+        req.getRequestDispatcher("/viewPost").forward(req, resp);
+
+    }
 }

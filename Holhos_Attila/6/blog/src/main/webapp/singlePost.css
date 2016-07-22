@@ -32,6 +32,11 @@ body{
     width: 70%;
 }
 
+#nocomment{
+    margin: auto;
+    text-align: center;
+}
+
 .comment{
     margin-top: 20px;
     border: blue solid 1px;

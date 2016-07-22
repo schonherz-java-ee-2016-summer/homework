@@ -5,11 +5,11 @@
 <head>
     <title>Add new post</title>
     <link rel="stylesheet" href="style.css">
-
+    <script type="text/javascript" src="javascript.js"></script>
 </head>
     <body>
     <%@include file="/html/header.html"%>
-    <form method="post" action="/blog/addPost">
+    <form id="addPost" method="post" action="/blog/BlogPostServlet"  onsubmit="return validatePost()">
         <table id="inputTable">
             <tr>
                 <td colspan="2"><h2>Add a new post!</h2></td>
@@ -23,7 +23,7 @@
                 <td><input id="title" name="title" type="text"></td>
             </tr>
             <tr>
-                <td><label for="Content">Content:</label></td>
+                <td><label for="content">Content:</label></td>
                 <td><input id="content" name="content" type="text" rows="5"></td>
             </tr>
             <tr>
