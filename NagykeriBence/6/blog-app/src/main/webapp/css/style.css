@@ -73,12 +73,13 @@ body {
 }
 
 .inputText {
+    width: 250px;
     display: inline-block;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    margin: 20px;
-    padding: 10px 20px;
+    margin: 10px;
+    padding: 5px 10px;
     border: 1px solid #b7b7b7;
     -webkit-border-radius: 8px;
     border-radius: 8px;
@@ -98,7 +99,7 @@ body {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    min-width: 200px;
+    min-width: 500px;
     min-height: 200px;
     margin: 20px;
     padding: 10px;
@@ -151,4 +152,8 @@ body {
     transform: none;
     -webkit-transform-origin: 50% 50% 0;
     transform-origin: 50% 50% 0;
+}
+
+#dialog {
+    display: none;
 }

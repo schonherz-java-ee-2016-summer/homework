@@ -6,15 +6,17 @@ package hu.nutty.kepzes.blogapp.beans;
 public class Blogger {
     private String firstName;
     private String lastName;
+    private String nickName;
     private int age;
 
     public Blogger() {
     }
 
-    public Blogger(String firstName, String lastName, int age) {
+    public Blogger(String firstName, String lastName, String nickName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.nickName = nickName;
     }
 
     public String getFirstName() {
@@ -39,5 +41,13 @@ public class Blogger {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }

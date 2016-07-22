@@ -11,40 +11,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome ${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}</title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <title>${applicationScope.get(Constants.SELECTED_POST).getAuthor().getNickName()}, ${applicationScope.get(Constants.SELECTED_POST).getTitle()}
+            - Fullos Blog Post.</title>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     </head>
     <body>
-        <h1>IT WORKS!</h1>
-        <a href="${pageContext.request.contextPath}/newcomment">New comment</a>
-        <!--
         <div class="back">
-            <h1>Welcome ${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}</h1>
-            <c:if test="${empty applicationScope.get(Constants.COMMENTLIST)}">
+            <div>
+                <a href="${pageContext.request.contextPath}/"><img
+                        src="${pageContext.request.contextPath}/images/fullosblog.png" alt="Fullos Blog"
+                        title="Fullos Blog"></a>
+            </div>
+            <div class="box">
+                <div class="postHeader">
+                    <span>${applicationScope.get(Constants.SELECTED_POST).getPostID()}</span>
+                    <span>${applicationScope.get(Constants.SELECTED_POST).getAuthor().getNickName()}</span>
+                    <span>${applicationScope.get(Constants.SELECTED_POST).getTitle()}</span>
+                </div>
+                <div class="postContent">
+                    <span>${item.getMessage()}</span>
+                </div>
+            </div>
+            <c:if test="${empty applicationScope.get(Constants.SELECTED_POST).getComments().getComments()}">
                 <span>There are no comments yet.</span>
             </c:if>
-
-            <c:forEach items="${applicationScope.get(Constants.COMMENTLIST)}" var="item">
+            <c:forEach items="${applicationScope.get(Constants.SELECTED_POST).getComments().getComments()}"
+                       var="item">
                 <div class="box">
-                    <span>${item.getCommenter()}</span>
-                    <br/>
-                    <span>${item.getContent()}</span>
+                    <div class="postHeader">
+                        <span>#${item.getCommentID()}</span>
+                        <span>${item.getCommenter()}</span>
+                    </div>
+                    <div class="postContent">
+                        <span>${item.getContent()}</span>
+                    </div>
                 </div>
             </c:forEach>
-            <form action='${Constants.COMMENTS_SESSION_KEY}' method='POST'>
-                <div>
-                    <input class="inputText" name='${Constants.COMMENTER_INPUT_NAME}'
-                           value='${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}'></input>
-                </div>
-                <div>
-                    <textarea class="inputPost" name='${Constants.NEW_COMMENT_INPUT_NAME}'
-                              placeholder='Enter comment here.'></textarea>
-                </div>
-                <div>
-                    <input class="button" type='submit' value='Submit'></input>
-                </div>
             </form>
+            <div>
+                <a href="${pageContext.request.contextPath}/newcomment">New comment</a>
+            </div>
         </div>
-        -->
+
     </body>
 </html>

@@ -41,6 +41,7 @@ public class ParserUtils {
         }
         return session.getAttribute(key);
     }*/
+
     /**
      * Returns with an instance of {@code Object}, stored in the ServletContext.
      *
@@ -77,13 +78,22 @@ public class ParserUtils {
         Properties formProperties = RequestUtils.parseFormBody(req);
         BlogPost postFromBody = new BlogPost();
         Blogger author = new Blogger();
-        author.setFirstName(formProperties.getProperty(POSTER_INPUT_NAME, "Soma"));
-        author.setLastName("asd");
-        author.setAge(18);
+        author.setFirstName(formProperties.getProperty(POSTER_INPUT_FIRST_NAME));
+        author.setLastName(formProperties.getProperty(POSTER_INPUT_LAST_NAME));
+        int age;
+        try {
+            age = Integer.parseInt(formProperties.getProperty(POSTER_INPUT_AGE));
+        } catch (NumberFormatException e) {
+            age = 0;
+            LOG.error("Invalid age, age has been set to 0.", e);
+        }
+        author.setAge(age);
+
+        author.setNickName(formProperties.getProperty(POSTER_INPUT_NICKNAME));
 
         postFromBody.setAuthor(author);
-        postFromBody.setMessage(formProperties.getProperty(NEW_POST_INPUT_NAME, "Soma"));
-        postFromBody.setTitle("soma");
+        postFromBody.setMessage(formProperties.getProperty(NEW_POST_INPUT_NAME));
+        postFromBody.setTitle(formProperties.getProperty(POST_TITLE));
 
         LOG.debug("Got new post: {}.", postFromBody);
 

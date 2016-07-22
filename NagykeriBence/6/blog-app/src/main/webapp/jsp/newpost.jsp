@@ -5,18 +5,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <title>Fullos Blog - New Blog Post</title>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/notempty.js"></script>
     </head>
     <body>
         <div class="back">
-            <form action='${pageContext.request.contextPath}/${Constants.INDEX_SESSION_KEY}' method='POST'>
+            <div>
+                <a href="${pageContext.request.contextPath}/"><img
+                        src="${pageContext.request.contextPath}/images/fullosblog.png" alt="Fullos Blog"
+                        title="Fullos Blog"></a>
+            </div>
+            <form action='${pageContext.request.contextPath}/${Constants.INDEX_SESSION_KEY}' method='POST'
+                  onsubmit="return displayDialogIfEmpty('#first-name','#last-name', '#nickname', '#age', '#title', '#message')">
                 <div>
-                    <input class="inputText" name='${Constants.POSTER_INPUT_NAME}'
-                           value='${applicationScope.get(Constants.POSTER_INPUT_NAME)}'/>
+                    <input id="first-name" class="inputText" name='${Constants.POSTER_INPUT_FIRST_NAME}' type="text"
+                           placeholder="First name"/>
                 </div>
                 <div>
-                <textarea class="inputPost" name='${Constants.NEW_POST_INPUT_NAME}'
-                          placeholder='Enter message here.'></textarea>
+                    <input id="last-name" class="inputText" name='${Constants.POSTER_INPUT_LAST_NAME}' type="text"
+                           placeholder="Last name"/>
+                </div>
+                <div>
+                    <input id="nickname" class="inputText" name='${Constants.POSTER_INPUT_NICKNAME}' type="text"
+                           placeholder="Nickname"/>
+                </div>
+                <div>
+                    <input id="age" class="inputText" name='${Constants.POSTER_INPUT_AGE}' type="text"
+                           placeholder="Age"/>
+                </div>
+                <div>
+                    <input id="title" class="inputText" name='${Constants.POST_TITLE}' type="text" placeholder="Title"/>
+                </div>
+                <div>
+                <textarea id="message" class="inputPost" name='${Constants.NEW_POST_INPUT_NAME}'
+                          placeholder='Enter your blog message here.'></textarea>
                 </div>
                 <div>
                     <input class="button" type='submit' value='Submit'/>

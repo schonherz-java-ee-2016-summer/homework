@@ -11,22 +11,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <title>Fullos Blog - New Comment</title>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/notempty.js"></script>
     </head>
     <body>
+        <div id="dialog" title="Basic dialog">
+            <p>This is the default dialog which is useful for displaying information. The dialog window can be moved,
+                resized and closed with the 'x' icon.</p>
+        </div>
         <div class="back">
+            <div>
+                <a href="${pageContext.request.contextPath}/"><img
+                        src="${pageContext.request.contextPath}/images/fullosblog.png" alt="Fullos Blog"
+                        title="Fullos Blog"></a>
+            </div>
             <h1>New Comment!</h1>
-            <form action='${Constants.COMMENTS_SESSION_KEY}' method='POST'>
+            <form action='${Constants.COMMENTS_SESSION_KEY}' method='POST'
+                  onsubmit="return displayDialogIfEmpty('#commenterName','#commentArea')">
                 <div>
-                    <input class="inputText" name='${Constants.COMMENTER_INPUT_NAME}'
-                           value='${applicationScope.get(Constants.COMMENTER_INPUT_NAME)}'></input>
+                    <input id="commenterName" class="inputText" name='${Constants.COMMENTER_INPUT_NAME}' type="text"
+                           placeholder="Commenter name"/>
                 </div>
                 <div>
-                    <textarea class="inputPost" name='${Constants.NEW_COMMENT_INPUT_NAME}'
+                    <textarea id="commentArea" class="inputPost" name='${Constants.NEW_COMMENT_INPUT_NAME}'
                               placeholder='Enter comment here.'></textarea>
                 </div>
                 <div>
-                    <input class="button" type='submit' value='Submit'></input>
+                    <input class="button" type='submit' value='Submit'>
                 </div>
             </form>
         </div>
