@@ -7,13 +7,11 @@
     <title>fakebook.com</title>
 </head>
 <body>
-<header id="app-header" class="flex-center centered"> <center> <h1> Welcome on fakebook! </h1> </center>
+<header id="app-header" class="flex-center centered"> <h1> Welcome ${userName}! </h1>
 </header>
 <form class="form" method="POST" action="index">
     <div class="leave-a-post" class="login-form">
         <center>
-            <label form = "name">Nickname: </label>
-            <input name = "name" type = "text">
             <button type="submit">Make a blog!</button>
         </center>
     </div>

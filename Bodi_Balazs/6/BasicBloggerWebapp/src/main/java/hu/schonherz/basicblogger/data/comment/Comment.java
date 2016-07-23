@@ -14,8 +14,9 @@ public class Comment implements Serializable{
     private SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
     private String content;
 
-    public Comment(int id, SimpleDateFormat date, String content) {
+    public Comment(int id, String author, SimpleDateFormat date, String content) {
         this.id = id;
+        this.author = author;
         this.date = date;
         this.content = content;
     }

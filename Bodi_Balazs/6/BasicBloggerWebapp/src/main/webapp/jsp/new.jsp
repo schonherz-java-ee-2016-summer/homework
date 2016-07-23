@@ -7,9 +7,10 @@
     <title>new</title>
 </head>
 <body>
-<b>Welcome ${sessionScope.get("userName")}! </b>
-<form class="form" method="POST" action="2">
-    <div class="leave-a-blog">
+<header id="app-header" class="flex-center centered"> <h1> Welcome ${userName}! </h1>
+</header>
+<form class="form" method="POST" action="/post/new">
+    <div>
             <label form = "title">Give us your blog title: </label>
     </div>
     <div>
