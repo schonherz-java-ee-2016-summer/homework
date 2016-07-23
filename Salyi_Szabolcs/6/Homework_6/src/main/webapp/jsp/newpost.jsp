@@ -1,16 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Home
-  Date: 2016. 07. 19.
-  Time: 12:37
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+
 <html>
 <head>
-    <title>Title</title>
+    <title>NewPost</title>
 </head>
 <body>
-
+    <form method="get" action="/new">
+        <div>${id}</div>
+    </form>
 </body>
 </html>

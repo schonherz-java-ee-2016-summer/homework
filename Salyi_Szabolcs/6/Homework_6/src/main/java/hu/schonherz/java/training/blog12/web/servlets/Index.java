@@ -1,13 +1,11 @@
-package hu.schonherz.java.training.blog.web.servlets;
+package hu.schonherz.java.training.blog12.web.servlets;
 
-import hu.schonherz.java.training.blog.data.post.Post;
+import hu.schonherz.java.training.blog12.data.post.Post;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
@@ -15,13 +13,18 @@ import java.util.Map;
  * Created by Home on 2016. 07. 19..
  */
 
-@WebServlet(name = "index" , urlPatterns = "/index")
-public class Index extends HttpServlet{
+//@WebServlet(name = "index" , urlPatterns = "/index")
+public class Index extends HttpServlet {
 
 
     private static final String KEY_AUTHOR = "author";
     private static final String KEY_TITLE = "title";
     private static final String KEY_CONTENT = "content";
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
 
     @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,11 +37,12 @@ public class Index extends HttpServlet{
         String content = formData.get(KEY_CONTENT);
 
 
-        Post newPost = new Post.PostBuilder(id,author,title).content(content).bulid();
-        HttpSession session = req.getSession(Boolean.TRUE);
-        session.setAttribute("post", newPost);
+        Post newPost = new Post.PostBuilder(author,title).content(content).build();
 
-        resp.sendRedirect(req.getContextPath() + "/post/new");
+
+        req.setAttribute("newpost",newPost);
+        getServletContext().setAttribute("newpost",newPost);
+        resp.sendRedirect(req.getContextPath() + "/newpost");
 
 
     }

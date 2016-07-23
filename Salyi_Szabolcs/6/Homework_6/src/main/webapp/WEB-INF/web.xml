@@ -5,6 +5,22 @@
          version="3.1">
 
     <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>hu.schonherz.java.training.blog12.web.servlets.Index</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>New</servlet-name>
+        <servlet-class>hu.schonherz.java.training.blog12.web.servlets.NewPost</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>New</servlet-name>
+        <url-pattern>/new</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>Welcome</servlet-name>
         <jsp-file>/jsp/welcome.jsp</jsp-file>
     </servlet>
@@ -12,5 +28,21 @@
         <servlet-name>Welcome</servlet-name>
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Newpost</servlet-name>
+        <jsp-file>/jsp/newpost.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Newpost</servlet-name>
+        <url-pattern>/newpost</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>FromDataParser</filter-name>
+        <filter-class>hu.schonherz.java.training.blog12.web.filters.FormDataFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FromDataParser</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

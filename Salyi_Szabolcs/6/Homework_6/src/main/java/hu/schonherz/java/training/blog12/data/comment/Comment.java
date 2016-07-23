@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.blog.data.comment;
+package hu.schonherz.java.training.blog12.data.comment;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

@@ -1,11 +1,10 @@
-package hu.schonherz.java.training.blog.web.filters;
+package hu.schonherz.java.training.blog12.web.filters;
 
-import hu.schonherz.java.training.blog.web.utils.RequestUtils;
+import hu.schonherz.java.training.blog12.web.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -13,7 +12,7 @@ import java.io.IOException;
  * Created by Home on 2016. 07. 19..
  */
 
-@WebServlet( name = "FormDataParser" , urlPatterns = "/*")
+
 public class FormDataFilter implements Filter {
 
     private static final Logger LOG = LoggerFactory.getLogger(FormDataFilter.class);
