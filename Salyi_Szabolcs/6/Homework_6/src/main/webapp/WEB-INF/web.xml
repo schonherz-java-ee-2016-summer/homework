@@ -1,8 +1,6 @@
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
 
     <servlet>
         <servlet-name>Index</servlet-name>
@@ -10,7 +8,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>New</servlet-name>
@@ -18,7 +16,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>New</servlet-name>
-        <url-pattern>/new</url-pattern>
+        <url-pattern>/neww</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Welcome</servlet-name>
@@ -26,16 +24,9 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Welcome</servlet-name>
-        <url-pattern>/welcome</url-pattern>
+        <url-pattern>/asd</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>Newpost</servlet-name>
-        <jsp-file>/jsp/newpost.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Newpost</servlet-name>
-        <url-pattern>/newpost</url-pattern>
-    </servlet-mapping>
+
     <filter>
         <filter-name>FromDataParser</filter-name>
         <filter-class>hu.schonherz.java.training.blog12.web.filters.FormDataFilter</filter-class>

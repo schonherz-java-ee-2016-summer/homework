@@ -22,11 +22,6 @@ public class Index extends HttpServlet {
     private static final String KEY_CONTENT = "content";
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
-    @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Map < String, String > formData = ( Map < String , String> )req.getAttribute("formData");
@@ -40,9 +35,9 @@ public class Index extends HttpServlet {
         Post newPost = new Post.PostBuilder(author,title).content(content).build();
 
 
-        req.setAttribute("newpost",newPost);
+        //req.setAttribute("newpost",newPost);
         getServletContext().setAttribute("newpost",newPost);
-        resp.sendRedirect(req.getContextPath() + "/newpost");
+        //resp.sendRedirect(req.getContextPath() + "/newpost");
 
 
     }

@@ -24,12 +24,12 @@ public class NewPost extends HttpServlet{
         String title = newPost.getTitle();
         String content = newPost.getContent();
 
-        req.setAttribute("id",id);
-        req.setAttribute("author",author);
-        req.setAttribute("title",title);
-        req.setAttribute("content",content);
+        //req.setAttribute("id",id);
+        //req.setAttribute("author",author);
+        //req.setAttribute("title",title);
+       // req.setAttribute("content",content);
 
-        req.getRequestDispatcher("/newpost").forward(req,resp);
+        //req.getRequestDispatcher("/newpost").forward(req,resp);
 
 
     }
