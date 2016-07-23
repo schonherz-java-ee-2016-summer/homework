@@ -2,6 +2,7 @@ package hu.nutty.kepzes.blogapp.beans;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -46,8 +47,10 @@ public class BlogPost implements Serializable {
         this.author = author;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public String getTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. - HH:mm:ss");
+        String formattedDateTime = this.time.format(formatter);
+        return formattedDateTime;
     }
 
     public void setTime(LocalDateTime time) {
