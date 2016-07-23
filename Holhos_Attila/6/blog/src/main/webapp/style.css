@@ -67,3 +67,8 @@ body{
     border: solid 1px blue;
 }
 
+#error{
+    text-align: center;
+    color: red;
+}
+

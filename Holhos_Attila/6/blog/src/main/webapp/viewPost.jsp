@@ -6,8 +6,8 @@
 <html>
 <head>
     <title>Post</title>
-    <link rel="stylesheet" href="aPost.css">
-    <script type="text/javascript" src="javascript.js"></script>
+    <link rel="stylesheet"  href="/blog/singlePost.css">
+    <script type="text/javascript" src="/blog/javascript.js"></script>
 </head>
     <body>
     <%@include file="/html/header.html"%>
@@ -19,21 +19,23 @@
         </div>
         <div id="comments">
             Comments about this post:
-            <c:forEach items="${comments}" var="comment">
+            <c:if test="${empty commentsList}">
+                <div id="nocomment">There are no comments yet.</div>
+            </c:if>
+            <c:forEach items="${commentsList}" var="comment">
                 <div class="comment">
                     <p>${comment.content}</p>
                     <p id="commentdate">${comment.commentDate}</p>
                 </div>
             </c:forEach>
         </div>
-        <form method="post" action="/blog/addComment?ID=${post.postID}">
+        <form method="post" action="/blog/CommentServlet?ID=${post.postID}" onsubmit="return validateComment()">
             <div id="addComment">
-                Share your opinion and add new comment!
                 <div>
-                    <label for='newcomment'>Add comment:</label>
-                    <input id='newcomment' name='newcomment' type='text'>
+                    <label for="newcomment">Add comment:</label>
+                    <input id="newcomment" name="newcomment" type='text'>
                 </div>
-                <button type='submit'>Send</button>
+                <button type="submit">Send</button>
             </div>
         </form>
     </body>
