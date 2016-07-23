@@ -22,14 +22,15 @@
                         src="${pageContext.request.contextPath}/images/fullosblog.png" alt="Fullos Blog"
                         title="Fullos Blog"></a>
             </div>
-            <div class="box">
+            <div class="postBox">
                 <div class="postHeader">
-                    <span>${applicationScope.get(Constants.SELECTED_POST).getPostID()}</span>
-                    <span>${applicationScope.get(Constants.SELECTED_POST).getAuthor().getNickName()}</span>
-                    <span>${applicationScope.get(Constants.SELECTED_POST).getTitle()}</span>
+                    <span class="padded">#${applicationScope.get(Constants.SELECTED_POST).getPostID()}</span>
+                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getAuthor().getNickName()}</span>
+                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getTitle()}</span>
+                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getTime()}</span>
                 </div>
                 <div class="postContent">
-                    <span>${item.getMessage()}</span>
+                    <span>${applicationScope.get(Constants.SELECTED_POST).getMessage()}</span>
                 </div>
             </div>
             <c:if test="${empty applicationScope.get(Constants.SELECTED_POST).getComments().getComments()}">
@@ -37,21 +38,20 @@
             </c:if>
             <c:forEach items="${applicationScope.get(Constants.SELECTED_POST).getComments().getComments()}"
                        var="item">
-                <div class="box">
-                    <div class="postHeader">
-                        <span>#${item.getCommentID()}</span>
-                        <span>${item.getCommenter()}</span>
+                <div class="commentBox">
+                    <div class="commentHeader">
+                        <span class="padded">#${item.getCommentID()}</span>
+                        <span class="padded">${item.getCommenter()}</span>
                     </div>
-                    <div class="postContent">
+                    <div class="commentContent">
                         <span>${item.getContent()}</span>
                     </div>
                 </div>
             </c:forEach>
             </form>
             <div>
-                <a href="${pageContext.request.contextPath}/newcomment">New comment</a>
+                <a class="button" href="${pageContext.request.contextPath}/newcomment">New comment</a>
             </div>
         </div>
-
     </body>
 </html>

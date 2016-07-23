@@ -8,7 +8,7 @@
         <title>Fullos Blog - New Blog Post</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/notempty.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/validator.js"></script>
     </head>
     <body>
         <div class="back">
@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <input id="age" class="inputText" name='${Constants.POSTER_INPUT_AGE}' type="text"
-                           placeholder="Age"/>
+                           placeholder="Age" oninput="containsOnlyNumber('#age')"/>
                 </div>
                 <div>
                     <input id="title" class="inputText" name='${Constants.POST_TITLE}' type="text" placeholder="Title"/>
@@ -42,6 +42,7 @@
                 <textarea id="message" class="inputPost" name='${Constants.NEW_POST_INPUT_NAME}'
                           placeholder='Enter your blog message here.'></textarea>
                 </div>
+                <div id="interactive-label">Age must be a number.</div>
                 <div>
                     <input class="button" type='submit' value='Submit'/>
                 </div>
