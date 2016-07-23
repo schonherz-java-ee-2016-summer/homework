@@ -8,6 +8,7 @@
             <title>Welcome to this simple blog!</title>
         </head>
         <body>
+            <div>valami</div>
             <form method="POST" action="/index">
                 <div id="new-post-header">
                     <span>Add a new post!</span>

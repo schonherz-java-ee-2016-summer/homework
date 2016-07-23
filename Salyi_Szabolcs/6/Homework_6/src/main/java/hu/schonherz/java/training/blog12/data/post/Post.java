@@ -1,6 +1,6 @@
-package hu.schonherz.java.training.blog.data.post;
+package hu.schonherz.java.training.blog12.data.post;
 
-import hu.schonherz.java.training.blog.data.comment.CommentsBean;
+import hu.schonherz.java.training.blog12.data.comment.CommentsBean;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
  */
 public class Post implements Serializable {
 
-    private int id;
+    private int id = 1;
     private String author;
     private SimpleDateFormat date = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
     private String title;
@@ -23,12 +23,13 @@ public class Post implements Serializable {
     private CommentsBean comments;
 
     private Post(PostBuilder builder) {
-        this.id = builder.id;
+        //this.id = builder.id;
         this.author = builder.author;
         this.date = builder.date;
         this.title = builder.title;
         this.content = builder.content;
         this.comments = builder.comments;
+        id++;
     }
 
     public int getId() {
@@ -56,15 +57,15 @@ public class Post implements Serializable {
     }
 
     public static class PostBuilder {
-        private final int id;
+        //private final int id;
         private final String author;
         private final String title;
         private SimpleDateFormat date = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
         private String content;
         private CommentsBean comments;
 
-        public PostBuilder(int id, String author, String title) {
-            this.id = id;
+        public PostBuilder( String author, String title) {
+            //this.id = id;
             this.author = author;
             this.title = title;
         }
@@ -79,7 +80,8 @@ public class Post implements Serializable {
             return this;
         }
 
-        public Post bulid() {
+        public Post build() {
+
             return new Post(this);
         }
     }

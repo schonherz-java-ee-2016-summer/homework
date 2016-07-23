@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.blog.web.utils;
+package hu.schonherz.java.training.blog12.web.utils;
 
 
 import org.slf4j.LoggerFactory;
@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Scanner;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 

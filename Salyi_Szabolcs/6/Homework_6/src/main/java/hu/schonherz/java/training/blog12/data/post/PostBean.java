@@ -1,4 +1,4 @@
-package hu.schonherz.java.training.blog.data.post;
+package hu.schonherz.java.training.blog12.data.post;
 
 import java.io.Serializable;
 import java.util.ArrayList;
