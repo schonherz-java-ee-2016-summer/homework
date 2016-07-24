@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * This class represents blogposts.
+ */
 public class Post implements Serializable {
 
     private String id;
     private String author;
     private LocalDateTime dateTime;
-    private String title;
     private String content;
     private List<Comment> comments;
 
@@ -19,16 +21,14 @@ public class Post implements Serializable {
         this.id = UUID.randomUUID().toString();
         this.author = "";
         this.dateTime = LocalDateTime.now();
-        this.title = "";
         this.content = "";
         this.comments = new ArrayList<Comment>();
     }
 
-    public Post(String author, String title, String content) {
+    public Post(String author, String content) {
         this.id = UUID.randomUUID().toString();
         this.author = author;
         this.dateTime = LocalDateTime.now();
-        this.title = title;
         this.content = content;
         this.comments = new ArrayList<Comment>();
     }
@@ -43,10 +43,6 @@ public class Post implements Serializable {
 
     public LocalDateTime getDateTime() {
         return dateTime;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getContent() {
@@ -65,27 +61,33 @@ public class Post implements Serializable {
         this.dateTime = dateTime;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public void setContent(String content) {
         this.content = content;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Post post = (Post) o;
 
-        if (!getId().equals(post.getId())) return false;
-        if (!getAuthor().equals(post.getAuthor())) return false;
-        if (getDateTime() != null ? !getDateTime().equals(post.getDateTime()) : post.getDateTime() != null)
+        if (!getId().equals(post.getId())) {
             return false;
-        if (!getTitle().equals(post.getTitle())) return false;
-        if (!getContent().equals(post.getContent())) return false;
+        }
+        if (!getAuthor().equals(post.getAuthor())) {
+            return false;
+        }
+        if (getDateTime() != null ? !getDateTime().equals(post.getDateTime()) : post.getDateTime() != null) {
+            return false;
+        }
+        if (!getContent().equals(post.getContent())) {
+            return false;
+        }
         return getComments() != null ? getComments().equals(post.getComments()) : post.getComments() == null;
 
     }
@@ -95,7 +97,6 @@ public class Post implements Serializable {
         int result = getId().hashCode();
         result = 31 * result + getAuthor().hashCode();
         result = 31 * result + (getDateTime() != null ? getDateTime().hashCode() : 0);
-        result = 31 * result + getTitle().hashCode();
         result = 31 * result + getContent().hashCode();
         result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
         return result;
@@ -105,7 +106,6 @@ public class Post implements Serializable {
     public String toString() {
         return "Post{" +
                 "author='" + author + '\'' +
-                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

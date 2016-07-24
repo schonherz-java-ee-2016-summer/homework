@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * This class represents comments on blogposts.
+ */
 public class Comment implements Serializable {
 
     private String id;
@@ -48,13 +51,21 @@ public class Comment implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Comment comment = (Comment) o;
 
-        if (!getId().equals(comment.getId())) return false;
-        if (!getDateTime().equals(comment.getDateTime())) return false;
+        if (!getId().equals(comment.getId())) {
+            return false;
+        }
+        if (!getDateTime().equals(comment.getDateTime())) {
+            return false;
+        }
         return getContent() != null ? getContent().equals(comment.getContent()) : comment.getContent() == null;
 
     }
