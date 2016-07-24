@@ -73,7 +73,7 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin><!--
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -92,11 +92,10 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 
-    <!--
     <reporting>
         <plugins>
             <plugin>
@@ -108,6 +107,6 @@
                 </configuration>
             </plugin>
         </plugins>
-    </reporting>-->
+    </reporting>
 
 </project>
