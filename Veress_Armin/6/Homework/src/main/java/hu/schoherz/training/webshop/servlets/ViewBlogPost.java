@@ -4,16 +4,17 @@ import hu.schoherz.training.webshop.pojo.BlogPost;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author 101001951
+ * Created by Lenovo on 2016.07.24..
  */
-public class BlogPostServlet extends HttpServlet {
+
+public class ViewBlogPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,31 +28,29 @@ public class BlogPostServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         PrintWriter out = response.getWriter();
         try {
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Add new blogpost - Simple Blog Webapp</title>");
+            out.println("<title>Servlet ViewBlogPost</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1 align='center'>Simple Blog Webapp</h1>");
-            out.println("<div align='center'>");
-            out.println("<form method='post' action='Index'>");
-            out.println("Name: <input type='text' name='name'><br><br>");
-            out.println("Title: <input type='text' name='title'><br><br>");
-            out.println("New Post: <textarea name='textarea' style='width:250px;height:150px;'></textarea><br><br>");
-            out.println("<button type='submit' style='width:100px;height:50px;font-size:15px'>Submit</button>");
-            out.println("</form>");
-            out.println("</div>");
+            out.println("<h1>Servlet ViewBlogPost Post key " + request.getParameter("key1") + "</h1>");
+            List <BlogPost> posts=(List <BlogPost>) request.getSession().getAttribute("posts");
+            for (BlogPost post : posts)
+            {
+                if (request.getParameter("key1").equals(post.getId()))
+                {
+                    out.println("<div>" + post.getAuthor() + " " + post.getTitle() + " " + post.getContentOfPost() + "</div>");
+                }
+            }
             out.println("</body>");
             out.println("</html>");
-
         } finally {
             out.close();
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

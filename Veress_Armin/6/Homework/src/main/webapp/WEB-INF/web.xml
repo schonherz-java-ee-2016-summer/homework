@@ -5,12 +5,36 @@
          version="3.0">
 
     <display-name>Archetype Created Web Application</display-name>
-    <servlet>
+    <!--servlet>
         <servlet-name>blogpost</servlet-name>
         <jsp-file>/blogPost.jsp</jsp-file>
+    </servlet-->
+    <servlet>
+        <servlet-name>BlogPostServlet</servlet-name>
+        <servlet-class>hu.schoherz.training.webshop.servlets.BlogPostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBlogPost</servlet-name>
+        <servlet-class>hu.schoherz.training.webshop.servlets.ViewBlogPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>hu.schoherz.training.webshop.servlets.Index</servlet-class>
     </servlet>
     <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/Index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBlogPost</servlet-name>
+        <url-pattern>/ViewBlogPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogPostServlet</servlet-name>
+        <url-pattern>/BlogPostServlet</url-pattern>
+    </servlet-mapping>
+    <!--servlet-mapping>
         <servlet-name>blogpost</servlet-name>
         <url-pattern>/blogpost</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping-->
 </web-app>
