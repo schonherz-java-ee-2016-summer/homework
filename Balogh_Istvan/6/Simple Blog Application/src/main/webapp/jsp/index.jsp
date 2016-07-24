@@ -22,7 +22,6 @@
                 <fmt:parseDate value="${cleanedDateTime}" pattern="yyyy-MM-dd HH:mm" var="parsedDateTime" type="both" />
                 <p><span class="postCaptions">Posted at: </span><fmt:formatDate pattern="yyyy.MM.dd. HH:mm" value="${parsedDateTime}" /></p>
                 <p><span class="postCaptions">Author: </span>${post.author}</p>
-                <p>${post.content}</p>
                 <a href="/showPost?id=${post.id}">
                     <button class="button">Show this post</button>
                 </a>

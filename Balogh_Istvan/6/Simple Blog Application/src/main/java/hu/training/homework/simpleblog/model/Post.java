@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * This class represents blogposts.
+ * This POJO class represents blogposts.
  */
 public class Post implements Serializable {
 

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- * This class represents comments on blogposts.
+ * This POJO class represents comments on blogposts.
  */
 public class Comment implements Serializable {
 

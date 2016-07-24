@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLDecoder;
 
+/**
+ * This servlet handles the requests of adding comments on a blogpost.
+ * After creating a {@link Comment} object this comment is added to the comment list of the {@link Post}.
+ */
 @WebServlet(name = "CommentServlet", urlPatterns = "/comment-servlet")
 public class CommentServlet extends HttpServlet {
 
@@ -29,14 +33,14 @@ public class CommentServlet extends HttpServlet {
         String comment = URLDecoder.decode(req.getParameter(Parameters.COMMENT_INPUT_NAME), Parameters.ENCODING);
 
         Comment newComment = new Comment(commenter, comment);
-
         LOGGER.debug("Added new comment: {}.", newComment);
 
-        Post selectedPost = (Post)req.getServletContext().getAttribute("selectedPost");
+        Post selectedPost = (Post) req.getServletContext().getAttribute("selectedPost");
 
         selectedPost.getComments().add(newComment);
 
         resp.sendRedirect("/post?id=" + selectedPost.getId());
+        LOGGER.debug("Redirecting to /post?id={}", selectedPost.getId());
 
     }
 }

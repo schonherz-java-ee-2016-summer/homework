@@ -39,14 +39,14 @@ public class IndexServlet extends HttpServlet {
         Post newPost = new Post(author, content);
         newPost.setTitle(title);
         posts.add(newPost);
-
         LOGGER.debug("Added new post: {}.", newPost);
 
         req.getServletContext().setAttribute(Parameters.POSTS_ATTRIBUTE_NAME, posts);
-        req.getServletContext().setAttribute("selectedPost", newPost);
+        LOGGER.debug("Added new context attribute: {}.", Parameters.POSTS_ATTRIBUTE_NAME);
+        req.getServletContext().setAttribute(Parameters.SELECTED_POST_ATTRIBUTE_NAME, newPost);
+        LOGGER.debug("Added new context attribute: {}.", Parameters.SELECTED_POST_ATTRIBUTE_NAME);
 
         resp.sendRedirect("/post?id=" + newPost.getId());
-
-        LOGGER.debug("Redirecting to " + "/post?id=" + newPost.getId());
+        LOGGER.debug("Redirecting to /post?id={}", newPost.getId());
     }
 }

@@ -25,7 +25,7 @@
         <c:forEach var="comment" items="${selectedPost.comments}">
             <div class="comment">
                 <p><span class="commentCaptions">Commenter: </span>${comment.commenter}</p>
-                <p><${comment.content}</p>
+                <p>${comment.content}</p>
             </div>
         </c:forEach>
 
