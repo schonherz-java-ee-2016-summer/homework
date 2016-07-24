@@ -22,8 +22,7 @@ import static hu.nutty.kepzes.blogapp.utils.Constants.*;
  * Custom extension of {@code HttpServlet}.
  * <p>
  * This servlet implements a little commenting functionality, nothing serious.
- * A user gets a list of comments (strings) if he sends a GET request while
- * using POST, he can submit a new comment.
+ * Using POST, the user can submit a new comment.
  */
 public class CommentsServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(CommentsServlet.class);
@@ -32,7 +31,7 @@ public class CommentsServlet extends HttpServlet {
      * Handles POST requests coming to /comments.
      * We expect the request to have a request body of plain text data (a new comment).
      * <p>
-     * After storing the incoming data on Session scope, we redirect the client.
+     * After storing the incoming data on ServletContext scope, we redirect the client.
      *
      * @param req the incoming HTTP request
      * @param res the outgoing HTTP response
@@ -46,11 +45,11 @@ public class CommentsServlet extends HttpServlet {
         req.setCharacterEncoding(ENCODING);
         res.setCharacterEncoding(ENCODING);
 
-        Comment newcomment = ParserUtils.parseBodyAsComment(req);
+        Comment newComment = ParserUtils.parseBodyAsComment(req);
         ServletContext context = req.getServletContext();
         BlogPost post = (BlogPost) context.getAttribute(SELECTED_POST);
         if (post != null) {
-            post.getComments().getComments().add(newcomment);
+            post.getComments().getComments().add(newComment);
             res.sendRedirect(req.getContextPath() + "/post/" + post.getPostID());
         } else {
             res.sendRedirect(req.getContextPath() + "/index");

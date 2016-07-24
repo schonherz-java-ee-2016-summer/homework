@@ -17,7 +17,7 @@ import static hu.nutty.kepzes.blogapp.utils.Constants.*;
 /**
  * Custom extension of {@code HttpServlet}.
  * <p>
- * This servlet implements a little blog posting functionality, nothing serious.
+ * This servlet implements a little blog displaying and creating functionality, nothing serious.
  * A user gets a list of posts if he sends a GET request while
  * using POST, he can submit a new blog post.
  */
@@ -26,6 +26,15 @@ public class IndexServlet extends HttpServlet {
 
     private BlogPostsBean posts;
 
+    /**
+     * Handles GET requests coming to /index.
+     * We push the posts to the ServletContext, after we redirect to the proper .jsp, and display it.
+     *
+     * @param req  the incoming HTTP request
+     * @param resp the outgoing HTTP response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         LOG.debug("Handling GET request to /index...");
@@ -41,10 +50,10 @@ public class IndexServlet extends HttpServlet {
     }
 
     /**
-     * Handles POST requests coming to /comments.
-     * We expect the request to have a request body of plain text data (a new comment).
+     * Handles POST requests coming to /index.
+     * We expect the request to have a request body of plain text data (a new post).
      * <p>
-     * After storing the incoming data on Session scope, we redirect the client.
+     * After storing the incoming data on ServletContext scope, we redirect the client.
      *
      * @param req the incoming HTTP request
      * @param res the outgoing HTTP response
