@@ -3,18 +3,18 @@
 <html>
     <head>
         <title>Sixth Homework New Post</title>
-        <link rel="stylesheet" href="blogstyle.css">
+        <link rel="stylesheet" type="text/css" href="blogstyle.css">
     </head>
     <body>
-        <form method="post" action="/blog/newpost">
-            <label for="name">Name:</label>
-            <input id="name" type="text">
+        <form method="post" action="/newpost-servlet">
+            <label for="author">Name:</label>
+            <input id="author" name="author" type="text">
 
             <label for="title">Title:</label>
-            <input id="title" type="text">
+            <input id="title" name="title" type="text">
 
-            <label for="Content">Content:</label>
-            <input id="content" type="text" rows="5">
+            <label for="content">Content:</label>
+            <input id="content" name="content" type="text">
 
             <button type="submit">Submit</button>
         </form>

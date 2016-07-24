@@ -24,6 +24,14 @@ public class BlogPost {
         this.comments = comments;
     }
 
+    public BlogPost(int id, String author, LocalDateTime date, String title, String content) {
+        this.id = id;
+        this.author = author;
+        this.date = date;
+        this.title = title;
+        this.content = content;
+    }
+
     public int getId() {
         return id;
     }

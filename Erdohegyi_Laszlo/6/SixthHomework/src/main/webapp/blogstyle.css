@@ -6,6 +6,11 @@ h2{
     text-align: center;
 }
 
+button{
+    display: block;
+    margin: auto;
+}
+
 div{
     margin: auto;
     border: 2px solid gray;

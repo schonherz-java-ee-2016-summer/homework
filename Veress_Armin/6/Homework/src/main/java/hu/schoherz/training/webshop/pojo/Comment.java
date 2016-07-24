@@ -5,18 +5,18 @@ import java.time.LocalDateTime;
 /**
  * Created by Lenovo on 2016.07.22..
  */
-public class Komment {
+public class Comment {
     private int id;
     private LocalDateTime dateOfComment;
     private String contentOfComment;
 
-    public Komment(int id, LocalDateTime dateOfComment, String contentOfComment) {
+    public Comment(int id, LocalDateTime dateOfComment, String contentOfComment) {
         this.id = id;
         this.dateOfComment = dateOfComment;
         this.contentOfComment = contentOfComment;
     }
 
-    public Komment() {
+    public Comment() {
     }
 
     public int getId() {
