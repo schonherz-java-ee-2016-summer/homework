@@ -47,10 +47,14 @@ public class BlogPost implements Serializable {
         this.author = author;
     }
 
-    public String getTime() {
+    public String getFormattedTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. - HH:mm:ss");
         String formattedDateTime = this.time.format(formatter);
         return formattedDateTime;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
     }
 
     public void setTime(LocalDateTime time) {
@@ -116,10 +120,12 @@ public class BlogPost implements Serializable {
     @Override
     public String toString() {
         return "BlogPost{" +
-                "author=" + author +
+                "postID=" + postID +
+                ", author=" + author +
                 ", time=" + time +
                 ", title='" + title + '\'' +
                 ", message='" + message + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }

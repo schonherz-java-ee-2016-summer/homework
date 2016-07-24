@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>${applicationScope.get(Constants.SELECTED_POST).getAuthor().getNickName()}, ${applicationScope.get(Constants.SELECTED_POST).getTitle()}
+        <title>${applicationScope.get(Constants.SELECTED_POST).author.nickName}, ${applicationScope.get(Constants.SELECTED_POST).title}
             - Fullos Blog Post.</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     </head>
@@ -24,27 +24,27 @@
             </div>
             <div class="postBox">
                 <div class="postHeader">
-                    <span class="padded">#${applicationScope.get(Constants.SELECTED_POST).getPostID()}</span>
-                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getAuthor().getNickName()}</span>
-                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getTitle()}</span>
-                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getTime()}</span>
+                    <span class="padded">#${applicationScope.get(Constants.SELECTED_POST).postID}</span>
+                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).author.nickName}</span>
+                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).title}</span>
+                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getFormattedTime()}</span>
                 </div>
                 <div class="postContent">
-                    <span>${applicationScope.get(Constants.SELECTED_POST).getMessage()}</span>
+                    <span>${applicationScope.get(Constants.SELECTED_POST).message}</span>
                 </div>
             </div>
-            <c:if test="${empty applicationScope.get(Constants.SELECTED_POST).getComments().getComments()}">
+            <c:if test="${empty applicationScope.get(Constants.SELECTED_POST).comments.comments}">
                 <span>There are no comments yet.</span>
             </c:if>
-            <c:forEach items="${applicationScope.get(Constants.SELECTED_POST).getComments().getComments()}"
+            <c:forEach items="${applicationScope.get(Constants.SELECTED_POST).comments.comments}"
                        var="item">
                 <div class="commentBox">
                     <div class="commentHeader">
-                        <span class="padded">#${item.getCommentID()}</span>
-                        <span class="padded">${item.getCommenter()}</span>
+                        <span class="padded">#${item.commentID}</span>
+                        <span class="padded">${item.commenter}</span>
                     </div>
                     <div class="commentContent">
-                        <span>${item.getContent()}</span>
+                        <span>${item.content}</span>
                     </div>
                 </div>
             </c:forEach>
