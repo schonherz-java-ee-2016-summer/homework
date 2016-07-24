@@ -37,6 +37,11 @@ public class BlogServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(true);
+
+        blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
+        blogId = blogList.size();
+        session.setAttribute(BLOG_ID_SESSION, blogId);
         resp.sendRedirect("/post/new.jsp");
     }
 
@@ -44,11 +49,15 @@ public class BlogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
-        String userName = (String) session.getAttribute(COMMENTER_INPUT_NAME);
-        String title = ((req.getParameter(COMMENT_TITLE) != null) ? (req.getParameter(COMMENT_TITLE)) : ("Untitled"));
-        String content = ((req.getParameter(COMMENT_CONTENT) != null) ? (req.getParameter(COMMENT_CONTENT)) : ("Undefined"));
+
+        String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
+        String title = (req.getParameter(COMMENT_TITLE) != null ? (req.getParameter(COMMENT_TITLE)) : ("Untitled"));
+        String content = (req.getParameter(COMMENT_CONTENT) != null ? (req.getParameter(COMMENT_CONTENT)) : ("Undefined"));
+
         blogId = blogList.size() + 1;
 
+        userName = URLDecoder.decode(userName,  "utf-8");
+        userName = StringEscapeUtils.escapeHtml4(userName);
         title = URLDecoder.decode(title,  "utf-8");
         title = StringEscapeUtils.escapeHtml4(title);
         content = URLDecoder.decode(content,  "utf-8");
@@ -56,8 +65,7 @@ public class BlogServlet extends HttpServlet {
 
         blogList.add(new Blog(blogId, userName, new SimpleDateFormat(), title, content));
 
-
-        req.setAttribute("id" , blogId);
+        session.setAttribute(BLOG_ID_SESSION, blogId);
         session.setAttribute("blogList", blogList);
         resp.sendRedirect("/post/" + blogId);
     }

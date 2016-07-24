@@ -2,6 +2,7 @@ package hu.schonherz.basicblogger.servlets;
 
 import hu.schonherz.basicblogger.data.blog.Blog;
 import hu.schonherz.basicblogger.data.comment.Comment;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.net.URLDecoder;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,20 +41,28 @@ import java.util.List;
         HttpSession session = req.getSession(true);
         blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
         commentList = (List<Comment>) session.getAttribute(COMMENTLIST_SESSION);
-        String userName = (String) session.getAttribute(COMMENTER_INPUT_NAME);
-        /*blogId = Integer.parseInt(req.getParameter(ID));
+
+        String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
+        blogId = (int) session.getAttribute(BLOG_ID_SESSION);
+        blogId--;
+        userName = URLDecoder.decode(userName,  "utf-8");
+        userName = StringEscapeUtils.escapeHtml4(userName);
+
         Blog requiredBlog = blogList.get(blogId);
         List<Comment> requiredComments = new LinkedList<>();
+        if(commentList!=null){
         for (Comment actualComment:commentList
              ) {
             if(actualComment.getId() == blogId){
                 requiredComments.add(actualComment);
             }
         }
-        session.setAttribute("requiredBlog", requiredBlog);
         session.setAttribute("requiredComments", requiredComments);
-        */
-        resp.sendRedirect("/post/*");
+        }
+
+        session.setAttribute("requiredBlog", requiredBlog);
+
+        resp.sendRedirect("/post.jsp");
     }
 
     @Override
@@ -60,32 +70,34 @@ import java.util.List;
         HttpSession session = req.getSession(true);
         blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
         commentList = (List<Comment>) session.getAttribute(COMMENTLIST_SESSION);
-        String userName = (String) session.getAttribute(COMMENTER_INPUT_NAME);
-        blogId = Integer.parseInt(req.getParameter(ID));
 
-/**
- * Put comments on the session
- */
+        String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
+        blogId = Integer.parseInt(req.getParameter(ID));
+        blogId--;
+        userName = URLDecoder.decode(userName,  "utf-8");
+        userName = StringEscapeUtils.escapeHtml4(userName);
         String content = req.getParameter(COMMENT_CONTENT);
-        commentList.add(new Comment(blogId, userName, new SimpleDateFormat(),content));
-        session.setAttribute(COMMENTLIST_SESSION, commentList);
-/**
- * Take the required Blog
- */
+        if(commentList == null) {
+            commentList = new LinkedList<>();
+        }
+        commentList.add(new Comment(blogId, userName, LocalDateTime.now(), content));
+
         Blog requiredBlog = blogList.get(blogId);
         List<Comment> requiredComments = new LinkedList<>();
-/**
- * Take the required Comments
-  */
-        for (Comment actualComment:commentList
-                ) {
-            if(actualComment.getId() == blogId){
-                requiredComments.add(actualComment);
+        if(commentList!=null){
+            for (Comment actualComment:commentList
+                    ) {
+                if(actualComment.getId() == blogId){
+                    requiredComments.add(actualComment);
+                }
             }
+            session.setAttribute("requiredComments", requiredComments);
         }
 
+
+        session.setAttribute(COMMENTLIST_SESSION, commentList);
         session.setAttribute("requiredBlog", requiredBlog);
-        session.setAttribute("requiredComments", requiredComments);
-        resp.sendRedirect("/post/*");
+
+        resp.sendRedirect("/post.jsp");
     }
 }

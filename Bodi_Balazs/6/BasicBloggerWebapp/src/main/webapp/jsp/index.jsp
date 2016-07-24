@@ -7,7 +7,7 @@
     <title>fakebook.com</title>
 </head>
 <body>
-<header id="app-header" class="flex-center centered"> <h1> Welcome ${userName}! </h1>
+<header id="app-header" class="flex-center centered"> <h1> Welcome! </h1>
 </header>
 <form class="form" method="POST" action="index">
     <div class="leave-a-post" class="login-form">
@@ -17,12 +17,14 @@
     </div>
 </form>
 <c:forEach items="${blogList}" var="item">
-    <form id="${item.id}" class="form" method="POST" action="post/${item.id}">
-        <div>
-                ${item.author}
-                ${item.title}
-                ${item.content}
-                <button type="submit">Comment</button>
+    <form name="form" class="form" method="GET" action="post/${item.id}">
+        <div class="blogpost">
+                <div class="author">${item.author}</div>
+                <div class="date">${item.date}</div>
+                <div class="title"> ${item.title}</div>
+                <div class="content"> ${item.content}</div>
+                <input type="hidden" name="id" value="${item.id}" />
+                <button class="submit" type="submit">Comment</button>
         </div>
      </form>
 </c:forEach>

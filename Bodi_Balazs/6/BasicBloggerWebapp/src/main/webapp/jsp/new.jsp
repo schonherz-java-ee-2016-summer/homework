@@ -7,28 +7,35 @@
     <title>new</title>
 </head>
 <body>
-<header id="app-header" class="flex-center centered"> <h1> Welcome ${userName}! </h1>
-</header>
-<form class="form" method="POST" action="/post/new">
-    <div>
-            <label form = "title">Give us your blog title: </label>
-    </div>
-    <div>
-            <input name = "title" type = "text">
-    </div>
-    <div>
-        <label form = "content">Make your blog above:</label>
-    </div>
-    <div>
-            <input name = "content" type = "text">
-            <button type="submit">Leave it!</button>
-
-    </div>
+<header id="app-header" class="flex-center centered">
+<form method="get" action="index">
+    <button class="homepageButton" type="submit"><h1>Homepage</h1></button>
 </form>
+</header>
+<form method="POST" action="/post/new">
+    <div class="newBlog">
+        <div>
+            <label form = "name">Nickname: </label>
+        </div>
+        <div>
+            <input name = "userName" type = "text">
+        </div>
+        <div>
+                <label form = "title">Give us your blog title: </label>
+        </div>
+        <div>
+                <input name = "title" type = "text">
+        </div>
+        <div>
+            <label form = "content">Make your blog above:</label>
+        </div>
+        <div>
+                <input type="hidden" name="id" value="${blogId}"/>
+                <input name = "content" type = "text">
+                <button class = "submit" type="submit">Leave it!</button>
 
-
-
-<form class="form" method ="GET" action="post" typeof="form-set-data">
+        </div>
+    </div>
 
 </form>
 </body>
