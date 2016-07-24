@@ -29,7 +29,6 @@
         <jsp.version>2.3.1</jsp.version>
         <jstl.version>1.2</jstl.version>
         <taglib.version>1.2.5</taglib.version>
-        <commonslang.version>3.4</commonslang.version>
     </properties>
     <dependencies>
         <dependency>
@@ -73,16 +72,6 @@
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-impl</artifactId>
             <version>${taglib.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commonslang.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.taglibs</groupId>
-            <artifactId>taglibs-standard-jstlel</artifactId>
-            <version>1.2.5</version>
         </dependency>
     </dependencies>
     <build>
