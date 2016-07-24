@@ -28,12 +28,15 @@
     </properties>
 
     <dependencies>
+        <!-- Common -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${version.apache.lang}</version>
         </dependency>
+        <!-- Common -->
 
+        <!-- Web -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -54,7 +57,20 @@
             <artifactId>taglibs-standard-impl</artifactId>
             <version>${version.taglibs.impl}</version>
         </dependency>
+        <!-- Web -->
 
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${version.logback}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
+        <!-- Logging -->
     </dependencies>
 
     <build>
