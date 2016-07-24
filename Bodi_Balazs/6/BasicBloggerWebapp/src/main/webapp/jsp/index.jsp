@@ -25,6 +25,7 @@
                 <div class="content"> ${item.content}</div>
                 <input type="hidden" name="id" value="${item.id}" />
                 <button class="submit" type="submit">Comment</button>
+                <div class="line">________________________________________</div>
         </div>
      </form>
 </c:forEach>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,7 +63,7 @@ public class BlogServlet extends HttpServlet {
         content = URLDecoder.decode(content,  "utf-8");
         content = StringEscapeUtils.escapeHtml4(content);
 
-        blogList.add(new Blog(blogId, userName, new SimpleDateFormat(), title, content));
+        blogList.add(new Blog(blogId, userName, LocalDateTime.now(), title, content));
 
         session.setAttribute(BLOG_ID_SESSION, blogId);
         session.setAttribute("blogList", blogList);

@@ -40,6 +40,7 @@
             <div class="author">${item.author}</div>
             <div class="date">${item.date}</div>
             <div class="content"> ${item.content}</div>
+            <div class="line">________________________________________</div>
         </div>
 </c:forEach>
 </body>

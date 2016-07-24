@@ -3,7 +3,7 @@ package hu.schonherz.basicblogger.data.blog;
 import hu.schonherz.basicblogger.data.comment.Comment;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,11 +15,11 @@ import java.util.List;
 public class Blog implements Serializable {
     private int id;
     private String author;
-    private SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+    private LocalDateTime date;
     private String title;
     private String content;
 
-    public Blog(int id, String author, SimpleDateFormat date, String title, String content) {
+    public Blog(int id, String author, LocalDateTime date, String title, String content) {
         this.id = id;
         this.author = author;
         this.date = date;
@@ -38,7 +38,7 @@ public class Blog implements Serializable {
         this.author = author;
     }
 
-    public void setDate(SimpleDateFormat date) {
+    public void setDate(LocalDateTime date) {
        this.date = date;
    }
 
@@ -58,7 +58,7 @@ public class Blog implements Serializable {
         return author;
     }
 
-    public SimpleDateFormat getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
