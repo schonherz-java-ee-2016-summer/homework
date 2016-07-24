@@ -32,7 +32,7 @@ public class IndexServlet extends HttpServlet {
 
         LOGGER.debug("Added new post: {}.", newPost);
 
-        req.getSession().setAttribute(Parameters.POSTS_ATTRIBUTE_NAME, posts);
+        req.getServletContext().setAttribute(Parameters.POSTS_ATTRIBUTE_NAME, posts);
 
         resp.sendRedirect(Parameters.INDEX_PAGE);
 

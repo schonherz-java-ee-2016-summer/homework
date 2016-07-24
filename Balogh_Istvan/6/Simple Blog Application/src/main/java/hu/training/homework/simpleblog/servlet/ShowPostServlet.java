@@ -20,14 +20,14 @@ public class ShowPostServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String selectedPostID = req.getParameter("id");
 
-        List<Post> posts = (ArrayList)req.getSession().getAttribute(Parameters.POSTS_ATTRIBUTE_NAME);
+        List<Post> posts = (ArrayList)req.getServletContext().getAttribute(Parameters.POSTS_ATTRIBUTE_NAME);
 
         Post selectedPost = posts.stream()
                                     .filter(p -> p.getId().equals(selectedPostID))
                                     .findFirst()
                                     .get();
 
-        req.getSession().setAttribute("selectedPost", selectedPost);
+        req.getServletContext().setAttribute("selectedPost", selectedPost);
 
         resp.sendRedirect("/post?id=" + selectedPostID);
     }

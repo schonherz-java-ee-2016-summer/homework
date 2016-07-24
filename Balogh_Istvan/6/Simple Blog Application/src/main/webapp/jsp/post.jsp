@@ -6,8 +6,8 @@
         <title>Show post - Simple Blog Webapp</title>
     </head>
     <body>
-        <p>${sessionScope.get("selectedPost").dateTime}</p>
-        <p>${sessionScope.get("selectedPost").author}</p>
-        <p>${sessionScope.get("selectedPost").content}</p>
+        <p>${applicationScope.get("selectedPost").dateTime}</p>
+        <p>${applicationScope.get("selectedPost").author}</p>
+        <p>${applicationScope.get("selectedPost").content}</p>
     </body>
 </html>
