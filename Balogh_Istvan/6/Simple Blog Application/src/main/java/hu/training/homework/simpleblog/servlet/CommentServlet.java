@@ -35,7 +35,6 @@ public class CommentServlet extends HttpServlet {
         Post selectedPost = (Post)req.getServletContext().getAttribute("selectedPost");
 
         selectedPost.getComments().add(newComment);
-        req.getServletContext().setAttribute("comments", selectedPost.getComments());
 
         resp.sendRedirect("/post?id=" + selectedPost.getId());
 
