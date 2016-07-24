@@ -21,15 +21,14 @@
             <c:if test="${empty applicationScope.get(Constants.POST_LIST)}">
                 <span>There are no posts yet.</span>
             </c:if>
-
             <c:forEach items="${applicationScope.get(Constants.POST_LIST)}" var="item">
                 <div class="postBox">
                     <div id="noBorder" class="postHeader">
-                        <a class="padded" href="${pageContext.request.contextPath}/posts?p=${item.getPostID()}">#${item.getPostID()}
-                            - ${item.getAuthor().getNickName()} - ${item.getTitle()}</a>
-                        <span class="padded">${item.getTime()}</span>
+                        <a class="padded"
+                           href="${pageContext.request.contextPath}/posts?p=${item.postID}">#${item.postID}
+                            - ${item.author.nickName} - ${item.title}</a>
+                        <span class="padded">${item.getFormattedTime()}</span>
                     </div>
-
                 </div>
             </c:forEach>
             </form>

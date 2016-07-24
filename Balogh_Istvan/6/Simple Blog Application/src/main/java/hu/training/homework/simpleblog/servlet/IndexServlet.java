@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +28,25 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Post newPost = new Post(req.getParameter(Parameters.COMMENTER_INPUT_NAME), req.getParameter(Parameters.POST_CONTENT_NAME));
+        resp.setContentType("text/html; charset=utf-8");
+        req.setCharacterEncoding(Parameters.ENCODING);
+        resp.setCharacterEncoding(Parameters.ENCODING);
+
+        String author = URLDecoder.decode(req.getParameter(Parameters.AUTHOR_INPUT_NAME), Parameters.ENCODING);
+        String title = URLDecoder.decode(req.getParameter(Parameters.POST_TITLE_NAME), Parameters.ENCODING);
+        String content = URLDecoder.decode(req.getParameter(Parameters.POST_CONTENT_NAME), Parameters.ENCODING);
+
+        Post newPost = new Post(author, content);
+        newPost.setTitle(title);
         posts.add(newPost);
 
         LOGGER.debug("Added new post: {}.", newPost);
 
         req.getServletContext().setAttribute(Parameters.POSTS_ATTRIBUTE_NAME, posts);
+        req.getServletContext().setAttribute("selectedPost", newPost);
 
-        resp.sendRedirect(Parameters.INDEX_PAGE);
+        resp.sendRedirect("/post?id=" + newPost.getId());
 
-        LOGGER.debug("Redirecting to " + Parameters.INDEX_PAGE);
+        LOGGER.debug("Redirecting to " + "/post?id=" + newPost.getId());
     }
 }

@@ -18,6 +18,9 @@ public class ShowPostServlet extends HttpServlet {
     @Override
     @SuppressWarnings("unchecked")
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=utf-8");
+        resp.setCharacterEncoding(Parameters.ENCODING);
+
         String selectedPostID = req.getParameter("id");
 
         List<Post> posts = (ArrayList)req.getServletContext().getAttribute(Parameters.POSTS_ATTRIBUTE_NAME);

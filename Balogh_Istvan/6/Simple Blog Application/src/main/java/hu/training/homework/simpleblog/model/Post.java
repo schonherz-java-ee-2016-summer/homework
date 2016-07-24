@@ -14,6 +14,7 @@ public class Post implements Serializable {
     private String id;
     private String author;
     private LocalDateTime dateTime;
+    private String title;
     private String content;
     private List<Comment> comments;
 
@@ -21,6 +22,7 @@ public class Post implements Serializable {
         this.id = UUID.randomUUID().toString();
         this.author = "";
         this.dateTime = LocalDateTime.now();
+        this.title = "";
         this.content = "";
         this.comments = new ArrayList<Comment>();
     }
@@ -29,6 +31,7 @@ public class Post implements Serializable {
         this.id = UUID.randomUUID().toString();
         this.author = author;
         this.dateTime = LocalDateTime.now();
+        this.title = "";
         this.content = content;
         this.comments = new ArrayList<Comment>();
     }
@@ -45,6 +48,10 @@ public class Post implements Serializable {
         return dateTime;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public String getContent() {
         return content;
     }
@@ -59,6 +66,10 @@ public class Post implements Serializable {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setContent(String content) {
@@ -82,7 +93,10 @@ public class Post implements Serializable {
         if (!getAuthor().equals(post.getAuthor())) {
             return false;
         }
-        if (getDateTime() != null ? !getDateTime().equals(post.getDateTime()) : post.getDateTime() != null) {
+        if (!getDateTime().equals(post.getDateTime())) {
+            return false;
+        }
+        if (getTitle() != null ? !getTitle().equals(post.getTitle()) : post.getTitle() != null) {
             return false;
         }
         if (!getContent().equals(post.getContent())) {
@@ -96,7 +110,8 @@ public class Post implements Serializable {
     public int hashCode() {
         int result = getId().hashCode();
         result = 31 * result + getAuthor().hashCode();
-        result = 31 * result + (getDateTime() != null ? getDateTime().hashCode() : 0);
+        result = 31 * result + getDateTime().hashCode();
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + getContent().hashCode();
         result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
         return result;
