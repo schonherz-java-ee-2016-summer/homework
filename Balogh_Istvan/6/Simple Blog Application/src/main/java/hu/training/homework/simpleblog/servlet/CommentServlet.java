@@ -35,7 +35,7 @@ public class CommentServlet extends HttpServlet {
         Comment newComment = new Comment(commenter, comment);
         LOGGER.debug("Added new comment: {}.", newComment);
 
-        Post selectedPost = (Post) req.getServletContext().getAttribute("selectedPost");
+        Post selectedPost = (Post) req.getServletContext().getAttribute(Parameters.SELECTED_POST_ATTRIBUTE_NAME);
 
         selectedPost.getComments().add(newComment);
 
