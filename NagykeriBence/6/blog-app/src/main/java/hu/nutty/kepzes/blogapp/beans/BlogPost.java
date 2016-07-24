@@ -6,7 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by Nutty on 2016.07.18..
+ * Encapsulation of a blog post.
+ * Instances of this class contain information about who posted the blog post
+ * and of course, the contents of the post itself.
  */
 public class BlogPost implements Serializable {
 

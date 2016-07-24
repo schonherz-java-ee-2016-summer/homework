@@ -22,6 +22,7 @@ public class ParserUtils {
      * Returns with an instance of {@code Object}, stored in the ServletContext.
      *
      * @param req the request which is part of the Context.
+     * @param key the name of the List we want to get from the Context.
      * @return an instance of {@code Object}.
      */
     public static Object getListFromContextByKey(final HttpServletRequest req, String key) {

@@ -1,7 +1,7 @@
 package hu.nutty.kepzes.blogapp.beans;
 
 /**
- * Created by Nutty on 2016.07.18..
+ * This class represents a Blogger.
  */
 public class Blogger {
     private String firstName;
