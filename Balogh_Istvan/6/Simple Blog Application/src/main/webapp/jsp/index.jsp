@@ -12,6 +12,7 @@
         <c:forEach var="post" items="${posts}">
             <div>
                 <hr>
+                <p>${post.title}</p>
                 <p>${post.dateTime}</p>
                 <p>${post.author}</p>
                 <p>${post.content}</p>

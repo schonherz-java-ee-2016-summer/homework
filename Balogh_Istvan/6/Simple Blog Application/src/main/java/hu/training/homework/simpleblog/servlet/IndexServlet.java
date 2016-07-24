@@ -33,17 +33,20 @@ public class IndexServlet extends HttpServlet {
         resp.setCharacterEncoding(Parameters.ENCODING);
 
         String author = URLDecoder.decode(req.getParameter(Parameters.COMMENTER_INPUT_NAME), Parameters.ENCODING);
+        String title = URLDecoder.decode(req.getParameter(Parameters.POST_TITLE_NAME), Parameters.ENCODING);
         String content = URLDecoder.decode(req.getParameter(Parameters.POST_CONTENT_NAME), Parameters.ENCODING);
 
         Post newPost = new Post(author, content);
+        newPost.setTitle(title);
         posts.add(newPost);
 
         LOGGER.debug("Added new post: {}.", newPost);
 
         req.getServletContext().setAttribute(Parameters.POSTS_ATTRIBUTE_NAME, posts);
+        req.getServletContext().setAttribute("selectedPost", newPost);
 
-        resp.sendRedirect(Parameters.INDEX_PAGE);
+        resp.sendRedirect("/post?id=" + newPost.getId());
 
-        LOGGER.debug("Redirecting to " + Parameters.INDEX_PAGE);
+        LOGGER.debug("Redirecting to " + "/post?id=" + newPost.getId());
     }
 }

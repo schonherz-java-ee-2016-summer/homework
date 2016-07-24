@@ -6,8 +6,12 @@
         <title>Show post - Simple Blog Webapp</title>
     </head>
     <body>
+        <p>${applicationScope.get("selectedPost").title}</p>
         <p>${applicationScope.get("selectedPost").dateTime}</p>
         <p>${applicationScope.get("selectedPost").author}</p>
         <p>${applicationScope.get("selectedPost").content}</p>
+        <a href="/index">
+            <button>Back to index</button>
+        </a>
     </body>
 </html>
