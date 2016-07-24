@@ -28,7 +28,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("Handling GET request to /posts...");
+        LOG.debug("Handling GET request to /index...");
 
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding(ENCODING);
@@ -53,7 +53,7 @@ public class IndexServlet extends HttpServlet {
      */
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
-        LOG.debug("Handling POST request to /posts...");
+        LOG.debug("Handling POST request to /index...");
 
         req.setCharacterEncoding(ENCODING);
         res.setCharacterEncoding(ENCODING);
