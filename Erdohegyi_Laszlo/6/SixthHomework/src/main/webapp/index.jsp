@@ -20,6 +20,9 @@
                 <p>${post.title}</p>
                 <p>${post.author}</p>
                 <p>${post.date}</p>
+                <a href="/showpost/${post.id}">
+                    <button>Show post</button>
+                </a>
             </div>
         </c:forEach>
     </body>
