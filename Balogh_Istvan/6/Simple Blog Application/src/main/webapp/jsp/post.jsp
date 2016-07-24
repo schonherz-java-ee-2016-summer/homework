@@ -13,5 +13,19 @@
         <a href="/index">
             <button>Back to index</button>
         </a>
+
+        <c:forEach var="comment" items="${comments}">
+            <hr>
+            <p>${comment.commenter}</p>
+            <p>${comment.content}</p>
+        </c:forEach>
+
+        <form method="post" action="/comment-servlet">
+            <hr>
+            <p>Add comment to this post</p>
+            <input name="commenter" type="text" placeholder="Your name..."><br>
+            <textarea name="comment" rows="5" cols="30" placeholder="Enter your comment here..."></textarea><br>
+            <input id="addComment" type="submit" name="addComment" value="Add comment">
+        </form>
     </body>
 </html>

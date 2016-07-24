@@ -32,7 +32,7 @@ public class IndexServlet extends HttpServlet {
         req.setCharacterEncoding(Parameters.ENCODING);
         resp.setCharacterEncoding(Parameters.ENCODING);
 
-        String author = URLDecoder.decode(req.getParameter(Parameters.COMMENTER_INPUT_NAME), Parameters.ENCODING);
+        String author = URLDecoder.decode(req.getParameter(Parameters.AUTHOR_INPUT_NAME), Parameters.ENCODING);
         String title = URLDecoder.decode(req.getParameter(Parameters.POST_TITLE_NAME), Parameters.ENCODING);
         String content = URLDecoder.decode(req.getParameter(Parameters.POST_CONTENT_NAME), Parameters.ENCODING);
 
