@@ -5,13 +5,18 @@
          version="3.0">
     <display-name>Archetype Created Web Application</display-name>
 
+
     <servlet>
         <servlet-name>index-servlet</servlet-name>
-        <servlet-class>hu.schonherz.java.training.blog.servlet.Index</servlet-class>
+        <servlet-class>hu.schonherz.java.training.blog.servlets.IndexServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>newpost-servlet</servlet-name>
-        <servlet-class>hu.schonherz.java.training.blog.servlet.NewPost</servlet-class>
+        <servlet-class>hu.schonherz.java.training.blog.servlets.NewPostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showpost-servlet</servlet-name>
+        <servlet-class>hu.schonherz.java.training.blog.servlets.ShowPostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>index</servlet-name>
@@ -25,7 +30,7 @@
         <servlet-name>showpost</servlet-name>
         <jsp-file>/showpost.jsp</jsp-file>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>index-servlet</servlet-name>
         <url-pattern>/index-servlet</url-pattern>
@@ -33,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>newpost-servlet</servlet-name>
         <url-pattern>/newpost-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showpost-servlet</servlet-name>
+        <url-pattern>/showpost-servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
@@ -44,7 +53,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>showpost</servlet-name>
-        <url-pattern>/showpost</url-pattern>
+        <url-pattern>/showpost/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

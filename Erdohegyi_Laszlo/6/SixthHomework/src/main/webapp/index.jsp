@@ -4,17 +4,22 @@
 <html>
     <head>
         <title>Sixth Homework Index</title>
-        <link rel="stylesheet" href="blogstyle.css">
+        <link rel="stylesheet" type="text/css" href="blogstyle.css">
     </head>
     <body>
         <h2>Welcome</h2>
-        <p/>
 
-        <c:forEach items="${postList}" var="post">
+        <div>
+            <a href="/newpost">
+                <button>New post</button>
+            </a>
+        </div>
+
+        <c:forEach items="${applicationScope.get('posts')}" var="post">
             <div class="blogpost">
                 <p>${post.title}</p>
                 <p>${post.author}</p>
-                <p>${post.postDate}</p>
+                <p>${post.date}</p>
             </div>
         </c:forEach>
     </body>
