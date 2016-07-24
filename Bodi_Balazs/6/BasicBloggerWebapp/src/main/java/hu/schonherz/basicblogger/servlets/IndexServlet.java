@@ -5,11 +5,11 @@ import hu.schonherz.basicblogger.data.blog.Blog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,9 +34,9 @@ public class IndexServlet extends HttpServlet{
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-        session.setAttribute(BLOGLIST_SESSION, blogList);
-        session.setAttribute(BLOG_ID_SESSION, blogList.size()-1);
+        ServletContext context = getServletContext();
+        context.setAttribute(BLOGLIST_SESSION, blogList);
+        context.setAttribute(BLOG_ID_SESSION, blogList.size()-1);
         resp.sendRedirect("/post/new");
     }
 }

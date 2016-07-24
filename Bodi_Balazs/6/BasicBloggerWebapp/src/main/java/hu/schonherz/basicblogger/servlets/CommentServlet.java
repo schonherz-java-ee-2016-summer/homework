@@ -6,11 +6,11 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.time.LocalDateTime;
@@ -38,12 +38,12 @@ import java.util.List;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-        blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
-        commentList = (List<Comment>) session.getAttribute(COMMENTLIST_SESSION);
+        ServletContext context = getServletContext();
+        blogList = (List<Blog>) context.getAttribute(BLOGLIST_SESSION);
+        commentList = (List<Comment>)context.getAttribute(COMMENTLIST_SESSION);
 
         String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
-        blogId = (int) session.getAttribute(BLOG_ID_SESSION);
+        blogId = (int) context.getAttribute(BLOG_ID_SESSION);
         blogId--;
         userName = URLDecoder.decode(userName,  "utf-8");
         userName = StringEscapeUtils.escapeHtml4(userName);
@@ -57,19 +57,19 @@ import java.util.List;
                 requiredComments.add(actualComment);
             }
         }
-        session.setAttribute("requiredComments", requiredComments);
+        context.setAttribute("requiredComments", requiredComments);
         }
 
-        session.setAttribute("requiredBlog", requiredBlog);
+        context.setAttribute("requiredBlog", requiredBlog);
 
         resp.sendRedirect("/post.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-        blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
-        commentList = (List<Comment>) session.getAttribute(COMMENTLIST_SESSION);
+        ServletContext context = getServletContext();
+        blogList = (List<Blog>) context.getAttribute(BLOGLIST_SESSION);
+        commentList = (List<Comment>) context.getAttribute(COMMENTLIST_SESSION);
 
         String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
         blogId = Integer.parseInt(req.getParameter(ID));
@@ -91,12 +91,12 @@ import java.util.List;
                     requiredComments.add(actualComment);
                 }
             }
-            session.setAttribute("requiredComments", requiredComments);
+            context.setAttribute("requiredComments", requiredComments);
         }
 
 
-        session.setAttribute(COMMENTLIST_SESSION, commentList);
-        session.setAttribute("requiredBlog", requiredBlog);
+        context.setAttribute(COMMENTLIST_SESSION, commentList);
+        context.setAttribute("requiredBlog", requiredBlog);
 
         resp.sendRedirect("/post.jsp");
     }

@@ -5,11 +5,11 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.time.LocalDateTime;
@@ -37,18 +37,19 @@ public class BlogServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
+        ServletContext context = getServletContext();
 
-        blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
+        blogList = (List<Blog>) context.getAttribute(BLOGLIST_SESSION);
         blogId = blogList.size();
-        session.setAttribute(BLOG_ID_SESSION, blogId);
+        context.setAttribute(BLOG_ID_SESSION, blogId);
         resp.sendRedirect("/post/new.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-        blogList = (List<Blog>) session.getAttribute(BLOGLIST_SESSION);
+        ServletContext context = getServletContext();
+
+        blogList = (List<Blog>) context.getAttribute(BLOGLIST_SESSION);
 
         String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
         String title = (req.getParameter(COMMENT_TITLE) != null ? (req.getParameter(COMMENT_TITLE)) : ("Untitled"));
@@ -65,8 +66,8 @@ public class BlogServlet extends HttpServlet {
 
         blogList.add(new Blog(blogId, userName, LocalDateTime.now(), title, content));
 
-        session.setAttribute(BLOG_ID_SESSION, blogId);
-        session.setAttribute("blogList", blogList);
+        context.setAttribute(BLOG_ID_SESSION, blogId);
+        context.setAttribute("blogList", blogList);
         resp.sendRedirect("/post/" + blogId);
     }
 }
