@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -13,7 +14,7 @@
     <div id="title"> ${blog.title}</div>
 
     <div id="inline">
-        <span>${blog.date}</span> *
+        <span><fmt:formatDate value="${blog.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span> *
         <span>${blog.author}</span>
     </div>
 </div>
@@ -24,6 +25,7 @@
 
 <div class="new">
     <c:forEach var="comment" items="${blog.comments}">
+        <span><fmt:formatDate value="${comment.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span> *
         <p>${comment.content}</p>
         <hr/>
     </c:forEach>

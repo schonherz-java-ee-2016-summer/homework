@@ -5,7 +5,6 @@ import hu.schonerz.training.beans.BlogBean;
 import hu.schonerz.training.pojo.Comment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.rmi.runtime.Log;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * HttpServlet implementation for creating a new comment for a blogpost.
+ */
 public class CommentServlet extends HttpServlet {
 
     private static final Logger LOG = LoggerFactory.getLogger(CommentServlet.class);
@@ -25,7 +27,6 @@ public class CommentServlet extends HttpServlet {
 
         String postID = req.getParameter("id");
         LOG.info("Get " + postID + " post id from servletRequest.");
-
 
         Comment comment = new Comment(req.getParameter("CONTENT"));
         LOG.info("New comment added.");
@@ -41,8 +42,5 @@ public class CommentServlet extends HttpServlet {
 
         resp.sendRedirect("/post?id=" + commentedBlog.getId());
         LOG.info("Redirected to: /post?id=" + +commentedBlog.getId());
-
     }
-
-
 }

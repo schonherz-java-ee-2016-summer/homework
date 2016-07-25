@@ -11,13 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * HttpServlet implementation, for creating new blogposts..
+ */
 public class IndexServlet extends HttpServlet {
 
     public static final Logger LOG = LoggerFactory.getLogger(IndexServlet.class);
 
     public final BlogBean blogBean = new BlogBean();
 
+    /**
+     * Posting a new blogpost, and add that to bloglist.
+     * If the user posted a new, or selected an existed post,
+     * he will be forwarded, to posts page {@link hu.schonerz.training.servlets.PostServlet}.
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException EervletException
+     * @throws IOException      IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Blog blog = new Blog(req.getParameter("AUTHOR_NAME"),
@@ -35,7 +47,5 @@ public class IndexServlet extends HttpServlet {
 
         resp.sendRedirect("/post?id=" + blog.getId());
         LOG.info("Redirected to: /post?id=" + blog.getId());
-
-
     }
 }

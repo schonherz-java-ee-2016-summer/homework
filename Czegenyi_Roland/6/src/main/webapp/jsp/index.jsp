@@ -16,7 +16,7 @@
                 <div id="title">${post.title}</div>
             </a>
             <div id="inline">
-                <span>${post.date}</span> *
+                <span>${post.date}</span>
                 <span>${post.author}</span>
             </div>
         </div>
