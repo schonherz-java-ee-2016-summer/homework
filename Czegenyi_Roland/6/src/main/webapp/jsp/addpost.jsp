@@ -3,15 +3,25 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Add a new post.</title>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
 
+<p class="title">Simple Blog</p>
+
+
 <form action="/index-servlet" method="post" id="blogForm">
-    Title: <input type="text" name="TITLE">
-    Author name <input type="text" name="AUTHOR_NAME"></br>
-    Story <textarea name="CONTENT" rows="5" cols="20"></textarea></br>
-    <input type="submit" name="Submit">
+    <fieldset class="new">
+        <label>Title: </label>
+        <input type="text" name="TITLE">
+        <label>Author name: </label>
+        <input type="text" name="AUTHOR_NAME">
+        <label>Post content: </label>
+        <textarea name="CONTENT" rows="20" cols="35"></textarea>
+        <label></label>
+        <input type="submit" name="Submit">
+    </fieldset>
 </form>
 
 </body>
