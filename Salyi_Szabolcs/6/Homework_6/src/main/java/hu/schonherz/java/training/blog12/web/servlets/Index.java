@@ -1,13 +1,17 @@
 package hu.schonherz.java.training.blog12.web.servlets;
 
 import hu.schonherz.java.training.blog12.data.post.Post;
+import hu.schonherz.java.training.blog12.web.utils.RequestUtils;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Map;
+
+import static hu.schonherz.java.training.blog12.data.post.PostBean.getPosts;
 
 /**
  * Created by Home on 2016. 07. 19..
@@ -24,20 +28,22 @@ public class Index extends HttpServlet {
     @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Map < String, String > formData = ( Map < String , String> )req.getAttribute("formData");
+        Map < String, String > formData = RequestUtils.parseFromBody(req);
 
-        int id = 1;
         String author = formData.get(KEY_AUTHOR);
         String title = formData.get(KEY_TITLE);
         String content = formData.get(KEY_CONTENT);
 
 
-        Post newPost = new Post.PostBuilder(author,title).content(content).build();
+        resp.setHeader("Content-Type", "text/html; charset=utf-8");
+        resp.setCharacterEncoding("UTF-8");
 
+        int id = getPosts().size()+1;
+        Post newPost = new Post.PostBuilder(id, author,title).content(content).date(LocalDateTime.now()).build();
 
-        //req.setAttribute("newpost",newPost);
-        getServletContext().setAttribute("newpost",newPost);
-        //resp.sendRedirect(req.getContextPath() + "/newpost");
+        getPosts().add(newPost);
+        req.getServletContext().setAttribute("posts",getPosts());
+        resp.sendRedirect(req.getContextPath() + "/post/" + newPost.getId());
 
 
     }

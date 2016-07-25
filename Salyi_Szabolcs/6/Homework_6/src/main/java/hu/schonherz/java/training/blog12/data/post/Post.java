@@ -1,9 +1,10 @@
 package hu.schonherz.java.training.blog12.data.post;
 
-import hu.schonherz.java.training.blog12.data.comment.CommentsBean;
+import hu.schonherz.java.training.blog12.data.comment.Comment;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by Home on 2016. 07. 18..
@@ -15,21 +16,21 @@ import java.text.SimpleDateFormat;
  */
 public class Post implements Serializable {
 
-    private int id = 1;
+    private int id;
     private String author;
-    private SimpleDateFormat date = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+    private LocalDateTime date;
     private String title;
     private String content;
-    private CommentsBean comments;
+    private List<Comment> comments;
 
     private Post(PostBuilder builder) {
-        //this.id = builder.id;
+        this.id = builder.id;
         this.author = builder.author;
         this.date = builder.date;
         this.title = builder.title;
         this.content = builder.content;
         this.comments = builder.comments;
-        id++;
+
     }
 
     public int getId() {
@@ -48,24 +49,24 @@ public class Post implements Serializable {
         return content;
     }
 
-    public CommentsBean getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public SimpleDateFormat getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
     public static class PostBuilder {
-        //private final int id;
+        private final int id;
         private final String author;
         private final String title;
-        private SimpleDateFormat date = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+        private LocalDateTime date ;
         private String content;
-        private CommentsBean comments;
+        private List<Comment> comments;
 
-        public PostBuilder( String author, String title) {
-            //this.id = id;
+        public PostBuilder(Integer id, String author, String title) {
+            this.id=id;
             this.author = author;
             this.title = title;
         }
@@ -75,8 +76,13 @@ public class Post implements Serializable {
             return this;
         }
 
-        public PostBuilder comments(CommentsBean comments){
+        public PostBuilder comments(List<Comment> comments){
             this.comments = comments;
+            return this;
+        }
+
+        public PostBuilder date(LocalDateTime date){
+            this.date=date;
             return this;
         }
 
@@ -85,6 +91,7 @@ public class Post implements Serializable {
             return new Post(this);
         }
     }
+
 
     @Override
     public boolean equals(Object o) {
