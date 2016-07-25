@@ -2,22 +2,29 @@
 
 <html>
 <head>
-    <title>Blog</title>
+    <title>Simple Blog</title>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
 
-<c:forEach var="post" items="${posts}">
+<p class="title">Simple Blog</p>
 
-    <p>${post.author}</p>
-    <p>${post.title}</p>
-    <p>${post.content}</p>
-    <p>${post.id}</p>
+<div class="post">
+    <c:forEach var="post" items="${posts}">
+        <div class="new">
+            <a href="/post-servlet?id=${post.id}">
+                <div id="title">${post.title}</div>
+            </a>
+            <div id="inline">
+                <span>${post.date}</span>
+                <span>${post.author}</span>
+            </div>
+        </div>
+    </c:forEach>
+</div>
 
-    <p><a href="/post-servlet?id=${post.id}">alldata</a></p>
-</c:forEach>
-
-<div>
-    <a href="addpost/new">new blog</a>
+<div class="new">
+    <a href="addpost/new">Add a new post.</a>
 </div>
 </body>
 </html>

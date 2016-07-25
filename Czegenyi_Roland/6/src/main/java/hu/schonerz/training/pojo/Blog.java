@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Class for representing a blog post.
+ */
+
 public class Blog {
     private static final AtomicInteger count = new AtomicInteger(0);
     private int id;
@@ -18,7 +22,7 @@ public class Blog {
     public Blog(String author, String title, String content) {
         this.id = count.incrementAndGet();
         this.author = author;
-        this.date = date;
+        this.date = new Date();
         this.title = title;
         this.content = content;
         this.comments = new ArrayList<Comment>();
