@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lac on 2016.07.24..
+ * An HttpServlet to manage requests/responces.
  */
-public class ShowPostServlet extends HttpServlet{
+public class ShowPostServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(ShowPostServlet.class);
 
     private static final String POSTS = "posts";
@@ -31,6 +31,13 @@ public class ShowPostServlet extends HttpServlet{
     private static List<BlogPost> posts = new ArrayList<>();
     private static List<BlogComment> coms = new ArrayList<>();
 
+    /**
+     * An implementation of doGet which selects the actual post from posts.
+     * @param req HTTP request
+     * @param resp HTTP responce
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext context = getServletContext();
@@ -45,6 +52,13 @@ public class ShowPostServlet extends HttpServlet{
         LOGGER.info("Redirecting to " + req.getContextPath() + "/showpost/" + postId);
     }
 
+    /**
+     * An implementation of doPost which reads the attributes of a comment for the actual post.
+     * @param req HTTP request
+     * @param resp HTTP responce
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext context = getServletContext();

@@ -1,11 +1,10 @@
 package hu.schonherz.java.training.blog.pojo;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lac on 2016.07.18..
+ * A POJO for a post on the blog.
  */
 public class BlogPost {
 

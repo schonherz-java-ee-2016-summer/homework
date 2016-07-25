@@ -18,7 +18,7 @@ import java.util.List;
 
 
 /**
- * Created by lac on 2016.07.20..
+ * An HttpServlet to manage requests/responces.
  */
 public class NewPostServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(NewPostServlet.class);
@@ -29,6 +29,13 @@ public class NewPostServlet extends HttpServlet {
     private static int postId;
     private static List<BlogPost> posts = new ArrayList<>();
 
+    /**
+     * An implementation of doPost which reads the attributes of a post.
+     * @param req HTTP request
+     * @param resp HTTP responce
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext context = getServletContext();
