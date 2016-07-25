@@ -1,7 +1,7 @@
 package hu.nutty.kepzes.blogapp.utils;
 
 /**
- * Created by Nutty on 2016.07.21..
+ * This is a utility class for using our "dictionary" for communicating easily.
  */
 public final class Constants {
     private Constants() {

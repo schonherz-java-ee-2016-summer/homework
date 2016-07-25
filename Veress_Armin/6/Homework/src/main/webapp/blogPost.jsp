@@ -11,7 +11,7 @@
     <title>Bla Bla Blog</title>
 </head>
     <body>
-        <h1 align="center">New Post</h1>
+        <label>New Post</label>
         <form>
             Name: <input type="text" name="name"><br><br>
             Title: <input type="text" name="title"><br><br>

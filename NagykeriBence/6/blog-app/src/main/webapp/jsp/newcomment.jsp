@@ -1,9 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Nutty
-  Date: 2016.07.21.
-  Time: 13:13
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -14,13 +8,9 @@
         <title>Fullos Blog - New Comment</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/notempty.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/validator.js"></script>
     </head>
     <body>
-        <div id="dialog" title="Basic dialog">
-            <p>This is the default dialog which is useful for displaying information. The dialog window can be moved,
-                resized and closed with the 'x' icon.</p>
-        </div>
         <div class="back">
             <div>
                 <a href="${pageContext.request.contextPath}/"><img

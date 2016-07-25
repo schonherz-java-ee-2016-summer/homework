@@ -16,21 +16,18 @@
                         title="Fullos Blog"></a>
             </div>
             <div>
-                <a href="${pageContext.request.contextPath}/post/new">Create new post.</a>
+                <a class="button" href="${pageContext.request.contextPath}/post/new">Create new post</a>
             </div>
             <c:if test="${empty applicationScope.get(Constants.POST_LIST)}">
                 <span>There are no posts yet.</span>
             </c:if>
-
             <c:forEach items="${applicationScope.get(Constants.POST_LIST)}" var="item">
-                <div class="box">
-                    <div class="postHeader">
-                        <a href="${pageContext.request.contextPath}/posts?p=${item.getPostID()}">#${item.getPostID()}
-                            - ${item.getAuthor().getNickName()} - ${item.getTitle()}</a>
-                        <span>${item.getTime()}</span>
-                    </div>
-                    <div class="postContent">
-                        <span>${item.getMessage()}</span>
+                <div class="postBox">
+                    <div id="noBorder" class="postHeader">
+                        <a class="padded"
+                           href="${pageContext.request.contextPath}/posts?p=${item.postID}">#${item.postID}
+                            - ${item.author.nickName} - ${item.title}</a>
+                        <span class="padded">${item.getFormattedTime()}</span>
                     </div>
                 </div>
             </c:forEach>

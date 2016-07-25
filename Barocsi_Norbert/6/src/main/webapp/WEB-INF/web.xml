@@ -1,0 +1,65 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+    <display-name>Archetype Created Web Application</display-name>
+
+    <servlet>
+        <servlet-name>newPostServlet</servlet-name>
+        <servlet-class>hu.schonherz.traning.homeworksix.web.NewPost</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>newPostServlet</servlet-name>
+        <url-pattern>/newPost/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>newPost</servlet-name>
+        <jsp-file>/jsp/newPost.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>newPost</servlet-name>
+        <url-pattern>/post/new</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet>-->
+        <!--<servlet-name>IndexServlet</servlet-name>-->
+        <!--<servlet-class>hu.schonherz.traning.homeworksix.web.IndexServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>IndexServlet</servlet-name>-->
+        <!--<url-pattern>/posts</url-pattern>-->
+        <!--<url-pattern>/indexPosts</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>hu.schonherz.traning.homeworksix.web.CommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentServlet</servlet-name>
+        <url-pattern>/posts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Posts</servlet-name>
+        <jsp-file>/jsp/posts.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Posts</servlet-name>
+        <url-pattern>/post/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/jsp/indexPosts.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+</web-app>

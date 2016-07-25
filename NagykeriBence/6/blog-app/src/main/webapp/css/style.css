@@ -26,7 +26,6 @@ body {
     padding: 20px;
     overflow: hidden;
     border: none;
-    font: normal 16px/normal "Times New Roman", Times, serif;
     color: rgba(0, 0, 0, 0.9);
     text-align: center;
     -o-text-overflow: clip;
@@ -42,13 +41,28 @@ body {
     padding: 10px;
 }
 
-.postContent {
-    padding: 20px;
-    min-width: 60px;
-    min-height: 60px;
+.commentHeader {
+    border-bottom: 1px solid;
+    padding: 10px;
 }
 
-.box {
+#noBorder {
+    border: none;
+}
+
+.postContent {
+    padding: 30px;
+    min-width: 150px;
+    min-height: 150px;
+}
+
+.commentContent {
+    padding: 10px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.postBox {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
@@ -58,11 +72,43 @@ body {
     border: 2px solid;
     -webkit-border-radius: 8px;
     border-radius: 8px;
-    font: normal 16px/normal "Times New Roman", Times, serif;
     color: rgba(0, 0, 0, 0.9);
     -o-text-overflow: clip;
     text-overflow: clip;
     background: #bce3f2;
+    -webkit-box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.commentBox {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 160px;
+    margin: 20px;
+    width: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(11, 21, 130, 1);
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    color: rgba(0, 0, 0, 0.9);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: -webkit-linear-gradient(-40.42607874009914deg, rgba(145, 166, 242, 1) 0, rgba(145, 242, 242, 0.92) 99%, rgba(124, 188, 10, 1) 100%);
+    background: -moz-linear-gradient(130.42607874009914deg, rgba(145, 166, 242, 1) 0, rgba(145, 242, 242, 0.92) 99%, rgba(124, 188, 10, 1) 100%);
+    background: linear-gradient(130.42607874009914deg, rgba(145, 166, 242, 1) 0, rgba(145, 242, 242, 0.92) 99%, rgba(124, 188, 10, 1) 100%);
+    background-position: 50% 50%;
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: auto auto;
+    background-size: auto auto;
     -webkit-box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
     box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -136,7 +182,7 @@ body {
     border: 2px solid #018dc4;
     -webkit-border-radius: 66px;
     border-radius: 66px;
-    font: normal 29px/normal "bangers", Helvetica, sans-serif;
+    font: normal 29px/normal Impact, Charcoal, sans-serif;
     color: rgba(255, 255, 255, 0.9);
     -o-text-overflow: clip;
     text-overflow: clip;
@@ -152,8 +198,19 @@ body {
     transform: none;
     -webkit-transform-origin: 50% 50% 0;
     transform-origin: 50% 50% 0;
+
 }
 
-#dialog {
-    display: none;
+.padded {
+    padding: 20px;
+}
+
+a.button {
+    text-decoration: none;
+}
+
+#interactive-label {
+    font-size: 8pt;
+    color: rgba(190, 10, 10, 0.9);
+    visibility: visible;
 }

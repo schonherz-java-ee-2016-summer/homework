@@ -17,15 +17,23 @@ import static hu.nutty.kepzes.blogapp.utils.Constants.*;
 /**
  * Custom extension of {@code HttpServlet}.
  * <p>
- * This servlet implements a little blog posting functionality, nothing serious.
- * A user gets a list of posts if he sends a GET request while
- * using POST, he can submit a new blog post.
+ * This servlet implements a blog displaying functionality with more details, nothing serious.
+ * A user gets a post if he sends a GET request
  */
 public class BlogPostServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(BlogPostServlet.class);
 
     private BlogPostsBean posts;
 
+    /**
+     * Handles GET requests coming to /posts.
+     * We push the selected post to the ServletContext, after we redirect to the proper .jsp, and display it.
+     *
+     * @param req  the incoming HTTP request
+     * @param resp the outgoing HTTP response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         LOG.debug("Handling GET request to /posts...");
@@ -41,7 +49,6 @@ public class BlogPostServlet extends HttpServlet {
         posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, INDEX_SESSION_KEY);
         context.setAttribute(SELECTED_POST, posts.getPosts().get(id - 1));
         resp.sendRedirect(req.getContextPath() + "/post/" + id);
-
     }
 
 }

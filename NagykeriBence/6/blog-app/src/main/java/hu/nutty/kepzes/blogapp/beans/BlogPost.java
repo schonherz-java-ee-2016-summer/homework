@@ -2,10 +2,13 @@ package hu.nutty.kepzes.blogapp.beans;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by Nutty on 2016.07.18..
+ * Encapsulation of a blog post.
+ * Instances of this class contain information about who posted the blog post
+ * and of course, the contents of the post itself.
  */
 public class BlogPost implements Serializable {
 
@@ -44,6 +47,12 @@ public class BlogPost implements Serializable {
 
     public void setAuthor(Blogger author) {
         this.author = author;
+    }
+
+    public String getFormattedTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. - HH:mm:ss");
+        String formattedDateTime = this.time.format(formatter);
+        return formattedDateTime;
     }
 
     public LocalDateTime getTime() {
@@ -113,10 +122,12 @@ public class BlogPost implements Serializable {
     @Override
     public String toString() {
         return "BlogPost{" +
-                "author=" + author +
+                "postID=" + postID +
+                ", author=" + author +
                 ", time=" + time +
                 ", title='" + title + '\'' +
                 ", message='" + message + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }

@@ -1,7 +1,7 @@
 package hu.nutty.kepzes.blogapp.beans;
 
 /**
- * Created by Nutty on 2016.07.18..
+ * This class represents a Blogger.
  */
 public class Blogger {
     private String firstName;
@@ -49,5 +49,48 @@ public class Blogger {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Blogger blogger = (Blogger) o;
+
+        if (age != blogger.age) {
+            return false;
+        }
+        if (!firstName.equals(blogger.firstName)) {
+            return false;
+        }
+        if (!lastName.equals(blogger.lastName)) {
+            return false;
+        }
+        return nickName.equals(blogger.nickName);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + nickName.hashCode();
+        result = 31 * result + age;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Blogger{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

@@ -3,7 +3,7 @@ package hu.schonherz.java.training.blog.pojo;
 import java.time.LocalDateTime;
 
 /**
- * Created by lac on 2016.07.18..
+ * A POJO for a comment under a post.
  */
 public class BlogComment {
 

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Created by lac on 2016.07.18..
+ * A POJO for a post on the blog.
  */
 public class BlogPost {
 
@@ -22,6 +22,14 @@ public class BlogPost {
         this.title = title;
         this.content = content;
         this.comments = comments;
+    }
+
+    public BlogPost(int id, String author, LocalDateTime date, String title, String content) {
+        this.id = id;
+        this.author = author;
+        this.date = date;
+        this.title = title;
+        this.content = content;
     }
 
     public int getId() {
