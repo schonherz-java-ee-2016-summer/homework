@@ -9,27 +9,17 @@
 </head>
     <body>
     <%@include file="/html/header.html"%>
-    <form id="addPost" method="post" action="/blog/BlogPostServlet"  onsubmit="return validatePost()">
-        <table id="inputTable">
-            <tr>
-                <td colspan="2"><h2>Add a new post!</h2></td>
-            </tr>
-            <tr>
-                <td><label for="user">Author name:</label></td>
-                <td><input id="user" name="user" type="text"></td>
-            </tr>
-            <tr>
-                <td><label for="title">Title:</label></td>
-                <td><input id="title" name="title" type="text"></td>
-            </tr>
-            <tr>
-                <td><label for="content">Content:</label></td>
-                <td><input id="content" name="content" type="text" rows="5"></td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">Add the post</button></td>
-            </tr>
-        </table>
+    <form id="addPost" method="post" action="/blog/blogPostServlet"  onsubmit="return validatePost()">
+        <div id="inputFields">
+            <div><h2>Add a new post!</h2></div>
+            <div><label for="user">Author name:</label></div>
+            <div><input id="user" name="user" type="text"></div>
+            <div><label for="title">Title:</label></div>
+            <div><input id="title" name="title" type="text"></div>
+            <div><label for="content">Content:</label></div>
+            <div><input id="content" name="content" type="text" rows="5"></div>
+            <div><button type="submit">Add the post</button></div>
+        </div>
     </form>
     </body>
 </html>

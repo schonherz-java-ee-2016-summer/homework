@@ -29,7 +29,7 @@
                 </div>
             </c:forEach>
         </div>
-        <form method="post" action="/blog/CommentServlet?ID=${post.postID}" onsubmit="return validateComment()">
+        <form method="post" action="/blog/commentServlet?ID=${post.postID}" onsubmit="return validateComment()">
             <div id="addComment">
                 <div>
                     <label for="newcomment">Add comment:</label>

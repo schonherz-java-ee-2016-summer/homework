@@ -39,7 +39,7 @@ public class CommentsServlet extends HttpServlet{
                 context.setAttribute("commentsList", post.getComments());
             }
         }
-        resp.sendRedirect("/blog/Post/" + postID + "?ID=" + postID);
+        resp.sendRedirect("/blog/post/" + "?ID=" + postID);
     }
 
     public Comment createComment(final HttpServletRequest req){
