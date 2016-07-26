@@ -19,10 +19,10 @@
         </div>
         <div id="comments">
             Comments about this post:
-            <c:if test="${empty commentsList}">
+            <c:if test="${empty post.comments}">
                 <div id="nocomment">There are no comments yet.</div>
             </c:if>
-            <c:forEach items="${commentsList}" var="comment">
+            <c:forEach items="${post.comments}" var="comment">
                 <div class="comment">
                     <p>${comment.content}</p>
                     <p id="commentdate">${comment.commentDate}</p>

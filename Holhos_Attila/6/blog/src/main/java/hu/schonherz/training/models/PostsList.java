@@ -24,6 +24,10 @@ public class PostsList {
         return postsList;
     }
 
+    public void setPostsList(List<Post> postsList) {
+        this.postsList = postsList;
+    }
+
     public Post getPost(Integer integer){
         for (Post post: postsList){
             if (post.getPostID() == integer){

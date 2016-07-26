@@ -16,8 +16,8 @@
             <div><input id="user" name="user" type="text"></div>
             <div><label for="title">Title:</label></div>
             <div><input id="title" name="title" type="text"></div>
-            <div><label for="content">Content:</label></div>
-            <div><input id="content" name="content" type="text" rows="5"></div>
+            <div>Content:</div>
+            <div><textarea name="content" rows="10" cols="50"></textarea></div>
             <div><button type="submit">Add the post</button></div>
         </div>
     </form>

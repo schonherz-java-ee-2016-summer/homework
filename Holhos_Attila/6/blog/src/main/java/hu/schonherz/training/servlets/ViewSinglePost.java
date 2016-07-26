@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,24 +21,15 @@ import java.util.List;
 public class ViewSinglePost extends HttpServlet{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ViewSinglePost.class);
-    private PostsList posts;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ServletContext context = getServletContext();
-        if (context.getAttribute("posts") == null) {
-            context.setAttribute("posts", new PostsList());
-        }
-        posts = (PostsList) context.getAttribute("posts");
-
+        PostsList posts = new PostsList();
+        posts.setPostsList((ArrayList) getServletContext().getAttribute("postsList"));
         Integer postID = Integer.parseInt(req.getParameter("ID"));
         Post post = posts.getPost(postID);
-        List<Comment> commentList = post.getComments();
-        LOGGER.info("Somebody view post #" + (postID) + "!");
-
-        context.setAttribute("post", post);
-        context.setAttribute("commentsList", commentList);
+        getServletContext().setAttribute("post", post);
+        LOGGER.info("Somebody view post " + (postID) + "!");
         req.getRequestDispatcher("/viewPost").forward(req, resp);
-
     }
 }
