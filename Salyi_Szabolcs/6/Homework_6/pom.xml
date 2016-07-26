@@ -23,7 +23,7 @@
             <version.apache.lang>3.4</version.apache.lang>
             <servlet.api.version>3.1.0</servlet.api.version>
             <junit.version>3.8.1</junit.version>
-            <version.jsp.api>2.3.1</version.jsp.api>
+            <version.jsp.api>2.2</version.jsp.api>
             <version.jstl.api>1.2.1</version.jstl.api>
             <version.taglibs.impl>1.2.5</version.taglibs.impl>
             <slf4j.version>1.7.21</slf4j.version>

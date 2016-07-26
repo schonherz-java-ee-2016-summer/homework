@@ -5,11 +5,6 @@
          version="3.0">
     <display-name>Archetype Created Web Application</display-name>
 
-
-    <servlet>
-        <servlet-name>index-servlet</servlet-name>
-        <servlet-class>hu.schonherz.java.training.blog.servlets.IndexServlet</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>newpost-servlet</servlet-name>
         <servlet-class>hu.schonherz.java.training.blog.servlets.NewPostServlet</servlet-class>
@@ -31,10 +26,6 @@
         <jsp-file>/showpost.jsp</jsp-file>
     </servlet>
 
-    <servlet-mapping>
-        <servlet-name>index-servlet</servlet-name>
-        <url-pattern>/index-servlet</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>newpost-servlet</servlet-name>
         <url-pattern>/newpost-servlet</url-pattern>

@@ -11,13 +11,12 @@
 <html>
     <head>
         <title>New Post</title>
+        <link rel="stylesheet" type="text/css" href="/css/button.css">
+        <link rel="stylesheet" type="text/css" href="/css/forms.css">
     </head>
     <body>
         <form class="form" method="post" action="/newPost">
-            <div class="form-element">
-                <label for="identity">Identity: </label>
-                <input id="identity" name="identity" type="text"/>
-            </div>
+
             <div class="form-element">
                 <label for="author">Author: </label>
                 <input id="author" name="author" type="text"/>
@@ -28,7 +27,6 @@
             </div>
             <div class="form-element">
                 <label for="content">Content: </label>
-                <!--<input id="content" name="content" type="text"/>-->
                 <textarea id="content" name="content"></textarea>
             </div>
             <div class="form-element">

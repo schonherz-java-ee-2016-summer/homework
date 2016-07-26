@@ -8,32 +8,25 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
-        <url-pattern>/welcome</url-pattern>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>New</servlet-name>
-        <servlet-class>hu.schonherz.java.training.blog12.web.servlets.NewPost</servlet-class>
+        <servlet-name>Post</servlet-name>
+        <jsp-file>/jsp/post.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>New</servlet-name>
-        <url-pattern>/neww</url-pattern>
+        <servlet-name>Post</servlet-name>
+        <url-pattern>/post/*</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>Welcome</servlet-name>
         <jsp-file>/jsp/welcome.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Welcome</servlet-name>
-        <url-pattern>/asd</url-pattern>
+        <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
 
-    <filter>
-        <filter-name>FromDataParser</filter-name>
-        <filter-class>hu.schonherz.java.training.blog12.web.filters.FormDataFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>FromDataParser</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
 
 </web-app>

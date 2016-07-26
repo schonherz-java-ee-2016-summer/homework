@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class PostBean implements Serializable {
 
-    private List<Post> posts = new ArrayList<>();
+    private static List<Post> posts = new ArrayList<>();
 
-    public List<Post> getPosts() {
+    public static List<Post> getPosts() {
         return posts;
     }
 

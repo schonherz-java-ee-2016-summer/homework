@@ -13,7 +13,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>newPostServlet</servlet-name>
-        <url-pattern>/newPost</url-pattern>
+        <url-pattern>/newPost/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -25,12 +25,22 @@
         <url-pattern>/post/new</url-pattern>
     </servlet-mapping>
 
+    <!--<servlet>-->
+        <!--<servlet-name>IndexServlet</servlet-name>-->
+        <!--<servlet-class>hu.schonherz.traning.homeworksix.web.IndexServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>IndexServlet</servlet-name>-->
+        <!--<url-pattern>/posts</url-pattern>-->
+        <!--<url-pattern>/indexPosts</url-pattern>-->
+    <!--</servlet-mapping>-->
+
     <servlet>
-        <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>hu.schonherz.traning.homeworksix.web.IndexServlet</servlet-class>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>hu.schonherz.traning.homeworksix.web.CommentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>IndexServlet</servlet-name>
+        <servlet-name>CommentServlet</servlet-name>
         <url-pattern>/posts</url-pattern>
     </servlet-mapping>
 
@@ -45,7 +55,7 @@
 
     <servlet>
         <servlet-name>index</servlet-name>
-        <jsp-file>/jsp/index.jsp</jsp-file>
+        <jsp-file>/jsp/indexPosts.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>

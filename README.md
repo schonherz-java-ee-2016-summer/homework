@@ -1,6 +1,10 @@
 # Schönherz Java Training 2016 Summer - Homeworks
 
 This repository contains homework descriptions stated by the trainers and the solutions by trainees.
+7th Homework - Spring JDBCTemplate,MVC,REST
+---
+**[Description](https://github.com/schonherz-java-ee-2016-summer/homework/blob/master/7.HomeWork.md)**  
+**Deadline**: July 31, Sunday, 23:00
 
 6th Homework - Servlet API & JSPs
 ---

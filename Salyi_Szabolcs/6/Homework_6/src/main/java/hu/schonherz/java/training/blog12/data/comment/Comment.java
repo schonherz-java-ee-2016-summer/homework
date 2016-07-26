@@ -1,7 +1,7 @@
 package hu.schonherz.java.training.blog12.data.comment;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 /**
  * Created by Home on 2016. 07. 18..
@@ -13,21 +13,23 @@ import java.text.SimpleDateFormat;
  */
 public class Comment implements Serializable {
 
-    private int id;
-    private SimpleDateFormat date = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+    private int id=0;
+    private LocalDateTime date ;
     private String content;
 
-    public Comment(int id, SimpleDateFormat date, String content) {
+    public Comment(int id, LocalDateTime date, String content) {
+        id++;
         this.id = id;
         this.date = date;
         this.content = content;
+
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setDate(SimpleDateFormat date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -40,7 +42,7 @@ public class Comment implements Serializable {
         return id;
     }
 
-    public SimpleDateFormat getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 

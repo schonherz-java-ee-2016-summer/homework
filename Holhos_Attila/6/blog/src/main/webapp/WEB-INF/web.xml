@@ -22,7 +22,7 @@
 
     <servlet-mapping>
         <servlet-name>Post</servlet-name>
-        <url-pattern>/Post/*</url-pattern>
+        <url-pattern>/post/*</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -52,7 +52,7 @@
 
     <servlet-mapping>
         <servlet-name>CommentServlet</servlet-name>
-        <url-pattern>/CommentServlet</url-pattern>
+        <url-pattern>/commentServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -62,7 +62,7 @@
 
     <servlet-mapping>
         <servlet-name>BlogPostServlet</servlet-name>
-        <url-pattern>/BlogPostServlet</url-pattern>
+        <url-pattern>/blogPostServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

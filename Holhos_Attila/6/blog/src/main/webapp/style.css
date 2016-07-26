@@ -61,10 +61,11 @@ body{
     height: 60px;
 }
 
-#inputTable{
+#inputFields{
     text-align: center;
     margin: auto;
     border: solid 1px blue;
+    width: 50%;
 }
 
 #error{

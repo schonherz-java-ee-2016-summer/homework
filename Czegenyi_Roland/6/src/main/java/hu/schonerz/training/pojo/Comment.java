@@ -3,7 +3,9 @@ package hu.schonerz.training.pojo;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * Class for representing a comment.
+ */
 public class Comment {
     private static final AtomicInteger count = new AtomicInteger(0);
 
@@ -13,7 +15,7 @@ public class Comment {
 
     public Comment(String content) {
         this.id = count.incrementAndGet();
-        this.date = date;
+        this.date = new Date();
         this.content = content;
     }
 
