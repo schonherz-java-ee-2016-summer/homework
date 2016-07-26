@@ -21,4 +21,8 @@ public class BlogPostsBean implements Serializable {
         this.posts = posts;
     }
 
+    public void addPost(BlogPost post) {
+        this.posts.add(post);
+    }
+
 }

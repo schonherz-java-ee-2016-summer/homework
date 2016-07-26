@@ -42,10 +42,6 @@ public class IndexServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding(ENCODING);
 
-        posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, INDEX_KEY);
-
-        ServletContext context = req.getServletContext();
-        context.setAttribute(POST_LIST, posts.getPosts());
         resp.sendRedirect(req.getContextPath() + "/index.jsp");
     }
 
@@ -66,11 +62,14 @@ public class IndexServlet extends HttpServlet {
 
         req.setCharacterEncoding(ENCODING);
         res.setCharacterEncoding(ENCODING);
+        ServletContext context = req.getServletContext();
+        if (context.getAttribute(INDEX_KEY) == null) {
+            context.setAttribute(INDEX_KEY, new BlogPostsBean());
+        }
+        posts = (BlogPostsBean) context.getAttribute(INDEX_KEY);
+        posts.addPost(ParserUtils.parseBodyAsPost(req));
 
-        posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, INDEX_KEY);
-        posts.getPosts().add(ParserUtils.parseBodyAsPost(req));
-
-        req.getServletContext().setAttribute(INDEX_KEY, this.posts);
+        context.setAttribute(INDEX_KEY, this.posts);
         res.sendRedirect(req.getContextPath() + "/index");
     }
 }

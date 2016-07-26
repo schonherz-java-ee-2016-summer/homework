@@ -21,7 +21,6 @@ public final class Constants {
     public static final String POST_TITLE = "title";
     public static final String INDEX_KEY = "index";
     public static final String SELECTED_POST = "selected_post";
-    public static final String POST_LIST = "post_list";
 
     public static final String LOGIN_SESSION_KEY = "login";
     public static final String LOGIN_INPUT_USERNAME = "nickname";
