@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +27,8 @@ public class PostController {
     public ModelAndView createPost(ModelMap modelMap) {
         Post post = new Post();
         modelMap.addAttribute(Parameters.POST_MODELATTRIBUTE_NAME, post);
-        return new ModelAndView("newBlogPost", "command", new Post());
+        modelMap.addAttribute(Parameters.COMMENTS_ATTRIBUTE_NAME, post.getComments());
+        return new ModelAndView("newBlogPost", "command", post);
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
