@@ -6,10 +6,12 @@
             <title>Blog post ${pageContext.request.requestURL.substring(pageContext.request.requestURL.length()-1)}</title>
     </head>
     <body>
-            <c:forEach items="${posts}" var="element">
+    <form method="post" action="/addcomment">
+
+    <c:forEach items="${posts}" var="element">
                 <c:if test="${pageContext.request.requestURL.substring(pageContext.request.requestURL.length()-1) == element.getId()}">
                     <h1>Add a comment to post ${element.getTitle()}!</h1>
-                    <div>Post ID: ${element.getId()}</div>
+                    <div>Post ID: ${element.id}</div>
                     <div>Post Author: ${element.getAuthor()}</div>
                     <div>Post Time: ${element.getDate()}</div>
                     <div>Post Title: ${element.getTitle()}</div>
@@ -22,9 +24,6 @@
                     <input type="hidden" name="id" value="${element.getId()}"/>
                 </c:if>
             </c:forEach>
-
-            <form method="post" action="/addcomment">
-
 
                     <div>
                         <span>Add a new Comment!</span>
