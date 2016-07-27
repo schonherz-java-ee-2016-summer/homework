@@ -4,6 +4,7 @@ import hu.schonherz.java.training.blog12.data.comment.Comment;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,7 +64,7 @@ public class Post implements Serializable {
         private final String title;
         private LocalDateTime date ;
         private String content;
-        private List<Comment> comments;
+        private List<Comment> comments = new ArrayList<>();
 
         public PostBuilder(Integer id, String author, String title) {
             this.id=id;

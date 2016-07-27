@@ -15,7 +15,7 @@
                     <span>Post Title: ${post.getTitle()}</span><br>
                     <span>Post Author: ${post.getAuthor()}</span><br>
                     <span>Post Date: ${post.getDate()}</span>
-                    <a href="/post/${post.getId()}">
+                    <a href="/post/?id=${post.getId()}">
                         <button>Show Post</button>
                     </a>
                 </div>
