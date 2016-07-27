@@ -8,11 +8,17 @@
         <title>Index - Simple Blog Webapp</title>
         <link rel="stylesheet" type="text/css" href="/css/styleSheet.css"/>
     </head>
-    <body>
+    <body><%--
         <div>
             <form method="post" action="/post/new">
                 <input class="button" id="newPost" type="submit" name="newPost" value="Create new post">
             </form>
+        </div>--%>
+
+        <div>
+            <a href="/post/new/">
+                Create new post
+            </a>
         </div>
 
         <c:forEach var="post" items="${posts}">

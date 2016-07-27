@@ -10,19 +10,19 @@
     </head>
     <body>
         <div class="post">
-            <p><span class="postCaptions">Title: </span>${applicationScope.get("selectedPost").title}</p>
-            <c:set var="cleanedDateTime" value="${fn:replace(selectedPost.dateTime, 'T', ' ')}"/>
-            <fmt:parseDate value="${ cleanedDateTime }" pattern="yyyy-MM-dd HH:mm" var="parsedDateTime" type="both"/>
+            <p><span class="postCaptions">Title: </span>${post.title}</p>
+            <c:set var="cleanedDateTime" value="${fn:replace(post.dateTime, 'T', ' ')}"/>
+            <fmt:parseDate value="${cleanedDateTime}" pattern="yyyy-MM-dd HH:mm" var="parsedDateTime" type="both"/>
             <p><span class="postCaptions">Posted at: </span><fmt:formatDate pattern="yyyy.MM.dd. HH:mm"
                                                                             value="${parsedDateTime}"/></p>
-            <p><span class="postCaptions">Author: </span>${applicationScope.get("selectedPost").author}</p>
-            <p>${applicationScope.get("selectedPost").content}</p>
+            <p><span class="postCaptions">Author: </span>${post.author}</p>
+            <p>${post.content}</p>
         </div>
         <a href="/index">
             <button class="button">Back to index</button>
         </a>
 
-        <c:forEach var="comment" items="${selectedPost.comments}">
+        <c:forEach var="comment" items="${post.comments}">
             <div class="comment">
                 <p><span class="commentCaptions">Commenter: </span>${comment.commenter}</p>
                 <p>${comment.content}</p>
