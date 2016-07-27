@@ -38,8 +38,8 @@ public class Index extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding("UTF-8");
 
-        int id = getPosts().size()+1;
-        Post newPost = new Post.PostBuilder(id, author,title).content(content).date(LocalDateTime.now()).build();
+        //int id = getPosts().size()+1;
+        Post newPost = new Post.PostBuilder(getPosts().size()+1, author,title).content(content).date(LocalDateTime.now()).build();
 
         getPosts().add(newPost);
         req.getServletContext().setAttribute("posts",getPosts());
