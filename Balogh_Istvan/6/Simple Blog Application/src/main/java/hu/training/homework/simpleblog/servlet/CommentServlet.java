@@ -1,10 +1,13 @@
 package hu.training.homework.simpleblog.servlet;
 
+import hu.training.homework.simpleblog.dao.CommentDAO;
 import hu.training.homework.simpleblog.model.Comment;
 import hu.training.homework.simpleblog.model.Post;
 import hu.training.homework.simpleblog.util.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +37,10 @@ public class CommentServlet extends HttpServlet {
 
         Comment newComment = new Comment(commenter, comment);
         LOGGER.debug("Added new comment: {}.", newComment);
+
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        CommentDAO dao = applicationContext.getBean("JDBCTemplateCommentDAOImpl", CommentDAO.class);
+        dao.addComment(newComment);
 
         Post selectedPost = (Post) req.getServletContext().getAttribute(Parameters.SELECTED_POST_ATTRIBUTE_NAME);
 

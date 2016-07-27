@@ -13,16 +13,11 @@ import java.time.LocalDateTime;
  */
 public class Comment implements Serializable {
 
-    private int id=0;
+    private int id;
     private LocalDateTime date ;
     private String content;
 
-    public Comment(int id, LocalDateTime date, String content) {
-        id++;
-        this.id = id;
-        this.date = date;
-        this.content = content;
-
+    public Comment() {
     }
 
     public void setId(int id) {
