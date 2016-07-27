@@ -18,10 +18,10 @@
             <div>
                 <a class="button" href="${pageContext.request.contextPath}/post/new">Create new post</a>
             </div>
-            <c:if test="${empty applicationScope.get(Constants.INDEX_KEY).posts}">
+            <c:if test="${empty index}">
                 <span>There are no posts yet.</span>
             </c:if>
-            <c:forEach items="${applicationScope.get(Constants.INDEX_KEY).posts}" var="item">
+            <c:forEach items="${index}" var="item">
                 <div class="postBox">
                     <div id="noBorder" class="postHeader">
                         <a class="padded"

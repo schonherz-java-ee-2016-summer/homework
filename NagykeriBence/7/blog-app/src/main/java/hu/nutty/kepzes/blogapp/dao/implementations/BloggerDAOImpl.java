@@ -1,6 +1,8 @@
-package hu.nutty.kepzes.blogapp.dao;
+package hu.nutty.kepzes.blogapp.dao.implementations;
 
 import hu.nutty.kepzes.blogapp.beans.Blogger;
+import hu.nutty.kepzes.blogapp.dao.BloggerDAO;
+import hu.nutty.kepzes.blogapp.mapper.BloggerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -43,6 +45,21 @@ public class BloggerDAOImpl implements BloggerDAO {
             );
             return b;
         });
+        return blogger;
+    }
+
+    @Override
+    public Blogger getBloggerById(int bloggerID) {
+        String sql = "SELECT bloggerID, firstName, lastName, nickName, age FROM public.\"Bloggers\" WHERE nickName = ?";
+       /* Blogger blogger = jdbcTemplate.queryForObject(sql, new Object[]{bloggerID}, (resultSet, index) -> {
+            Blogger b = new Blogger(
+                    resultSet.getInt("bloggerID"), resultSet.getString("firstName"),
+                    resultSet.getString("lastName"), resultSet.getString("nickName"),
+                    resultSet.getInt("age")
+            );
+            return b;
+        });*/
+        Blogger blogger = jdbcTemplate.queryForObject(sql, new Object[]{bloggerID}, new BloggerMapper());
         return blogger;
     }
 

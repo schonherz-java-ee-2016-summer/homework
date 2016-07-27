@@ -1,7 +1,7 @@
-package hu.nutty.kepzes.blogapp.deprecated;
+package hu.nutty.kepzes.blogapp.dao.deprecated;
 
 import hu.nutty.kepzes.blogapp.dao.BloggerDAO;
-import hu.nutty.kepzes.blogapp.deprecated.ConnectionHandler;
+import hu.nutty.kepzes.blogapp.dao.deprecated.ConnectionHandler;
 import hu.nutty.kepzes.blogapp.beans.Blogger;
 
 import java.sql.*;
@@ -65,6 +65,11 @@ public class BloggerDAOImplWithoutTemplate implements BloggerDAO {
             e.printStackTrace();
         }
         return blogger;
+    }
+
+    @Override
+    public Blogger getBloggerById(int bloggerID) {
+        return null;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package hu.nutty.kepzes.blogapp.deprecated;
+package hu.nutty.kepzes.blogapp.dao.deprecated;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

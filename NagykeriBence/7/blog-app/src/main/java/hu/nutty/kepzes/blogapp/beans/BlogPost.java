@@ -15,7 +15,7 @@ public class BlogPost implements Serializable {
     private static final long serialVersionUID = -114946219811259385L;
     private static final AtomicInteger count = new AtomicInteger(0);
 
-    private final int postID;
+    private int postID;
     private Blogger author;
     private LocalDateTime time;
     private String title;
@@ -37,6 +37,10 @@ public class BlogPost implements Serializable {
         this.time = LocalDateTime.now();
         this.comments = new CommentsBean();
         this.bloggerID = this.author.getBloggerID();
+    }
+
+    public void setPostID(int postID) {
+        this.postID = postID;
     }
 
     public int getPostID() {
