@@ -24,6 +24,10 @@ public class PostsList {
         return postsList;
     }
 
+    public void setPostsList(List<Post> postsList) {
+        this.postsList = postsList;
+    }
+
     public Post getPost(Integer integer){
         for (Post post: postsList){
             if (post.getPostID() == integer){
@@ -32,35 +36,4 @@ public class PostsList {
         }
         return new Post();
     }
-
-    /*public static void writePostsToFile(){
-        try (FileOutputStream out = new FileOutputStream("Posts.txt")) {
-            ObjectOutputStream oout = new ObjectOutputStream(out);
-            oout.writeObject(postsList);
-            oout.flush();
-        } catch (IOException e){
-            LOGGER.error("IOException");
-        }
-    }
-
-    public static void readPostsFromFile(){
-        File file = new File("Posts.txt");
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e){
-                LOGGER.error("File was not created!");
-            }
-        } else {
-            try (FileInputStream in = new FileInputStream(file)) {
-                ObjectInputStream oin = new ObjectInputStream(in);
-                postsList = ((List<Post>) oin.readObject());
-                System.out.println(postsList.get(0).getAuthor());
-            } catch (ClassNotFoundException e) {
-                LOGGER.error("Class not found exception");
-            } catch (IOException e) {
-                LOGGER.error("IOException at reading posts!");
-            }
-        }
-    }*/
 }

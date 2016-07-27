@@ -1,9 +1,12 @@
 package hu.training.homework.simpleblog.servlet;
 
+import hu.training.homework.simpleblog.dao.PostDAO;
 import hu.training.homework.simpleblog.model.Post;
 import hu.training.homework.simpleblog.util.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +43,10 @@ public class IndexServlet extends HttpServlet {
         newPost.setTitle(title);
         posts.add(newPost);
         LOGGER.debug("Added new post: {}.", newPost);
+
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        PostDAO dao = applicationContext.getBean("JDBCTemplatePostDAOImpl", PostDAO.class);
+        dao.addPost(newPost);
 
         req.getServletContext().setAttribute(Parameters.POSTS_ATTRIBUTE_NAME, posts);
         LOGGER.debug("Added new context attribute: {}.", Parameters.POSTS_ATTRIBUTE_NAME);

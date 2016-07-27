@@ -26,6 +26,14 @@ public class Index extends HttpServlet {
     private static final String KEY_CONTENT = "content";
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("Content-Type", "text/html; charset=utf-8");
+        resp.setCharacterEncoding("UTF-8");
+        req.getServletContext().setAttribute("posts",getPosts());
+        resp.sendRedirect(req.getContextPath() + "/welcome");
+    }
+
+    @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Map < String, String > formData = RequestUtils.parseFromBody(req);
@@ -38,12 +46,12 @@ public class Index extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding("UTF-8");
 
-        int id = getPosts().size()+1;
-        Post newPost = new Post.PostBuilder(id, author,title).content(content).date(LocalDateTime.now()).build();
+        //int id = getPosts().size()+1;
+        Post newPost = new Post.PostBuilder(getPosts().size()+1, author,title).content(content).date(LocalDateTime.now()).build();
 
         getPosts().add(newPost);
         req.getServletContext().setAttribute("posts",getPosts());
-        resp.sendRedirect(req.getContextPath() + "/post/" + newPost.getId());
+        resp.sendRedirect(req.getContextPath() + "/post/" + "?id=" + newPost.getId());
 
 
     }
