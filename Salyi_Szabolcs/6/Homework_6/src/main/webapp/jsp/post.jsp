@@ -6,24 +6,21 @@
             <title>Blog post ${pageContext.request.requestURL.substring(pageContext.request.requestURL.length()-1)}</title>
     </head>
     <body>
-    <form method="post" action="/addcomment">
 
-    <c:forEach items="${posts}" var="element">
-                <c:if test="${pageContext.request.requestURL.substring(pageContext.request.requestURL.length()-1) == element.getId()}">
-                    <h1>Add a comment to post ${element.getTitle()}!</h1>
-                    <div>Post ID: ${element.id}</div>
-                    <div>Post Author: ${element.getAuthor()}</div>
-                    <div>Post Time: ${element.getDate()}</div>
-                    <div>Post Title: ${element.getTitle()}</div>
-                    <div>Content: ${element.getContent()}</div>
-                    <c:forEach items="${element.comments}" var="comment">
-                        <div>Comment ID: ${commment.getId()}</div>
-                        <div>Comment Date: ${comment.getDate()}</div>
-                        <div>Comment Content: ${commment.getContent()}</div>
-                    </c:forEach>
-                    <input type="hidden" name="id" value="${element.getId()}"/>
-                </c:if>
+        <h1>Add a comment to post ${post.title}!</h1>
+        <div>Post ID: ${post.id}</div>
+        <div>Post Author: ${post.author}</div>
+        <div>Post Time: ${post.date}</div>
+        <div>Post Title: ${post.title}</div>
+        <div>Content: ${post.content}</div>
+            <c:forEach items="${post.comments}" var="comment">
+                <div>Comment ID: ${comment.id}</div>
+                <div>Comment Date: ${comment.date}</div>
+                <div>Comment Content: ${comment.content}</div>
             </c:forEach>
+        <input type="hidden" name="id" value="${post.id}"/>
+
+        <form method="post" action="/addcomment?id=${post.id}">
 
                     <div>
                         <span>Add a new Comment!</span>
