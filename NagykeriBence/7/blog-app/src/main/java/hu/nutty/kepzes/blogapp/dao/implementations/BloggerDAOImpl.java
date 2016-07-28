@@ -17,7 +17,6 @@ import java.util.List;
 public class BloggerDAOImpl implements BloggerDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
     public void createBloggersTable() {
         String createTableSQL = "CREATE TABLE public.\"Bloggers\"(" +
                 "bloggerID integer PRIMARY KEY," +
@@ -50,16 +49,16 @@ public class BloggerDAOImpl implements BloggerDAO {
 
     @Override
     public Blogger getBloggerById(int bloggerID) {
-        String sql = "SELECT bloggerID, firstName, lastName, nickName, age FROM public.\"Bloggers\" WHERE nickName = ?";
-       /* Blogger blogger = jdbcTemplate.queryForObject(sql, new Object[]{bloggerID}, (resultSet, index) -> {
+        String sql = "SELECT bloggerID, firstName, lastName, nickName, age FROM public.\"Bloggers\" WHERE bloggerID = ?";
+        Blogger blogger = jdbcTemplate.queryForObject(sql, new Object[]{bloggerID}, (resultSet, index) -> {
             Blogger b = new Blogger(
                     resultSet.getInt("bloggerID"), resultSet.getString("firstName"),
                     resultSet.getString("lastName"), resultSet.getString("nickName"),
                     resultSet.getInt("age")
             );
             return b;
-        });*/
-        Blogger blogger = jdbcTemplate.queryForObject(sql, new Object[]{bloggerID}, new BloggerMapper());
+        });
+
         return blogger;
     }
 
