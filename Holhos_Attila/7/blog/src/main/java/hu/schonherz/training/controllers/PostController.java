@@ -4,6 +4,8 @@ import hu.schonherz.training.dao.CommentDao;
 import hu.schonherz.training.dao.PostDao;
 import hu.schonherz.training.models.Comment;
 import hu.schonherz.training.models.Post;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +24,15 @@ import java.util.List;
 @RequestMapping("/post")
 public class PostController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(PostController.class);
+
     @Autowired
     private PostDao postDao;
 
     @Autowired
     private CommentDao commentDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public String viewPost(@PathVariable int id, Model model){
         Post post = postDao.getPostByID(id);
         List<Comment> comments = commentDao.getAllCommentByPostId(post.getPostID());
@@ -37,19 +41,21 @@ public class PostController {
         Comment comment = new Comment();
         comment.setPostID(post.getPostID());
         model.addAttribute("comment", comment);
+        LOG.info("View a post! Id=" + post.getPostID());
         return "viewPost";
     }
 
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    @RequestMapping(path = "/new", method = RequestMethod.GET)
     public String createPost(Model model){
         Post post = new Post();
         model.addAttribute("post", post);
         return "newPost";
     }
 
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    @RequestMapping(path = "/new", method = RequestMethod.POST)
     public String createPost(@ModelAttribute("post") Post post, Model model){
         postDao.createPost(post);
+        LOG.info("A new post was added!");
         return "redirect:/index";
     }
 }

@@ -36,6 +36,6 @@ public class PostDaoImpl implements PostDao {
     @Override
     public void createPost(Post post) {
         String sql = "Insert into public.\"Post\" (author, title, postdate, content) VALUES (?,?,?,?);";
-        jdbcTemplate.update(sql,post.getAuthor(),post.getTitle(),post.getPostDate(),post.getContent());
+        jdbcTemplate.update(sql, post.getAuthor(), post.getTitle(), post.getPostDate(), post.getContent());
     }
 }
