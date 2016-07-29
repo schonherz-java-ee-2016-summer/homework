@@ -5,73 +5,19 @@
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
 
-    <!--<servlet>
-        <servlet-name>index</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-
     <servlet>
-        <servlet-name>Post</servlet-name>
-        <servlet-class>hu.schonherz.training.servlets.ViewSinglePost</servlet-class>
+        <servlet-name>jsp</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Post</servlet-name>
-        <url-pattern>/post/*</url-pattern>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>/jsp/*</url-pattern>
     </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>viewPost</servlet-name>
-        <jsp-file>/viewPost.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>viewPost</servlet-name>
-        <url-pattern>/viewPost</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>newPost</servlet-name>
-        <jsp-file>/newPost.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>newPost</servlet-name>
-        <url-pattern>/newPost</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>CommentServlet</servlet-name>
-        <servlet-class>hu.schonherz.training.servlets.CommentsServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>CommentServlet</servlet-name>
-        <url-pattern>/commentServlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>BlogPostServlet</servlet-name>
-        <servlet-class>hu.schonherz.training.servlets.BlogPostServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>BlogPostServlet</servlet-name>
-        <url-pattern>/blogPostServlet</url-pattern>
-    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
-        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
