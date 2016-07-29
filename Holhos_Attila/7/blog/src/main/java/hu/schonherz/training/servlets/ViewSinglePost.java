@@ -1,6 +1,6 @@
 package hu.schonherz.training.servlets;
 
-import hu.schonherz.training.jdbcTemplates.JDBCTemplatePost;
+import hu.schonherz.training.jdbcTemplates.PostDaoImpl;
 import hu.schonherz.training.models.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class ViewSinglePost extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer postID = Integer.parseInt(req.getParameter("ID"));
-        Post post = (new JDBCTemplatePost().getPostByID(postID));
+        Post post = (new PostDaoImpl().getPostByID(postID));
         getServletContext().setAttribute("post", post);
         LOGGER.info("Somebody view post " + (postID) + "!");
         req.getRequestDispatcher("/viewPost").forward(req, resp);

@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Repository
-public class JDBCTemplateComment implements CommentDao{
+public class CommentDaoImpl implements CommentDao{
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

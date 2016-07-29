@@ -9,10 +9,19 @@ import java.util.Date;
 public class Comment implements Serializable {
 
     private int commentID;
+    private int postID;
     private String commentDate;
     private String content;
 
     public Comment(){}
+
+    public int getPostID() {
+        return postID;
+    }
+
+    public void setPostID(int postID) {
+        this.postID = postID;
+    }
 
     public int getCommentID() {
         return commentID;
