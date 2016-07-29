@@ -18,6 +18,8 @@
                                                                             value="${parsedDateTime}"/></p>
             <p><span class="postCaptions">Author: </span>${post.author}</p>
             <p>${post.content}</p>
+            <p>${selectedId}</p>
+            <p>${newcomment.postID}</p>
         </div>
         <a href="/index">
             <button class="button">Back to index</button>
@@ -30,19 +32,13 @@
             </div>
         </c:forEach>
 
-        <%--<form method="post" action="/comment-servlet">
-            <hr>
-            <p>Add comment to this post</p>
-            <input name="commenter" type="text" placeholder="Your name..."><br>
-            <textarea name="comment" rows="5" cols="30" placeholder="Enter your comment here..."></textarea><br>
-            <input class="button" id="addComment" type="submit" name="addComment" value="Add comment">
-        </form>--%>
         <div>
-            <form:form modelAttribute="comments" method="post" action="/comment/add">
+            <form:form modelAttribute="newcomment" method="post" action="/comment/add">
                 <hr>
                 <p>Add comment to this post</p>
+                <div><form:hidden path="postID"/></div>
                 <div><form:input path="commenter"/></div>
-                <div><form:textarea path="comment"/></div>
+                <div><form:textarea path="content"/></div>
                 <input class="button" id="addComment" type="submit" name="addComment" value="Add comment">
             </form:form>
         </div>
