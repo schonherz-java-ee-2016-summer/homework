@@ -13,5 +13,5 @@ public interface BlogPostDAO {
 
     BlogPost getBlogPostById(int postID);
 
-    void createBlogPost(int postID, LocalDateTime time, String title, String message, int bloggerID);
+    void addBlogPost(BlogPost blogPost);
 }

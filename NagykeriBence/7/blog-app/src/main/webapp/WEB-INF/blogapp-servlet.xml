@@ -26,9 +26,8 @@
           class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource"></constructor-arg>
     </bean>
-    <bean name="BlogPostJDBCTemplate" class="hu.nutty.kepzes.blogapp.dao.implementations.BlogPostDAOImpl">
+    <bean name="blogPostDAOImpl" class="hu.nutty.kepzes.blogapp.dao.implementations.BlogPostDAOImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
-
 
 </beans>

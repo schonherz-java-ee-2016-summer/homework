@@ -16,9 +16,8 @@ import java.util.List;
 
 import static hu.nutty.kepzes.blogapp.utils.Constants.*;
 
-// this is a controller
+
 @Controller
-// if a request enter on "/" url then this controller will handle it
 @RequestMapping("/")
 public class IndexController {
     @Autowired
@@ -28,11 +27,8 @@ public class IndexController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String displayIndex(ModelMap model) {
-        Blogger blogger = bloggerDAO.getBloggerById(2);
-        System.out.println(blogger);
-        System.out.println(bloggerDAO);
-        List<BlogPost> blogs = blogPostDAO.getAllBlogPosts();
 
+        List<BlogPost> blogs = blogPostDAO.getAllBlogPosts();
         model.addAttribute(INDEX_KEY, blogs);
 
         return "index";

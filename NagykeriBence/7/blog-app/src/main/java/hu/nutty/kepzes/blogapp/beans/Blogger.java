@@ -8,28 +8,30 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Blogger implements Serializable {
     private static final long serialVersionUID = -2815440504971898685L;
-    private static final AtomicInteger count = new AtomicInteger(0);
 
-    private final int bloggerID;
+    private int bloggerID;
     private String firstName;
     private String lastName;
     private String nickName;
     private int age;
 
     public Blogger() {
-        this.bloggerID = count.incrementAndGet();
     }
 
     public Blogger(int bloggerID, String firstName, String lastName, String nickName, int age) {
+        this.bloggerID = bloggerID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.nickName = nickName;
-        this.bloggerID = bloggerID;
     }
 
     public int getBloggerID() {
         return bloggerID;
+    }
+
+    public void setBloggerID(int bloggerID) {
+        this.bloggerID = bloggerID;
     }
 
     public String getFirstName() {

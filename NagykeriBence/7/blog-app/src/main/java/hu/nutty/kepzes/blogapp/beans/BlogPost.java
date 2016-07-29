@@ -13,7 +13,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BlogPost implements Serializable {
 
     private static final long serialVersionUID = -114946219811259385L;
-    private static final AtomicInteger count = new AtomicInteger(0);
 
     private int postID;
     private Blogger author;
@@ -24,27 +23,27 @@ public class BlogPost implements Serializable {
     private int bloggerID;
 
     public BlogPost() {
-        this.postID = count.incrementAndGet();
         this.time = LocalDateTime.now();
         this.comments = new CommentsBean();
     }
 
-    public BlogPost(Blogger author, String title, String message) {
-        this.postID = count.incrementAndGet();
+    public BlogPost(int postID, Blogger author, LocalDateTime time, String title, String message) {
+        this.postID = postID;
         this.author = author;
         this.title = title;
         this.message = message;
-        this.time = LocalDateTime.now();
+        this.time = time;
         this.comments = new CommentsBean();
         this.bloggerID = this.author.getBloggerID();
     }
 
-    public void setPostID(int postID) {
-        this.postID = postID;
-    }
 
     public int getPostID() {
         return postID;
+    }
+
+    public void setPostID(int postID) {
+        this.postID = postID;
     }
 
     public Blogger getAuthor() {

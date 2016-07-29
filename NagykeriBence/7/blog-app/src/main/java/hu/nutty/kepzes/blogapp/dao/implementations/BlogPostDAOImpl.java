@@ -3,16 +3,10 @@ package hu.nutty.kepzes.blogapp.dao.implementations;
 import hu.nutty.kepzes.blogapp.beans.BlogPost;
 import hu.nutty.kepzes.blogapp.dao.BlogPostDAO;
 import hu.nutty.kepzes.blogapp.dao.BloggerDAO;
-import hu.nutty.kepzes.blogapp.mapper.BlogPostMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,34 +27,44 @@ public class BlogPostDAOImpl implements BlogPostDAO {
     @Override
     public List<BlogPost> getAllBlogPosts() {
         String sql = "SELECT postID, time, title, message, bloggerID FROM public.\"BlogPosts\";";
-        List<BlogPost> BlogPosts = jdbcTemplate.query(sql, rs -> {
+        List<BlogPost> blogPosts = jdbcTemplate.query(sql, rs -> {
             List<BlogPost> posts = new ArrayList<>();
             while (rs.next()) {
-                BlogPost blog = new BlogPost();
-                blog.setPostID(rs.getInt("postID"));
-                blog.setAuthor(bloggerDAO.getBloggerById(rs.getInt("bloggerID")));
-                blog.setTime(LocalDateTime.now());
-                blog.setTitle(rs.getString("title"));
-                blog.setMessage(rs.getString("message"));
-                blog.setBloggerID(rs.getInt("bloggerID"));
+                BlogPost blog = new BlogPost(
+                        rs.getInt("postID"),
+                        bloggerDAO.getBloggerById(rs.getInt("bloggerID")),
+                        rs.getTimestamp("time").toLocalDateTime(),
+                        rs.getString("title"),
+                        rs.getString("message")
+                );
                 posts.add(blog);
             }
             return posts;
         });
-        return BlogPosts;
+        return blogPosts;
     }
 
     @Override
     public BlogPost getBlogPostById(int id) {
         String sql = "SELECT postID, time, title, message, bloggerID FROM public.\"BlogPosts\" WHERE id = ?;";
-        BlogPost blog = jdbcTemplate.queryForObject(sql, new BlogPostMapper(), id);
-        return blog;
+        BlogPost blogPost = jdbcTemplate.queryForObject(
+                sql,
+                (rs, i) -> new BlogPost(
+                        rs.getInt("postID"),
+                        bloggerDAO.getBloggerById(rs.getInt("bloggerID")),
+                        rs.getTimestamp("time").toLocalDateTime(),
+                        rs.getString("title"),
+                        rs.getString("message")
+                ),
+                id);
+        return blogPost;
     }
 
     @Override
-    public void createBlogPost(int postID, LocalDateTime time, String title, String message, int bloggerID) {
-        String sql = "INSERT INTO public.\"BlogPosts\"(postID, time, title, message, bloggerID) VALUES (?, ?, ?, ?, ?);";
-        jdbcTemplate.update(sql, postID, time.toString(), title, message, bloggerID);
+    public void addBlogPost(BlogPost blogPost) {
+        String sql = "INSERT INTO public.\"BlogPosts\"(time, title, message, bloggerID) VALUES (?, ?, ?, ?);";
+        Timestamp ts = Timestamp.valueOf(blogPost.getTime());
+        jdbcTemplate.update(sql, ts, blogPost.getTitle(), blogPost.getMessage(), blogPost.getBloggerID());
     }
 
 }
