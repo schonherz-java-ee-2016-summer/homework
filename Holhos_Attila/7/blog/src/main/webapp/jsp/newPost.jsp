@@ -4,8 +4,8 @@
 <html>
 <head>
     <title>Add new post</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="javascript.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../javascript.js"></script>
 </head>
     <body>
     <%@include file="/html/header.html"%>

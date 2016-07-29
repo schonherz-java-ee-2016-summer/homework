@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>Blog</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
     </head>
     <body>
         <%@include file="/html/header.html"%>

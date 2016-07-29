@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Repository
-public class JDBCTemplatePost implements PostDao {
+public class PostDaoImpl implements PostDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -22,7 +22,7 @@ public class JDBCTemplatePost implements PostDao {
     @Override
     public Post getPostByID(int id) {
         String sql = "Select * from public.\"Post\" where id=?;";
-        Post post = (Post) jdbcTemplate.queryForObject(sql, new PostMapper(), id);
+        Post post = jdbcTemplate.queryForObject(sql, new PostMapper(), id);
         return post;
     }
 
