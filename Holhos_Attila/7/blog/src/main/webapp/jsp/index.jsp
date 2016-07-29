@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>Blog</title>
-        <link rel="stylesheet" href="/blog/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     </head>
     <body>
         <%@include file="/html/header.html"%>

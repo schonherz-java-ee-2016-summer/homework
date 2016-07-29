@@ -21,15 +21,16 @@ import java.util.List;
 @RequestMapping("/index")
 public class IndexController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
+
     @Autowired
     private PostDao postDao;
-    private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public String listPosts(Model model){
         List<Post> posts = postDao.getAllPosts();
         LOG.info("We get all posts!");
-        model.addAttribute("posts",posts);
+        model.addAttribute("posts", posts);
         return "index";
     }
 }
