@@ -36,7 +36,7 @@
             </c:choose>
         </div>
 
-        <form:form modelAttribute="comment" method="post" action="/post/${post.postID}/newcomment" onsubmit="return validateComment()">
+        <form:form modelAttribute="comment" method="post" action="/comment/new" onsubmit="return validateComment()">
             <div id="addComment">
                 <div>
                     <label for="content">Add comment:</label>
