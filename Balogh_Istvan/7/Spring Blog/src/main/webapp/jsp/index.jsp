@@ -2,21 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
     <head>
         <title>Index - Simple Blog Webapp</title>
-        <link rel="stylesheet" type="text/css" href="/css/styleSheet.css"/>
+        <link rel="stylesheet" type="text/css" href="/resources/css/styleSheet.css"/>
     </head>
-    <body><%--
-        <div>
-            <form method="post" action="/post/new">
-                <input class="button" id="newPost" type="submit" name="newPost" value="Create new post">
-            </form>
-        </div>--%>
+
+    <body>
+
+        <h1>Spring Blog Webapp</h1>
 
         <div>
-            <a href="/post/new/">
+            <a class="button" href="/post/new/">
                 Create new post
             </a>
         </div>
@@ -33,5 +32,6 @@
                 </a>
             </div>
         </c:forEach>
+
     </body>
 </html>

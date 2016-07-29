@@ -42,7 +42,7 @@ public class PostController {
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createPost(@ModelAttribute("post") Post post, ModelMap modelMap) {
         postDAO.addPost(post);
-        return "post";
+        return "redirect:/index";
     }
 
 }

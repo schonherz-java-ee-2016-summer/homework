@@ -7,20 +7,23 @@
 <html>
     <head>
         <title>Show post - Simple Blog Webapp</title>
-        <link rel="stylesheet" type="text/css" href="/css/styleSheet.css"/>
+        <link rel="stylesheet" type="text/css" href="/resources/css/styleSheet.css"/>
     </head>
+
     <body>
+
+        <h1>Spring Blog Webapp</h1>
+
         <div class="post">
             <p><span class="postCaptions">Title: </span>${post.title}</p>
             <c:set var="cleanedDateTime" value="${fn:replace(post.dateTime, 'T', ' ')}"/>
             <fmt:parseDate value="${cleanedDateTime}" pattern="yyyy-MM-dd HH:mm" var="parsedDateTime" type="both"/>
-            <p><span class="postCaptions">Posted at: </span><fmt:formatDate pattern="yyyy.MM.dd. HH:mm"
-                                                                            value="${parsedDateTime}"/></p>
+            <p><span class="postCaptions">Posted at:
+                </span><fmt:formatDate pattern="yyyy.MM.dd. HH:mm" value="${parsedDateTime}"/></p>
             <p><span class="postCaptions">Author: </span>${post.author}</p>
             <p>${post.content}</p>
-            <p>${selectedId}</p>
-            <p>${newcomment.postID}</p>
         </div>
+
         <a href="/index">
             <button class="button">Back to index</button>
         </a>
@@ -38,9 +41,10 @@
                 <p>Add comment to this post</p>
                 <div><form:hidden path="postID"/></div>
                 <div><form:input path="commenter"/></div>
-                <div><form:textarea path="content"/></div>
+                <div><form:textarea cols="" path="content"/></div>
                 <input class="button" id="addComment" type="submit" name="addComment" value="Add comment">
             </form:form>
         </div>
+
     </body>
 </html>
