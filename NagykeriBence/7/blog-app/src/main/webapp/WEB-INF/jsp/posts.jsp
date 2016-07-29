@@ -31,10 +31,10 @@
                 <span>There are no comments yet.</span>
             </c:if>
             <c:forEach items="${selected_post.comments.comments}"
-                       var="item">
+                       var="item" varStatus="loop">
                 <div class="commentBox">
                     <div class="commentHeader">
-                        <span class="padded">#${item.commentID}</span>
+                        <span class="padded">#${loop.index + 1}</span>
                         <span class="padded">${item.commenter}</span>
                         <span class="padded">${item.getFormattedTime()}</span>
                     </div>
