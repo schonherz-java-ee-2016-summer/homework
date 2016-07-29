@@ -18,10 +18,10 @@
             <div>
                 <a class="button" href="<c:url value="/post/new" />">Create new post</a>
             </div>
-            <c:if test="${empty index}">
+            <c:if test="${empty posts}">
                 <span>There are no posts yet.</span>
             </c:if>
-            <c:forEach items="${index}" var="item">
+            <c:forEach items="${posts}" var="item">
                 <div class="postBox">
                     <div id="noBorder" class="postHeader">
                         <a class="padded"

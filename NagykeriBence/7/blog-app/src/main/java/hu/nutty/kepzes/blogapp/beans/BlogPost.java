@@ -52,6 +52,7 @@ public class BlogPost implements Serializable {
 
     public void setAuthor(Blogger author) {
         this.author = author;
+        this.bloggerID = author.getBloggerID();
     }
 
     public String getFormattedTime() {

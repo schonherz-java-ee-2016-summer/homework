@@ -36,7 +36,7 @@ public class IndexController {
     public String displayIndex(ModelMap model) {
 
         List<BlogPost> blogPosts = blogPostDAO.getAllBlogPosts();
-        model.addAttribute(INDEX_KEY, blogPosts);
+        model.addAttribute(POSTS, blogPosts);
 
         return "index";
     }
@@ -50,7 +50,6 @@ public class IndexController {
         author = bloggerDAO.getBloggerByNickName(author.getNickName()); //to get the id
         BlogPost post = ParserUtils.parseBodyAsPost(req);
         post.setAuthor(author);
-        post.setBloggerID(author.getBloggerID());
         blogPostDAO.addBlogPost(post);
 
         return "redirect:index";

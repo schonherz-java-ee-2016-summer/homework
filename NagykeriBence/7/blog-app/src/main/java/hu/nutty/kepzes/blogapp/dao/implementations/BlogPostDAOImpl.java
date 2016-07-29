@@ -45,8 +45,8 @@ public class BlogPostDAOImpl implements BlogPostDAO {
     }
 
     @Override
-    public BlogPost getBlogPostById(int id) {
-        String sql = "SELECT postID, time, title, message, bloggerID FROM public.\"BlogPosts\" WHERE id = ?;";
+    public BlogPost getBlogPostById(int postID) {
+        String sql = "SELECT postID, time, title, message, bloggerID FROM public.\"BlogPosts\" WHERE postid = ?;";
         BlogPost blogPost = jdbcTemplate.queryForObject(
                 sql,
                 (rs, i) -> new BlogPost(
@@ -56,7 +56,7 @@ public class BlogPostDAOImpl implements BlogPostDAO {
                         rs.getString("title"),
                         rs.getString("message")
                 ),
-                id);
+                postID);
         return blogPost;
     }
 

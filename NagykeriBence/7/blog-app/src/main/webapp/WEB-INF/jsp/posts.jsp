@@ -5,37 +5,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>${applicationScope.get(Constants.SELECTED_POST).author.nickName}, ${applicationScope.get(Constants.SELECTED_POST).title}
+        <title>${selected_post.author.nickName}, ${selected_post.title}
             - Fullos Blog Post.</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>">
     </head>
     <body>
         <div class="back">
             <div>
-                <a href="${pageContext.request.contextPath}/"><img
-                        src="${pageContext.request.contextPath}/images/fullosblog.png" alt="Fullos Blog"
+                <a href="/"><img
+                        src="<c:url value="/resources/images/fullosblog.png"/>" alt="Fullos Blog"
                         title="Fullos Blog"></a>
             </div>
             <div class="postBox">
                 <div class="postHeader">
-                    <span class="padded">#${applicationScope.get(Constants.SELECTED_POST).postID}</span>
-                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).author.nickName}</span>
-                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).title}</span>
-                    <span class="padded">${applicationScope.get(Constants.SELECTED_POST).getFormattedTime()}</span>
+                    <span class="padded">#${selected_post.postID}</span>
+                    <span class="padded">${selected_post.author.nickName}</span>
+                    <span class="padded">${selected_post.title}</span>
+                    <span class="padded">${selected_post.getFormattedTime()}</span>
                 </div>
                 <div class="postContent">
-                    <span>${applicationScope.get(Constants.SELECTED_POST).message}</span>
+                    <span>${selected_post.message}</span>
                 </div>
             </div>
-            <c:if test="${empty applicationScope.get(Constants.SELECTED_POST).comments.comments}">
+            <c:if test="${empty selected_post.comments.comments}">
                 <span>There are no comments yet.</span>
             </c:if>
-            <c:forEach items="${applicationScope.get(Constants.SELECTED_POST).comments.comments}"
+            <c:forEach items="${selected_post.comments.comments}"
                        var="item">
                 <div class="commentBox">
                     <div class="commentHeader">
                         <span class="padded">#${item.commentID}</span>
                         <span class="padded">${item.commenter}</span>
+                        <span class="padded">${item.getFormattedTime()}</span>
                     </div>
                     <div class="commentContent">
                         <span>${item.content}</span>
@@ -44,7 +45,7 @@
             </c:forEach>
             </form>
             <div>
-                <a class="button" href="${pageContext.request.contextPath}/newcomment">New comment</a>
+                <a class="button" href="<c:url value="/comment/new" />">New comment</a>
             </div>
         </div>
     </body>

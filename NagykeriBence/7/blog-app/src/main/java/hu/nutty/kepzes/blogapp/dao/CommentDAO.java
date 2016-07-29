@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface CommentDAO {
     List<Comment> getCommentsByPostId(int postID);
+    void  addComment(Comment comment);
 }

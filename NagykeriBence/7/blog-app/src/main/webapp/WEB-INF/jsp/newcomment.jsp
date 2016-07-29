@@ -6,19 +6,19 @@
 <html>
     <head>
         <title>Fullos Blog - New Comment</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/validator.js"></script>
+        <script type="text/javascript" src="<c:url value="/resources/js/validator.js"/>"></script>
     </head>
     <body>
         <div class="back">
             <div>
-                <a href="${pageContext.request.contextPath}/"><img
-                        src="${pageContext.request.contextPath}/images/fullosblog.png" alt="Fullos Blog"
+                <a href="/"><img
+                        src="<c:url value="/resources/images/fullosblog.png"/>" alt="Fullos Blog"
                         title="Fullos Blog"></a>
             </div>
             <h1>New Comment!</h1>
-            <form action='${Constants.COMMENTS_KEY}' method='POST'
+            <form action='<c:url value="/comments" />' method='POST'
                   onsubmit="return displayDialogIfEmpty('#commenterName','#commentArea')">
                 <div>
                     <input id="commenterName" class="inputText" name='${Constants.COMMENTER_INPUT_NAME}' type="text"
