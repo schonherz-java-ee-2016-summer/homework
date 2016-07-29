@@ -6,18 +6,18 @@
 <html>
     <head>
         <title>Fullos Blog - New Blog Post</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/validator.js"></script>
+        <script type="text/javascript" src="<c:url value="/resources/js/validator.js"/>"></script>
     </head>
     <body>
         <div class="back">
             <div>
-                <a href="${pageContext.request.contextPath}/"><img
-                        src="${pageContext.request.contextPath}/images/fullosblog.png" alt="Fullos Blog"
+                <a href="/"><img
+                        src="<c:url value="/resources/images/fullosblog.png"/>" alt="Fullos Blog"
                         title="Fullos Blog"></a>
             </div>
-            <form action='${pageContext.request.contextPath}/${Constants.INDEX_KEY}' method='POST'
+            <form action='<c:url value="/index" />' method='POST'
                   onsubmit="return displayDialogIfEmpty('#first-name','#last-name', '#nickname', '#age', '#title', '#message')">
                 <div>
                     <input id="first-name" class="inputText" name='${Constants.POSTER_INPUT_FIRST_NAME}' type="text"

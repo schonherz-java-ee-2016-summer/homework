@@ -41,12 +41,13 @@ public class ParserUtils {
      * @param req the request.
      * @return an instance of {@code Comment}.
      */
-    public static BlogPost parseBodyAsPost(final HttpServletRequest req) {
-        BlogPost postFromBody = new BlogPost();
+    public static Blogger parseBodyAsBlogger(final HttpServletRequest req) {
         Blogger author = new Blogger();
 
         author.setFirstName(req.getParameter(POSTER_INPUT_FIRST_NAME));
         author.setLastName(req.getParameter(POSTER_INPUT_LAST_NAME));
+        author.setNickName(req.getParameter(POSTER_INPUT_NICKNAME));
+
         int age;
         try {
             age = Integer.parseInt(req.getParameter(POSTER_INPUT_AGE));
@@ -55,11 +56,15 @@ public class ParserUtils {
             LOG.error("Invalid age, age has been set to 0.", e);
         }
         author.setAge(age);
-        author.setNickName(req.getParameter(POSTER_INPUT_NICKNAME));
-        postFromBody.setAuthor(author);
+        LOG.debug("Got new blogger: {}.", author);
+        return author;
+    }
+
+    public static BlogPost parseBodyAsPost(final HttpServletRequest req) {
+        BlogPost postFromBody = new BlogPost();
+
         postFromBody.setMessage(req.getParameter(NEW_POST_INPUT_NAME));
         postFromBody.setTitle(req.getParameter(POST_TITLE));
-        postFromBody.setBloggerID(author.getBloggerID());
 
         LOG.debug("Got new post: {}.", postFromBody);
 

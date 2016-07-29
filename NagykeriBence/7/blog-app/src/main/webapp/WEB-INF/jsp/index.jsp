@@ -11,12 +11,12 @@
     <body>
         <div class="back">
             <div>
-                <a href="/"><img
+                <a href="<c:url value="/" />"><img
                         src="<c:url value="/resources/images/fullosblog.png"/>" alt="Fullos Blog"
                         title="Fullos Blog"></a>
             </div>
             <div>
-                <a class="button" href="post/new">Create new post</a>
+                <a class="button" href="<c:url value="/post/new" />">Create new post</a>
             </div>
             <c:if test="${empty index}">
                 <span>There are no posts yet.</span>

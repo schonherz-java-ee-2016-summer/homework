@@ -1,6 +1,8 @@
 package hu.nutty.kepzes.blogapp.beans;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -10,15 +12,33 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Comment implements Serializable {
     private static final long serialVersionUID = 6245145615416L;
-    private static final AtomicInteger count = new AtomicInteger(0);
 
-    private final int commentID;
+    private int commentID;
     private String commenter;
     private String content;
+    private LocalDateTime time;
     private int blogPostID;
 
     public Comment() {
-        commentID = count.incrementAndGet();
+        this.time = LocalDateTime.now();
+    }
+
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
+    }
+
+    public String getFormattedTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. - HH:mm:ss");
+        String formattedDateTime = this.time.format(formatter);
+        return formattedDateTime;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
     public int getCommentID() {
