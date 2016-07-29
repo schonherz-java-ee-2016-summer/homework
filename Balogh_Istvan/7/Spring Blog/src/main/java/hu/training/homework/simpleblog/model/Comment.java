@@ -17,7 +17,7 @@ public class Comment implements Serializable {
 
     public Comment() {
         this.id = UUID.randomUUID().toString();
-        this.postID = "doktor";
+        this.postID = "";
         this.commenter = "";
         this.dateTime = LocalDateTime.now();
         this.content = "";
