@@ -9,10 +9,10 @@ import java.sql.SQLException;
 /**
  * Created by Attila on 2016.07.27..
  */
-public class PostMapper implements RowMapper {
+public class PostMapper implements RowMapper<Post> {
 
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public Post mapRow(ResultSet resultSet, int i) throws SQLException {
         Post post = new Post();
         post.setPostID(resultSet.getInt("id"));
         post.setAuthor(resultSet.getString("author"));

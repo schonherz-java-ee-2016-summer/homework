@@ -10,6 +10,8 @@ public interface CommentDAO {
 
     Comment getCommentByID(String id);
 
+    List<Comment> getCommentsOfPost(String postId);
+
     List<Comment> getAllComments();
 
     void updateComment(Comment comment);

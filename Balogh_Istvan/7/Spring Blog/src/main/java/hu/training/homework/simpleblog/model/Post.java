@@ -80,6 +80,10 @@ public class Post implements Serializable {
         this.id = id;
     }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

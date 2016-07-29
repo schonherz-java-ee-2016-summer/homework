@@ -1,6 +1,6 @@
 package hu.schonherz.training.servlets;
 
-import hu.schonherz.training.jdbcTemplates.JDBCTemplatePost;
+import hu.schonherz.training.jdbcTemplates.PostDaoImpl;
 import hu.schonherz.training.models.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +22,14 @@ import java.util.List;
 public class BlogPostServlet extends HttpServlet{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BlogPostServlet.class);
-    private List<Post> posts = (new JDBCTemplatePost()).getAllPosts();
+    private List<Post> posts = (new PostDaoImpl()).getAllPosts();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding("utf-8");
         req.getServletContext().setAttribute("postsList", posts);
+        LOGGER.info("Run!");
         resp.sendRedirect(req.getContextPath() + "/index");;
     }
 
@@ -37,7 +38,7 @@ public class BlogPostServlet extends HttpServlet{
         req.setCharacterEncoding("utf-8");
         Post post = createPost(req);
         posts.add(post);
-        (new JDBCTemplatePost()).createPost(post);
+        (new PostDaoImpl()).createPost(post);
         req.getServletContext().setAttribute("postsList", posts);
         LOGGER.info("Add the new post!");
         resp.sendRedirect(req.getContextPath() + "/index");
