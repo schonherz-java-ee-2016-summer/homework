@@ -15,6 +15,7 @@ public class Parameters {
 
     public static final String COMMENTER_INPUT_NAME = "commenter";
     public static final String COMMENT_INPUT_NAME = "comment";
+    public static final String NEW_COMMENT_INPUT_NAME = "newcomment";
     public static final String COMMENTS_ATTRIBUTE_NAME = "comments";
 
     public static final String POST_MODELATTRIBUTE_NAME = "post";
