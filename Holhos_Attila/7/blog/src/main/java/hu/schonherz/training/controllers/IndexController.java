@@ -2,6 +2,9 @@ package hu.schonherz.training.controllers;
 
 import hu.schonherz.training.dao.PostDao;
 import hu.schonherz.training.models.Post;
+import hu.schonherz.training.servlets.BlogPostServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +23,12 @@ public class IndexController {
 
     @Autowired
     private PostDao postDao;
+    private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public String listPosts(Model model){
         List<Post> posts = postDao.getAllPosts();
+        LOG.info("We get all posts!");
         model.addAttribute("posts",posts);
         return "index";
     }
