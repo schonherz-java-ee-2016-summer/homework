@@ -1,13 +1,14 @@
 <%@page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Post</title>
-    <link rel="stylesheet"  href="/blog/singlePost.css">
-    <script type="text/javascript" src="/blog/javascript.js"></script>
+    <link rel="stylesheet"  href="/blog/css/singlePost.css">
+    <script type="text/javascript" src="/blog/js/javascript.js"></script>
 </head>
     <body>
     <%@include file="/html/header.html"%>
@@ -17,26 +18,33 @@
             <p id="postContext">${post.content}</p>
             <div id="postDate">${post.postDate}</div>
         </div>
+
         <div id="comments">
             Comments about this post:
-            <c:if test="${empty post.comments}">
-                <div id="nocomment">There are no comments yet.</div>
-            </c:if>
-            <c:forEach items="${post.comments}" var="comment">
-                <div class="comment">
-                    <p>${comment.content}</p>
-                    <p id="commentdate">${comment.commentDate}</p>
-                </div>
-            </c:forEach>
+            <c:choose>
+                <c:when test="${empty post.comments}">
+                    <div id="nocomment">There are no comments yet.</div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach items="${post.comments}" var="comment">
+                        <div class="comment">
+                            <p>${comment.content}</p>
+                            <p id="commentdate">${comment.commentDate}</p>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
         </div>
-        <form method="post" action="/blog/commentServlet?ID=${post.postID}" onsubmit="return validateComment()">
+
+        <form:form modelAttribute="comment" method="post" action="/post/${post.postID}/newcomment" onsubmit="return validateComment()">
             <div id="addComment">
                 <div>
-                    <label for="newcomment">Add comment:</label>
-                    <input id="newcomment" name="newcomment" type='text'>
+                    <label for="content">Add comment:</label>
+                    <form:input path="content"/>
                 </div>
                 <button type="submit">Send</button>
             </div>
-        </form>
+        </form:form>
+
     </body>
 </html>

@@ -39,7 +39,7 @@ public class BlogController {
     public String viewPost(@PathVariable int id, Model model){
         Post post = postDao.getPostByID(id);
         model.addAttribute("post",post);
-        return "blog/Post";
+        return "blog/post";
     }
 
     @RequestMapping(path = "/new", method = RequestMethod.POST)
@@ -51,7 +51,7 @@ public class BlogController {
     @RequestMapping(path = "/post/{id}/newcomment", method = RequestMethod.POST)
     public String createComment(@PathVariable int id, @ModelAttribute Comment comment, Model model){
         commentDao.createComment(id,comment);
-        return "/blog/post/{id}";
+        return "blog/post/{id}";
     }
 
 }

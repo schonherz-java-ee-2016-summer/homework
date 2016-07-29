@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>Blog</title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         <%@include file="/html/header.html"%>
@@ -18,7 +18,7 @@
                     <div class="author">Author: ${item.author}</div>
                     <div class="date">${item.postDate}</div>
                     <div class="title">${item.title}</div>
-                    <div class="postid"><a href="/blog/post/?ID=${item.postID}">#${item.postID}</a></div>
+                    <div class="postid"><a href="/blog/post/${item.postID}">#${item.postID}</a></div>
                 </div>
             </c:forEach>
         </div>
