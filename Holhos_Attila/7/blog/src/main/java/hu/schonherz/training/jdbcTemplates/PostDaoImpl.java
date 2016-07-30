@@ -21,21 +21,21 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public Post getPostByID(int id) {
-        String sql = "Select * from public.\"Post\" where id=?;";
+        String sql = "Select * from \"Blog\".\"Post\" where id=?;";
         Post post = jdbcTemplate.queryForObject(sql, new PostMapper(), id);
         return post;
     }
 
     @Override
     public List<Post> getAllPosts() {
-        String sql = "Select * from public.\"Post\";";
+        String sql = "Select * from \"Blog\".\"Post\";";
         List<Post> posts = jdbcTemplate.query(sql, new PostMapper());
         return posts;
     }
 
     @Override
     public void createPost(Post post) {
-        String sql = "Insert into public.\"Post\" (author, title, postdate, content) VALUES (?,?,?,?);";
+        String sql = "Insert into \"Blog\".\"Post\" (author, title, postdate, content) VALUES (?,?,?,?);";
         jdbcTemplate.update(sql, post.getAuthor(), post.getTitle(), post.getPostDate(), post.getContent());
     }
 }

@@ -21,14 +21,14 @@ public class CommentDaoImpl implements CommentDao{
 
     @Override
     public List<Comment> getAllCommentByPostId(int postId) {
-        String sql = "Select id, commentdate, content from public.\"Comment\" where post_id=?;";
+        String sql = "Select id, commentdate, content from \"Blog\".\"Comment\" where post_id=?;";
         List<Comment> comments = jdbcTemplate.query(sql, new CommentMapper(), postId);
         return comments;
     }
 
     @Override
     public void createComment(int postId, Comment comment) {
-        String sql = "Insert into public.\"Comment\" (post_id, commentdate, content) VALUES (?,?,?);";
+        String sql = "Insert into \"Blog\".\"Comment\" (post_id, commentdate, content) VALUES (?,?,?);";
         jdbcTemplate.update(sql, postId, comment.getCommentDate(), comment.getContent());
     }
 }
