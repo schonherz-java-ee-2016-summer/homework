@@ -1,0 +1,61 @@
+.title {
+    font-size: 200%;
+    padding: 20px;
+    text-align: center;
+    background-color: #cccccc;
+    color: #ffffff;
+    text-shadow: 2px 2px 7px #111111;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.new {
+    color: #ffffff;
+    text-align: center;
+    margin: auto;
+    margin-top: 25px;
+    margin-outside: 10px;
+    background-color: #cccccc;
+    width: 70%;
+    padding: 15px;
+    text-shadow: 2px 2px 7px #111111;
+}
+
+a:hover {
+    color: gainsboro;
+    font-size: 130%;
+}
+
+.post {
+    margin: auto;
+    width: 70%;
+    padding: 15px;
+    color: #ffffff;
+    text-shadow: 2px 2px 7px #111111;
+}
+
+#title {
+    padding-bottom: 10px;
+    text-shadow: 2px 2px 7px #111111;
+    color: #ffffff;
+    font-size: 135%;
+    text-align: center;
+}
+
+#inline {
+    display: block;
+    text-align: center;
+}
+
+label {
+    display: block;
+    alignment: center;
+}
+
+#conten {
+    margin: auto;
+    margin-bottom: 25px;
+}
