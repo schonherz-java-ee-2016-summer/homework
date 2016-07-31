@@ -14,6 +14,7 @@ import java.util.List;
  * Created by bmbal on 2016. 07. 31..
  */
 @RestController
+@RequestMapping(path = "/", produces = "application/json")
 public class CommentRestController {
 
     @Autowired

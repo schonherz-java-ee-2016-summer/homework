@@ -9,13 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 /**
  * Created by bmbal on 2016. 07. 31..
  */
+@RestController
+@RequestMapping(path = "/", produces = "application/json")
 public class BlogRestController {
+
     @Autowired
     private BlogJDBCTemplate blogJDBCTemplate;
 
