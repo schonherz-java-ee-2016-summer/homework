@@ -9,31 +9,31 @@
 <body>
 <header id="app-header">
     <div class="app-href"><a href="/index">homepage</a> <a href="/">logout</a></div>
-    <div><h1> Welcome ${name}! </h1></div>
+    <div><h1> Welcome! </h1></div>
 </header>
-<div class="app-content-div">
-    ${requiredBlog.author}
-    ${requiredBlog.title}
-    ${requiredBlog.content}
+<div>
+    ${blog.author}
+    ${blog.title}
+    ${blog.content}
 </div>
-<form class="blogpost" method="POST" action="/post/${requiredBlog.id}">
+<form method="POST" action="/post/${blog.id}">
     <div>
-        <h1>${name}</h1>
+        <h1>${user.name}</h1>
     </div>
     <div>
         <label>Your comment:</label>
     </div>
     <div>
         <input name = "content" type = "text">
+        <input type="hidden" name="blog_id" value="${blog.id}" />
         <button type="submit">Leave it!</button>
 
     </div>
 </form>
 <b>Comments are above</b>
-<c:forEach items="${requiredComments}" var="item">
+<c:forEach items="${comments}" var="item">
         <div  class="app-content-div">
-            <div class="author">${item.author}</div>
-            <div class="date">${item.date}</div>
+            <div class="author">${item.id} - ${item.author}</div>
             <div class="content"> ${item.content}</div>
             <div class="line">________________________________________</div>
         </div>

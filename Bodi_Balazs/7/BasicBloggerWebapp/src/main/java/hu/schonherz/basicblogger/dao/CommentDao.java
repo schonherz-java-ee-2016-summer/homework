@@ -2,7 +2,6 @@ package hu.schonherz.basicblogger.dao;
 
 import hu.schonherz.basicblogger.pojo.Comment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,10 +11,10 @@ import java.util.List;
  private LocalDateTime date;
  private String content;
  */
-public class CommentDao {
+public interface CommentDao {
 
-    public List<Comment> getCommentsForABlog(){
-        List<Comment> result = new ArrayList<>();
-        return  result;
-    }
+    public List<Comment> getAllComments(int blog_id);
+
+    public void createComment(Comment comment);
+
 }

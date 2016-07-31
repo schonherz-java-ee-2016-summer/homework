@@ -2,11 +2,6 @@ package hu.schonherz.basicblogger.dao;
 
 import hu.schonherz.basicblogger.pojo.Blog;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,33 +12,12 @@ import java.util.List;
  this.title = title;
  this.content = content;
  */
-public class BlogDao {
+public interface BlogDao {
 
-    private Connection con;
+    public Blog getBlogById(int id);
 
-    public List<Blog> getAllBlogs(){
-        List<Blog> result = new ArrayList<>();
-        return result;
-    };
+    public List<Blog> getAllBlog();
 
-
-    public List<Blog> getAllStudents() {
-        String sql = "SELECT * FROM public.\"student\"";
-        List<Blog> blogs = new ArrayList<>();
-        try (Statement stmt = con.createStatement()) {
-            try (ResultSet rs = stmt.executeQuery(sql);) {
-                while (rs.next()) {
-         //           blogs.add(new Blog(rs.getInt("id"), rs.getString("author"), rs.getDate("date"), rs.getString("title"), rs.getString("content")));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return blogs;
-    }
-
-    public void addBlog(Blog blog){
-
-    }
+    public void createBlog(Blog blog);
 
 }
