@@ -11,12 +11,12 @@
     <title>login</title>
 </head>
 <body>
-<form class="form" method="POST" action="/login">
+<form name = "author" method="POST" action="/login">
     <div>
         <label form = "name">Nickname: </label>
     </div>
     <div>
-        <input name = "name" type = "text">
+        <input name = "author" type = "text">
         <button type="submit">login</button>
     </div>
 </form>

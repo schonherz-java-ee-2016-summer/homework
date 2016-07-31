@@ -39,7 +39,7 @@ public class BlogPostController {
 
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public String selectAndDisplayPostById(ModelMap model, HttpServletRequest req) {
-        int postID = Integer.parseInt(req.getParameter("p"));
+        int postID = Integer.parseInt(req.getParameter("post"));
         BlogPost selectedPost = blogPostDAO.getBlogPostById(postID);
         Blogger author = bloggerDAO.getBloggerById(selectedPost.getBloggerID());
         selectedPost.setAuthor(author);

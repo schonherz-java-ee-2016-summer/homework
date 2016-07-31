@@ -11,9 +11,9 @@
     <body>
         <div class="back">
             <div>
-                <a href="<c:url value="/" />"><img
-                        src="<c:url value="/resources/images/fullosblog.png"/>" alt="Fullos Blog"
-                        title="Fullos Blog"></a>
+                <a href="<c:url value="/" />">
+                    <img src="<c:url value="/resources/images/fullosblog.png"/>" alt="Fullos Blog" title="Fullos Blog">
+                </a>
             </div>
             <div>
                 <a class="button" href="<c:url value="/post/new" />">Create new post</a>
@@ -23,12 +23,12 @@
             </c:if>
             <c:forEach items="${posts}" var="item">
                 <div class="postBox">
-                    <div id="noBorder" class="postHeader">
-                        <a class="padded"
-                           href="/posts?p=${item.postID}">#${item.postID}
-                            - ${item.author.nickName} - ${item.title}</a>
-                        <span class="padded">${item.getFormattedTime()}</span>
-                    </div>
+                    <a class="no-link" href="/posts?post=${item.postID}">
+                        <div id="noBorder" class="postHeader">
+                            <span class="padded">#${item.postID} - ${item.author.nickName} - ${item.title}</span>
+                            <span class="padded">${item.getFormattedTime()}</span>
+                        </div>
+                    </a>
                 </div>
             </c:forEach>
             </form>

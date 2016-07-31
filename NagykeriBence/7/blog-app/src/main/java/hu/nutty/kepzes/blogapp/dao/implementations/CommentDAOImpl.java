@@ -19,6 +19,13 @@ public class CommentDAOImpl implements CommentDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Override
+    public List<Comment> getAllComments() {
+        String sql = "SELECT commentid, time, commenter, content, blogpostid FROM public.\"Comments\"";
+        List<Comment> comments = jdbcTemplate.query(sql, new CommentMapper());
+        return comments;
+    }
+
+    @Override
     public List<Comment> getCommentsByPostId(int postID) {
         String sql = "SELECT commentid, commenter, content, time, blogpostid FROM public.\"Comments\" WHERE blogpostid = ?";
         List<Comment> comments = jdbcTemplate.query(sql, new Object[]{postID}, new CommentMapper());

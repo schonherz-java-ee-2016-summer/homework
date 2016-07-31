@@ -208,6 +208,11 @@ body {
 a.button {
     text-decoration: none;
 }
+.no-link, .no-link:hover{
+    text-decoration: none !important;
+    color:black;
+    cursor:pointer;
+}
 
 #interactive-label {
     font-size: 8pt;

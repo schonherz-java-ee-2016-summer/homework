@@ -8,22 +8,22 @@
 </head>
 <body>
 <header id="app-header">
-    <div class="app-href"><a href="/index">homepage</a> <a href="/">logout</a></div>
-    <div><h1> Welcome ${name}! </h1></div>
+    <div><a href="/index">homepage</a> <a href="/">logout</a></div>
+    <div><h1> Welcome! </h1></div>
 </header>
 <form method="POST" action="/post/new">
-    <div class="newBlog">
+    <div>
         <div>
-            <h1>${name}</h1>
+            <h1>${author}</h1>
         </div>
         <div>
-                <label form = "title">Give us your blog title: </label>
+                <label>Give us your blog title: </label>
         </div>
         <div>
                 <input name = "title" type = "text">
         </div>
         <div>
-            <label form = "content">Make your blog above:</label>
+            <label>Make your blog above:</label>
         </div>
         <div>
                 <input name = "content" type = "text">
