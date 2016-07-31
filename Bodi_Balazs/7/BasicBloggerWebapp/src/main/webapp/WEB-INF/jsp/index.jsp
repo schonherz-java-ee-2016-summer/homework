@@ -7,27 +7,26 @@
     <title>fakebook.com</title>
 </head>
 <body>
-<header id="app-header" class="flex-center centered"> <h1> Welcome ${name}! </h1>
+<header id="app-header">
+    <div class="app-href"><a href="/index">homepage</a> <a href="/">logout</a></div>
+    <div><h1> Welcome ${name}! </h1></div>
 </header>
-<form class="form" method="POST" action="index">
-    <div class="leave-a-post" class="login-form">
-        <center>
-            <button type="submit">Make a blog!</button>
-        </center>
+<form class="form" method="GET" action="/post/new">
+    <div>
+        <button type="submit">Make a blog!</button>
     </div>
 </form>
 <c:forEach items="${blogList}" var="item">
-    <form name="form" class="form" method="GET" action="post">
+    <div class="app-content-div"><a href="/post/${item.id}">
         <div class="blogpost">
                 <div class="author">${item.author}</div>
                 <div class="date">${item.date}</div>
                 <div class="title"> ${item.title}</div>
                 <div class="content"> ${item.content}</div>
                 <input type="hidden" name="blogId" value="${item.id}" />
-                <button class="submit" type="submit">Comment</button>
                 <div class="line">________________________________________</div>
         </div>
-     </form>
+    </a></div>
 </c:forEach>
 
 </body>

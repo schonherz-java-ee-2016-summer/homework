@@ -1,28 +1,29 @@
-package hu.schonherz.basicblogger.data.comment;
+package hu.schonherz.basicbloggerwebapp.pojo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * Created by bmbal on 2016. 07. 19..
- * Class describes comments
- * //comment(id,date,content)
+ * Created by bmbal on 2016. 07. 28..
  */
-public class Comment implements Serializable{
+
+public class Comment implements Serializable {
     private int id;
+    private int blogId;
     private String author;
     private LocalDateTime date;
     private String content;
 
-    public Comment(int id, String author, LocalDateTime date, String content) {
-        this.id = id;
-        this.author = author;
-        this.date = date;
-        this.content = content;
+    public Comment() {
+        super();
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setBlogId(int blogId) {
+        this.blogId = blogId;
     }
 
     public void setAuthor(String author) {
@@ -41,6 +42,11 @@ public class Comment implements Serializable{
         return id;
     }
 
+    public int getBlogId() {
+        return blogId;
+    }
+
+
     public String getAuthor() {
         return author;
     }
@@ -52,14 +58,5 @@ public class Comment implements Serializable{
     public String getContent() {
         return content;
     }
-
-
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "commenter='" + author + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
 }
+

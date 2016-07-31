@@ -7,10 +7,9 @@
     <title>new</title>
 </head>
 <body>
-<header id="app-header" class="flex-center centered">
-<form method="GET" action="/index">
-    <button class="homepageButton" type="submit"><h1>Homepage</h1></button>
-</form>
+<header id="app-header">
+    <div class="app-href"><a href="/index">homepage</a> <a href="/">logout</a></div>
+    <div><h1> Welcome ${name}! </h1></div>
 </header>
 <form method="POST" action="/post/new">
     <div class="newBlog">

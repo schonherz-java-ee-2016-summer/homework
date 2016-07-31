@@ -7,17 +7,16 @@
     <title>post</title>
 </head>
 <body>
-<header id="app-header" class="flex-center centered">
-<form method="get" action="index">
-    <button class="homepageButton" type="submit"><h1>Homepage</h1></button>
-</form>
+<header id="app-header">
+    <div class="app-href"><a href="/index">homepage</a> <a href="/">logout</a></div>
+    <div><h1> Welcome ${name}! </h1></div>
 </header>
-<div>
+<div class="app-content-div">
     ${requiredBlog.author}
     ${requiredBlog.title}
     ${requiredBlog.content}
 </div>
-<form class="blogpost" method="POST" action="/post">
+<form class="blogpost" method="POST" action="/post/${requiredBlog.id}">
     <div>
         <h1>${name}</h1>
     </div>
@@ -32,7 +31,7 @@
 </form>
 <b>Comments are above</b>
 <c:forEach items="${requiredComments}" var="item">
-        <div>
+        <div  class="app-content-div">
             <div class="author">${item.author}</div>
             <div class="date">${item.date}</div>
             <div class="content"> ${item.content}</div>
