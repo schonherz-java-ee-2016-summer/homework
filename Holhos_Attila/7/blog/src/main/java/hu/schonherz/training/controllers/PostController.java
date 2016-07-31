@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,12 +37,11 @@ public class PostController {
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public String viewPost(@PathVariable int id, Model model){
         Post post = postDao.getPostByID(id);
-        List<Comment> comments = commentDao.getAllCommentByPostId(post.getPostID());
+        post.setComments(commentDao.getAllCommentByPostId(post.getPostID()));
         model.addAttribute("post", post);
-        model.addAttribute("comments", comments);
         Comment comment = new Comment();
         comment.setPostID(post.getPostID());
-        model.addAttribute("comment", comment);
+        model.addAttribute("newcomment", comment);
         LOG.info("View a post! Id=" + post.getPostID());
         return "viewPost";
     }
@@ -49,11 +50,13 @@ public class PostController {
     public String createPost(Model model){
         Post post = new Post();
         model.addAttribute("post", post);
+        LOG.info("Try create post!");
         return "newPost";
     }
 
     @RequestMapping(path = "/new", method = RequestMethod.POST)
     public String createPost(@ModelAttribute("post") Post post, Model model){
+        post.setPostDate(new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date()));
         postDao.createPost(post);
         LOG.info("A new post was added!");
         return "redirect:/index";

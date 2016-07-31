@@ -5,11 +5,11 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Post</title>
-    <link rel="stylesheet"  href="/blog/css/singlePost.css">
-    <script type="text/javascript" src="/blog/js/javascript.js"></script>
-</head>
+    <head>
+        <title>Post</title>
+        <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/css/singlePost.css">
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/javascript.js"></script>
+    </head>
     <body>
     <%@include file="/html/header.html"%>
         <div id="aPost">
@@ -36,12 +36,13 @@
             </c:choose>
         </div>
 
-        <form:form modelAttribute="comment" method="post" action="/comment/new" onsubmit="return validateComment()">
+        <form:form modelAttribute="newcomment" method="post" action="/blog/comment/new" >
             <div id="addComment">
                 <div>
                     <label for="content">Add comment:</label>
                     <form:input path="content"/>
                 </div>
+                <div><form:hidden path="postID"/></div>
                 <button type="submit">Send</button>
             </div>
         </form:form>
