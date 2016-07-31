@@ -19,7 +19,7 @@ import java.util.List;
 public class Index extends HttpServlet{
     private List<BlogPost> blogs = new ArrayList<BlogPost>();
 
-    private static int postId=0;
+    private static int postId = 0;
 
     private static final String POST_AUTHOR = "name";
     private static final String POST_TITLE = "title";
@@ -33,7 +33,8 @@ public class Index extends HttpServlet{
         req.setCharacterEncoding(ENCODING);
         res.setCharacterEncoding(ENCODING);
         postId++;
-        BlogPost blog = new BlogPost(Integer.toString(postId), req.getParameter(POST_AUTHOR),req.getParameter(POST_TITLE),req.getParameter(POST_CONTENT));
+        BlogPost blog = new BlogPost(Integer.toString(postId), req.getParameter(POST_AUTHOR),
+                req.getParameter(POST_TITLE), req.getParameter(POST_CONTENT));
         blogs.add(blog);
 
         req.getSession().setAttribute(POST_POSTS, this.blogs);
@@ -41,11 +42,12 @@ public class Index extends HttpServlet{
     }
 
     @Override
-    protected void doGet(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
+    protected void doGet(final HttpServletRequest req, final HttpServletResponse res)
+            throws ServletException, IOException {
 
         String title = "Available Blogs";
         res.setContentType("text/html; charset=utf-8");
-        String lnk="";
+        String lnk = "";
         PrintWriter out = res.getWriter();
 
         try {
@@ -58,7 +60,7 @@ public class Index extends HttpServlet{
                 out.println("<table>");
                 for (BlogPost blog : blogs) {
                     lnk = blog.getAuthor() + " " + blog.getTitle() + " " + blog.getDateOfPosting();
-                    out.println("<td><a href='ViewBlogPost?key1=" + blog.getId() + "'>" + lnk +"</td></tr>");
+                    out.println("<td><a href='ViewBlogPost?key1=" + blog.getId() + "'>" + lnk + "</td></tr>");
                 }
                 out.println("</table>");
                 out.println("<form action='BlogPostServlet' method='Post'>");
