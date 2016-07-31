@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>hu.schonherz.traning</groupId>
+    <artifactId>homework7</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Blog with SpringMVC and SpringJDBC</name>
+
+    <developers>
+        <developer>
+            <name>Norbert Barócsi</name>
+            <email>barocsinorbert@gmail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version.java>1.8</version.java>
+        <version.apache.lang>3.4</version.apache.lang>
+        <version.servlet.api>3.1.0</version.servlet.api>
+        <version.jsp.api>2.3.1</version.jsp.api>
+        <version.jstl.api>1.2.1</version.jstl.api>
+        <version.taglibs.impl>1.2.5</version.taglibs.impl>
+        <version.logback>1.1.7</version.logback>
+        <version.slf4j>1.7.21</version.slf4j>
+        <version.spring.webmvc>4.2.5.RELEASE</version.spring.webmvc>
+        <version.spring.jdbc>4.2.5.RELEASE</version.spring.jdbc>
+        <version.postgresql>9.4.1208</version.postgresql>
+        <version.jackson.databind>2.5.0</version.jackson.databind>
+        <version.jackson.datatype>2.5.0</version.jackson.datatype>
+
+    </properties>
+
+    <dependencies>
+        <!-- Common -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${version.apache.lang}</version>
+        </dependency>
+        <!-- Common -->
+
+        <!-- Web -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${version.servlet.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${version.jsp.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>${version.jstl.api}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>${version.taglibs.impl}</version>
+        </dependency>
+        <!-- Web -->
+
+        <!--Spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${version.spring.webmvc}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${version.spring.jdbc}</version>
+        </dependency>
+        <!--Spring-->
+
+        <!--Database-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${version.postgresql}</version>
+        </dependency>
+        <!--Database-->
+
+        <!--Rest-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${version.jackson.databind}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${version.jackson.datatype}</version>
+        </dependency>
+        <!--Rest-->
+    </dependencies>
+
+    <build>
+        <finalName>homework7</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
