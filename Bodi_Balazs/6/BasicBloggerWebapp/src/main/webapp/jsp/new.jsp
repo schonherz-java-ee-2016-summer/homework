@@ -8,17 +8,14 @@
 </head>
 <body>
 <header id="app-header" class="flex-center centered">
-<form method="get" action="index">
+<form method="GET" action="/index">
     <button class="homepageButton" type="submit"><h1>Homepage</h1></button>
 </form>
 </header>
 <form method="POST" action="/post/new">
     <div class="newBlog">
         <div>
-            <label form = "name">Nickname: </label>
-        </div>
-        <div>
-            <input name = "userName" type = "text">
+            <h1>${name}</h1>
         </div>
         <div>
                 <label form = "title">Give us your blog title: </label>
@@ -30,7 +27,6 @@
             <label form = "content">Make your blog above:</label>
         </div>
         <div>
-                <input type="hidden" name="id" value="${blogId}"/>
                 <input name = "content" type = "text">
                 <button class = "submit" type="submit">Leave it!</button>
 
