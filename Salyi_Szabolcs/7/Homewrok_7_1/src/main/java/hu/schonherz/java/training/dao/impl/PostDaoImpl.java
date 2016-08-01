@@ -4,7 +4,9 @@ import hu.schonherz.java.training.dao.PostDao;
 import hu.schonherz.java.training.dbconnection.PostgreSQLConnection;
 import hu.schonherz.java.training.mappers.PostMapper;
 import hu.schonherz.java.training.pojo.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,10 +15,14 @@ import java.util.List;
 /**
  * Created by Home on 2016. 07. 28..
  */
+
+@Repository
 public class PostDaoImpl implements PostDao {
+
 
     private Connection conn;
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
 
