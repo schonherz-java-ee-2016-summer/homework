@@ -13,8 +13,8 @@
     <head>
         <title>New Post</title>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" type="text/css" href="/css/button.css">
-        <link rel="stylesheet" type="text/css" href="/css/forms.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/button.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/forms.css">
     </head>
     <body>
         <form:form class="form" method="POST" action="create">

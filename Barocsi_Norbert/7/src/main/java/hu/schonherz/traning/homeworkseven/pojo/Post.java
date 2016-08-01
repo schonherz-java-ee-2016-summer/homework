@@ -1,6 +1,7 @@
-package hu.schonherz.traning.homeworkseven.dao.pojo;
+package hu.schonherz.traning.homeworkseven.pojo;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by Mindfield on 2016. 07. 31..
@@ -9,9 +10,10 @@ public class Post {
 
     private int identity;
     private String creator;
-    private Date date;
+    private LocalDateTime date;
     private String title;
     private String text;
+    private List<Comment> comments;
 
     public Post() {
     }
@@ -32,11 +34,11 @@ public class Post {
         this.creator = creator;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -54,5 +56,13 @@ public class Post {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

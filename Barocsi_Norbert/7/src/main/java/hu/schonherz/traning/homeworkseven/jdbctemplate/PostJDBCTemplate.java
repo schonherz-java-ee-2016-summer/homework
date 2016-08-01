@@ -1,10 +1,12 @@
-package hu.schonherz.traning.homeworkseven.dao.jdbctemplate;
+package hu.schonherz.traning.homeworkseven.jdbctemplate;
 
-import hu.schonherz.traning.homeworkseven.dao.dao.PostDao;
-import hu.schonherz.traning.homeworkseven.dao.mapper.PostMapper;
-import hu.schonherz.traning.homeworkseven.dao.pojo.Post;
+import hu.schonherz.traning.homeworkseven.dao.PostDao;
+import hu.schonherz.traning.homeworkseven.mapper.PostMapper;
+import hu.schonherz.traning.homeworkseven.pojo.Post;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class PostJDBCTemplate implements PostDao{
 
     @Override
     public List<Post> getAllPost() {
-        String sql = "SELECT id, creator, date, title, text FROM public.\"Blog\";";
+        String sql = "SELECT id, creator, time, title, text FROM public.\"Blog\";";
         List<Post> posts = jdbcTemplate.query(sql, new PostMapper());
 
         return posts;
@@ -25,7 +27,7 @@ public class PostJDBCTemplate implements PostDao{
 
     @Override
     public Post getPostById(int identity) {
-        String sql = "SELECT id, creator, date, title, text FROM public.\"Blog\" WHERE id = ?;";
+        String sql = "SELECT id, creator, time, title, text FROM public.\"Blog\" WHERE id = ?;";
         Post post = jdbcTemplate.queryForObject(sql, new PostMapper(), identity);
 
         return post;
@@ -33,8 +35,9 @@ public class PostJDBCTemplate implements PostDao{
 
     @Override
     public void createPost(String creator, String title, String text) {
-        String sql = "INSERT INTO public.\"Blog\"(creator, date, title, text) VALUES (?, ?, ?, ?);";
-        jdbcTemplate.update(sql, creator, new Date(), title, text);
+        String sql = "INSERT INTO public.\"Blog\"(creator, time, title, text) VALUES (?, ?, ?, ?);";
+        Timestamp ts = Timestamp.valueOf(LocalDateTime.now());
+        jdbcTemplate.update(sql, creator, ts, title, text);
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {

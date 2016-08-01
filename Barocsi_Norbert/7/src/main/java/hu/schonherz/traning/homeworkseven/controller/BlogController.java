@@ -1,7 +1,9 @@
-package hu.schonherz.traning.homeworkseven.dao.controller;
+package hu.schonherz.traning.homeworkseven.controller;
 
-import hu.schonherz.traning.homeworkseven.dao.jdbctemplate.PostJDBCTemplate;
-import hu.schonherz.traning.homeworkseven.dao.pojo.Post;
+import hu.schonherz.traning.homeworkseven.jdbctemplate.CommentJDBCTemplate;
+import hu.schonherz.traning.homeworkseven.jdbctemplate.PostJDBCTemplate;
+import hu.schonherz.traning.homeworkseven.pojo.Comment;
+import hu.schonherz.traning.homeworkseven.pojo.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class BlogController {
 
     @Autowired
     private PostJDBCTemplate postJDBCTemplate;
+    @Autowired
+    private CommentJDBCTemplate commentJDBCTemplate;
 
     @RequestMapping(method = RequestMethod.GET)
     public String listPosts(Model model){
@@ -34,7 +38,13 @@ public class BlogController {
     @RequestMapping(path = "/details/{id}", method = RequestMethod.GET)
     public String blogDetails(@PathVariable int id, Model model) {
         Post post = postJDBCTemplate.getPostById(id);
+
+        List<Comment> commentsOfPost = commentJDBCTemplate.getAllCommentByPostId(id);
+        post.setComments(commentsOfPost);
+
         model.addAttribute("post", post);
+        model.addAttribute("comment", new Comment(id));
+
         return "/details";
     }
 

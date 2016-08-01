@@ -1,6 +1,6 @@
-package hu.schonherz.traning.homeworkseven.dao.mapper;
+package hu.schonherz.traning.homeworkseven.mapper;
 
-import hu.schonherz.traning.homeworkseven.dao.pojo.Post;
+import hu.schonherz.traning.homeworkseven.pojo.Post;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ public class PostMapper implements RowMapper<Post> {
         Post post = new Post();
         post.setIdentity(resultSet.getInt("id"));
         post.setCreator(resultSet.getString("creator"));
-        post.setDate(resultSet.getDate("date"));
+        post.setDate(resultSet.getTimestamp("time").toLocalDateTime());
         post.setTitle(resultSet.getString("title"));
         post.setText(resultSet.getString("text"));
 

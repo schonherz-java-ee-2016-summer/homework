@@ -1,6 +1,6 @@
-package hu.schonherz.traning.homeworkseven.dao.dao;
+package hu.schonherz.traning.homeworkseven.dao;
 
-import hu.schonherz.traning.homeworkseven.dao.pojo.Post;
+import hu.schonherz.traning.homeworkseven.pojo.Post;
 
 import java.util.Date;
 import java.util.List;

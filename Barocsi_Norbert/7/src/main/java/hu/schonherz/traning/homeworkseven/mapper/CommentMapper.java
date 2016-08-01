@@ -1,6 +1,6 @@
-package hu.schonherz.traning.homeworkseven.dao.mapper;
+package hu.schonherz.traning.homeworkseven.mapper;
 
-import hu.schonherz.traning.homeworkseven.dao.pojo.Comment;
+import hu.schonherz.traning.homeworkseven.pojo.Comment;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -14,8 +14,8 @@ public class CommentMapper implements RowMapper<Comment> {
     public Comment mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
         Comment comment = new Comment();
         comment.setIdentity(resultSet.getInt("id"));
-        comment.setBlog_identity(resultSet.getInt("blog_id"));
-        comment.setDate(resultSet.getDate("date"));
+        comment.setBlogIdentity(resultSet.getInt("blog_id"));
+        comment.setDate(resultSet.getTimestamp("time").toLocalDateTime());
         comment.setContent(resultSet.getString("comment"));
 
         return comment;
