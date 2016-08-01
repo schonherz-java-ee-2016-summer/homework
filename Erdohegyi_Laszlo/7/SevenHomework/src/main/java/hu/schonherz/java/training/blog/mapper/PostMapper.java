@@ -14,6 +14,7 @@ public class PostMapper implements RowMapper<BlogPost> {
         BlogPost post = new BlogPost();
         post.setId(rs.getInt("id"));
         post.setAuthor(rs.getString("author"));
+        post.setDate(rs.getTimestamp("date").toLocalDateTime());
         post.setTitle(rs.getString("title"));
         post.setContent(rs.getString("content"));
         return post;

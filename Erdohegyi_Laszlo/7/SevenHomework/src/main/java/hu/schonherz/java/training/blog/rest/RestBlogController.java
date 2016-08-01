@@ -25,7 +25,7 @@ public class RestBlogController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity addPost(@RequestBody BlogPost post) {
-        postJDBCTemplate.createPost(post.getAuthor(), post.getTitle(), post.getContent());
+        postJDBCTemplate.createPost(post.getAuthor(), post.getDate(), post.getTitle(), post.getContent());
         return new ResponseEntity(HttpStatus.OK);
     }
 

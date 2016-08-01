@@ -15,12 +15,12 @@
             </a>
         </div>
 
-        <c:forEach items="${applicationScope.get('posts')}" var="post">
+        <c:forEach items="${posts}" var="post">
             <div class="blogpost">
                 <p>${post.title}</p>
                 <p>${post.author}</p>
                 <p>${post.date}</p>
-                <a href="/showpost/${post.id}">
+                <a href="/showpost?id=${post.id}">
                     <button>Show post</button>
                 </a>
             </div>

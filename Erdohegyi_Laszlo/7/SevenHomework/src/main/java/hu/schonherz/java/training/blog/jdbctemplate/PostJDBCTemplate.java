@@ -5,6 +5,7 @@ import hu.schonherz.java.training.blog.mapper.PostMapper;
 import hu.schonherz.java.training.blog.model.BlogPost;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -18,22 +19,22 @@ public class PostJDBCTemplate implements PostDao {
 
     @Override
     public List<BlogPost> getAllPost() {
-        String sql = "SELECT id, author, title, content FROM public.\"POST\";";
+        String sql = "SELECT * FROM public.\"POST\";";
         List<BlogPost> posts = jdbcTemplate.query(sql, new PostMapper());
         return posts;
     }
 
     @Override
     public BlogPost getPostById(int id) {
-        String sql = "SELECT id, author, title, content FROM public.\"POST\" WHERE id = ?;";
+        String sql = "SELECT * FROM public.\"POST\" WHERE id = ?;";
         BlogPost post = jdbcTemplate.queryForObject(sql, new PostMapper(), id);
         return post;
     }
 
     @Override
-    public void createPost(String author, String title, String content) {
-        String sql = "INSERT INTO public.\"POST\"(author, title, content) VALUES (?, ?, ?);";
-        jdbcTemplate.update(sql, author, title, content);
+    public void createPost(String author, LocalDateTime date, String title, String content) {
+        String sql = "INSERT INTO public.\"POST\"(author, date, title, content) VALUES (?, ?, ?, ?);";
+        jdbcTemplate.update(sql, author, date, title, content);
     }
 
 }

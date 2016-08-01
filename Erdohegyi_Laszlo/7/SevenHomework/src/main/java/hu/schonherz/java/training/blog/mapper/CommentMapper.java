@@ -9,13 +9,14 @@ import java.sql.SQLException;
 
 public class CommentMapper implements RowMapper<BlogComment> {
 
-  @Override
-  public BlogComment mapRow(ResultSet rs, int rowNum) throws SQLException {
-    BlogComment comment = new BlogComment();
-    comment.setId(rs.getInt("id"));
-    comment.setPostId(rs.getInt("post_id"));
-    comment.setContent(rs.getString("content"));
-    return comment;
-  }
-  
+    @Override
+    public BlogComment mapRow(ResultSet rs, int rowNum) throws SQLException {
+        BlogComment comment = new BlogComment();
+        comment.setId(rs.getInt("id"));
+        comment.setPostId(rs.getInt("post_id"));
+        comment.setDate(rs.getTimestamp("date").toLocalDateTime());
+        comment.setContent(rs.getString("content"));
+        return comment;
+    }
+
 }

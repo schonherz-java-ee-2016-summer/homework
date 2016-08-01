@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -23,9 +24,9 @@ public class CommentJDBCTemplate implements CommentDao {
   }
 
   @Override
-  public void createComment(int postId, String content) {
-    String sql = "INSERT INTO public.\"COMMENT\"(post_id, content) VALUES (?, ?);";
-    jdbcTemplate.update(sql, postId, content);
+  public void createComment(int postId, LocalDateTime date, String content) {
+    String sql = "INSERT INTO public.\"COMMENT\"(post_id, date, content) VALUES (?, ?, ?);";
+    jdbcTemplate.update(sql, postId, date, content);
   }
 
 }

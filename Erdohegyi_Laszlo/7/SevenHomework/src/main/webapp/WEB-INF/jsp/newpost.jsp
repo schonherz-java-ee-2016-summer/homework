@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="../../resources/blogstyle.css">
     </head>
     <body>
-        <form method="post" action="/newpost-servlet">
+        <form method="post" action="/newpost">
             <label for="author">Name:</label>
             <input id="author" name="author" type="text">
 

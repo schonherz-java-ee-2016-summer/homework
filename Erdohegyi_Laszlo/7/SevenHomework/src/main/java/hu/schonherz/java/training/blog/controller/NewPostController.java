@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/newpost")
 public class NewPostController {
@@ -25,12 +28,12 @@ public class NewPostController {
     public ModelAndView createPost(ModelMap modelMap) {
         BlogPost post = new BlogPost();
         modelMap.addAttribute("post", post);
-        return new ModelAndView("newBlogPost", "command", post);
+        return new ModelAndView("newpost", "command", post);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String createPost(@ModelAttribute("post") BlogPost post, ModelMap modelMap) {
-        postDao.createPost(post.getAuthor(), post.getTitle(), post.getContent());
+        postDao.createPost(post.getAuthor(), LocalDateTime.now(), post.getTitle(), post.getContent());
         LOGGER.debug("New post added to database.");
         return "redirect:/index";
     }
