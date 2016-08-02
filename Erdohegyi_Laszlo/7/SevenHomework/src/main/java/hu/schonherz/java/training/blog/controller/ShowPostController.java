@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/showpost*")
+@RequestMapping("/showpost/{id}")
 public class ShowPostController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
@@ -28,7 +28,7 @@ public class ShowPostController {
     private CommentDao commentDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String showPost(@RequestParam int id, ModelMap modelMap) {
+    public String showPost(@PathVariable int id, ModelMap modelMap) {
         BlogPost selectedPost = postDao.getPostById(id);
         List<BlogComment> commentsOfPost = commentDao.getAllCommentByPostId(id);
         selectedPost.setComments(commentsOfPost);
@@ -41,7 +41,7 @@ public class ShowPostController {
     public String addComment(@ModelAttribute("newcomment") BlogComment comment, ModelMap modelMap) {
         commentDao.createComment(comment.getPostId(), LocalDateTime.now(), comment.getContent());
         LOGGER.debug("New comment added to database.");
-        return "redirect:/showpost?id=" + comment.getPostId();
+        return "redirect:/showpost/{id}";
     }
 
 }
