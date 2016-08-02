@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -19,9 +20,11 @@
                 </div>
             </c:forEach>
             <form method="post" action="/showpost">
-                <p>Add a comment to this post:</p>
-                <input name="comcontent" type="text">
-                <button type="submit">Submit</button>
+                <label for="comcontent">Add a comment to this post: </label>
+                <br/>
+                <textarea id="comcontent" rows="5" cols="50"></textarea>
+                <br/>
+                <input type="submit" value="Submit">
             </form>
         </div>
     </body>
