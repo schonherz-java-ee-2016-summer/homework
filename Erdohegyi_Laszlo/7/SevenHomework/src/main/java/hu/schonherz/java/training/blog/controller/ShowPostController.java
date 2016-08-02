@@ -33,13 +33,13 @@ public class ShowPostController {
         List<BlogComment> commentsOfPost = commentDao.getAllCommentByPostId(id);
         selectedPost.setComments(commentsOfPost);
         modelMap.addAttribute("post", selectedPost);
-        modelMap.addAttribute("newcomment", new BlogComment(id));
+        modelMap.addAttribute("newcomment", new BlogComment());
         return "showpost";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addComment(@ModelAttribute("newcomment") BlogComment comment, ModelMap modelMap) {
-        commentDao.createComment(comment.getPostId(), LocalDateTime.now(), comment.getContent());
+    public String addComment(@PathVariable int id, @ModelAttribute("newcomment") BlogComment comment, ModelMap modelMap) {
+        commentDao.createComment(id, LocalDateTime.now(), comment.getContent());
         LOGGER.debug("New comment added to database.");
         return "redirect:/showpost/{id}";
     }

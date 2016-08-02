@@ -21,7 +21,7 @@
             </c:forEach>
             <form:form method="post" action="/showpost/${post.id}" modelAttribute="newcomment">
                 <label for="comcontent">Add a comment to this post: </label>
-                <textarea id="comcontent" rows="5" cols="50"></textarea>
+                <form:textarea id="comcontent" rows="5" cols="50" path="content"/>
                 <input type="submit" value="Submit"/>
             </form:form>
         </div>

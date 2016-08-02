@@ -18,7 +18,7 @@ public class CommentJDBCTemplate implements CommentDao {
 
   @Override
   public List<BlogComment> getAllCommentByPostId(int postId) {
-    String sql = "SELECT id, post_id, content FROM public.\"COMMENT\" WHERE post_id = ?;";
+    String sql = "SELECT id, post_id, date, content FROM public.\"COMMENT\" WHERE post_id = ?;";
     List<BlogComment> comments = jdbcTemplate.query(sql, new CommentMapper(), postId);
     return comments;
   }
