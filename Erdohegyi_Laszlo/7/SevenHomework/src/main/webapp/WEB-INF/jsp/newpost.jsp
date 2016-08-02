@@ -10,13 +10,10 @@
         <form:form method="post" action="/newpost">
             <label for="author">Name: </label>
             <form:input id="author" path="author" type="text"/>
-            <br/>
             <label for="title">Title: </label>
             <form:input id="title" path="title" type="text"/>
-            <br/>
-            <label for="comment">Comment: </label>
-            <form:textarea id="comment" path="content" rows="5" cols="50"/>
-            <br/>
+            <label for="cont">Comment: </label>
+            <form:textarea id="cont" path="content" rows="5" cols="50"/>
             <input type="submit" value="Submit">
         </form:form>
     </body>

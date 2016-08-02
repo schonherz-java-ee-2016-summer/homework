@@ -19,13 +19,11 @@
                     <p>${comment.date}</p>
                 </div>
             </c:forEach>
-            <form method="post" action="/showpost">
+            <form:form method="post" action="/showpost/${post.id}" modelAttribute="newcomment">
                 <label for="comcontent">Add a comment to this post: </label>
-                <br/>
                 <textarea id="comcontent" rows="5" cols="50"></textarea>
-                <br/>
-                <input type="submit" value="Submit">
-            </form>
+                <input type="submit" value="Submit"/>
+            </form:form>
         </div>
     </body>
 </html>
