@@ -13,24 +13,20 @@ public class Comment implements Serializable{
     private String author;
     private String content;
 
-    public int getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(int blogId) {
-        this.blogId = blogId;
-    }
-
-    public Comment() {
-        super();
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(int blogId) {
+        this.blogId = blogId;
     }
 
     public String getAuthor() {

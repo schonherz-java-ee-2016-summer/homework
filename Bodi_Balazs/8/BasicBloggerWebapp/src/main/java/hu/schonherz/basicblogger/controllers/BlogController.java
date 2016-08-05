@@ -1,6 +1,5 @@
 package hu.schonherz.basicblogger.controllers;
 
-import hu.schonherz.basicblogger.jdbcTemplates.BlogJDBCTemplate;
 import hu.schonherz.basicblogger.pojo.Blog;
 import hu.schonherz.basicblogger.user.User;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -28,9 +27,6 @@ public class BlogController {
     @Autowired
     private User user;
 
-    @Autowired
-    private BlogJDBCTemplate blogJDBCTemplate;
-
     @RequestMapping(method = RequestMethod.GET)
     public String showBlogPage(Model model) {
         LOG.info("GET request arrived to BlogController");
@@ -49,7 +45,6 @@ public class BlogController {
             e.printStackTrace();
         }
         blog.setAuthor(user.getName());
-        blogJDBCTemplate.createBlog(blog);
         return "redirect:/index";
     }
 

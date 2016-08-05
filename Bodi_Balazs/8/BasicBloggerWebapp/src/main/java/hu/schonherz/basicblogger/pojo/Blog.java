@@ -4,25 +4,24 @@ import java.io.Serializable;
 
 /**
  * Created by bmbal on 2016. 07. 19..
- * Class describes comments
- * //comment(id,date,content)
+ * Class describes the posts
+ * //blog(id,author,date,title,content)
  */
-public class Comment implements Serializable{
+public class Blog implements Serializable {
     private int id;
-    private int blogId;
     private String author;
+    private String title;
     private String content;
 
-    public int getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(int blogId) {
-        this.blogId = blogId;
-    }
-
-    public Comment() {
+    public Blog() {
         super();
+    }
+
+    public Blog(int id, String author, String title, String content) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.content = content;
     }
 
     public int getId() {
@@ -39,6 +38,14 @@ public class Comment implements Serializable{
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {

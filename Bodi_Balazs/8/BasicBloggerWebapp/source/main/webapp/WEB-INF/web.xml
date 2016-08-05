@@ -1,31 +1,40 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
 <web-app>
-  <display-name>Basic Blogger Webapp</display-name>
-    <!-- JSP Servlet -->
+    <display-name>Basic Blogger Webapp</display-name>
+
+    <!-- JSP servlet -->
     <servlet>
         <servlet-name>jsp</servlet-name>
         <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>jsp</servlet-name>
-        <url-pattern>/jsp/*</url-pattern>
+        <url-pattern>/WEB-INF/jsp/*</url-pattern>
     </servlet-mapping>
+
     <!-- Spring -->
     <servlet>
-        <servlet-name>blogapp</servlet-name>
+        <servlet-name>Login</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>blogapp</servlet-name>
+        <servlet-name>Login</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
-    <!-- ContextLoaderListener -->
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/blogapp-servlet.xml</param-value>
+        <param-value>/WEB-INF/Login-servlet.xml</param-value>
     </context-param>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
 
 </web-app>
