@@ -1,8 +1,7 @@
 package hu.schonherz.basicblogger.servlets;
 
-import hu.schonherz.basicblogger.data.blog.Blog;
-import hu.schonherz.basicblogger.data.comment.Comment;
-import org.apache.commons.lang3.StringEscapeUtils;
+import hu.schonherz.basicblogger.pojo.Blog;
+import hu.schonherz.basicblogger.pojo.Comment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,11 +10,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import static hu.schonherz.basicblogger.properties.Constans.*;
 
 /**
  * Created by bmbal on 2016. 07. 23..
@@ -23,64 +25,51 @@ import java.util.List;
     public class CommentServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(IndexServlet.class);
 
-    private static final String COMMENTER_INPUT_NAME = "userName";
-    private static final String COMMENT_CONTENT = "content";
-
-    private static final String BLOGLIST_SESSION = "blogList";
-    private static final String BLOG_ID_SESSION = "blogId";
-    private static final String COMMENTLIST_SESSION = "commentList";
-
-    private static final String ID = "id";
-
-    private static List<Blog> blogList = new LinkedList<>();
-    private static List<Comment> commentList = new LinkedList<>();
+    private static List<Blog> blogList = new ArrayList<>();
+    private static List<Comment> commentList = new ArrayList<>();
     private static int blogId;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext context = getServletContext();
-        blogList = (List<Blog>) context.getAttribute(BLOGLIST_SESSION);
-        commentList = (List<Comment>)context.getAttribute(COMMENTLIST_SESSION);
+        HttpSession userSession = req.getSession();
+        blogId = (int) (req.getAttribute(BLOG_ID) != null ? req.getAttribute(BLOG_ID) : userSession.getAttribute(BLOG_ID));
 
-        String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
-        blogId = (int) context.getAttribute(BLOG_ID_SESSION);
-        blogId--;
-        userName = URLDecoder.decode(userName,  "utf-8");
-        userName = StringEscapeUtils.escapeHtml4(userName);
+        blogList = (List<Blog>) context.getAttribute(BLOGLIST);
+        commentList = (List<Comment>)context.getAttribute(COMMENTLIST);
 
         Blog requiredBlog = blogList.get(blogId);
-        List<Comment> requiredComments = new LinkedList<>();
+        List<Comment> requiredComments = new ArrayList<>();
         if(commentList!=null){
-        for (Comment actualComment:commentList
-             ) {
-            if(actualComment.getId() == blogId){
-                requiredComments.add(actualComment);
+            for (Comment actualComment:commentList
+                 ) {
+                if(actualComment.getId() == blogId){
+                    requiredComments.add(actualComment);
+                }
             }
         }
         context.setAttribute("requiredComments", requiredComments);
-        }
-
         context.setAttribute("requiredBlog", requiredBlog);
-
         resp.sendRedirect("/post.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext context = getServletContext();
-        blogList = (List<Blog>) context.getAttribute(BLOGLIST_SESSION);
-        commentList = (List<Comment>) context.getAttribute(COMMENTLIST_SESSION);
+        HttpSession userSession = req.getSession();
+        String author = (String) userSession.getAttribute(NAME);
 
-        String userName = (req.getParameter(COMMENTER_INPUT_NAME) != null ? req.getParameter(COMMENTER_INPUT_NAME) : "Anonymous");
-        blogId = Integer.parseInt(req.getParameter(ID));
-        blogId--;
-        userName = URLDecoder.decode(userName,  "utf-8");
-        userName = StringEscapeUtils.escapeHtml4(userName);
+        blogList = (List<Blog>) context.getAttribute(BLOGLIST);
+        commentList = (List<Comment>) context.getAttribute(COMMENTLIST);
+        blogId = (int) (userSession.getAttribute(BLOG_ID) != null
+                ? userSession.getAttribute(BLOG_ID)
+                : context.getAttribute(BLOG_ID));
+
         String content = req.getParameter(COMMENT_CONTENT);
         if(commentList == null) {
             commentList = new LinkedList<>();
         }
-        commentList.add(new Comment(blogId, userName, LocalDateTime.now(), content));
+        commentList.add(new Comment(blogId, author, LocalDateTime.now(), content));
 
         Blog requiredBlog = blogList.get(blogId);
         List<Comment> requiredComments = new LinkedList<>();
@@ -91,11 +80,11 @@ import java.util.List;
                     requiredComments.add(actualComment);
                 }
             }
-            context.setAttribute("requiredComments", requiredComments);
         }
 
+        context.setAttribute(COMMENTLIST, commentList);
 
-        context.setAttribute(COMMENTLIST_SESSION, commentList);
+        context.setAttribute("requiredComments", requiredComments);
         context.setAttribute("requiredBlog", requiredBlog);
 
         resp.sendRedirect("/post.jsp");

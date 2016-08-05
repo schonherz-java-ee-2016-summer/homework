@@ -10,15 +10,18 @@ import java.util.List;
  */
 public class CommentsBean implements Serializable {
     private static final long serialVersionUID = 1324354353653L;
-  
+
     private List<Comment> comments = new ArrayList<>();
 
     public List<Comment> getComments() {
-      return comments;
+        return comments;
     }
 
     public void setComments(final List<Comment> comments) {
-      this.comments = comments;
+        this.comments = comments;
     }
 
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+    }
 }

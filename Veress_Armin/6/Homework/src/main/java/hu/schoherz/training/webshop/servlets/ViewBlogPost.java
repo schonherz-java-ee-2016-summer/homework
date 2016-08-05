@@ -30,7 +30,6 @@ public class ViewBlogPost extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -38,11 +37,9 @@ public class ViewBlogPost extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ViewBlogPost Post key " + request.getParameter("key1") + "</h1>");
-            List <BlogPost> posts=(List <BlogPost>) request.getSession().getAttribute("posts");
-            for (BlogPost post : posts)
-            {
-                if (request.getParameter("key1").equals(post.getId()))
-                {
+            List <BlogPost> posts = (List <BlogPost>) request.getSession().getAttribute("posts");
+            for (BlogPost post : posts) {
+                if (request.getParameter("key1").equals(post.getId())) {
                     out.println("<div>" + post.getAuthor() + " " + post.getTitle() + " " + post.getContentOfPost() + "</div>");
                 }
             }

@@ -41,14 +41,12 @@ public class BlogPostServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setCharacterEncoding(ENCODING);
         ServletContext context = req.getServletContext();
-        String[] qs = req.getQueryString().split("=");
-        int id = 0;
-        if ("p".equals(qs[0])) {
-            id = Integer.parseInt(qs[1]);
+        int id = Integer.parseInt(req.getParameter("p"));
+        if (context.getAttribute(INDEX_KEY) == null) {
+            context.setAttribute(INDEX_KEY, new BlogPostsBean());
         }
-        posts = (BlogPostsBean) ParserUtils.getListFromContextByKey(req, INDEX_KEY);
+        posts = (BlogPostsBean) context.getAttribute(INDEX_KEY);
         context.setAttribute(SELECTED_POST, posts.getPosts().get(id - 1));
         resp.sendRedirect(req.getContextPath() + "/post/" + id);
     }
-
 }

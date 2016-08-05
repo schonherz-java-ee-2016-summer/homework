@@ -50,7 +50,7 @@ public class CommentsServlet extends HttpServlet {
         BlogPost post = (BlogPost) context.getAttribute(SELECTED_POST);
         if (post != null) {
             newComment.setBlogPostID(post.getPostID());
-            post.getComments().getComments().add(newComment);
+            post.getComments().addComment(newComment);
             res.sendRedirect(req.getContextPath() + "/post/" + post.getPostID());
         } else {
             res.sendRedirect(req.getContextPath() + "/index");

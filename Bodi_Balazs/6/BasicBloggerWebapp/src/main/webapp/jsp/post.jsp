@@ -19,17 +19,13 @@
 </div>
 <form class="blogpost" method="POST" action="/post">
     <div>
-        <label form = "name">Nickname: </label>
-    </div>
-    <div>
-        <input name = "userName" type = "text">
+        <h1>${name}</h1>
     </div>
     <div>
         <label>Your comment:</label>
     </div>
     <div>
         <input name = "content" type = "text">
-        <input type="hidden" name="id" value="${requiredBlog.id}"/>
         <button type="submit">Leave it!</button>
 
     </div>

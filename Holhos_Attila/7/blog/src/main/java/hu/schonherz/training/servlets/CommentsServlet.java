@@ -1,7 +1,6 @@
 package hu.schonherz.training.servlets;
 
-import hu.schonherz.training.jdbcTemplates.JDBCTemplateComment;
-import hu.schonherz.training.jdbcTemplates.JDBCTemplatePost;
+import hu.schonherz.training.jdbcTemplates.CommentDaoImpl;
 import hu.schonherz.training.models.Comment;
 import hu.schonherz.training.models.Post;
 import org.slf4j.Logger;
@@ -28,7 +27,7 @@ public class CommentsServlet extends HttpServlet{
         Comment comment = createComment(req);
         Post post = (Post) req.getServletContext().getAttribute("post");
         post.getComments().add(comment);
-        (new JDBCTemplateComment()).createComment(post.getPostID(),comment);
+        (new CommentDaoImpl()).createComment(comment);
         LOGGER.info("Add a new comment to post" + post.getPostID());
         resp.sendRedirect("/blog/post" + "?ID=" + post.getPostID());
     }

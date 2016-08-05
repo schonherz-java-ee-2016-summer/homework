@@ -11,5 +11,5 @@ public interface CommentDao {
 
     public List<Comment> getAllCommentByPostId(int postId);
 
-    public void createComment(int postId, Comment comment);
+    public void createComment(Comment comment);
 }

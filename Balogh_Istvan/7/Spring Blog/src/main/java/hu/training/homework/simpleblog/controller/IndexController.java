@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,7 @@ public class IndexController {
     public String loadIndex(ModelMap modelMap) {
         LOGGER.debug("Loading all posts...");
         List<Post> posts = dao.getAllPosts();
+        Collections.reverse(posts);
         modelMap.addAttribute("posts", posts);
         LOGGER.debug("Added \"posts\" attribute on ModelMap");
         return "index";

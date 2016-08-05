@@ -10,12 +10,22 @@ import java.util.UUID;
 public class Comment implements Serializable {
 
     private String id;
+    private String postID;
     private String commenter;
     private LocalDateTime dateTime;
     private String content;
 
     public Comment() {
         this.id = UUID.randomUUID().toString();
+        this.postID = "";
+        this.commenter = "";
+        this.dateTime = LocalDateTime.now();
+        this.content = "";
+    }
+
+    public Comment(String postID) {
+        this.id = UUID.randomUUID().toString();
+        this.postID = postID;
         this.commenter = "";
         this.dateTime = LocalDateTime.MIN;
         this.content = "";
@@ -23,6 +33,7 @@ public class Comment implements Serializable {
 
     public Comment(String commenter, String content) {
         this.id = UUID.randomUUID().toString();
+        this.postID = "";
         this.commenter = commenter;
         this.dateTime = LocalDateTime.now();
         this.content = content;
@@ -34,6 +45,14 @@ public class Comment implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPostID() {
+        return postID;
+    }
+
+    public void setPostID(String postID) {
+        this.postID = postID;
     }
 
     public String getCommenter() {
@@ -74,10 +93,13 @@ public class Comment implements Serializable {
         if (!getId().equals(comment.getId())) {
             return false;
         }
+        if (getPostID() != null ? !getPostID().equals(comment.getPostID()) : comment.getPostID() != null) {
+            return false;
+        }
         if (!getCommenter().equals(comment.getCommenter())) {
             return false;
         }
-        if (!getDateTime().equals(comment.getDateTime())) {
+        if (getDateTime() != null ? !getDateTime().equals(comment.getDateTime()) : comment.getDateTime() != null) {
             return false;
         }
         return getContent().equals(comment.getContent());
@@ -87,8 +109,9 @@ public class Comment implements Serializable {
     @Override
     public int hashCode() {
         int result = getId().hashCode();
+        result = 31 * result + (getPostID() != null ? getPostID().hashCode() : 0);
         result = 31 * result + getCommenter().hashCode();
-        result = 31 * result + getDateTime().hashCode();
+        result = 31 * result + (getDateTime() != null ? getDateTime().hashCode() : 0);
         result = 31 * result + getContent().hashCode();
         return result;
     }

@@ -1,0 +1,20 @@
+.form {
+    padding: 10px;
+    margin: 0 auto;
+    width: 30%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.form-element {
+    padding: 20px;
+}
+
+.form-element label {
+    display: inline-block;
+    width: 30%;
+}
+
+#content{
+    width: 200px;
+    height: 200px;
+}

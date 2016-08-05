@@ -2,11 +2,11 @@ package hu.training.homework.simpleblog.dao.impl;
 
 import hu.training.homework.simpleblog.dao.PostDAO;
 import hu.training.homework.simpleblog.model.Post;
+import hu.training.homework.simpleblog.util.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -25,30 +25,15 @@ public class JDBCTemplatePostDAOImpl implements PostDAO {
 
     @Override
     public Post getPostByID(String id) {
-        return null;
+        String sql = "SELECT id, author, dateandtime, title, contentofpost FROM public.\"Post\" WHERE id = ?;";
+        Post post = jdbcTemplate.queryForObject(sql, new PostMapper(), id);
+        return post;
     }
 
     @Override
     public List<Post> getAllPosts() {
         return jdbcTemplate.query("SELECT id, author, dateandtime, title, contentofpost FROM public.\"Post\";",
-                ((resultSet, i) -> {
-                    Post post = new Post();
-                    post.setId(resultSet.getString("id"));
-                    post.setAuthor(resultSet.getString("author"));
-                    post.setDateTime(resultSet.getTimestamp("dateandtime").toLocalDateTime());
-                    post.setTitle(resultSet.getString("title"));
-                    post.setContent(resultSet.getString("contentofpost"));
-                    return post;
-                }));
+                new PostMapper());
     }
 
-    @Override
-    public void updatePost(Post post) {
-
-    }
-
-    @Override
-    public void deletePost(Post post) {
-
-    }
 }

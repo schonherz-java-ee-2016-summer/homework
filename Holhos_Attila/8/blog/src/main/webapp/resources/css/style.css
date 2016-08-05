@@ -1,0 +1,75 @@
+body{
+    background-color: #caf2ff;
+}
+
+#header{
+    font-size: 30px;
+    border: solid #0078ff 2px;
+    background-color: #7adeff;
+    color: #002855;
+    text-indent: 80px;
+    margin-bottom: 40px;
+}
+
+#welcome{
+    text-align: center;
+}
+
+#addPost{
+    text-align: right;
+}
+
+#posts{
+    width: 800px;
+    margin: auto;
+}
+
+
+.blogposzt{
+    margin: 10px 10px 10px 10px;
+    border: 2px solid #73AD23;
+    witdh: 80%;
+    text-align: center;
+}
+
+.author{
+    float: left;
+    width: 50%;
+    background-color: #84beff;
+    height: 150%;
+}
+
+.date{
+    float: left;
+    height: 150%;
+    width: 50%;
+    background-color: #84beff;
+}
+
+.title{
+    clear: left;
+    height: 50px;
+}
+
+.postid{
+    text-align: right;
+    background-color: #84beff;
+}
+
+#content{
+    width: 300px;
+    height: 60px;
+}
+
+#inputFields{
+    text-align: center;
+    margin: auto;
+    border: solid 1px blue;
+    width: 50%;
+}
+
+#error{
+    text-align: center;
+    color: red;
+}
+
