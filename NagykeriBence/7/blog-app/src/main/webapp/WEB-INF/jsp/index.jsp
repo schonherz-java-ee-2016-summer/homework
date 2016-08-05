@@ -23,7 +23,7 @@
             </c:if>
             <c:forEach items="${posts}" var="item">
                 <div class="postBox">
-                    <a class="no-link" href="/posts?post=${item.postID}">
+                    <a class="no-link" href="/post/${item.postID}">
                         <div id="noBorder" class="postHeader">
                             <span class="padded">#${item.postID} - ${item.author.nickName} - ${item.title}</span>
                             <span class="padded">${item.getFormattedTime()}</span>

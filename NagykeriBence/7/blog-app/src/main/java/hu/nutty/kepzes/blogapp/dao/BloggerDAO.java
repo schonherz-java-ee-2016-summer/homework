@@ -9,9 +9,16 @@ import java.util.List;
  */
 public interface BloggerDAO {
     Blogger getBloggerByNickName(String nickname);
+
     Blogger getBloggerById(int bloggerID);
+
     List<Blogger> getAllBloggers();
+
     void addBlogger(Blogger blogger);
+
+    int addBloggerAndReturnId(Blogger blogger);
+
     void updateBlogger(Blogger blogger);
+
     void deleteBlogger(Blogger blogger);
 }

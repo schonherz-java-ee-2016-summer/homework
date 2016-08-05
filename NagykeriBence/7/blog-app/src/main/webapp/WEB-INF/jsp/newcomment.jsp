@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page import="hu.nutty.kepzes.blogapp.utils.Constants" %>
 <!DOCTYPE html>
 <html>
@@ -18,20 +19,21 @@
                         title="Fullos Blog"></a>
             </div>
             <h1>New Comment!</h1>
-            <form action='<c:url value="/comments" />' method='POST'
-                  onsubmit="return displayDialogIfEmpty('#commenterName','#commentArea')">
+            <form:form action='../../comments' method='POST'
+                       onsubmit="return displayDialogIfEmpty('#commenterName','#commentArea')">
                 <div>
-                    <input id="commenterName" class="inputText" name='${Constants.COMMENTER_INPUT_NAME}' type="text"
-                           placeholder="Commenter name"/>
+                    <form:input id="commenterName" class="inputText"
+                                placeholder="Commenter name" path="commenter"/>
                 </div>
                 <div>
-                    <textarea id="commentArea" class="inputPost" name='${Constants.NEW_COMMENT_INPUT_NAME}'
-                              placeholder='Enter comment here.'></textarea>
+                    <form:textarea id="commentArea" class="inputPost" placeholder='Enter comment here.'
+                                   path="content"></form:textarea>
+                    <form:input path="blogPostID" value="${command.blogPostID}" type="hidden"/>
                 </div>
                 <div>
                     <input class="button" type='submit' value='Submit'>
                 </div>
-            </form>
+            </form:form>
         </div>
     </body>
 </html>

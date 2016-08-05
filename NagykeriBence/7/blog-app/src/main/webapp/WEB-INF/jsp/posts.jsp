@@ -45,7 +45,7 @@
             </c:forEach>
             </form>
             <div>
-                <a class="button" href="<c:url value="/comment/new" />">New comment</a>
+                <a class="button" href="<c:url value="/post/${selected_post.postID}/newcomment" />">New comment</a>
             </div>
         </div>
     </body>

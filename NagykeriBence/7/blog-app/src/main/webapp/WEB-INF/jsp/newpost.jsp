@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="hu.nutty.kepzes.blogapp.utils.Constants" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,27 +20,45 @@
             <form action='<c:url value="/index" />' method='POST'
                   onsubmit="return displayDialogIfEmpty('#first-name','#last-name', '#nickname', '#age', '#title', '#message')">
                 <div>
-                    <input id="first-name" class="inputText" name='${Constants.POSTER_INPUT_FIRST_NAME}' type="text"
-                           placeholder="First name"/>
+                    <spring:bind path="blogger.firstName">
+                        <input id="first-name" class="inputText" name='${status.expression}' value="${status.value}"
+                               type="text"
+                               placeholder="First name"/>
+                    </spring:bind>
                 </div>
                 <div>
-                    <input id="last-name" class="inputText" name='${Constants.POSTER_INPUT_LAST_NAME}' type="text"
-                           placeholder="Last name"/>
+                    <spring:bind path="blogger.lastName">
+                        <input id="last-name" class="inputText" name='${status.expression}' value="${status.value}"
+                               type="text"
+                               placeholder="Last name"/>
+                    </spring:bind>
                 </div>
                 <div>
-                    <input id="nickname" class="inputText" name='${Constants.POSTER_INPUT_NICKNAME}' type="text"
-                           placeholder="Nickname"/>
+                    <spring:bind path="blogger.nickName">
+                        <input id="nickname" class="inputText" name='${status.expression}' value="${status.value}"
+                               type="text"
+                               placeholder="Nickname"/>
+                    </spring:bind>
                 </div>
                 <div>
-                    <input id="age" class="inputText" name='${Constants.POSTER_INPUT_AGE}' type="text"
-                           placeholder="Age" oninput="containsOnlyNumber('#age')"/>
+                    <spring:bind path="blogger.age">
+                        <input id="age" class="inputText" name='${status.expression}'
+                               type="text"
+                               placeholder="Age" oninput="containsOnlyNumber('#age')"/>
+                    </spring:bind>
                 </div>
                 <div>
-                    <input id="title" class="inputText" name='${Constants.POST_TITLE}' type="text" placeholder="Title"/>
+                    <spring:bind path="blogPost.title">
+                        <input id="title" class="inputText" name='${status.expression}' value="${status.value}"
+                               type="text"
+                               placeholder="Title"/>
+                    </spring:bind>
                 </div>
                 <div>
-                <textarea id="message" class="inputPost" name='${Constants.NEW_POST_INPUT_NAME}'
-                          placeholder='Enter your blog message here.'></textarea>
+                    <spring:bind path="blogPost.message">
+                    <textarea id="message" class="inputPost" name='${status.expression}' value="${status.value}"
+                              placeholder='Enter your blog message here.'></textarea>
+                    </spring:bind>
                 </div>
                 <div id="interactive-label">Age must be a number.</div>
                 <div>

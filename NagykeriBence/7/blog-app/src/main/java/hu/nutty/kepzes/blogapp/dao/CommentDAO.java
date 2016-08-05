@@ -11,4 +11,5 @@ public interface CommentDAO {
     List<Comment> getAllComments();
     List<Comment> getCommentsByPostId(int postID);
     void  addComment(Comment comment);
+    int addCommentAndReturnId(Comment comment);
 }

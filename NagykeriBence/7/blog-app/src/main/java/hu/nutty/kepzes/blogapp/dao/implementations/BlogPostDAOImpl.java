@@ -6,9 +6,13 @@ import hu.nutty.kepzes.blogapp.dao.BloggerDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Nutty on 2016.07.27..
@@ -19,6 +23,8 @@ public class BlogPostDAOImpl implements BlogPostDAO {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private BloggerDAO bloggerDAO;
+    @Autowired
+    private SimpleJdbcInsert simpleJdbcInsert;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -67,4 +73,15 @@ public class BlogPostDAOImpl implements BlogPostDAO {
         jdbcTemplate.update(sql, ts, blogPost.getTitle(), blogPost.getMessage(), blogPost.getBloggerID());
     }
 
+    @Override
+    public int addBlogPostAndReturnId(BlogPost blogPost) {
+        simpleJdbcInsert.withTableName("BlogPosts");
+        simpleJdbcInsert.usingGeneratedKeyColumns("postid");
+        Map args = new HashMap();
+        args.put("time", Timestamp.valueOf(blogPost.getTime()));
+        args.put("title", blogPost.getTitle());
+        args.put("message", blogPost.getMessage());
+        args.put("bloggerid", blogPost.getBloggerID());
+        return simpleJdbcInsert.executeAndReturnKey(args).intValue();
+    }
 }

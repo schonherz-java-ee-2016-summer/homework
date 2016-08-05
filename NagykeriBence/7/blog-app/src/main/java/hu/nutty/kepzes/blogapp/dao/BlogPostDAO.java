@@ -14,4 +14,6 @@ public interface BlogPostDAO {
     BlogPost getBlogPostById(int postID);
 
     void addBlogPost(BlogPost blogPost);
+
+    int addBlogPostAndReturnId(BlogPost blogPost);
 }
