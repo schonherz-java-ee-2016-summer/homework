@@ -31,7 +31,7 @@ public class CommentController {
     public String addcomment(@ModelAttribute("newcomment") Comment comment, Model model){
         LOG.info("A comment was added to post " + comment.getPostID() + "!");
         comment.setCommentDate(new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date()));
-        commentDao.createComment(comment.getPostID(), comment);
+        commentDao.createComment(comment);
         LOG.info("A comment was added to post " + comment.getPostID() + "!");
         return ("redirect:/post/" + comment.getPostID());
     }

@@ -44,9 +44,9 @@ public class RestBlogController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping(path = "/newComment/{postID}", method = RequestMethod.POST)
-    public ResponseEntity addComment(@RequestBody Comment comment, @PathVariable("postID") int postID){
-        commentDao.createComment(postID,comment);
+    @RequestMapping(path = "/newComment", method = RequestMethod.POST)
+    public ResponseEntity addComment(@RequestBody Comment comment){
+        commentDao.createComment(comment);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

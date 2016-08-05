@@ -15,6 +15,7 @@ public class CommentMapper implements RowMapper<Comment>{
     public Comment mapRow(ResultSet resultSet, int i) throws SQLException {
         Comment comment = new Comment();
         comment.setCommentID(resultSet.getInt("id"));
+        comment.setPostID(resultSet.getInt("post_id"));
         comment.setCommentDate(resultSet.getString("commentdate"));
         comment.setContent(resultSet.getString("content"));
         return comment;
