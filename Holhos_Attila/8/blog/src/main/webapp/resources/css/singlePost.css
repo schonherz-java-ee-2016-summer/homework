@@ -1,0 +1,54 @@
+body{
+    background-color: #caf2ff;
+}
+
+#header{
+    font-size: 30px;
+    border: solid #0078ff 2px;
+    background-color: #7adeff;
+    color: #002855;
+    text-indent: 80px;
+    margin-bottom: 40px;
+}
+
+#aPost{
+    margin: auto;
+    width: 80%;
+    background-color: #cde5ff;
+    border: solid 2px blue;
+}
+
+#postTitle{
+    text-align: center;
+}
+
+#postDate{
+    text-align: right;
+}
+
+#comments{
+    margin: auto;
+    padding: 50px;
+    width: 70%;
+}
+
+#nocomment{
+    margin: auto;
+    text-align: center;
+}
+
+.comment{
+    margin-top: 20px;
+    border: blue solid 1px;
+    background-color: aliceblue;
+}
+
+#commentdate{
+    text-align: right;
+    font-size: 10px;
+}
+
+#addComment{
+    margin: auto;
+    text-align: center;
+}
