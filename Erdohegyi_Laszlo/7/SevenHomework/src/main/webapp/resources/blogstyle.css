@@ -1,0 +1,21 @@
+body{
+    background-color: lightgray;
+}
+
+h2{
+    text-align: center;
+}
+
+input, label, textarea, button{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+div{
+    margin: auto;
+    border: 2px solid gray;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}

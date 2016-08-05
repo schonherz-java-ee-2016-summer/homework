@@ -7,7 +7,7 @@ public class Comment {
 
     private int id;
     private int blogId;
-    private String author;
+    //private String author;
     private String Comment;
 
     public Comment() {

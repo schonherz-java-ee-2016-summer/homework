@@ -27,7 +27,7 @@ public class CommentsServlet extends HttpServlet{
         Comment comment = createComment(req);
         Post post = (Post) req.getServletContext().getAttribute("post");
         post.getComments().add(comment);
-        (new CommentDaoImpl()).createComment(post.getPostID(), comment);
+        (new CommentDaoImpl()).createComment(comment);
         LOGGER.info("Add a new comment to post" + post.getPostID());
         resp.sendRedirect("/blog/post" + "?ID=" + post.getPostID());
     }
