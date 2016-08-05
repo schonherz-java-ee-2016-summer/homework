@@ -31,28 +31,9 @@ public class JDBCTemplateCommentDAOImpl implements CommentDAO {
     }
 
     @Override
-    public Comment getCommentByID(String id) {
-        return null;
-    }
-
-    @Override
     public List<Comment> getCommentsOfPost(String postId) {
         String sql = "SELECT id, commenter, dateandtime, contentofcomment, postid FROM public.\"Comment\" WHERE postid = ?;";
         return jdbcTemplate.query(sql, new CommentMapper(), postId);
     }
 
-    @Override
-    public List<Comment> getAllComments() {
-        return null;
-    }
-
-    @Override
-    public void updateComment(Comment comment) {
-
-    }
-
-    @Override
-    public void deleteComment(Comment comment) {
-
-    }
 }

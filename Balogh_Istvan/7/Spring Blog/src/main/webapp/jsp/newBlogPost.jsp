@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <title>Add new blogpost - Simple Blog Webapp - </title>
+        <title>Add new blogpost - Spring Blog Webapp - </title>
         <link rel="stylesheet" type="text/css" href="/resources/css/styleSheet.css"/>
     </head>
 

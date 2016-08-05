@@ -6,7 +6,7 @@
 
 <html>
     <head>
-        <title>Index - Simple Blog Webapp</title>
+        <title>Index - Spring Blog Webapp</title>
         <link rel="stylesheet" type="text/css" href="/resources/css/styleSheet.css"/>
     </head>
 

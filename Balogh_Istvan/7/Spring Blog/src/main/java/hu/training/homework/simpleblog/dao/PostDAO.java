@@ -12,8 +12,4 @@ public interface PostDAO {
 
     List<Post> getAllPosts();
 
-    void updatePost(Post post);
-
-    void deletePost(Post post);
-
 }

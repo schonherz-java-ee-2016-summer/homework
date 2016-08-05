@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -37,13 +36,4 @@ public class JDBCTemplatePostDAOImpl implements PostDAO {
                 new PostMapper());
     }
 
-    @Override
-    public void updatePost(Post post) {
-
-    }
-
-    @Override
-    public void deletePost(Post post) {
-
-    }
 }
