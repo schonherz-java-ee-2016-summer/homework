@@ -1,8 +1,6 @@
 package hu.training.homework.simpleblog.rest;
 
-import hu.training.homework.simpleblog.dao.CommentDAO;
 import hu.training.homework.simpleblog.dao.PostDAO;
-import hu.training.homework.simpleblog.model.Comment;
 import hu.training.homework.simpleblog.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

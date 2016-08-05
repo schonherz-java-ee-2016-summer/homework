@@ -5,8 +5,10 @@ import hu.schonherz.training.mappers.PostMapper;
 import hu.schonherz.training.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import javax.activation.DataSource;
 import java.util.List;
 
 /**
@@ -18,6 +20,9 @@ public class PostDaoImpl implements PostDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    /*@Autowired
+    private SimpleJdbcInsert jdbcInsert;*/
 
     @Override
     public Post getPostByID(int id) {
