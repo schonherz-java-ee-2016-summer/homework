@@ -5,8 +5,8 @@
 <html>
 <head>
     <title>Add new post</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="/js/javascript.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/javascript.js"></script>
 </head>
     <body>
     <%@include file="/html/header.html"%>

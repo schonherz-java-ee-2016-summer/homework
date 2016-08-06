@@ -10,8 +10,7 @@
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:annotation-driven/>
 
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
@@ -22,12 +21,10 @@
         <property name="password" value="pass"></property>
     </bean>
 
-    <bean name="jdbcTemplate"
-          class="org.springframework.jdbc.core.JdbcTemplate">
+    <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource"></constructor-arg>
     </bean>
     <bean name="blogPostDAOImpl" class="hu.nutty.kepzes.blogapp.dao.implementations.BlogPostDAOImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
-
 </beans>

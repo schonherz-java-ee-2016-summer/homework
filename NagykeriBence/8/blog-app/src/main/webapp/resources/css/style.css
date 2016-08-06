@@ -1,0 +1,221 @@
+
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    width: 100%;
+}
+
+body {
+    background-color: #FAFAD2;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.back {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: auto;
+    height: 100%;
+    margin: 0 150px;
+    padding: 20px;
+    overflow: hidden;
+    border: none;
+    color: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: #f7d985;
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.postHeader {
+    border-bottom: 2px solid;
+    padding: 10px;
+}
+
+.commentHeader {
+    border-bottom: 1px solid;
+    padding: 10px;
+}
+
+#noBorder {
+    border: none;
+}
+
+.postContent {
+    padding: 30px;
+    min-width: 150px;
+    min-height: 150px;
+}
+
+.commentContent {
+    padding: 10px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.postBox {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    max-width: 60%;
+    margin: 20px;
+    overflow: hidden;
+    border: 2px solid;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.9);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: #bce3f2;
+    -webkit-box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.commentBox {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 160px;
+    margin: 20px;
+    width: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(11, 21, 130, 1);
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    color: rgba(0, 0, 0, 0.9);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: -webkit-linear-gradient(-40.42607874009914deg, rgba(145, 166, 242, 1) 0, rgba(145, 242, 242, 0.92) 99%, rgba(124, 188, 10, 1) 100%);
+    background: -moz-linear-gradient(130.42607874009914deg, rgba(145, 166, 242, 1) 0, rgba(145, 242, 242, 0.92) 99%, rgba(124, 188, 10, 1) 100%);
+    background: linear-gradient(130.42607874009914deg, rgba(145, 166, 242, 1) 0, rgba(145, 242, 242, 0.92) 99%, rgba(124, 188, 10, 1) 100%);
+    background-position: 50% 50%;
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: auto auto;
+    background-size: auto auto;
+    -webkit-box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.inputText {
+    width: 250px;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 10px;
+    padding: 5px 10px;
+    border: 1px solid #b7b7b7;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: rgba(252, 252, 252, 1);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.inputPost {
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    min-width: 500px;
+    min-height: 200px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #b7b7b7;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: rgba(252, 252, 252, 1);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.66);
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.button {
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    float: none;
+    z-index: auto;
+    width: auto;
+    height: auto;
+    position: static;
+    cursor: pointer;
+    opacity: 1;
+    margin: 20px;
+    padding: 10px 20px;
+    overflow: visible;
+    border: 2px solid #018dc4;
+    -webkit-border-radius: 66px;
+    border-radius: 66px;
+    font: normal 29px/normal Impact, Charcoal, sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: rgba(65, 186, 234, 0.66);
+    -webkit-box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.4), 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.4), 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5), 4px 0 9px rgba(86, 170, 255, 0.9), 4px 0 9px rgba(86, 170, 255, 0.9);
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+    -webkit-transform: none;
+    transform: none;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+
+}
+
+.padded {
+    padding: 20px;
+}
+
+a.button {
+    text-decoration: none;
+}
+.no-link, .no-link:hover{
+    text-decoration: none !important;
+    color:black;
+    cursor:pointer;
+}
+
+#interactive-label {
+    font-size: 8pt;
+    color: rgba(190, 10, 10, 0.9);
+    visibility: visible;
+}

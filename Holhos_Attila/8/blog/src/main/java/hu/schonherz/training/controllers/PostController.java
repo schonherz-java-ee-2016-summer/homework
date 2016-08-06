@@ -27,6 +27,7 @@ import java.util.List;
 public class PostController {
 
     private static final Logger LOG = LoggerFactory.getLogger(PostController.class);
+    private SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
     @Autowired
     private PostService postService;
@@ -57,7 +58,7 @@ public class PostController {
 
     @RequestMapping(path = "/new", method = RequestMethod.POST)
     public String createPost(@ModelAttribute("post") Post post, Model model){
-        post.setPostDate(new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date()));
+        post.setPostDate(sf.format(new Date()));
         postService.createPost(post);
         LOG.info("A new post was added!");
         return "redirect:/index";

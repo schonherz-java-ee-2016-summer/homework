@@ -20,11 +20,11 @@ public class Post extends BaseEntity{
     @Basic
     private String title;
 
-    @Lob
+    @Basic
     private String content;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "postid")
     private List<Comment> comments = new ArrayList<Comment>();
 
     public Post(){}

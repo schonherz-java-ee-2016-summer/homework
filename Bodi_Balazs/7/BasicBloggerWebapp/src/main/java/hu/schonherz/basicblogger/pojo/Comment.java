@@ -9,18 +9,17 @@ import java.io.Serializable;
  */
 public class Comment implements Serializable{
     private int id;
-    private int blog_id;
-
-    public int getBlog_id() {
-        return blog_id;
-    }
-
-    public void setBlog_id(int blog_id) {
-        this.blog_id = blog_id;
-    }
-
+    private int blogId;
     private String author;
     private String content;
+
+    public int getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(int blogId) {
+        this.blogId = blogId;
+    }
 
     public Comment() {
         super();

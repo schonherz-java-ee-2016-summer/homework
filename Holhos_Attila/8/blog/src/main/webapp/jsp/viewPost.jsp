@@ -7,8 +7,8 @@
 <html>
 <head>
     <title>Post</title>
-    <link rel="stylesheet"  href="/blog/css/singlePost.css">
-    <script type="text/javascript" src="/blog/js/javascript.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/singlePost.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/javascript.js"></script>
 </head>
     <body>
     <%@include file="/html/header.html"%>
@@ -42,6 +42,7 @@
                     <label for="content">Add comment:</label>
                     <form:input path="content"/>
                 </div>
+                <div><form:hidden path="postID"/></div>
                 <button type="submit">Send</button>
             </div>
         </form:form>

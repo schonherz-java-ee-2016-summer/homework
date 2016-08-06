@@ -6,9 +6,13 @@ import hu.nutty.kepzes.blogapp.mapper.BloggerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Nutty on 2016.07.25..
@@ -17,6 +21,16 @@ import java.util.List;
 public class BloggerDAOImpl implements BloggerDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    private SimpleJdbcInsert simpleJdbcInsert;
+
+    @PostConstruct
+    public void init() {
+        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("\"Bloggers\"");
+        simpleJdbcInsert.usingGeneratedKeyColumns("bloggerid");
+        simpleJdbcInsert.usingColumns("firstname", "lastname", "nickname", "age");
+    }
 
     @Override
     public Blogger getBloggerByNickName(String nickName) {
@@ -36,7 +50,7 @@ public class BloggerDAOImpl implements BloggerDAO {
     @Override
     public List<Blogger> getAllBloggers() {
         String sql = "SELECT bloggerID, firstName, lastName, nickName, age FROM public.\"Bloggers\"";
-        List<Blogger> bloggers = jdbcTemplate.query(sql, new BloggerMapper() );
+        List<Blogger> bloggers = jdbcTemplate.query(sql, new BloggerMapper());
         return bloggers;
     }
 
@@ -44,6 +58,17 @@ public class BloggerDAOImpl implements BloggerDAO {
     public void addBlogger(Blogger blogger) {
         String sql = "INSERT INTO public.\"Bloggers\" (firstName, lastName, nickName, age) VALUES (?,?,?,?) ;";
         jdbcTemplate.update(sql, blogger.getFirstName(), blogger.getLastName(), blogger.getNickName(), blogger.getAge());
+    }
+
+    @Override
+    public int addBloggerAndReturnId(Blogger blogger) {
+        Map args = new HashMap();
+        args.put("firstname", blogger.getFirstName());
+        args.put("lastname", blogger.getLastName());
+        args.put("nickname", blogger.getNickName());
+        args.put("age", blogger.getAge());
+
+        return simpleJdbcInsert.executeAndReturnKey(args).intValue();
     }
 
     @Override
