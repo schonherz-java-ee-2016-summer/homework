@@ -36,8 +36,7 @@ public class CommentController {
     @RequestMapping(value = "/" + Constants.COMMENTS_KEY, method = RequestMethod.POST)
     public String handleNewComment(@ModelAttribute Comment comment) {
         BlogPost selectedPost = blogPostDAO.getBlogPostById(comment.getBlogPostID());
-        commentDAO.addComment(comment);
-        //commentDAO.addCommentAndReturnId(comment);
+        commentDAO.addCommentAndReturnId(comment);
         selectedPost.getComments().addComment(comment);
 
         return "redirect:post/" + selectedPost.getPostID();

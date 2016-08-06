@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
+import javax.annotation.PostConstruct;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +24,15 @@ public class BlogPostDAOImpl implements BlogPostDAO {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private BloggerDAO bloggerDAO;
-    @Autowired
     private SimpleJdbcInsert simpleJdbcInsert;
+
+    @PostConstruct
+    public void init() {
+        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("\"BlogPosts\"");
+        simpleJdbcInsert.usingGeneratedKeyColumns("postid");
+        simpleJdbcInsert.usingColumns("time", "title", "message", "bloggerid");
+    }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -75,8 +83,6 @@ public class BlogPostDAOImpl implements BlogPostDAO {
 
     @Override
     public int addBlogPostAndReturnId(BlogPost blogPost) {
-        simpleJdbcInsert.withTableName("BlogPosts");
-        simpleJdbcInsert.usingGeneratedKeyColumns("postid");
         Map args = new HashMap();
         args.put("time", Timestamp.valueOf(blogPost.getTime()));
         args.put("title", blogPost.getTitle());

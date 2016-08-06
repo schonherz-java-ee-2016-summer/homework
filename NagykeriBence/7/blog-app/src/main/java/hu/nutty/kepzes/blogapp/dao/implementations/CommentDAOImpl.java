@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +21,15 @@ import java.util.Map;
 public class CommentDAOImpl implements CommentDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
     private SimpleJdbcInsert simpleJdbcInsert;
+
+    @PostConstruct
+    public void init() {
+        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("\"Comments\"");
+        simpleJdbcInsert.usingGeneratedKeyColumns("commentid");
+        simpleJdbcInsert.usingColumns("time", "commenter", "content", "blogpostid");
+    }
 
     @Override
     public List<Comment> getAllComments() {
@@ -47,8 +55,6 @@ public class CommentDAOImpl implements CommentDAO {
 
     @Override
     public int addCommentAndReturnId(Comment comment) {
-        simpleJdbcInsert.withTableName("\"Comments\"");
-        simpleJdbcInsert.usingGeneratedKeyColumns("commentid");
         Map args = new HashMap();
         args.put("time", Timestamp.valueOf(comment.getTime()));
         args.put("commenter", comment.getCommenter());

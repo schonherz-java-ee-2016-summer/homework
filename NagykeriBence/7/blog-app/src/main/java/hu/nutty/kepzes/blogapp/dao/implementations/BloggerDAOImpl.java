@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,16 @@ import java.util.Map;
 public class BloggerDAOImpl implements BloggerDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
+
     private SimpleJdbcInsert simpleJdbcInsert;
+
+    @PostConstruct
+    public void init() {
+        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("\"Bloggers\"");
+        simpleJdbcInsert.usingGeneratedKeyColumns("bloggerid");
+        simpleJdbcInsert.usingColumns("firstname", "lastname", "nickname", "age");
+    }
 
     @Override
     public Blogger getBloggerByNickName(String nickName) {
@@ -53,8 +62,6 @@ public class BloggerDAOImpl implements BloggerDAO {
 
     @Override
     public int addBloggerAndReturnId(Blogger blogger) {
-        simpleJdbcInsert.withTableName("Bloggers");
-        simpleJdbcInsert.usingGeneratedKeyColumns("bloggerid");
         Map args = new HashMap();
         args.put("firstname", blogger.getFirstName());
         args.put("lastname", blogger.getLastName());
