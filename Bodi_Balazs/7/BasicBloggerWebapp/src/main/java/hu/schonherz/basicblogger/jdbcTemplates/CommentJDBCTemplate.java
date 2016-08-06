@@ -29,6 +29,6 @@ public class CommentJDBCTemplate implements CommentDao{
     @Override
     public void createComment(Comment comment) {
         String sql = "Insert into public.comment (blog_id, author, content) VALUES (?,?,?);";
-        jdbcTemplate.update(sql, comment.getBlog_id(), comment.getAuthor(), comment.getContent());
+        jdbcTemplate.update(sql, comment.getBlogId(), comment.getAuthor(), comment.getContent());
     }
 }

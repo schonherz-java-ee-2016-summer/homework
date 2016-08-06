@@ -29,6 +29,9 @@
         <jsp.version>2.3.1</jsp.version>
         <jstl.version>1.2</jstl.version>
         <taglib.version>1.2.5</taglib.version>
+        <spring.version>4.3.2.RELEASE</spring.version>
+        <postgresql.version>9.4-1206-jdbc42</postgresql.version>
+        <jackson.version>2.5.0</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -76,27 +79,27 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.3.1.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.3.1.RELEASE</version>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.5.0</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.5.0</version>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
     <build>

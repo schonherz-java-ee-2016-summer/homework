@@ -5,6 +5,7 @@ import hu.schonherz.basicblogger.jdbcTemplates.CommentJDBCTemplate;
 import hu.schonherz.basicblogger.pojo.Blog;
 import hu.schonherz.basicblogger.pojo.Comment;
 import hu.schonherz.basicblogger.user.User;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 /**
@@ -49,8 +52,14 @@ public class CommentController {
     @RequestMapping(method = RequestMethod.POST)
     public String addNewComment(@ModelAttribute("comment") Comment comment, ModelMap model) {
         LOG.info("POST request arrived to CommentController");
+        try {
+            comment.setContent(StringEscapeUtils.escapeHtml4(comment.getContent()));
+            comment.setContent(URLDecoder.decode(comment.getContent(), "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         comment.setAuthor(user.getName());
         commentJDBCTemplate.createComment(comment);
-        return "redirect:/post/" + comment.getBlog_id();
+        return "redirect:/post/" + comment.getBlogId();
     }
 }
