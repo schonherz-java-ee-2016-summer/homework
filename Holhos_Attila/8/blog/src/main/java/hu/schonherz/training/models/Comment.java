@@ -13,29 +13,22 @@ import java.util.Date;
 public class Comment extends BaseEntity {
 
     @Basic
-    private int commentID;
-
-    @Basic
-    private Long postID;
+    private Long postid;
 
     @Basic
     private String commentDate;
 
-    @Lob
+    @Basic
     private String content;
 
     public Comment(){}
 
     public Long getPostID() {
-        return postID;
+        return postid;
     }
 
-    public void setPostID(Long postID) {
-        this.postID = postID;
-    }
-
-    public int getCommentID() {
-        return commentID;
+    public void setPostID(Long postid) {
+        this.postid = postid;
     }
 
     public String getCommentDate() {
@@ -44,10 +37,6 @@ public class Comment extends BaseEntity {
 
     public String getContent() {
         return content;
-    }
-
-    public void setCommentID(int commentID) {
-        this.commentID = commentID;
     }
 
     public void setCommentDate(String commentDate) {
