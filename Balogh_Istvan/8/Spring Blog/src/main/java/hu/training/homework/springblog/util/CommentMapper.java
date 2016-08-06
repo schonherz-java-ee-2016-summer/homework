@@ -15,7 +15,6 @@ public class CommentMapper implements RowMapper<Comment> {
         comment.setDateTime(resultSet.getTimestamp("dateandtime").toLocalDateTime());
         comment.setCommenter(resultSet.getString("commenter"));
         comment.setContent(resultSet.getString("contentofcomment"));
-        comment.setPostID(resultSet.getString("postid"));
         return comment;
     }
 }

@@ -1,3 +1,4 @@
+/*
 package hu.training.homework.springblog.rest;
 
 import hu.training.homework.springblog.repository.CommentDAO;
@@ -29,3 +30,4 @@ public class RestCommentController {
         return new ResponseEntity(HttpStatus.OK);
     }
 }
+*/
