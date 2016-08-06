@@ -1,6 +1,5 @@
 package hu.schonherz.training.service;
 
-import hu.schonherz.training.dao.CommentDao;
 import hu.schonherz.training.models.Comment;
 import hu.schonherz.training.models.Post;
 import hu.schonherz.training.repository.CommentRepository;
@@ -16,7 +15,7 @@ import java.util.List;
  */
 
 @Service
-public class CommentService implements CommentDao {
+public class CommentService {
 
     @Autowired
     private PostRepository postRepository;
@@ -24,17 +23,15 @@ public class CommentService implements CommentDao {
     @Autowired
     private CommentRepository commentRepository;
 
-    @Override
     public List<Comment> getAllCommentByPostId(Long postId) {
-        List<Comment> comments = commentRepository.findByPostId(postId);
+        List<Comment> comments = commentRepository.findByPostid(postId);
         return comments;
     }
 
-    @Override
-    public void createComment(Long postId, Comment comment) {
-        Post post = postRepository.findOne(postId);
+    public void createComment(Comment comment) {
+        Post post = postRepository.findOne(comment.getPostID());
         List<Comment> comments = post.getComments();
-        if(comments==null){
+        if (comments == null){
             post.setComments(new ArrayList<Comment>());
         }
         comments.add(comment);

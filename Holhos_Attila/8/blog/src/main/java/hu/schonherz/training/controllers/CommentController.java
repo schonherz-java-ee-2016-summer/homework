@@ -23,6 +23,7 @@ import java.util.Date;
 public class CommentController {
 
     private static final Logger LOG = LoggerFactory.getLogger(CommentController.class);
+    private SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
     @Autowired
     private CommentService commentService;
@@ -30,8 +31,8 @@ public class CommentController {
     @RequestMapping(path = "/new", method = RequestMethod.POST)
     public String addcomment(@ModelAttribute("comment") Comment comment, Model model){
         LOG.info("A comment was added to post " + comment.getPostID() + "!");
-        comment.setCommentDate(new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date()));
-        commentService.createComment(comment.getPostID(), comment);
+        comment.setCommentDate(sf.format(new Date()));
+        commentService.createComment(comment);
         LOG.info("A comment was added to post " + comment.getPostID() + "!");
         return ("redirect:/post/" + comment.getPostID());
     }
