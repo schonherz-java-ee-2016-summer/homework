@@ -1,6 +1,9 @@
 package hu.schonherz.basicblogger.controllers;
 
-import hu.schonherz.basicblogger.pojo.Comment;
+import hu.schonherz.basicblogger.entity.Blog;
+import hu.schonherz.basicblogger.entity.Comment;
+import hu.schonherz.basicblogger.service.BlogServiceImpl;
+import hu.schonherz.basicblogger.service.CommentServiceImpl;
 import hu.schonherz.basicblogger.user.User;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.List;
 
 /**
  * Created by bmbal on 2016. 07. 30..
@@ -29,13 +33,19 @@ public class CommentController {
     @Autowired
     private User user;
 
+    @Autowired
+    private BlogServiceImpl blogService;
+
+    @Autowired
+    private CommentServiceImpl commentService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public String getAllComment(@PathVariable int id , Model model) {
+    public String getAllComment(@PathVariable Long id , Model model) {
         LOG.info("GET request arrived to CommentController");
-
-
-   //     model.addAttribute("comments", comments);
-    //    model.addAttribute("blog", blog);
+        Blog blog = blogService.getBlogById(id);
+        List<Comment> comments = commentService.getAllCommentByBlogId(id);
+        model.addAttribute("comments", comments);
+        model.addAttribute("blog", blog);
         return "post";
     }
 
@@ -49,7 +59,7 @@ public class CommentController {
             e.printStackTrace();
         }
         comment.setAuthor(user.getName());
-
+        commentService.createComment(comment);
         return "redirect:/post/" + comment.getBlogId();
     }
 }

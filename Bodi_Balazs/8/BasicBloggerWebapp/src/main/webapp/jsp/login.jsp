@@ -18,7 +18,7 @@
             <label form = "name">Nickname: </label>
         </div>
         <div>
-            <input name = "author" class="author" type = "text">
+            <input name = "author" type = "text">
             <button type="submit">login</button>
         </div>
     </form>
