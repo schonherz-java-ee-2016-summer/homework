@@ -1,19 +1,18 @@
 package hu.nutty.kepzes.blogapp.dao;
 
-import hu.nutty.kepzes.blogapp.beans.BlogPost;
+import hu.nutty.kepzes.blogapp.dto.BlogPostDTO;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * Created by Nutty on 2016.07.26..
  */
 public interface BlogPostDAO {
-    List<BlogPost> getAllBlogPosts();
+    List<BlogPostDTO> getAllBlogPosts();
 
-    BlogPost getBlogPostById(int postID);
+    BlogPostDTO getBlogPostById(int postID);
 
-    void addBlogPost(BlogPost blogPost);
+    void addBlogPost(BlogPostDTO blogPost);
 
-    int addBlogPostAndReturnId(BlogPost blogPost);
+    int addBlogPostAndReturnId(BlogPostDTO blogPost);
 }

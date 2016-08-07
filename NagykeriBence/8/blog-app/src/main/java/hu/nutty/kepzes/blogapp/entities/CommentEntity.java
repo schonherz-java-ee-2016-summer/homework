@@ -1,16 +1,15 @@
-package hu.nutty.kepzes.blogapp.beans;
+package hu.nutty.kepzes.blogapp.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Encapsulation of a comment.
  * Instances of this class contain information about who posted the comment
  * and of course, the contents of the comment itself.
  */
-public class Comment implements Serializable {
+public class CommentEntity extends BaseEntity {
     private static final long serialVersionUID = 6245145615416L;
 
     private int commentID;
@@ -19,7 +18,7 @@ public class Comment implements Serializable {
     private LocalDateTime time;
     private int blogPostID;
 
-    public Comment() {
+    public CommentEntity() {
         this.time = LocalDateTime.now();
     }
 
@@ -79,7 +78,7 @@ public class Comment implements Serializable {
             return false;
         }
 
-        Comment comment = (Comment) o;
+        CommentEntity comment = (CommentEntity) o;
 
         if (getCommenter() != null ? !getCommenter().equals(comment.getCommenter()) : comment.getCommenter() != null) {
             return false;
@@ -98,7 +97,7 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "Comment{" +
+        return "CommentEntity{" +
                 "commenter='" + commenter + '\'' +
                 ", content='" + content + '\'' +
                 '}';

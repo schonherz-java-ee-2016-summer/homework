@@ -1,33 +1,32 @@
-package hu.nutty.kepzes.blogapp.beans;
+package hu.nutty.kepzes.blogapp.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Encapsulation of a blog post.
  * Instances of this class contain information about who posted the blog post
  * and of course, the contents of the post itself.
  */
-public class BlogPost implements Serializable {
+public class BlogPostDTO implements Serializable {
 
     private static final long serialVersionUID = -114946219811259385L;
 
     private int postID;
-    private Blogger author;
+    private BloggerDTO author;
     private LocalDateTime time;
     private String title;
     private String message;
     private CommentsBean comments;
     private int bloggerID;
 
-    public BlogPost() {
+    public BlogPostDTO() {
         this.time = LocalDateTime.now();
         this.comments = new CommentsBean();
     }
 
-    public BlogPost(int postID, Blogger author, LocalDateTime time, String title, String message) {
+    public BlogPostDTO(int postID, BloggerDTO author, LocalDateTime time, String title, String message) {
         this.postID = postID;
         this.author = author;
         this.title = title;
@@ -46,11 +45,11 @@ public class BlogPost implements Serializable {
         this.postID = postID;
     }
 
-    public Blogger getAuthor() {
+    public BloggerDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(Blogger author) {
+    public void setAuthor(BloggerDTO author) {
         this.author = author;
         this.bloggerID = author.getBloggerID();
     }
@@ -110,7 +109,7 @@ public class BlogPost implements Serializable {
             return false;
         }
 
-        BlogPost blogPost = (BlogPost) o;
+        BlogPostDTO blogPost = (BlogPostDTO) o;
 
         if (!author.equals(blogPost.author)) {
             return false;
@@ -135,7 +134,7 @@ public class BlogPost implements Serializable {
 
     @Override
     public String toString() {
-        return "BlogPost{" +
+        return "BlogPostEntity{" +
                 "postID=" + postID +
                 ", author=" + author +
                 ", time=" + time +

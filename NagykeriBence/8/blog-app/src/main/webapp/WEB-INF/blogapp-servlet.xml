@@ -14,20 +14,4 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver"></property>
-        <property name="url" value="jdbc:postgresql://localhost:5432/blogapp"></property>
-        <property name="username" value="postgres"></property>
-        <property name="password" value="pass"></property>
-    </bean>
-
-    <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <constructor-arg ref="dataSource"></constructor-arg>
-    </bean>
-    <bean name="simpleJdbcInsert" class="org.springframework.jdbc.core.simple.SimpleJdbcInsert">
-        <constructor-arg ref="dataSource"></constructor-arg>
-    </bean>
-    <bean name="blogPostDAOImpl" class="hu.nutty.kepzes.blogapp.dao.implementations.BlogPostDAOImpl">
-        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
-    </bean>
 </beans>

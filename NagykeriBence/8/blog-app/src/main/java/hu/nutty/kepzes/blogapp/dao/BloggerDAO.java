@@ -1,6 +1,6 @@
 package hu.nutty.kepzes.blogapp.dao;
 
-import hu.nutty.kepzes.blogapp.beans.Blogger;
+import hu.nutty.kepzes.blogapp.dto.BloggerDTO;
 
 import java.util.List;
 
@@ -8,17 +8,17 @@ import java.util.List;
  * Created by Nutty on 2016.07.25..
  */
 public interface BloggerDAO {
-    Blogger getBloggerByNickName(String nickname);
+    BloggerDTO getBloggerByNickName(String nickname);
 
-    Blogger getBloggerById(int bloggerID);
+    BloggerDTO getBloggerById(int bloggerID);
 
-    List<Blogger> getAllBloggers();
+    List<BloggerDTO> getAllBloggers();
 
-    void addBlogger(Blogger blogger);
+    void addBlogger(BloggerDTO blogger);
 
-    int addBloggerAndReturnId(Blogger blogger);
+    int addBloggerAndReturnId(BloggerDTO blogger);
 
-    void updateBlogger(Blogger blogger);
+    void updateBlogger(BloggerDTO blogger);
 
-    void deleteBlogger(Blogger blogger);
+    void deleteBlogger(BloggerDTO blogger);
 }

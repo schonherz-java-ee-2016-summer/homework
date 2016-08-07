@@ -1,4 +1,4 @@
-package hu.nutty.kepzes.blogapp.beans;
+package hu.nutty.kepzes.blogapp.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,17 +11,17 @@ import java.util.List;
 public class CommentsBean implements Serializable {
     private static final long serialVersionUID = 1324354353653L;
 
-    private List<Comment> comments = new ArrayList<>();
+    private List<CommentDTO> comments = new ArrayList<>();
 
-    public List<Comment> getComments() {
+    public List<CommentDTO> getComments() {
         return comments;
     }
 
-    public void setComments(final List<Comment> comments) {
+    public void setComments(final List<CommentDTO> comments) {
         this.comments = comments;
     }
 
-    public void addComment(Comment comment) {
+    public void addComment(CommentDTO comment) {
         this.comments.add(comment);
     }
 }

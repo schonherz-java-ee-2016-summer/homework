@@ -1,12 +1,11 @@
-package hu.nutty.kepzes.blogapp.beans;
+package hu.nutty.kepzes.blogapp.dto;
 
 import java.io.Serializable;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * This class represents a Blogger.
+ * This class represents a BloggerEntity.
  */
-public class Blogger implements Serializable {
+public class BloggerDTO implements Serializable {
     private static final long serialVersionUID = -2815440504971898685L;
 
     private int bloggerID;
@@ -15,10 +14,10 @@ public class Blogger implements Serializable {
     private String nickName;
     private int age;
 
-    public Blogger() {
+    public BloggerDTO() {
     }
 
-    public Blogger(int bloggerID, String firstName, String lastName, String nickName, int age) {
+    public BloggerDTO(int bloggerID, String firstName, String lastName, String nickName, int age) {
         this.bloggerID = bloggerID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -75,7 +74,7 @@ public class Blogger implements Serializable {
             return false;
         }
 
-        Blogger blogger = (Blogger) o;
+        BloggerDTO blogger = (BloggerDTO) o;
 
         if (age != blogger.age) {
             return false;
@@ -101,7 +100,7 @@ public class Blogger implements Serializable {
 
     @Override
     public String toString() {
-        return "Blogger{" +
+        return "BloggerEntity{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", nickName='" + nickName + '\'' +

@@ -1,10 +1,9 @@
 package hu.nutty.kepzes.blogapp.utils;
 
-import hu.nutty.kepzes.blogapp.beans.*;
+import hu.nutty.kepzes.blogapp.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import static hu.nutty.kepzes.blogapp.utils.Constants.*;
@@ -19,13 +18,13 @@ public class ParserUtils {
     }
 
     /**
-     * Returns with an instance of {@code Comment}. We are parsing the incoming data as a comment.
+     * Returns with an instance of {@code CommentEntity}. We are parsing the incoming data as a comment.
      *
      * @param req the request.
-     * @return an instance of {@code Comment}.
+     * @return an instance of {@code CommentEntity}.
      */
-    public static Comment parseBodyAsComment(final HttpServletRequest req) {
-        Comment commentFromBody = new Comment();
+    public static CommentDTO parseBodyAsComment(final HttpServletRequest req) {
+        CommentDTO commentFromBody = new CommentDTO();
 
         commentFromBody.setCommenter(req.getParameter(COMMENTER_INPUT_NAME));
         commentFromBody.setContent(req.getParameter(NEW_COMMENT_INPUT_NAME));
@@ -36,13 +35,13 @@ public class ParserUtils {
     }
 
     /**
-     * Returns with an instance of {@code BlogPost}. We are parsing the incoming data as a blog post.
+     * Returns with an instance of {@code BlogPostEntity}. We are parsing the incoming data as a blog post.
      *
      * @param req the request.
-     * @return an instance of {@code Comment}.
+     * @return an instance of {@code CommentEntity}.
      */
-    public static Blogger parseBodyAsBlogger(final HttpServletRequest req) {
-        Blogger author = new Blogger();
+    public static BloggerDTO parseBodyAsBlogger(final HttpServletRequest req) {
+        BloggerDTO author = new BloggerDTO();
 
         author.setFirstName(req.getParameter(POSTER_INPUT_FIRST_NAME));
         author.setLastName(req.getParameter(POSTER_INPUT_LAST_NAME));
@@ -60,8 +59,8 @@ public class ParserUtils {
         return author;
     }
 
-    public static BlogPost parseBodyAsPost(final HttpServletRequest req) {
-        BlogPost postFromBody = new BlogPost();
+    public static BlogPostDTO parseBodyAsPost(final HttpServletRequest req) {
+        BlogPostDTO postFromBody = new BlogPostDTO();
 
         postFromBody.setMessage(req.getParameter(NEW_POST_INPUT_NAME));
         postFromBody.setTitle(req.getParameter(POST_TITLE));

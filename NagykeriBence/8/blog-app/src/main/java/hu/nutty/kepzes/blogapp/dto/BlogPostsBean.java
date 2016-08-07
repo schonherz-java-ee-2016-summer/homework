@@ -1,4 +1,4 @@
-package hu.nutty.kepzes.blogapp.beans;
+package hu.nutty.kepzes.blogapp.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,17 +11,17 @@ public class BlogPostsBean implements Serializable {
 
     private static final long serialVersionUID = 3515926025571709013L;
 
-    private List<BlogPost> posts = new ArrayList<>();
+    private List<BlogPostDTO> posts = new ArrayList<>();
 
-    public List<BlogPost> getPosts() {
+    public List<BlogPostDTO> getPosts() {
         return posts;
     }
 
-    public void setPosts(final List<BlogPost> posts) {
+    public void setPosts(final List<BlogPostDTO> posts) {
         this.posts = posts;
     }
 
-    public void addPost(BlogPost post) {
+    public void addPost(BlogPostDTO post) {
         this.posts.add(post);
     }
 
