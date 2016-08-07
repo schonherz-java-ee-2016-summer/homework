@@ -1,6 +1,7 @@
 package hu.schonherz.basicblogger.controllers;
 
-import hu.schonherz.basicblogger.pojo.Blog;
+import hu.schonherz.basicblogger.entity.Blog;
+import hu.schonherz.basicblogger.service.BlogServiceImpl;
 import hu.schonherz.basicblogger.user.User;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
@@ -22,10 +23,14 @@ import java.net.URLDecoder;
 @RequestMapping("/post/new")
 public class BlogController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(BlogController.class);
-
     @Autowired
     private User user;
+
+    @Autowired
+    private BlogServiceImpl blogService;
+
+    private static final Logger LOG = LoggerFactory.getLogger(BlogController.class);
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String showBlogPage(Model model) {
@@ -36,15 +41,19 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.POST)
     public String createBlog(@ModelAttribute Blog blog, Model model) {
         LOG.info("POST request arrived to BlogController");
+        blog.setAuthor(user.getName());
+
         try {
             blog.setTitle(StringEscapeUtils.escapeHtml4(blog.getTitle()));
-            blog.setContent(StringEscapeUtils.escapeHtml4(blog.getTitle()));
             blog.setTitle(URLDecoder.decode(blog.getTitle(), "UTF-8"));
+
+            blog.setContent(StringEscapeUtils.escapeHtml4(blog.getContent()));
             blog.setContent(URLDecoder.decode(blog.getContent(), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        blog.setAuthor(user.getName());
+
+        blogService.createBlog(blog);
         return "redirect:/index";
     }
 

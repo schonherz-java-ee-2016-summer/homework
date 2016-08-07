@@ -1,6 +1,6 @@
+/*
 package hu.training.homework.springblog.rest;
 
-import hu.training.homework.springblog.repository.PostDAO;
 import hu.training.homework.springblog.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,9 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/rest/posts", produces = "application/json")
 public class RestPostController {
-
-    @Autowired
-    private PostDAO postDAO;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity loadRestIndex() {
@@ -29,3 +26,4 @@ public class RestPostController {
     }
 
 }
+*/

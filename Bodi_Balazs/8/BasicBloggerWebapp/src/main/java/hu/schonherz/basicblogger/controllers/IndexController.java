@@ -1,7 +1,8 @@
 package hu.schonherz.basicblogger.controllers;
 
-import hu.schonherz.basicblogger.dao.BlogDaoImpl;
-import hu.schonherz.basicblogger.pojo.Blog;
+
+import hu.schonherz.basicblogger.entity.Blog;
+import hu.schonherz.basicblogger.service.BlogServiceImpl;
 import hu.schonherz.basicblogger.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +23,12 @@ public class IndexController {
     private User user;
 
     @Autowired
-    private BlogDaoImpl blogDao;
+    private BlogServiceImpl blogService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String listAllBlogs(Model model) {
-        List<Blog> blogs = (blogDao.getAllBlog() != null ? blogDao.getAllBlog(): new ArrayList<>());
+        List<Blog> blogs = blogService.getAllBlog();
         model.addAttribute("blogs", blogs);
-        return "redirect:index";
+        return "index";
     }
 }

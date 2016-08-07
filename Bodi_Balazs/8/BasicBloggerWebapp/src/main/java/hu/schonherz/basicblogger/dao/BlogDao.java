@@ -1,18 +1,19 @@
 package hu.schonherz.basicblogger.dao;
 
-import hu.schonherz.basicblogger.pojo.Blog;
+import hu.schonherz.basicblogger.entity.Blog;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * Created by bmbal on 2016. 07. 30..
+ * Created by bmbal on 2016.08.06..
  */
-public interface BlogDao {
+@Repository
+public interface BlogDao extends JpaRepository<Blog, Long> {
 
-    public Blog getBlogById(int id);
+    public List<Blog> findAll();
 
-    public List<Blog> getAllBlog();
-
-    public void createBlog(Blog blog);
+    public Blog findById(Long id);
 
 }

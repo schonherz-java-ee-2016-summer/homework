@@ -15,11 +15,11 @@
 <header>
     <form name = "author" method="POST" action="/login">
         <div>
-            <label form = "name">Nickname: </label>
+            <label class="label">Nickname: </label>
         </div>
         <div>
-            <input name = "author" class="author" type = "text">
-            <button type="submit">login</button>
+            <input name = "author" type = "text">
+            <button class="button" type="submit">login</button>
         </div>
     </form>
 </header>

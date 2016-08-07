@@ -1,5 +1,6 @@
 package hu.training.homework.springblog.model;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -13,38 +14,23 @@ public class Comment extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private String postID;
+    @Basic
     private String commenter;
+    @Basic
     private LocalDateTime dateTime;
+    @Basic
     private String content;
 
     public Comment() {
-        this.postID = "";
         this.commenter = "";
         this.dateTime = LocalDateTime.now();
-        this.content = "";
-    }
-
-    public Comment(String postID) {
-        this.postID = postID;
-        this.commenter = "";
-        this.dateTime = LocalDateTime.MIN;
         this.content = "";
     }
 
     public Comment(String commenter, String content) {
-        this.postID = "";
         this.commenter = commenter;
         this.dateTime = LocalDateTime.now();
         this.content = content;
-    }
-
-    public String getPostID() {
-        return postID;
-    }
-
-    public void setPostID(String postID) {
-        this.postID = postID;
     }
 
     public String getCommenter() {
@@ -82,9 +68,6 @@ public class Comment extends BaseEntity {
 
         Comment comment = (Comment) o;
 
-        if (getPostID() != null ? !getPostID().equals(comment.getPostID()) : comment.getPostID() != null) {
-            return false;
-        }
         if (!getCommenter().equals(comment.getCommenter())) {
             return false;
         }
@@ -97,8 +80,7 @@ public class Comment extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = getPostID() != null ? getPostID().hashCode() : 0;
-        result = 31 * result + getCommenter().hashCode();
+        int result = getCommenter().hashCode();
         result = 31 * result + getDateTime().hashCode();
         result = 31 * result + getContent().hashCode();
         return result;
@@ -107,7 +89,7 @@ public class Comment extends BaseEntity {
     @Override
     public String toString() {
         return "Comment{" +
-                ", commenter='" + commenter + '\'' +
+                "commenter='" + commenter + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

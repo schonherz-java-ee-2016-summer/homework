@@ -14,11 +14,11 @@
 <body >
 <header>
     <div class="app-href"><a href="/index">homepage</a> <a href="/">logout</a></div>
-    <div><h1> Welcome ${sessionScope.get("user.name")}! </h1></div>
+    <div><h1> Welcome ${sessionScope.session.user.name}! </h1></div>
 </header>
 <form class="form" method="GET" action="/post/new">
     <div>
-        <button type="submit">Make a blog!</button>
+        <button class = "button" type="submit">Make a blog!</button>
     </div>
 </form>
 <c:forEach items="${blogs}" var="item">
@@ -26,7 +26,7 @@
                 <div name="author" class="center">${item.author}</div>
                 <div name="title" class="center"> ${item.title}</div>
                 <div name="content" class="center"> ${item.content}</div>
-                <input type="hidden" name="blog_id" value="${item.id}" />
+                <input type="hidden" name="blogId" value="${item.id}" />
     </a></div>
 </c:forEach>
 </body>

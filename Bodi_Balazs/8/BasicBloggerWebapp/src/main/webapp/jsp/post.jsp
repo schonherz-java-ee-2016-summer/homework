@@ -29,9 +29,11 @@
         <label>Your comment:</label>
     </div>
     <div>
-        <input class="center" name = "content" type = "text">
-        <input type="hidden" name="blogId" value="${blog.id}" />
-        <button class="center" type="submit">Leave it!</button>
+        <input name = "content" class = "content" type = "text">
+        <input name="blogId" type = "hidden" value="${blog.id}" />
+    </div>
+    <div>
+        <button class="button" type="submit">Leave it!</button>
     </div>
 </form>
 <b>Comments are above</b>

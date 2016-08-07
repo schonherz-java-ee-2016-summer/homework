@@ -1,3 +1,4 @@
+/*
 package hu.training.homework.springblog.rest;
 
 import org.springframework.context.annotation.Configuration;
@@ -22,3 +23,4 @@ public class RestConfigurator extends WebMvcConfigurerAdapter {
     }
 
 }
+*/

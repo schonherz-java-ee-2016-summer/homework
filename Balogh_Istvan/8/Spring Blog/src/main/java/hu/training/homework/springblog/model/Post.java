@@ -16,15 +16,14 @@ public class Post extends BaseEntity {
 
     @Basic
     private String author;
-    @Column(name = "dateTime")
+    @Basic
     private LocalDateTime dateTime;
     @Basic
     private String title;
     @Basic
-    @Lob
     private String content;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "postid")
     private List<Comment> comments;
 
     public Post() {

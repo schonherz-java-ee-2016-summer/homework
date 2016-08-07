@@ -18,21 +18,22 @@
 <form method="POST" action="/post/new">
     <div>
         <div>
-            <h1>${author}</h1>
+            <h1>${user.name}</h1>
         </div>
         <div>
-                <label>Give us your blog title: </label>
+                <label class = "label">Give us your blog title: </label>
         </div>
         <div>
                 <input name = "title" class = "title" type = "text">
         </div>
         <div>
-            <label>Make your blog above:</label>
+            <label class = "label">Make your blog above:</label>
         </div>
         <div>
                 <input name = "content" class="content" type = "text">
-                <button class = "submit" type="submit">Leave it!</button>
-
+        </div>
+        <div>
+                <button class = "button" type="submit">Leave it!</button>
         </div>
     </div>
 

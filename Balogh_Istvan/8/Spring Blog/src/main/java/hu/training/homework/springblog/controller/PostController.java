@@ -1,9 +1,8 @@
 package hu.training.homework.springblog.controller;
 
-import hu.training.homework.springblog.repository.CommentDAO;
-import hu.training.homework.springblog.repository.PostDAO;
 import hu.training.homework.springblog.model.Comment;
 import hu.training.homework.springblog.model.Post;
+import hu.training.homework.springblog.service.PostService;
 import hu.training.homework.springblog.util.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,24 +10,18 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/post")
 public class PostController {
 
     @Autowired
-    private PostDAO postDAO;
-    @Autowired
-    private CommentDAO commentDAO;
+    private PostService postService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String showPost(@RequestParam String id, ModelMap modelMap) {
-        Post selectedPost = postDAO.getPostByID(id);
-        List<Comment> commentsOfPost = commentDAO.getCommentsOfPost(id);
-        selectedPost.setComments(commentsOfPost);
+        Post selectedPost = postService.getPostByID(id);
         modelMap.addAttribute(Parameters.POST_MODELATTRIBUTE_NAME, selectedPost);
-        modelMap.addAttribute(Parameters.NEW_COMMENT_INPUT_NAME, new Comment(id));
+        modelMap.addAttribute(Parameters.NEW_COMMENT_INPUT_NAME, new Comment());
         return "post";
     }
 
@@ -41,7 +34,7 @@ public class PostController {
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createPost(@ModelAttribute("post") Post post, ModelMap modelMap) {
-        postDAO.addPost(post);
+        postService.addPost(post);
         return "redirect:/index";
     }
 

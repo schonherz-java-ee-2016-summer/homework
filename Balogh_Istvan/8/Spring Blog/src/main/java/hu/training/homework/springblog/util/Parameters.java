@@ -20,6 +20,6 @@ public class Parameters {
 
     public static final String POST_MODELATTRIBUTE_NAME = "post";
     public static final String POSTS_ATTRIBUTE_NAME = "posts";
-    public static final String INDEX_PAGE = "/index";
+    public static final String INDEX_PAGE = "index";
 
 }

@@ -1,20 +1,17 @@
 package hu.schonherz.basicblogger.dao;
 
-import hu.schonherz.basicblogger.pojo.Comment;
+import hu.schonherz.basicblogger.entity.Comment;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * Created by bmbal on 2016. 07. 30..
- * private int id;
- private String author;
- private LocalDateTime date;
- private String content;
+ * Created by bmbal on 2016.08.06..
  */
-public interface CommentDao {
+@Repository
+public interface CommentDao extends JpaRepository<Comment, Long> {
 
-    public List<Comment> getAllComments(int blog_id);
-
-    public void createComment(Comment comment);
+    public List<Comment> getByBlogId(Long postid);
 
 }
