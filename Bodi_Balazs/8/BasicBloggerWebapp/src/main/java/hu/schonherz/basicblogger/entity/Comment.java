@@ -10,13 +10,13 @@ import javax.persistence.*;
 public class Comment extends BaseEntity{
 
 
-    @Lob
+    @Basic
     private Long blogId;
 
-    @Lob
+    @Basic
     private String author;
 
-    @Lob
+    @Basic
     private String content;
 
     public Comment() {

@@ -11,13 +11,13 @@ import java.util.List;
 @Table(name = "Blog")
 public class Blog extends BaseEntity {
 
-    @Lob
+    @Basic
     private String author;
 
-    @Lob
+    @Basic
     private String title;
 
-    @Lob
+    @Basic
     private String content;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

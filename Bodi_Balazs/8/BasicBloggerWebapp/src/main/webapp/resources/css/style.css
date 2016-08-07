@@ -1,6 +1,7 @@
 header{
     width: 100%;
     height: 100%;
+    margin:0px auto;
 }
 body
 {
@@ -9,13 +10,32 @@ body
 }
 .author
 {
-    width: 50%;
+    width: 20%;
 }
+
+.title{
+    width: 80%;
+    height: 50px;
+    resize: horizontal;
+    min-width: 200px;
+    border-radius: 25px;
+    border: 5px solid #3b5998;
+
+}
+.content{
+    width: 80%;
+    height: 200px;
+    resize: horizontal;
+    min-width: 200px;
+    border-radius: 25px;
+    border: 5px solid #3b5998;
+}
+
 .center-div
 {
     margin: 0 auto;
-    width: 500px;
-    height: 200px;
+    width: 80%;
+    height: auto;
     background-color: #eceff6;
     border-radius: 25px;
     border: 5px solid #3b5998;
@@ -23,9 +43,21 @@ body
 }
 .center {
     margin: auto;
-    width: 100%;
+    width: 80%;
     padding: 10px;
 }
+
+.button {
+    background-color: #3b5998;
+    border: none;
+    color: white;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
 a:link {
     text-decoration: none;
 }
