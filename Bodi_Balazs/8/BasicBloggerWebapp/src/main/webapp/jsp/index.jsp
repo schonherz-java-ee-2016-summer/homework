@@ -18,7 +18,7 @@
 </header>
 <form class="form" method="GET" action="/post/new">
     <div>
-        <button type="submit">Make a blog!</button>
+        <button class = "button" type="submit">Make a blog!</button>
     </div>
 </form>
 <c:forEach items="${blogs}" var="item">
