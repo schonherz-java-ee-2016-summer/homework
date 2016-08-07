@@ -2,7 +2,6 @@ package hu.training.homework.springblog.controller;
 
 import hu.training.homework.springblog.model.Comment;
 import hu.training.homework.springblog.model.Post;
-import hu.training.homework.springblog.service.CommentService;
 import hu.training.homework.springblog.service.PostService;
 import hu.training.homework.springblog.util.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +10,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/post")
 public class PostController {
 
     @Autowired
     private PostService postService;
-    @Autowired
-    private CommentService commentService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String showPost(@RequestParam String id, ModelMap modelMap) {
