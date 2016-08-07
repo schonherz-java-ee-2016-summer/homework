@@ -1,32 +1,23 @@
-package hu.training.homework.springblog.model;
+package hu.training.homework.springblog.model.dto;
 
-import javax.persistence.*;
+import hu.training.homework.springblog.model.Comment;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This POJO class represents blogposts.
- */
-@Entity
-@Table(name = "PostJPA")
-public class Post extends BaseEntity {
+public class PostDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Basic
     private String author;
-    @Basic
     private LocalDateTime dateTime;
-    @Basic
     private String title;
-    @Basic
     private String content;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
     private List<Comment> comments;
 
-    public Post() {
+    public PostDto() {
         this.author = "";
         this.dateTime = LocalDateTime.now();
         this.title = "";
@@ -34,7 +25,7 @@ public class Post extends BaseEntity {
         this.comments = new ArrayList<Comment>();
     }
 
-    public Post(String author, String content) {
+    public PostDto(String author, String content) {
         this.author = author;
         this.dateTime = LocalDateTime.now();
         this.title = "";
@@ -46,36 +37,36 @@ public class Post extends BaseEntity {
         return author;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
+    public String getContent() {
+        return content;
+    }
+
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
     public void setComments(List<Comment> comments) {
@@ -91,21 +82,21 @@ public class Post extends BaseEntity {
             return false;
         }
 
-        Post post = (Post) o;
+        PostDto postDto = (PostDto) o;
 
-        if (!getAuthor().equals(post.getAuthor())) {
+        if (!getAuthor().equals(postDto.getAuthor())) {
             return false;
         }
-        if (!getDateTime().equals(post.getDateTime())) {
+        if (!getDateTime().equals(postDto.getDateTime())) {
             return false;
         }
-        if (!getTitle().equals(post.getTitle())) {
+        if (!getTitle().equals(postDto.getTitle())) {
             return false;
         }
-        if (!getContent().equals(post.getContent())) {
+        if (!getContent().equals(postDto.getContent())) {
             return false;
         }
-        return getComments() != null ? getComments().equals(post.getComments()) : post.getComments() == null;
+        return getComments() != null ? getComments().equals(postDto.getComments()) : postDto.getComments() == null;
 
     }
 
@@ -121,8 +112,10 @@ public class Post extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "PostDto{" +
                 "author='" + author + '\'' +
+                ", dateTime=" + dateTime +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

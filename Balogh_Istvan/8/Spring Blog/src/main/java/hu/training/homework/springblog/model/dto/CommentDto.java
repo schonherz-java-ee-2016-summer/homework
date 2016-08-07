@@ -1,39 +1,29 @@
-package hu.training.homework.springblog.model;
+package hu.training.homework.springblog.model.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * This POJO class represents comments on blogposts.
- */
-@Entity
-@Table(name = "CommentJPA")
-public class Comment extends BaseEntity {
+public class CommentDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Basic
     private String commenter;
-    @Basic
     private LocalDateTime dateTime;
-    @Basic
     private String content;
 
-    public Comment() {
+    public CommentDto() {
         this.commenter = "";
         this.dateTime = LocalDateTime.now();
         this.content = "";
     }
 
-    public Comment(String postID) {
+    public CommentDto(String postID) {
         this.commenter = "";
         this.dateTime = LocalDateTime.MIN;
         this.content = "";
     }
 
-    public Comment(String commenter, String content) {
+    public CommentDto(String commenter, String content) {
         this.commenter = commenter;
         this.dateTime = LocalDateTime.now();
         this.content = content;
@@ -72,15 +62,15 @@ public class Comment extends BaseEntity {
             return false;
         }
 
-        Comment comment = (Comment) o;
+        CommentDto that = (CommentDto) o;
 
-        if (!getCommenter().equals(comment.getCommenter())) {
+        if (!getCommenter().equals(that.getCommenter())) {
             return false;
         }
-        if (!getDateTime().equals(comment.getDateTime())) {
+        if (!getDateTime().equals(that.getDateTime())) {
             return false;
         }
-        return getContent().equals(comment.getContent());
+        return getContent().equals(that.getContent());
 
     }
 
@@ -94,8 +84,9 @@ public class Comment extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Comment{" +
-                ", commenter='" + commenter + '\'' +
+        return "CommentDto{" +
+                "commenter='" + commenter + '\'' +
+                ", dateTime=" + dateTime +
                 ", content='" + content + '\'' +
                 '}';
     }
