@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class BlogComment extends BaseEntity{
 
     @Basic
-    private int postId;
+    private Long postId;
     @Basic
     private LocalDateTime date;
     @Basic
@@ -22,11 +22,11 @@ public class BlogComment extends BaseEntity{
     public BlogComment() {
     }
 
-    public int getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 

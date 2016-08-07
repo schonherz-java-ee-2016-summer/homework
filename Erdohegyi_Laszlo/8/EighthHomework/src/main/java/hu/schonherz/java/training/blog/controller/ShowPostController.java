@@ -39,7 +39,9 @@ public class ShowPostController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addComment(@PathVariable int id, @ModelAttribute("newcomment") BlogComment comment, ModelMap modelMap) {
+    public String addComment(@PathVariable Long id, @ModelAttribute("newcomment") BlogComment comment, ModelMap modelMap) {
+        comment.setDate(LocalDateTime.now());
+        comment.setPostId(id);
         commentService.createComment(comment);
         LOGGER.debug("New comment added to database.");
         return "redirect:/showpost/{id}";

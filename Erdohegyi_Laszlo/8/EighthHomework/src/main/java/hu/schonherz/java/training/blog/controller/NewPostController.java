@@ -33,6 +33,7 @@ public class NewPostController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String createPost(@ModelAttribute("post") BlogPost post, ModelMap modelMap) {
+        post.setDate(LocalDateTime.now());
         postService.createPost(post);
         LOGGER.debug("New post added to database.");
         return "redirect:/index";

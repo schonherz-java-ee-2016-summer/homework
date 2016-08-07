@@ -4,6 +4,7 @@ import hu.schonherz.java.training.blog.dao.CommentDao;
 import hu.schonherz.java.training.blog.entity.BlogComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class CommentServiceImpl implements CommentService {
         return comments;
     }
 
+    @Transactional
     @Override
     public void createComment(BlogComment comment) {
         commentDao.save(comment);

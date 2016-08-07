@@ -20,7 +20,7 @@ public class BlogPost extends BaseEntity{
     @Basic
     private String content;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "postId")
     private List<BlogComment> comments;
 
     public BlogPost() {

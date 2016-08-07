@@ -4,10 +4,10 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
  http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
 
-    <persistence-unit name="hu.schonherz.training.springjpa">
+    <persistence-unit name="hu.schonherz.java.training.blog">
         <description>My Persistence Unit</description>
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <non-jta-data-source>java:comp/env/jdbx/BlogJpa</non-jta-data-source>
+        <non-jta-data-source>java:comp/env/jdbc/BlogJpa</non-jta-data-source>
         <class>hu.schonherz.java.training.blog.entity.BaseEntity</class>
         <class>hu.schonherz.java.training.blog.entity.BlogPost</class>
         <class>hu.schonherz.java.training.blog.entity.BlogComment</class>
