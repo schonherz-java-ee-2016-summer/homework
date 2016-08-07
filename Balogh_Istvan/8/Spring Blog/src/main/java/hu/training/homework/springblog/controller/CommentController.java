@@ -6,12 +6,13 @@ import hu.training.homework.springblog.model.Comment;
 import hu.training.homework.springblog.service.CommentService;
 import hu.training.homework.springblog.service.PostService;
 import hu.training.homework.springblog.util.Parameters;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/comment")
@@ -25,10 +26,12 @@ public class CommentController {
     private CommentService commentService;
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String addComment(@ModelAttribute(Parameters.POST_MODELATTRIBUTE_NAME) Post post,
-                             @ModelAttribute(Parameters.COMMENT_INPUT_NAME) Comment comment, ModelMap modelMap) {
+    public String addComment(@RequestParam("id") String postId,
+                             @ModelAttribute(Parameters.NEW_COMMENT_INPUT_NAME) Comment comment, ModelMap modelMap) {
+        commentService.addComment(comment);
+        Post post = postService.getPostByID(postId);
         post.getComments().add(comment);
-        return "redirect:/post?id=" + post.getId();
+        return "redirect:/post?id=" + postId;
     }
 
 }

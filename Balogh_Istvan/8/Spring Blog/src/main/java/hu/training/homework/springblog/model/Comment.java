@@ -27,12 +27,6 @@ public class Comment extends BaseEntity {
         this.content = "";
     }
 
-    public Comment(String postID) {
-        this.commenter = "";
-        this.dateTime = LocalDateTime.MIN;
-        this.content = "";
-    }
-
     public Comment(String commenter, String content) {
         this.commenter = commenter;
         this.dateTime = LocalDateTime.now();
@@ -95,7 +89,7 @@ public class Comment extends BaseEntity {
     @Override
     public String toString() {
         return "Comment{" +
-                ", commenter='" + commenter + '\'' +
+                "commenter='" + commenter + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

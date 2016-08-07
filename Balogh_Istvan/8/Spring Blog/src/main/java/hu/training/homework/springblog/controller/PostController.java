@@ -1,7 +1,5 @@
 package hu.training.homework.springblog.controller;
 
-import hu.training.homework.springblog.repository.CommentDAO;
-import hu.training.homework.springblog.repository.PostDAO;
 import hu.training.homework.springblog.model.Comment;
 import hu.training.homework.springblog.model.Post;
 import hu.training.homework.springblog.service.CommentService;
@@ -19,10 +17,6 @@ import java.util.List;
 @RequestMapping("/post")
 public class PostController {
 
-    /*@Autowired
-    private PostDAO postDAO;
-    @Autowired
-    private CommentDAO commentDAO;*/
     @Autowired
     private PostService postService;
     @Autowired
@@ -31,10 +25,8 @@ public class PostController {
     @RequestMapping(method = RequestMethod.GET)
     public String showPost(@RequestParam String id, ModelMap modelMap) {
         Post selectedPost = postService.getPostByID(id);
-        List<Comment> commentsOfPost = commentService.getCommentsOfPost(id);
-        selectedPost.setComments(commentsOfPost);
         modelMap.addAttribute(Parameters.POST_MODELATTRIBUTE_NAME, selectedPost);
-        modelMap.addAttribute(Parameters.NEW_COMMENT_INPUT_NAME, new Comment(id));
+        modelMap.addAttribute(Parameters.NEW_COMMENT_INPUT_NAME, new Comment());
         return "post";
     }
 

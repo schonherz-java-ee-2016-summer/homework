@@ -36,10 +36,9 @@
         </c:forEach>
 
         <div>
-            <form:form modelAttribute="newcomment" method="post" action="/comment/add">
+            <form:form modelAttribute="newcomment" method="post" action="/comment/add?id=${post.id}">
                 <hr>
                 <p>Add comment to this post</p>
-                <div><form:hidden path="postID"/></div>
                 <div><form:input path="commenter"/></div>
                 <div><form:textarea cols="" path="content"/></div>
                 <input class="button" id="addComment" type="submit" name="addComment" value="Add comment">

@@ -1,5 +1,6 @@
 package hu.training.homework.springblog.service.impl;
 
+import hu.training.homework.springblog.model.Comment;
 import hu.training.homework.springblog.model.Post;
 import hu.training.homework.springblog.repository.PostRepository;
 import hu.training.homework.springblog.service.PostService;
@@ -34,4 +35,5 @@ public class PostServiceImpl implements PostService {
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
+
 }

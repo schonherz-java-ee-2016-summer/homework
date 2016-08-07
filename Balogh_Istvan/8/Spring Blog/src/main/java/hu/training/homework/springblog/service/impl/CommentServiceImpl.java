@@ -1,7 +1,9 @@
 package hu.training.homework.springblog.service.impl;
 
 import hu.training.homework.springblog.model.Comment;
+import hu.training.homework.springblog.model.Post;
 import hu.training.homework.springblog.repository.CommentRepository;
+import hu.training.homework.springblog.repository.PostRepository;
 import hu.training.homework.springblog.service.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,8 @@ public class CommentServiceImpl implements CommentService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
 
     @Autowired
+    private PostRepository postRepository;
+    @Autowired
     private CommentRepository commentRepository;
 
     @Override
@@ -25,6 +29,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getCommentsOfPost(String postId) {
+        //TODO
         return null;
     }
 }
