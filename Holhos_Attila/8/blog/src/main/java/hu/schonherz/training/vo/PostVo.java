@@ -1,6 +1,6 @@
 package hu.schonherz.training.vo;
 
-import hu.schonherz.training.models.Comment;
+import hu.schonherz.training.vo.CommentVo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +20,17 @@ public class PostVo {
 
     private String content;
 
-    private List<Comment> comments = new ArrayList<Comment>();
+    private List<CommentVo> commentVos = new ArrayList<CommentVo>();
 
     public PostVo() {
     }
 
-    public PostVo(Long id, String author, String postDate, String title, String content, List<Comment> comments) {
+    public PostVo(Long id, String author, String postDate, String title, String content) {
         this.id = id;
         this.author = author;
         this.postDate = postDate;
         this.title = title;
         this.content = content;
-        this.comments = comments;
     }
 
     public Long getId() {
@@ -74,11 +73,11 @@ public class PostVo {
         this.content = content;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<CommentVo> getCommentVos() {
+        return commentVos;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setCommentVos(List<CommentVo> commentVos) {
+        this.commentVos = commentVos;
     }
 }

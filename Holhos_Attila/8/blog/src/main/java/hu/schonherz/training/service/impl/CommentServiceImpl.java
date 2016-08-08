@@ -19,7 +19,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional
 public class CommentServiceImpl implements CommentService{
 
     @Autowired
@@ -28,6 +27,7 @@ public class CommentServiceImpl implements CommentService{
     @Autowired
     private CommentRepository commentRepository;
 
+    @Transactional
     public List<CommentVo> getAllCommentByPostId(Long postId) {
         List<Comment> comments = commentRepository.findByPostid(postId);
         List<CommentVo> commentVos = new ArrayList<CommentVo>();
@@ -37,6 +37,7 @@ public class CommentServiceImpl implements CommentService{
         return commentVos;
     }
 
+    @Transactional
     public void createComment(CommentVo commentVo) {
         Post post = postRepository.findOne(commentVo.getPostid());
         List<Comment> comments = post.getComments();
@@ -47,11 +48,11 @@ public class CommentServiceImpl implements CommentService{
         postRepository.save(post);
     }
 
-    public CommentVo toVo(Comment comment){
+    public static CommentVo toVo(Comment comment){
         return new CommentVo(comment.getId(), comment.getPostID(), comment.getCommentDate(), comment.getContent());
     }
 
-    public Comment toEntity(CommentVo commentVo){
+    public static Comment toEntity(CommentVo commentVo){
         return new Comment(commentVo.getId(), commentVo.getPostid(), commentVo.getCommentDate(),commentVo.getContent());
     }
 }

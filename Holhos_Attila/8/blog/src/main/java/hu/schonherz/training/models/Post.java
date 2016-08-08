@@ -23,26 +23,18 @@ public class Post extends BaseEntity{
     @Basic
     private String content;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "postid")
     private List<Comment> comments = new ArrayList<Comment>();
 
     public Post(){}
 
-    public Post(String author, String postDate, String title, String content) {
-        this.author = author;
-        this.postDate = postDate;
-        this.title = title;
-        this.content = content;
-    }
-
-    public Post(Long id, String author, String postDate, String title, String content, List<Comment> comments) {
+    public Post(Long id, String author, String postDate, String title, String content) {
         this.setId(id);
         this.author = author;
         this.postDate = postDate;
         this.title = title;
         this.content = content;
-        this.comments = comments;
     }
 
     public String getAuthor() {

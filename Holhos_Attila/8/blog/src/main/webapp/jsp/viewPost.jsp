@@ -22,11 +22,11 @@
         <div id="comments">
             Comments about this post:
             <c:choose>
-                <c:when test="${empty post.comments}">
+                <c:when test="${empty post.commentVos}">
                     <div id="nocomment">There are no comments yet.</div>
                 </c:when>
                 <c:otherwise>
-                    <c:forEach items="${post.comments}" var="comment">
+                    <c:forEach items="${post.commentVos}" var="comment">
                         <div class="comment">
                             <p>${comment.content}</p>
                             <p id="commentdate">${comment.commentDate}</p>
