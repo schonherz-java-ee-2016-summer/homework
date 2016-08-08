@@ -32,11 +32,22 @@ public class BlogPostController {
 
     @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
     public String selectAndDisplayPostById(ModelMap model, @PathVariable int id) {
-        BlogPostDTO selectedPost = blogPostDAO.getBlogPostById(id);
-        BloggerDTO author = bloggerDAO.getBloggerById(selectedPost.getBloggerID());
+        BlogPostDTO selectedPost = null;
+        Long blog_id = new Long(id);
+        try {
+            selectedPost = blogPostDAO.find(blog_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        BloggerDTO author = null;
+        try {
+            author = bloggerDAO.find(new Long(selectedPost.getBloggerID()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         selectedPost.setAuthor(author);
         CommentsBean comments = new CommentsBean();
-        comments.setComments(commentDAO.getCommentsByPostId(id));
+        comments.setComments(commentDAO.findByBlogId(blog_id));
         selectedPost.setComments(comments);
         model.addAttribute(Constants.SELECTED_POST, selectedPost);
         return "posts";

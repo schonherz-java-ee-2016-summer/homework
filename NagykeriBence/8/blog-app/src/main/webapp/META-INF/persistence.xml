@@ -4,10 +4,11 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="hu.nutty.kepzes.blogapp">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <non-jta-data-source>java:comp/env/jdbc/postgres</non-jta-data-source>
+        <non-jta-data-source>java:comp/env/jdbc/BlogJpa</non-jta-data-source>
         <class>hu.nutty.kepzes.blogapp.entities.BaseEntity</class>
         <class>hu.nutty.kepzes.blogapp.entities.CommentEntity</class>
         <class>hu.nutty.kepzes.blogapp.entities.BlogPostEntity</class>
+        <class>hu.nutty.kepzes.blogapp.entities.BloggerEntity</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.show_sql" value="true"/>

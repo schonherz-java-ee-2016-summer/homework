@@ -32,7 +32,12 @@ public class IndexController {
     @RequestMapping(value = "/" + Constants.INDEX_KEY, method = RequestMethod.GET)
     public String displayIndex(ModelMap model) {
 
-        List<BlogPostDTO> blogPosts = blogPostDAO.getAllBlogPosts();
+        List<BlogPostDTO> blogPosts = null;
+        try {
+            blogPosts = blogPostDAO.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         model.addAttribute(POSTS, blogPosts);
 
         return "index";
@@ -40,11 +45,18 @@ public class IndexController {
 
     @RequestMapping(value = "/" + Constants.INDEX_KEY, method = RequestMethod.POST)
     public String createNewPost(@ModelAttribute("blogger") BloggerDTO blogger, @ModelAttribute("blogPost") BlogPostDTO blogPost) {
-       // blogger.setBloggerID(bloggerDAO.addBloggerAndReturnId(blogger));
-        bloggerDAO.addBlogger(blogger);
-        blogger = bloggerDAO.getBloggerByNickName(blogger.getNickName());
+        try {
+            bloggerDAO.save(blogger);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //blogger = bloggerDAO.getBloggerByNickName(blogger.getNickName());
         blogPost.setAuthor(blogger);
-        blogPostDAO.addBlogPost(blogPost);
+        try {
+            blogPostDAO.save(blogPost);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return "redirect:index";
     }

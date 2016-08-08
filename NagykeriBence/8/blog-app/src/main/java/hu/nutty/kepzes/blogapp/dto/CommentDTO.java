@@ -1,6 +1,9 @@
 package hu.nutty.kepzes.blogapp.dto;
 
+import hu.nutty.kepzes.blogapp.entities.CommentEntity;
+
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * Instances of this class contain information about who posted the comment
  * and of course, the contents of the comment itself.
  */
-public class CommentDTO implements Serializable {
+public class CommentDTO implements Serializable, DTOConverter {
     private static final long serialVersionUID = 6245145615416L;
 
     private int commentID;
@@ -22,6 +25,13 @@ public class CommentDTO implements Serializable {
         this.time = LocalDateTime.now();
     }
 
+    public CommentDTO(int commentID, String commenter, String content, LocalDateTime time) {
+        this.commentID = commentID;
+        this.commenter = commenter;
+        this.content = content;
+        this.time = time;
+    }
+
     public void setCommentID(int commentID) {
         this.commentID = commentID;
     }
@@ -30,6 +40,19 @@ public class CommentDTO implements Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. - HH:mm:ss");
         String formattedDateTime = this.time.format(formatter);
         return formattedDateTime;
+    }
+
+    @Override
+    public CommentEntity toEntity() {
+        return new CommentEntity(this.commenter, this.content, Timestamp.valueOf(this.time));
+    }
+
+    public int getBlogPostID() {
+        return blogPostID;
+    }
+
+    public void setBlogPostID(int blogPostID) {
+        this.blogPostID = blogPostID;
     }
 
     public LocalDateTime getTime() {
@@ -58,14 +81,6 @@ public class CommentDTO implements Serializable {
 
     public void setContent(final String content) {
         this.content = content;
-    }
-
-    public int getBlogPostID() {
-        return blogPostID;
-    }
-
-    public void setBlogPostID(int blogPostID) {
-        this.blogPostID = blogPostID;
     }
 
     @Override

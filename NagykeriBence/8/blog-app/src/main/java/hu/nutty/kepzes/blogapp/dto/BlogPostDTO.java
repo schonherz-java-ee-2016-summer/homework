@@ -1,15 +1,21 @@
 package hu.nutty.kepzes.blogapp.dto;
 
+import hu.nutty.kepzes.blogapp.entities.BlogPostEntity;
+import hu.nutty.kepzes.blogapp.entities.CommentEntity;
+
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Encapsulation of a blog post.
  * Instances of this class contain information about who posted the blog post
  * and of course, the contents of the post itself.
  */
-public class BlogPostDTO implements Serializable {
+public class BlogPostDTO implements Serializable, DTOConverter {
 
     private static final long serialVersionUID = -114946219811259385L;
 
@@ -35,7 +41,13 @@ public class BlogPostDTO implements Serializable {
         this.comments = new CommentsBean();
         this.bloggerID = this.author.getBloggerID();
     }
-
+    public BlogPostEntity toEntity(){
+        List<CommentEntity> commentEntities = new ArrayList<>();
+        for (CommentDTO commentDTO: comments.getComments()){
+            commentEntities.add(commentDTO.toEntity());
+        }
+        return new BlogPostEntity(this.author.toEntity(), Timestamp.valueOf(this.time), this.title, this.message, commentEntities);
+    }
 
     public int getPostID() {
         return postID;

@@ -33,8 +33,17 @@ public class CommentController {
 
     @RequestMapping(value = "/" + Constants.COMMENTS_KEY, method = RequestMethod.POST)
     public String handleNewComment(@ModelAttribute CommentDTO comment) {
-        BlogPostDTO selectedPost = blogPostDAO.getBlogPostById(comment.getBlogPostID());
-        commentDAO.addComment(comment);
+        BlogPostDTO selectedPost = null;
+        try {
+            selectedPost = blogPostDAO.find(new Long(comment.getBlogPostID()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            commentDAO.save(comment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //commentDAO.addCommentAndReturnId(comment);
         selectedPost.getComments().addComment(comment);
 

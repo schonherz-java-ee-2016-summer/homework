@@ -7,18 +7,6 @@ import java.util.List;
 /**
  * Created by Nutty on 2016.07.25..
  */
-public interface BloggerDAO {
-    BloggerDTO getBloggerByNickName(String nickname);
+public interface BloggerDAO extends BaseDAO<BloggerDTO>{
 
-    BloggerDTO getBloggerById(int bloggerID);
-
-    List<BloggerDTO> getAllBloggers();
-
-    void addBlogger(BloggerDTO blogger);
-
-    int addBloggerAndReturnId(BloggerDTO blogger);
-
-    void updateBlogger(BloggerDTO blogger);
-
-    void deleteBlogger(BloggerDTO blogger);
 }

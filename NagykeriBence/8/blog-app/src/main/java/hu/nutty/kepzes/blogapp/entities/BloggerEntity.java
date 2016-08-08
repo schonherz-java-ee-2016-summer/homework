@@ -1,11 +1,16 @@
 package hu.nutty.kepzes.blogapp.entities;
 
-import java.io.Serializable;
+import hu.nutty.kepzes.blogapp.dto.BloggerDTO;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * This class represents a BloggerEntity.
  */
-public class BloggerEntity extends BaseEntity {
+@Entity
+@Table(name = "Bloggers")
+public class BloggerEntity extends BaseEntity implements EntityConverter {
     private static final long serialVersionUID = -2815440504971898685L;
 
     private String firstName;
@@ -16,6 +21,17 @@ public class BloggerEntity extends BaseEntity {
     public BloggerEntity() {
     }
 
+    public BloggerEntity(String firstName, String lastName, String nickName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickName = nickName;
+        this.age = age;
+    }
+
+    @Override
+    public BloggerDTO toDTO(){
+        return new BloggerDTO(this.getId().intValue(), this.firstName, this.lastName, this.nickName, this.age);
+    }
     public String getFirstName() {
         return firstName;
     }

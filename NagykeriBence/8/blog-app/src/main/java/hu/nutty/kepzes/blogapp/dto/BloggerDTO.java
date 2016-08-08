@@ -1,11 +1,13 @@
 package hu.nutty.kepzes.blogapp.dto;
 
+import hu.nutty.kepzes.blogapp.entities.BloggerEntity;
+
 import java.io.Serializable;
 
 /**
  * This class represents a BloggerEntity.
  */
-public class BloggerDTO implements Serializable {
+public class BloggerDTO implements Serializable, DTOConverter {
     private static final long serialVersionUID = -2815440504971898685L;
 
     private int bloggerID;
@@ -23,6 +25,10 @@ public class BloggerDTO implements Serializable {
         this.lastName = lastName;
         this.age = age;
         this.nickName = nickName;
+    }
+
+    public BloggerEntity toEntity() {
+        return new BloggerEntity(this.firstName, this.lastName, this.nickName, this.age);
     }
 
     public int getBloggerID() {
