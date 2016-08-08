@@ -1,7 +1,7 @@
 package hu.schonherz.training.controller;
 
-import hu.schonherz.training.dao.BlogDao;
-import hu.schonherz.training.pojo.Blog;
+import hu.schonherz.training.service.BlogService;
+import hu.schonherz.training.vo.BlogVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,11 +18,11 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    private BlogDao blogDao;
+    private BlogService blogService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String loadIndex(ModelMap modelMap) {
-        List<Blog> blogs = blogDao.findAll();
+        List<BlogVo> blogs = blogService.getAllBlog();
         modelMap.addAttribute("posts", blogs);
         return "index";
     }

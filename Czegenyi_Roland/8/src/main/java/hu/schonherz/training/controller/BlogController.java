@@ -1,9 +1,8 @@
 package hu.schonherz.training.controller;
 
-import hu.schonherz.training.dao.BlogDao;
-import hu.schonherz.training.dao.CommentDao;
-import hu.schonherz.training.pojo.Blog;
-import hu.schonherz.training.pojo.Comment;
+import hu.schonherz.training.service.BlogService;
+import hu.schonherz.training.vo.BlogVo;
+import hu.schonherz.training.vo.CommentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,20 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class BlogController {
 
     @Autowired
-    private BlogDao blogDao;
+    private BlogService blogService;
 
-    @Autowired
-    private CommentDao commentDao;
-
-    @RequestMapping(path = "/id={id}", method = RequestMethod.GET)
-    public String blogDetails(@PathVariable String id, Model model) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String blogDetails(@RequestParam String id, Model model) {
 
         Long blogID = Long.parseLong(id);
+        BlogVo blog = blogService.getBlogById(blogID);
 
-        Blog blog = blogDao.findById(blogID);
-        blog.setComments(commentDao.findAll(blogID));
-
-        Comment comment = new Comment();
+        CommentVo comment = new CommentVo();
 
         model.addAttribute("comment", comment);
         model.addAttribute("blog", blog);
@@ -37,12 +31,12 @@ public class BlogController {
 
     @RequestMapping(path = "/addpost", method = RequestMethod.GET)
     public ModelAndView newBlog() {
-        return new ModelAndView("addpost", "command", new Blog());
+        return new ModelAndView("addpost", "command", new BlogVo());
     }
 
     @RequestMapping(path = "/addpost", method = RequestMethod.POST)
-    public String newBlog(@ModelAttribute("blog") Blog blog, Model model) {
-        blogDao.save(blog);
+    public String newBlog(@ModelAttribute("blog") BlogVo blog, Model model) {
+        blogService.createBlog(blog);
         return "redirect:/index";
     }
 }

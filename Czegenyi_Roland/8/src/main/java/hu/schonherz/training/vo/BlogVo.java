@@ -1,42 +1,34 @@
-package hu.schonherz.training.pojo;
+package hu.schonherz.training.vo;
 
-import javax.persistence.*;
+import hu.schonherz.training.pojo.Comment;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Class for representing a blog post.
  */
-@Entity
-@Table(name = "Blog")
-public class Blog extends BaseEntity {
+public class BlogVo implements Serializable {
 
-    @Basic
+    private static final long serialVersionUID = 58758758L;
+    private Long id;
     private String author;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-
-    @Basic
     private String title;
-
-    @Basic
     private String content;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "blogid")
     private List<Comment> comments;
 
-    public Blog() {
+    public BlogVo() {
         this.date = new Date();
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public Long getId() {
+        return id;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAuthor() {
@@ -69,5 +61,13 @@ public class Blog extends BaseEntity {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

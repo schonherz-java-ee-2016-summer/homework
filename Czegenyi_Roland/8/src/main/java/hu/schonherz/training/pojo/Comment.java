@@ -2,7 +2,6 @@ package hu.schonherz.training.pojo;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Class for representing a comment.
@@ -14,7 +13,7 @@ public class Comment extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @Lob
+    @Basic
     private String content;
 
     public Comment() {
