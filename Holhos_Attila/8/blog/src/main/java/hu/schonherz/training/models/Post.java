@@ -36,6 +36,15 @@ public class Post extends BaseEntity{
         this.content = content;
     }
 
+    public Post(Long id, String author, String postDate, String title, String content, List<Comment> comments) {
+        this.setId(id);
+        this.author = author;
+        this.postDate = postDate;
+        this.title = title;
+        this.content = content;
+        this.comments = comments;
+    }
+
     public String getAuthor() {
         return author;
     }

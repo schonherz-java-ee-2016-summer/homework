@@ -1,7 +1,7 @@
 package hu.schonherz.training.controllers;
 
-import hu.schonherz.training.models.Comment;
-import hu.schonherz.training.models.Post;
+import hu.schonherz.training.vo.CommentVo;
+import hu.schonherz.training.vo.PostVo;
 import hu.schonherz.training.service.CommentService;
 import hu.schonherz.training.service.PostService;
 import org.slf4j.Logger;
@@ -37,29 +37,29 @@ public class PostController {
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public String viewPost(@PathVariable Long id, Model model){
-        Post post = postService.getPostByID(id);
-        List<Comment> comments = commentService.getAllCommentByPostId(post.getId());
-        model.addAttribute("post", post);
-        model.addAttribute("comments", comments);
-        Comment comment = new Comment();
-        comment.setPostID(post.getId());
-        model.addAttribute("comment", comment);
-        LOG.info("View a post! Id=" + post.getId());
+        PostVo postVo = postService.getPostByID(id);
+        List<CommentVo> commentVos = commentService.getAllCommentByPostId(postVo.getId());
+        model.addAttribute("post", postVo);
+        model.addAttribute("comments", commentVos);
+        CommentVo commentVo = new CommentVo();
+        commentVo.setPostid(postVo.getId());
+        model.addAttribute("comment", commentVo);
+        LOG.info("View a post! Id=" + postVo.getId());
         return "viewPost";
     }
 
     @RequestMapping(path = "/new", method = RequestMethod.GET)
     public String createPost(Model model){
-        Post post = new Post();
-        model.addAttribute("post", post);
+        PostVo postVo = new PostVo();
+        model.addAttribute("post", postVo);
         LOG.info("Try create post!");
         return "newPost";
     }
 
     @RequestMapping(path = "/new", method = RequestMethod.POST)
-    public String createPost(@ModelAttribute("post") Post post, Model model){
-        post.setPostDate(sf.format(new Date()));
-        postService.createPost(post);
+    public String createPost(@ModelAttribute("post") PostVo postVo, Model model){
+        postVo.setPostDate(sf.format(new Date()));
+        postService.createPost(postVo);
         LOG.info("A new post was added!");
         return "redirect:/index";
     }

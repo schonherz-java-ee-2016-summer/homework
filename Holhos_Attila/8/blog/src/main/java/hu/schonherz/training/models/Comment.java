@@ -23,6 +23,17 @@ public class Comment extends BaseEntity {
 
     public Comment(){}
 
+    public Comment(Long id, Long postid, String commentDate, String content) {
+        this.setId(id);
+        this.postid = postid;
+        this.commentDate = commentDate;
+        this.content = content;
+    }
+
+    public Comment(Long postid) {
+        this.postid = postid;
+    }
+
     public Long getPostID() {
         return postid;
     }

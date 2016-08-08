@@ -42,7 +42,7 @@
                     <label for="content">Add comment:</label>
                     <form:input path="content"/>
                 </div>
-                <div><form:hidden path="postID"/></div>
+                <div><form:hidden path="postid"/></div>
                 <button type="submit">Send</button>
             </div>
         </form:form>
