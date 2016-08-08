@@ -1,7 +1,5 @@
 package hu.schonherz.java.training.controller;
 
-import hu.schonherz.java.training.repository.CommentDao;
-import hu.schonherz.java.training.repository.PostDao;
 import hu.schonherz.java.training.pojo.Comment;
 import hu.schonherz.java.training.pojo.Post;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import service.PostService;
+import hu.schonherz.java.training.service.PostService;
 
 /**
  * Created by Home on 2016. 08. 03..

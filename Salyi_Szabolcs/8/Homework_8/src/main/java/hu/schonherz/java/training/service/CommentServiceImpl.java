@@ -1,4 +1,4 @@
-package service;
+package hu.schonherz.java.training.service;
 
 import hu.schonherz.java.training.pojo.Comment;
 import hu.schonherz.java.training.pojo.Post;
@@ -6,6 +6,7 @@ import hu.schonherz.java.training.repository.CommentDao;
 import hu.schonherz.java.training.repository.PostDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  */
 
 @Service
+@Transactional
 public class CommentServiceImpl {
 
     @Autowired

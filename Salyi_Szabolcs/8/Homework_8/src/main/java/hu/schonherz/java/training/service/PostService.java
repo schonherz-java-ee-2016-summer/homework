@@ -1,4 +1,4 @@
-package service;
+package hu.schonherz.java.training.service;
 
 import hu.schonherz.java.training.pojo.Post;
 

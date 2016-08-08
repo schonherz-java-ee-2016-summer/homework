@@ -26,7 +26,7 @@
     <form:form action="/post/${post.id}" method="POST" modelAttribute="newcomment">
         <div><form:label path="content">Comment Content: </form:label></div>
         <div><form:textarea path="content" rows="5"/></div>
-        <div><form:hidden path="blogId"/></div>
+        <div><form:hidden path="blog_id"/></div>
         <input type="submit" value="Add Comment!">
     </form:form>
 

@@ -25,7 +25,7 @@ public class Post extends BaseEntity{
     @Basic
     private String content;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "blog_id")
     private List<Comment> comments = new ArrayList<>();
 

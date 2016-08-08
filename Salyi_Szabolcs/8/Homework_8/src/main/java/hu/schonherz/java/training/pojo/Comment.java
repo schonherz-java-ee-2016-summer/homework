@@ -17,16 +17,27 @@ public class Comment extends BaseEntity{
     private static final long serialVersionIUD = 1L;
 
     @Basic
-    private String comment;
+    private Long blog_id;
+
+    @Basic
+    private String content;
 
     public Comment() {
     }
 
     public String getContent() {
-        return comment;
+        return content;
     }
 
     public void setContent(String content) {
-        this.comment = content;
+        this.content = content;
+    }
+
+    public Long getBlog_id() {
+        return blog_id;
+    }
+
+    public void setBlog_id(Long blog_id) {
+        this.blog_id = blog_id;
     }
 }
