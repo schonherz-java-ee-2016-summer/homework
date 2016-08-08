@@ -9,10 +9,10 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:component-scan base-package="hu.schonherz.training"/>
-
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -31,8 +31,8 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <jpa:repositories base-package="hu.schonherz.training" entity-manager-factory-ref="entityManagerFactory"
-                      repository-impl-postfix="Impl"/>
+    <jpa:repositories base-package="hu.schonherz.training.dao"
+                      entity-manager-factory-ref="entityManagerFactory"/>
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 

@@ -4,14 +4,16 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import hu.schonherz.training.pojo.Blog;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Roli on 2016. 07. 28..
  */
-//TODO: rename
+@Repository
+@Transactional(propagation = Propagation.SUPPORTS)
 public interface BlogDao extends JpaRepository<Blog, Long> {
-    @Transactional(timeout = 20)
     List<Blog> findAll();
 
     Blog findById(Long id);

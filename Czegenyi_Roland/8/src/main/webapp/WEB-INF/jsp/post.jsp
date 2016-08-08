@@ -26,7 +26,7 @@
 
 <div class="new">
     <c:forEach var="comment" items="${blog.comments}">
-        <span><fmt:formatDate value="${comment.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span> *
+        <span><fmt:formatDate value="${comment.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
         <p>${comment.content}</p>
         <hr/>
     </c:forEach>
@@ -35,9 +35,7 @@
 <div align="center">
     <fieldset class="new">
 
-        <form:form modelAttribute="comment" action="/comment/addComment" method="post" id="commentForm">
-            <!-- TODO: FIX
-            form:hidden path="blogId" value ="" rows="10" cols="30"/> -->
+        <form:form modelAttribute="comment" action="/comment/addComment?id=${blog.id}" method="post" id="commentForm">
             <form:textarea path="content" rows="10" cols="30"/></br>
         <input type="submit" name="Submit">
     </fieldset>

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
    <head>
@@ -12,11 +13,11 @@
 <div class="post">
     <c:forEach var="post" items="${posts}">
         <div class="new">
-            <a href="/blog/id=${post.id}">
+            <a href="/blog?id=${post.id}">
                 <div id="title">${post.title}</div>
             </a>
             <div id="inline">
-                <span>${post.date}</span>
+                <span><fmt:formatDate value="${post.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
                 <span>${post.author}</span>
             </div>
         </div>
@@ -28,4 +29,3 @@
 </div>
 </body>
 </html>
-
