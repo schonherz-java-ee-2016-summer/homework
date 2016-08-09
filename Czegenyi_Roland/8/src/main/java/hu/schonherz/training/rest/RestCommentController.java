@@ -1,12 +1,10 @@
 package hu.schonherz.training.rest;
 
 import hu.schonherz.training.dao.CommentDao;
-import hu.schonherz.training.pojo.Blog;
 import hu.schonherz.training.pojo.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

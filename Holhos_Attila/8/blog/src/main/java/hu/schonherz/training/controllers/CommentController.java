@@ -1,6 +1,6 @@
 package hu.schonherz.training.controllers;
 
-import hu.schonherz.training.models.Comment;
+import hu.schonherz.training.vo.CommentVo;
 import hu.schonherz.training.service.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,11 +29,11 @@ public class CommentController {
     private CommentService commentService;
 
     @RequestMapping(path = "/new", method = RequestMethod.POST)
-    public String addcomment(@ModelAttribute("comment") Comment comment, Model model){
-        LOG.info("A comment was added to post " + comment.getPostID() + "!");
-        comment.setCommentDate(sf.format(new Date()));
-        commentService.createComment(comment);
-        LOG.info("A comment was added to post " + comment.getPostID() + "!");
-        return ("redirect:/post/" + comment.getPostID());
+    public String addcomment(@ModelAttribute("comment") CommentVo commentVo, Model model){
+        LOG.info("A comment was added to post " + commentVo.getPostid() + "!");
+        commentVo.setCommentDate(sf.format(new Date()));
+        commentService.createComment(commentVo);
+        LOG.info("A comment was added to post " + commentVo.getPostid() + "!");
+        return ("redirect:/post/" + commentVo.getPostid());
     }
 }

@@ -1,6 +1,6 @@
 package hu.schonherz.training.controllers;
 
-import hu.schonherz.training.models.Post;
+import hu.schonherz.training.vo.PostVo;
 import hu.schonherz.training.service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +27,9 @@ public class IndexController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String listPosts(Model model){
-        List<Post> posts = postService.getAllPosts();
+        List<PostVo> postVos = postService.getAllPosts();
         LOG.info("We get all posts!");
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postVos);
         return "index";
     }
 }

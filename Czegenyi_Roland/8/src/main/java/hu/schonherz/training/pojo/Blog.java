@@ -20,7 +20,7 @@ public class Blog extends BaseEntity {
     @Basic
     private String title;
 
-    @Basic //lob not working
+    @Basic
     private String content;
 
     @OneToMany(cascade = CascadeType.ALL)
