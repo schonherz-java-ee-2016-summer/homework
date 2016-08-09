@@ -2,7 +2,6 @@ package hu.nutty.kepzes.blogapp.dao.implementations;
 
 import hu.nutty.kepzes.blogapp.dao.BaseConvertDAO;
 import hu.nutty.kepzes.blogapp.dao.CommentDAO;
-import hu.nutty.kepzes.blogapp.dto.BlogPostDTO;
 import hu.nutty.kepzes.blogapp.dto.CommentDTO;
 import hu.nutty.kepzes.blogapp.entities.CommentEntity;
 import org.springframework.stereotype.Repository;
@@ -29,8 +28,4 @@ public class CommentDAOImpl extends BaseDaoImpl<CommentEntity, CommentDTO> imple
         return entity.toDTO();
     }
 
-    @Override
-    public List<CommentDTO> findByBlogId(Long blog_id) {
-        return new ArrayList<>();
-    }
 }

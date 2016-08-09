@@ -51,6 +51,7 @@ public class CommentDTO implements Serializable, DTOConverter {
         return blogPostID;
     }
 
+
     public void setBlogPostID(int blogPostID) {
         this.blogPostID = blogPostID;
     }

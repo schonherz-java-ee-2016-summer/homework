@@ -6,6 +6,9 @@ import hu.nutty.kepzes.blogapp.dto.CommentsBean;
 import hu.nutty.kepzes.blogapp.dao.BlogPostDAO;
 import hu.nutty.kepzes.blogapp.dao.BloggerDAO;
 import hu.nutty.kepzes.blogapp.dao.CommentDAO;
+import hu.nutty.kepzes.blogapp.services.BlogPostService;
+import hu.nutty.kepzes.blogapp.services.BloggerService;
+import hu.nutty.kepzes.blogapp.services.CommentService;
 import hu.nutty.kepzes.blogapp.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +18,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class BlogPostController {
     @Autowired
-    private BlogPostDAO blogPostDAO;
+    private BlogPostService blogPostService;
     @Autowired
-    private BloggerDAO bloggerDAO;
-    @Autowired
-    private CommentDAO commentDAO;
+    private CommentService commentService;
 
     @RequestMapping(value = "/post/new", method = RequestMethod.GET)
     public String displayNewPost(ModelMap model) {
@@ -32,23 +33,12 @@ public class BlogPostController {
 
     @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
     public String selectAndDisplayPostById(ModelMap model, @PathVariable int id) {
-        BlogPostDTO selectedPost = null;
         Long blog_id = new Long(id);
-        try {
-            selectedPost = blogPostDAO.find(blog_id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        BloggerDTO author = null;
-        try {
-            author = bloggerDAO.find(new Long(selectedPost.getBloggerID()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        selectedPost.setAuthor(author);
-        CommentsBean comments = new CommentsBean();
-        comments.setComments(commentDAO.findByBlogId(blog_id));
-        selectedPost.setComments(comments);
+        BlogPostDTO selectedPost = blogPostService.getBlogPostById(blog_id);
+
+        //CommentsBean comments = new CommentsBean();
+        //comments.setComments(commentService.getAllCommentsByBlogId(blog_id));
+       // selectedPost.setComments(comments);
         model.addAttribute(Constants.SELECTED_POST, selectedPost);
         return "posts";
     }

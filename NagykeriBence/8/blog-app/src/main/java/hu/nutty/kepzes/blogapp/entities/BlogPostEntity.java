@@ -17,7 +17,7 @@ public class BlogPostEntity extends BaseEntity implements EntityConverter {
 
     private static final long serialVersionUID = -114946219811259385L;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private BloggerEntity author;
     private Timestamp time;
     private String title;

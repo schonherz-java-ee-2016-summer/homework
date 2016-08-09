@@ -4,6 +4,8 @@ import hu.nutty.kepzes.blogapp.dto.BlogPostDTO;
 import hu.nutty.kepzes.blogapp.dto.CommentDTO;
 import hu.nutty.kepzes.blogapp.dao.BlogPostDAO;
 import hu.nutty.kepzes.blogapp.dao.CommentDAO;
+import hu.nutty.kepzes.blogapp.services.BlogPostService;
+import hu.nutty.kepzes.blogapp.services.CommentService;
 import hu.nutty.kepzes.blogapp.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class CommentController {
     @Autowired
-    BlogPostDAO blogPostDAO;
+    private BlogPostService blogPostService;
     @Autowired
-    CommentDAO commentDAO;
+    private CommentService commentService;
 
     @RequestMapping(value = "/post/{id}/newcomment", method = RequestMethod.GET)
     public ModelAndView displayNewComment(@PathVariable int id) {
@@ -33,20 +35,16 @@ public class CommentController {
 
     @RequestMapping(value = "/" + Constants.COMMENTS_KEY, method = RequestMethod.POST)
     public String handleNewComment(@ModelAttribute CommentDTO comment) {
-        BlogPostDTO selectedPost = null;
-        try {
-            selectedPost = blogPostDAO.find(new Long(comment.getBlogPostID()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            commentDAO.save(comment);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //commentDAO.addCommentAndReturnId(comment);
-        selectedPost.getComments().addComment(comment);
 
+        BlogPostDTO selectedPost = blogPostService.getBlogPostById(new Long(comment.getBlogPostID()));
+
+        //comment.setCommentID(commentService.addComment(comment).intValue());
+
+        selectedPost.getComments().addComment(comment);
+     //   commentService.updateComment(comment);
+        blogPostService.updateBlogPost(selectedPost);
+       // System.out.println(selectedPost);
+        //System.out.println(comment);
         return "redirect:post/" + selectedPost.getPostID();
     }
 }

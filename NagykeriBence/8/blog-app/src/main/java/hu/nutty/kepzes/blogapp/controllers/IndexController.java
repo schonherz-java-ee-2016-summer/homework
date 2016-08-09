@@ -4,6 +4,8 @@ import hu.nutty.kepzes.blogapp.dto.BlogPostDTO;
 import hu.nutty.kepzes.blogapp.dto.BloggerDTO;
 import hu.nutty.kepzes.blogapp.dao.BlogPostDAO;
 import hu.nutty.kepzes.blogapp.dao.BloggerDAO;
+import hu.nutty.kepzes.blogapp.services.BlogPostService;
+import hu.nutty.kepzes.blogapp.services.BloggerService;
 import hu.nutty.kepzes.blogapp.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,9 @@ import static hu.nutty.kepzes.blogapp.utils.Constants.*;
 @Controller
 public class IndexController {
     @Autowired
-    private BlogPostDAO blogPostDAO;
+    private BlogPostService blogPostService;
     @Autowired
-    private BloggerDAO bloggerDAO;
+    private BloggerService bloggerService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String redirectRoot(ModelMap model) {
@@ -31,32 +33,18 @@ public class IndexController {
 
     @RequestMapping(value = "/" + Constants.INDEX_KEY, method = RequestMethod.GET)
     public String displayIndex(ModelMap model) {
-
-        List<BlogPostDTO> blogPosts = null;
-        try {
-            blogPosts = blogPostDAO.findAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<BlogPostDTO> blogPosts = blogPostService.getAllBlogPosts();
         model.addAttribute(POSTS, blogPosts);
-
         return "index";
     }
 
     @RequestMapping(value = "/" + Constants.INDEX_KEY, method = RequestMethod.POST)
     public String createNewPost(@ModelAttribute("blogger") BloggerDTO blogger, @ModelAttribute("blogPost") BlogPostDTO blogPost) {
-        try {
-            bloggerDAO.save(blogger);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //blogger = bloggerDAO.getBloggerByNickName(blogger.getNickName());
+      // blogger.setBloggerID(bloggerService.createBlogger(blogger).intValue());
         blogPost.setAuthor(blogger);
-        try {
-            blogPostDAO.save(blogPost);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        blogPost.setPostID(blogPostService.createBlogPost(blogPost).intValue());
+
 
         return "redirect:index";
     }
