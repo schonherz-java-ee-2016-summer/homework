@@ -35,16 +35,9 @@ public class CommentController {
 
     @RequestMapping(value = "/" + Constants.COMMENTS_KEY, method = RequestMethod.POST)
     public String handleNewComment(@ModelAttribute CommentDTO comment) {
-
         BlogPostDTO selectedPost = blogPostService.getBlogPostById(new Long(comment.getBlogPostID()));
-
-        //comment.setCommentID(commentService.addComment(comment).intValue());
-
         selectedPost.getComments().addComment(comment);
-     //   commentService.updateComment(comment);
         blogPostService.updateBlogPost(selectedPost);
-       // System.out.println(selectedPost);
-        //System.out.println(comment);
         return "redirect:post/" + selectedPost.getPostID();
     }
 }

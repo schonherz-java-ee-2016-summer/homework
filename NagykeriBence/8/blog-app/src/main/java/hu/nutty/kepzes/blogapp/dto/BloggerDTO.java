@@ -28,7 +28,7 @@ public class BloggerDTO implements Serializable, DTOConverter {
     }
 
     public BloggerEntity toEntity() {
-        return new BloggerEntity(this.firstName, this.lastName, this.nickName, this.age);
+        return new BloggerEntity(new Long(this.bloggerID), this.firstName, this.lastName, this.nickName, this.age);
     }
 
     public int getBloggerID() {

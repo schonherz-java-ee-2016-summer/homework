@@ -32,13 +32,14 @@ public class BlogPostDTO implements Serializable, DTOConverter {
         this.comments = new CommentsBean();
     }
 
-    public BlogPostDTO(int postID, BloggerDTO author, LocalDateTime time, String title, String message) {
+    public BlogPostDTO(int postID, BloggerDTO author, LocalDateTime time, String title, String message, List<CommentDTO> comments) {
         this.postID = postID;
         this.author = author;
         this.title = title;
         this.message = message;
         this.time = time;
         this.comments = new CommentsBean();
+        this.comments.setComments(comments);
         this.bloggerID = this.author.getBloggerID();
     }
     public BlogPostEntity toEntity(){
@@ -46,7 +47,7 @@ public class BlogPostDTO implements Serializable, DTOConverter {
         for (CommentDTO commentDTO: comments.getComments()){
             commentEntities.add(commentDTO.toEntity());
         }
-        return new BlogPostEntity(this.author.toEntity(), Timestamp.valueOf(this.time), this.title, this.message, commentEntities);
+        return new BlogPostEntity(new Long(this.postID), this.author.toEntity(), Timestamp.valueOf(this.time), this.title, this.message, commentEntities);
     }
 
     public int getPostID() {

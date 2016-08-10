@@ -40,11 +40,8 @@ public class IndexController {
 
     @RequestMapping(value = "/" + Constants.INDEX_KEY, method = RequestMethod.POST)
     public String createNewPost(@ModelAttribute("blogger") BloggerDTO blogger, @ModelAttribute("blogPost") BlogPostDTO blogPost) {
-      // blogger.setBloggerID(bloggerService.createBlogger(blogger).intValue());
         blogPost.setAuthor(blogger);
-
-        blogPost.setPostID(blogPostService.createBlogPost(blogPost).intValue());
-
+        blogPostService.updateBlogPost(blogPost);
 
         return "redirect:index";
     }

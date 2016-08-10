@@ -44,7 +44,7 @@ public class CommentDTO implements Serializable, DTOConverter {
 
     @Override
     public CommentEntity toEntity() {
-        return new CommentEntity(this.commenter, this.content, Timestamp.valueOf(this.time));
+        return new CommentEntity(new Long(this.commentID), this.commenter, this.content, Timestamp.valueOf(this.time));
     }
 
     public int getBlogPostID() {

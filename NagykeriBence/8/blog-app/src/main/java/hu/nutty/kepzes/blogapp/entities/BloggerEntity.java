@@ -21,7 +21,8 @@ public class BloggerEntity extends BaseEntity implements EntityConverter {
     public BloggerEntity() {
     }
 
-    public BloggerEntity(String firstName, String lastName, String nickName, int age) {
+    public BloggerEntity(Long id, String firstName, String lastName, String nickName, int age) {
+        setId(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
@@ -29,9 +30,10 @@ public class BloggerEntity extends BaseEntity implements EntityConverter {
     }
 
     @Override
-    public BloggerDTO toDTO(){
+    public BloggerDTO toDTO() {
         return new BloggerDTO(this.getId().intValue(), this.firstName, this.lastName, this.nickName, this.age);
     }
+
     public String getFirstName() {
         return firstName;
     }

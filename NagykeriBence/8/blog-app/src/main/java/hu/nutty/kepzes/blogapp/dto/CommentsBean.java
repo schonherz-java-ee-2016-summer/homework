@@ -24,4 +24,11 @@ public class CommentsBean implements Serializable {
     public void addComment(CommentDTO comment) {
         this.comments.add(comment);
     }
+
+    @Override
+    public String toString() {
+        return "CommentsBean{" +
+                "comments=" + comments +
+                '}';
+    }
 }

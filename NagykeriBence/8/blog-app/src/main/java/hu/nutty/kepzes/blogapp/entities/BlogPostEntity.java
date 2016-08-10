@@ -1,9 +1,11 @@
 package hu.nutty.kepzes.blogapp.entities;
 
 import hu.nutty.kepzes.blogapp.dto.BlogPostDTO;
+import hu.nutty.kepzes.blogapp.dto.CommentDTO;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +32,8 @@ public class BlogPostEntity extends BaseEntity implements EntityConverter {
     public BlogPostEntity() {
     }
 
-    public BlogPostEntity(BloggerEntity author, Timestamp time, String title, String message, List<CommentEntity> comments) {
+    public BlogPostEntity(Long id, BloggerEntity author, Timestamp time, String title, String message, List<CommentEntity> comments) {
+        setId(id);
         this.author = author;
         this.time = time;
         this.title = title;
@@ -40,7 +43,11 @@ public class BlogPostEntity extends BaseEntity implements EntityConverter {
 
     @Override
     public BlogPostDTO toDTO() {
-        return new BlogPostDTO(this.getId().intValue(), this.author.toDTO(), this.time.toLocalDateTime(), this.title, this.message);
+        List<CommentDTO> commentDTOs = new ArrayList<>();
+        for (CommentEntity entity: comments){
+            commentDTOs.add(entity.toDTO());
+        }
+        return new BlogPostDTO(this.getId().intValue(), this.author.toDTO(), this.time.toLocalDateTime(), this.title, this.message, commentDTOs);
     }
 
     public BloggerEntity getAuthor() {

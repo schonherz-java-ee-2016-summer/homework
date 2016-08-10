@@ -32,13 +32,8 @@ public class BlogPostController {
     }
 
     @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
-    public String selectAndDisplayPostById(ModelMap model, @PathVariable int id) {
-        Long blog_id = new Long(id);
-        BlogPostDTO selectedPost = blogPostService.getBlogPostById(blog_id);
-
-        //CommentsBean comments = new CommentsBean();
-        //comments.setComments(commentService.getAllCommentsByBlogId(blog_id));
-       // selectedPost.setComments(comments);
+    public String selectAndDisplayPostById(ModelMap model, @PathVariable Long id) {
+        BlogPostDTO selectedPost = blogPostService.getBlogPostById(id);
         model.addAttribute(Constants.SELECTED_POST, selectedPost);
         return "posts";
     }

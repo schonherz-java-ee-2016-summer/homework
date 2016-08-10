@@ -26,7 +26,8 @@ public class CommentEntity extends BaseEntity {
     public CommentEntity() {
     }
 
-    public CommentEntity(String commenter, String content, Timestamp time) {
+    public CommentEntity(Long id, String commenter, String content, Timestamp time) {
+        setId(id);
         this.commenter = commenter;
         this.content = content;
         this.time = time;
